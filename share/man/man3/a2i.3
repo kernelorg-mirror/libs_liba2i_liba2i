@@ -1,0 +1,212 @@
+.\" Copyright 2024 Alejandro Colomar <alx@kernel.org>
+.\" SPDX-License-Identifier: Linux-man-pages-copyleft
+.
+.
+.TH a2i 3 (date) liba2i-(unreleased)
+.
+.
+.SH Name
+a2i/a2i.h,
+a2i,
+a2s,
+a2u,
+a2shh,
+a2sh,
+a2si,
+a2sl,
+a2sll,
+a2uhh,
+a2uh,
+a2ui,
+a2ul,
+a2ull
+\-
+convert a string to an integer
+.
+.
+.SH Library
+String-to-integer library
+.RI ( liba2i ", " \-la2i )
+.
+.
+.SH Synopsis
+.nf
+.B include <a2i/a2i.h>
+.fi
+.
+.SS Type-generic macros
+.nf
+.BI "int a2i(TYPE, TYPE *restrict " n ", const char *" s ,
+.BI "          char **_Nullable restrict " endp ", int " base ,
+.BI "          TYPE " min ", TYPE " max );
+.P
+.BI "int a2s(TYPE, TYPE *restrict " n ", const char *" s ,
+.BI "          char **_Nullable restrict " endp ", int " base ,
+.BI "          TYPE " min ", TYPE " max );
+.BI "int a2u(TYPE, TYPE *restrict " n ", const char *" s ,
+.BI "          char **_Nullable restrict " endp ", int " base ,
+.BI "          TYPE " min ", TYPE " max );
+.fi
+.
+.SS Signed functions
+.nf
+.BI "int a2shh(signed char *restrict " n ", const char *" s ,
+.BI "          char **_Nullable restrict " endp ", int " base ,
+.BI "          signed char " min ", signed char " max );
+.BI "int a2sh(short *restrict " n ", const char *" s ,
+.BI "          char **_Nullable restrict " endp ", int " base ,
+.BI "          short " min ", short " max );
+.BI "int a2si(int *restrict " n ", const char *" s ,
+.BI "          char **_Nullable restrict " endp ", int " base ,
+.BI "          int " min ", int " max );
+.BI "int a2sl(long *restrict " n ", const char *" s ,
+.BI "          char **_Nullable restrict " endp ", int " base ,
+.BI "          long " min ", long " max );
+.BI "int a2sll(long long *restrict " n ", const char *" s ,
+.BI "          char **_Nullable restrict " endp ", int " base ,
+.BI "          long long " min ", long long " max );
+.fi
+.
+.SS Unsigned functions
+.nf
+.BI "int a2uhh(unsigned char *restrict " n ", const char *" s ,
+.BI "          char **_Nullable restrict " endp ", int " base ,
+.BI "          unsigned char " min ", unsigned char " max );
+.BI "int a2uh(unsigned short *restrict " n ", const char *" s ,
+.BI "          char **_Nullable restrict " endp ", int " base ,
+.BI "          unsigned short " min ", unsigned short " max );
+.BI "int a2ui(unsigned int *restrict " n ", const char *" s ,
+.BI "          char **_Nullable restrict " endp ", int " base ,
+.BI "          unsigned int " min ", unsigned int " max );
+.BI "int a2ul(unsigned long *restrict " n ", const char *" s ,
+.BI "          char **_Nullable restrict " endp ", int " base ,
+.BI "          unsigned long " min ", unsigned long " max );
+.BI "int a2ull(unsigned long long *restrict " n ", const char *" s ,
+.BI "          char **_Nullable restrict " endp ", int " base ,
+.BI "          unsigned long long " min ", unsigned long long " max );
+.fi
+.
+.SH Description
+These functions
+convert the initial portion of the string pointed to by
+.I s
+to an integer of base
+.IR base ,
+ensure that the number is in the range
+.RI [ min ,\~ max ]
+and store it in
+.IR *n .
+.P
+They are similar to
+.MR strtoi 3bsd ,
+which itself is similar to
+.MR strtol 3 .
+.P
+The
+.I base
+must a value in the range
+.RB [ 2 ,\~ 36 ],
+or the special value
+.BR 0 ,
+which means either
+.BR 8 ,
+.BR 10 ,
+or
+.BR 16 ,
+depending on the prefix
+.RI ( \[dq]0\[dq] ,
+none, or
+.IR \[dq]0x\[dq] ,
+respectively).
+.P
+The unsigned functions reject negative values,
+instead of silently wrapping them around
+(both
+.MR strtol 3
+and
+.MR strtoi 3bsd
+wrap around negative values before checking for overflow).
+.P
+If
+.I endp
+is not a null pointer,
+these functions
+store the address of the first invalid character in
+.IR *endp .
+.P
+These functions always write to
+.IR *n .
+.IP \[bu] 3
+The value parsed if it's in the range,
+or the closest value in the range otherwise.
+.IP \[bu] 3
+.B 0
+if no value was parsed,
+or the closest value in the range if
+.B 0
+is not in the range.
+.P
+The type-generic macros
+expand to the appropriate function depending on
+.IR TYPE .
+They are useful for parsing a number into a typedef.
+.P
+.in +4n
+.EX
+if (a2i(pid_t, &pid, s, NULL, 10, 1, type_max(pid_t)) == -1)
+	goto err;
+.EE
+.in
+.P
+.MR a2s 3
+and
+.MR a2u 3
+also assert the sign of the
+.IR TYPE .
+.P
+.in +4n
+.EX
+if (a2s(int64_t, &i, s, NULL, 0, -7, 42) == -1)
+	goto err;
+.EE
+.in
+.
+.
+.SH Return value
+On success,
+0 is returned.
+On error,
+-1 is returned,
+and
+.I errno
+is set to indicate the error.
+.
+.
+.SH Errors
+.TP
+.B EINVAL
+The
+.I base
+is not in the range
+.RB [ 2 ,\~ 36 ]
+nor
+.BR 0 .
+.TP
+.B ECANCELED
+The string did not contain any characters that were converted.
+.TP
+.B ERANGE
+The parsed number was out of range.
+.TP
+.B ENOTSUP
+The string contained non-numeric characters after a valid number.
+.
+.
+.SH See also
+.MR str2i 3 ,
+.MR atof 3 ,
+.MR atoi 3 ,
+.MR strtod 3 ,
+.MR strtoimax 3 ,
+.MR strtol 3 ,
+.MR strtoi 3

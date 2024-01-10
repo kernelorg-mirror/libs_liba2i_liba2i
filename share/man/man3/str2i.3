@@ -1,0 +1,86 @@
+.\" Copyright 2024 Alejandro Colomar <alx@kernel.org>
+.\" SPDX-License-Identifier: Linux-man-pages-copyleft
+.
+.
+.TH str2i 3 (date) liba2i-(unreleased)
+.
+.
+.SH Name
+a2i/str2i.h,
+str2i,
+str2s,
+str2u,
+str2shh,
+str2sh,
+str2si,
+str2sl,
+str2sll,
+str2uhh,
+str2uh,
+str2ui,
+str2ul,
+str2ull
+\-
+convert a string to an integer
+.
+.
+.SH Library
+String-to-integer library
+.RI ( liba2i ", " \-la2i )
+.
+.
+.SH Synopsis
+.nf
+.B include <a2i/str2i.h>
+.fi
+.
+.SS Type-generic macros
+.nf
+.BI "int str2i(TYPE, TYPE *restrict " n ", const char *" s );
+.P
+.BI "int str2s(TYPE, TYPE *restrict " n ", const char *" s );
+.BI "int str2u(TYPE, TYPE *restrict " n ", const char *" s );
+.fi
+.
+.SS Signed functions
+.nf
+.BI "int str2shh(signed char *restrict " n ", const char *" s );
+.BI "int str2sh(short *restrict " n ", const char *" s );
+.BI "int str2si(int *restrict " n ", const char *" s );
+.BI "int str2sl(long *restrict " n ", const char *" s );
+.BI "int str2sll(long long *restrict " n ", const char *" s );
+.fi
+.
+.SS Unsigned functions
+.nf
+.BI "int str2uhh(unsigned char *restrict " n ", const char *" s );
+.BI "int str2uh(unsigned short *restrict " n ", const char *" s );
+.BI "int str2ui(unsigned int *restrict " n ", const char *" s );
+.BI "int str2ul(unsigned long *restrict " n ", const char *" s );
+.BI "int str2ull(unsigned long long *restrict " n ", const char *" s );
+.fi
+.
+.SH Description
+These functions and macros
+are convenience wrappers around
+.MR a2i 3 ,
+providing common defaults for the remaining arguments.
+The base is 0;
+the end pointer is NULL;
+and the limits are those of the type.
+The following calls are all equivalent:
+.P
+.in +4n
+.EX
+str2sl(&n, s);
+str2s(long, &n, s);
+str2i(long, &n, s);
+a2sl(&n, s, NULL, 0, LONG_MIN, LONG_MAX);
+a2s(long, &n, s, NULL, 0, LONG_MIN, LONG_MAX);
+a2i(long, &n, s, NULL, 0, LONG_MIN, LONG_MAX);
+.EE
+.in
+.
+.
+.SH See also
+.MR a2i 3
