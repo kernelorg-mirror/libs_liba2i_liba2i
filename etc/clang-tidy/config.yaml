@@ -1,0 +1,19 @@
+---
+Checks: >
+    *,
+    -bugprone-easily-swappable-parameters,
+    -bugprone-macro-parentheses,
+    -clang-diagnostic-unused-macros,
+    -cppcoreguidelines-init-variables,
+    -google-readability-braces-around-statements,
+    -hicpp-braces-around-statements,
+    -hicpp-signed-bitwise,
+    -llvm-header-guard,
+    -llvmlibc-restrict-system-libc-headers,
+    -readability-braces-around-statements,
+    -readability-identifier-length,
+    -readability-isolate-declaration,
+
+WarningsAsErrors: >
+    *,
+...

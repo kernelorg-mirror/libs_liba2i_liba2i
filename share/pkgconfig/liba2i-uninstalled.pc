@@ -1,0 +1,15 @@
+Name: liba2i
+Description: String-to-numeric library
+URL: https://www.alejandro-colomar.es/src/alx/alx/liba2i.git
+Version: <version>
+Requires:
+Requires.private:
+
+prefix=.
+includedir=${prefix}/include
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib
+
+Cflags: -isystem${includedir}
+Libs: -L${libdir} -la2i -lc
+Libs.private:
