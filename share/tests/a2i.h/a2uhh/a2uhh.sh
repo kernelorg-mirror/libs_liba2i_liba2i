@@ -1,0 +1,14 @@
+#!/bin/sh
+# Copyright 2024 Alejandro Colomar <alx@kernel.org>
+# SPDX-License-Identifier: LGPL-3.0-or-later WITH LGPL-3.0-linking-exception
+
+out="$(mktemp)";
+CFLAGS="-std=gnu2x";
+CFLAGS="$CFLAGS -Wall";
+CFLAGS="$CFLAGS -Wextra";
+CFLAGS="$CFLAGS -Werror";
+CFLAGS="$CFLAGS $(pkgconf --cflags liba2i)";
+LIBS="$(pkgconf --libs liba2i)";
+
+cc $CFLAGS -o "$out" "$(dirname "$0")"/a2uhh.c $LIBS;
+"$out";
