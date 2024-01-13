@@ -1,0 +1,85 @@
+Name
+       Install - instructions for installing library into the system
+
+Synopsis
+       sudo make [-j] install [prefix=...] [DESTDIR=...] [...]
+       make [-j] installcheck [...]
+
+Description
+   Install manually from source
+       In most cases, you just want to install the entire library.  To install
+       all the files in the default system directories (per GNU guidelines),
+       use:
+
+           $ make               # optional
+           $ sudo make install
+           $ make installcheck  # optional
+
+       You can install in parallel if you want.  A few features can be used to
+       tweak the install:
+
+       Directory variables
+            To check about all of the directory variables available, compare
+            the GNU Coding Standards with the Makefile and the helper makefiles
+            (see the sections "Standards" and "Files" below).  The most common
+            ones that you may use are:
+
+            -  DESTDIR
+            -  prefix
+
+       Command Variables
+            Some commands use flags.  A command named 'command' will have a
+            variable COMMAND to specify an alternative command name.  To append
+            flags to the default ones, set the variable EXTRA_COMMANDFLAGS.  To
+            overwrite the flags, set the variable COMMANDFLAGS.
+
+       Uninstall
+            TODO
+
+       Targets
+            There are targets for more granular control, such as 'install-dev'.
+            See the help to know all of them:
+
+                $ make help
+
+   Lint
+       You can lint the source code.  See 'make help' for a list of targets
+       that can be used.
+
+Files
+   GNUmakefile
+       Main makefile.
+
+   share/mk/
+       Other makefiles.
+
+   include/a2i/
+       Header files.
+
+   src/a2i/
+       Source files.
+
+   share/pkgconfig/*.pc
+       pc(5) file.
+
+   /usr/local/include/a2i/
+       Installed header files.
+
+   /usr/local/lib/liba2i.a
+       Static library file.
+
+   /usr/local/lib/liba2i.so*
+       Shared library.
+
+   /usr/local/share/pkgconfig/liba2i.pc
+       Installed pc(5) file.
+
+Standards
+       This project tries to follow closely the GNU Coding Standards:
+       <https://www.gnu.org/prep/standards/html_node/Directory-Variables.html>.
+       <https://www.gnu.org/prep/standards/html_node/Command-Variables.html>.
+
+       And the Filesystem Hierarchy Standard:
+       <https://refspecs.linuxfoundation.org/FHS_3.0/fhs/index.html>
+
+       But deviate in some cases.

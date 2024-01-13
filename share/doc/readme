@@ -1,0 +1,89 @@
+Name
+       liba2i - String-to-numeric library
+
+Synopsis
+       Library to parse numbers from strings.
+
+Description
+   Why?
+       Originally, we had atoi(3) and atol(3).  Those APIs are not
+       inherently bad, but the implementations left the behavior
+       undefined when the input wasn't in range.  They are also limited
+       to base 10.
+
+       Then came the strtol(3) family of functions.  This API allows
+       checking for errors (overflow, trailing text, invalid base, and
+       no number at all).  The method for reporting those errors isn't
+       exactly easy to check, though; it's very different to most
+       standard libc functions.  Also, often one wants to parse a number
+       into a typedef, which might be narrower than the type returned by
+       strto*(3), or might be a signed or unsigned integer depending on
+       the system; and checking for overflow of that type (not the type
+       that strto*(3) returns) is very tricky.
+
+       Another problem is that strtoul(3) doesn't reject negative
+       values, which often results in bugs.
+
+       Then came strtonum(3) and later strtoi(3) and strtou(3) to the
+       BSDs.  They considerably simplify the error checking, reporting
+       them via errno.
+
+       These new BSD functions are still problematic with typedefs whose
+       signedness may vary, and also don't reject negative values.  And
+       they've had a bug which conceals range errors when there's
+       trailing text after the number.
+
+   What?
+       The functions provided by this library store the value via a
+       pointer, which adds some type safety: passing a pointer to a
+       different integer type would result in an error.  The return
+       value is either 0 or -1, for success or error.
+
+       The functions for parsing unsigned integers reject negative
+       values, considering them underflow.
+
+       The type-generic macros allow use with typedefs, providing
+       appropriate range checks.
+
+       The short-hand versions of the functions and macros provide a
+       simple API (almost as simple as atoi(3)) with common defaults.
+
+Files
+   INSTALL
+       Instructions for installing the library.
+
+   README
+       Main information about the project and the repository.
+
+   Makefile, share/mk/
+       Build system.
+
+   LICENSES/, share/licenses/
+       Licenses in use by the project.
+
+   etc/
+       Configuration files for (linter) programs called by the build system.
+
+   include/a2i/
+       Header files.
+
+   share/doc/
+       Project documentation.
+
+   share/man/
+       Manual pages.
+
+   share/pkgconfig/
+       Package configuration file.  See pc(5) and pkgconf(1).
+
+   src/a2i/
+       Source code.
+
+Maintainers
+       Alejandro Colomar <alx@kernel.org> <https://www.alejandro-colomar.es/>
+
+Copyright
+       LGPL-3.0-or-later WITH LGPL-3.0-linking-exception
+
+See also
+       <https://www.alejandro-colomar.es/src/alx/alx/liba2i.git>
