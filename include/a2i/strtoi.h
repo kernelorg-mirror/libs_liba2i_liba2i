@@ -6,11 +6,6 @@
 #define INCLUDE_A2I_STRTOI_H_
 
 
-#if !defined(__GNUC__)
-# error "liba2i requires GNU C"
-#endif
-
-
 #include <errno.h>
 #include <inttypes.h>
 #include <stddef.h>
