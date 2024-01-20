@@ -82,7 +82,7 @@
 	[[gnu::access(write_only, 1)]]                                        \
 	[[gnu::access(read_only, 2)]]                                         \
 	[[gnu::access(write_only, 3)]]                                        \
-	/*[[gnu::null_terminated_string_arg(2)]]*/                            \
+	[[gnu::null_terminated_string_arg(2)]]                                \
 	inline int name(TYPE *restrict n, const char *s,                      \
 	    char **a2i_nullable restrict endp, int base, TYPE min, TYPE max)
 

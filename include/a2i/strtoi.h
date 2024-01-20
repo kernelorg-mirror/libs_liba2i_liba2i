@@ -70,21 +70,21 @@
 [[gnu::access(read_only, 1)]]
 [[gnu::access(write_only, 2)]]
 [[gnu::access(write_only, 6)]]
-//[[gnu::null_terminated_string_arg(1)]]
+[[gnu::null_terminated_string_arg(1)]]
 inline intmax_t a2i_strtoi(const char *s,
     char **a2i_nullable restrict endp, int base,
     intmax_t min, intmax_t max, int *a2i_nullable restrict status);
 [[gnu::access(read_only, 1)]]
 [[gnu::access(write_only, 2)]]
 [[gnu::access(write_only, 6)]]
-//[[gnu::null_terminated_string_arg(1)]]
+[[gnu::null_terminated_string_arg(1)]]
 inline uintmax_t a2i_strtou(const char *s,
     char **a2i_nullable restrict endp, int base,
     uintmax_t min, uintmax_t max, int *a2i_nullable restrict status);
 [[gnu::access(read_only, 1)]]
 [[gnu::access(write_only, 2)]]
 [[gnu::access(write_only, 6)]]
-//[[gnu::null_terminated_string_arg(1)]]
+[[gnu::null_terminated_string_arg(1)]]
 inline uintmax_t a2i_strtou_noneg(const char *s,
     char **a2i_nullable restrict endp, int base,
     uintmax_t min, uintmax_t max, int *a2i_nullable restrict status);
