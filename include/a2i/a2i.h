@@ -11,6 +11,7 @@
 #include <stdint.h>
 
 #include <a2i/cast.h>
+#include <a2i/inline.h>
 #include <a2i/qual.h>
 #include <a2i/strtoi.h>
 #include <a2i/typetraits.h>
@@ -83,7 +84,7 @@
 	[[gnu::access(read_only, 2)]]                                         \
 	[[gnu::access(write_only, 3)]]                                        \
 	[[gnu::null_terminated_string_arg(2)]]                                \
-	inline int name(TYPE *restrict n, const char *s,                      \
+	a2i_inline int name(TYPE *restrict n, const char *s,                  \
 	    char **a2i_nullable restrict endp, int base, TYPE min, TYPE max)
 
 
@@ -101,7 +102,7 @@ A2I_A2I_PROTOTYPE(a2ul, unsigned long);
 A2I_A2I_PROTOTYPE(a2ull, unsigned long long);
 
 
-inline int
+a2i_inline int
 a2shh(signed char *restrict n, const char *s,
     char **a2i_nullable restrict endp, int base,
     signed char min, signed char max)
@@ -110,7 +111,7 @@ a2shh(signed char *restrict n, const char *s,
 }
 
 
-inline int
+a2i_inline int
 a2sh(short *restrict n, const char *s,
     char **a2i_nullable restrict endp, int base,
     short min, short max)
@@ -119,7 +120,7 @@ a2sh(short *restrict n, const char *s,
 }
 
 
-inline int
+a2i_inline int
 a2si(int *restrict n, const char *s,
     char **a2i_nullable restrict endp, int base,
     int min, int max)
@@ -128,7 +129,7 @@ a2si(int *restrict n, const char *s,
 }
 
 
-inline int
+a2i_inline int
 a2sl(long *restrict n, const char *s,
     char **a2i_nullable restrict endp, int base,
     long min, long max)
@@ -137,7 +138,7 @@ a2sl(long *restrict n, const char *s,
 }
 
 
-inline int
+a2i_inline int
 a2sll(long long *restrict n, const char *s,
     char **a2i_nullable restrict endp, int base,
     long long min, long long max)
@@ -146,7 +147,7 @@ a2sll(long long *restrict n, const char *s,
 }
 
 
-inline int
+a2i_inline int
 a2uhh(unsigned char *restrict n, const char *s,
     char **a2i_nullable restrict endp, int base,
     unsigned char min, unsigned char max)
@@ -155,7 +156,7 @@ a2uhh(unsigned char *restrict n, const char *s,
 }
 
 
-inline int
+a2i_inline int
 a2uh(unsigned short *restrict n, const char *s,
     char **a2i_nullable restrict endp, int base,
     unsigned short min, unsigned short max)
@@ -164,7 +165,7 @@ a2uh(unsigned short *restrict n, const char *s,
 }
 
 
-inline int
+a2i_inline int
 a2ui(unsigned int *restrict n, const char *s,
     char **a2i_nullable restrict endp, int base,
     unsigned int min, unsigned int max)
@@ -173,7 +174,7 @@ a2ui(unsigned int *restrict n, const char *s,
 }
 
 
-inline int
+a2i_inline int
 a2ul(unsigned long *restrict n, const char *s,
     char **a2i_nullable restrict endp, int base,
     unsigned long min, unsigned long max)
@@ -182,7 +183,7 @@ a2ul(unsigned long *restrict n, const char *s,
 }
 
 
-inline int
+a2i_inline int
 a2ull(unsigned long long *restrict n, const char *s,
     char **a2i_nullable restrict endp, int base,
     unsigned long long min, unsigned long long max)

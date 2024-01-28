@@ -10,6 +10,7 @@
 #include <stddef.h>
 
 #include <a2i/a2i.h>
+#include <a2i/inline.h>
 #include <a2i/typetraits.h>
 
 
@@ -55,7 +56,7 @@
 	[[gnu::access(write_only, 1)]]                                        \
 	[[gnu::access(read_only, 2)]]                                         \
 	[[gnu::null_terminated_string_arg(2)]]                                \
-	inline int name(TYPE *restrict n, const char *s)
+	a2i_inline int name(TYPE *restrict n, const char *s)
 
 
 #pragma clang assume_nonnull begin
@@ -72,70 +73,70 @@ A2I_STR2I_PROTOTYPE(str2ul, unsigned long);
 A2I_STR2I_PROTOTYPE(str2ull, unsigned long long);
 
 
-inline int
+a2i_inline int
 str2shh(signed char *restrict n, const char *restrict s)
 {
 	return a2i_str2I(n, s);
 }
 
 
-inline int
+a2i_inline int
 str2sh(short *restrict n, const char *restrict s)
 {
 	return a2i_str2I(n, s);
 }
 
 
-inline int
+a2i_inline int
 str2si(int *restrict n, const char *restrict s)
 {
 	return a2i_str2I(n, s);
 }
 
 
-inline int
+a2i_inline int
 str2sl(long *restrict n, const char *restrict s)
 {
 	return a2i_str2I(n, s);
 }
 
 
-inline int
+a2i_inline int
 str2sll(long long *restrict n, const char *restrict s)
 {
 	return a2i_str2I(n, s);
 }
 
 
-inline int
+a2i_inline int
 str2uhh(unsigned char *restrict n, const char *restrict s)
 {
 	return a2i_str2I(n, s);
 }
 
 
-inline int
+a2i_inline int
 str2uh(unsigned short *restrict n, const char *restrict s)
 {
 	return a2i_str2I(n, s);
 }
 
 
-inline int
+a2i_inline int
 str2ui(unsigned int *restrict n, const char *restrict s)
 {
 	return a2i_str2I(n, s);
 }
 
 
-inline int
+a2i_inline int
 str2ul(unsigned long *restrict n, const char *restrict s)
 {
 	return a2i_str2I(n, s);
 }
 
 
-inline int
+a2i_inline int
 str2ull(unsigned long long *restrict n, const char *restrict s)
 {
 	return a2i_str2I(n, s);
