@@ -35,7 +35,6 @@ CPPFLAGS         := $(DEFAULT_CPPFLAGS) $(EXTRA_CPPFLAGS)
 DEFAULT_CFLAGS := -O3
 DEFAULT_CFLAGS += -std=gnu2x
 DEFAULT_CFLAGS += -flto
-DEFAULT_CFLAGS += -fuse-linker-plugin
 DEFAULT_CFLAGS += -Wall
 DEFAULT_CFLAGS += -Wextra
 DEFAULT_CFLAGS += -Wstrict-prototypes
