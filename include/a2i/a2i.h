@@ -6,7 +6,7 @@
 #define INCLUDE_A2I_A2I_H_
 
 
-#include <assert.h>
+#include <assert.h>  // IWYU pragma: keep
 #include <errno.h>
 #include <stdint.h>
 
