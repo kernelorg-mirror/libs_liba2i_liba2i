@@ -104,7 +104,7 @@ $(_TU_ct): %.lint-c.clang-tidy.touch: % $(CLANG-TIDY_CONF) $(MK) | %.d $$(@D)/
 	$(info	LINT (clang-tidy)	$@)
 	$(CLANG-TIDY) $(CLANG-TIDYFLAGS) $< -- \
 	              $(CPPFLAGS) $(CFLAGS) $(CLANGFLAGS) 2>&1 \
-	| $(SED) '/generated\.$$/d'
+	| $(SED) '/generated\.$$/d' >&2
 	$(TOUCH) $@
 
 $(_TU_cck): %.lint-c.cppcheck.touch: % $(CPPCHECK_CONF) $(MK) | %.d $$(@D)/
@@ -127,7 +127,7 @@ $(_TU_iwyu): %.lint-c.iwyu.touch: % $(MK) | %.d $$(@D)/
 	$(IWYU) $(IWYUFLAGS) $(CPPFLAGS) $(CFLAGS) $(CLANGFLAGS) $< 2>&1 \
 	| $(TAC) \
 	| $(SED) '/correct/{N;d}' \
-	| $(TAC)
+	| $(TAC) >&2
 	$(TOUCH) $@
 
 
