@@ -43,37 +43,37 @@ INSTALL_PROGRAM := $(INSTALL) -m 755
 
 
 $(_includedirs): | $$(dir $$(@D))
-	$(info	INSTALL		$@)
-	$(INSTALL_DIR) $@
+	+$(info	INSTALL		$@)
+	+$(INSTALL_DIR) $@
 
 $(_man3dir)/ \
 $(_man3headdir)/: $(_mandir)/
-	$(info	INSTALL		$@)
-	$(INSTALL_DIR) $@
+	+$(info	INSTALL		$@)
+	+$(INSTALL_DIR) $@
 
 $(_pdfdir)/: $(_docdir)/
-	$(info	INSTALL		$@)
-	$(INSTALL_DIR) $@
+	+$(info	INSTALL		$@)
+	+$(INSTALL_DIR) $@
 
 $(_pcdir)/ \
 $(_docdir)/ \
 $(_mandir)/: $(_datarootdir)/
-	$(info	INSTALL		$@)
-	$(INSTALL_DIR) $@
+	+$(info	INSTALL		$@)
+	+$(INSTALL_DIR) $@
 
 $(_libdir)/: $(_exec_prefix)/
-	$(info	INSTALL		$@)
-	$(INSTALL_DIR) $@
+	+$(info	INSTALL		$@)
+	+$(INSTALL_DIR) $@
 
 $(_exec_prefix)/ \
 $(_datarootdir)/ \
 $(_includedir)/: $(_prefix)/
-	$(info	INSTALL		$@)
-	$(INSTALL_DIR) $@
+	+$(info	INSTALL		$@)
+	+$(INSTALL_DIR) $@
 
 $(_prefix)/:
-	$(info	INSTALL		$@)
-	$(INSTALL_DIR) $@
+	+$(info	INSTALL		$@)
+	+$(INSTALL_DIR) $@
 
 
 .PHONY: install

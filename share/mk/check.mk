@@ -21,8 +21,8 @@ _TESTSDIRS := $(patsubst $(srcdir)/share/%,$(builddir)/%/,$(shell $(FIND) $(TEST
 
 
 $(_TESTSDIRS): | $$(dir $$(@D))
-	$(info	MKDIR	$@)
-	$(MKDIR) $@
+	+$(info	MKDIR	$@)
+	+$(MKDIR) -p $@
 
 
 $(_TESTS): $(builddir)/%.ck.touch: $(srcdir)/share/% $(MK) $(TU_h) $(_LIB_a) $(_LIB_so_v) | $$(@D)/

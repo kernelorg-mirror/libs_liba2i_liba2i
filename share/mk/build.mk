@@ -18,12 +18,12 @@ _TU_DIRS  := $(patsubst $(INCLUDEDIR)/%,$(builddir)/%/,$(TU_DIRS))
 
 
 $(_TU_DIRS): | $$(dir $$(@D))
-	$(info	MKDIR	$@)
-	$(MKDIR) $@
+	+$(info	MKDIR	$@)
+	+$(MKDIR) -p $@
 
 $(builddir)/:
-	$(info	MKDIR	$@)
-	$(MKDIR) $@
+	+$(info	MKDIR	$@)
+	+$(MKDIR) -p $@
 
 
 .PHONY: build
