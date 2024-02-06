@@ -17,6 +17,9 @@ DATAROOTDIR := $(srcdir)/share
 MAKEFILEDIR := $(DATAROOTDIR)/mk
 
 
+.DEFAULT_GOAL := build
+
+
 .PHONY: all
 all: lint build check
 	@:
@@ -30,7 +33,7 @@ help:
 	$(info	)
 	$(info	clean			Remove $$(builddir))
 	$(info	)
-	$(info	build			Wrapper for "build-lib build-dev")
+	$(info	build (.DEFAULT_GOAL)	Wrapper for "build-lib build-dev")
 	$(info	)
 	$(info	build-deps		Build the .d files)
 	$(info	build-dev		Wrapper for build-dev-* targets)
