@@ -11,8 +11,9 @@ include $(MAKEFILEDIR)/verbose.mk
 
 
 libname       := liba2i
-DISTVERSION   := $(patsubst v%,%,$(shell $(GIT) describe $(HIDE_ERR) || $(ECHO) unreleased))
+DISTVERSION   := $(shell $(GIT) describe $(HIDE_ERR))
 DISTNAME      := $(libname)-$(DISTVERSION)
+DISTDATE      := $(shell $(GIT) log -1 --format='%aD')
 MAJOR_VERSION := $(shell $(ECHO) $(DISTVERSION) | $(CUT) -f1 -d. )
 
 
