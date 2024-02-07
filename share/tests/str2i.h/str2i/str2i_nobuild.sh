@@ -35,8 +35,8 @@ __EOF__
 
 
 cc $CFLAGS -o "$out" -x c - $LIBS 2>&1 <<__EOF__ \
-| if ! grep -- '-Werror=incompatible-pointer-types' >/dev/null; then \
-	>&2 printf '%s\n' "$0:$LINENO: Expected [-Werror=incompatible-pointer-types]"; \
+| if ! grep -- 'incompatible-pointer-types' >/dev/null; then \
+	>&2 printf '%s\n' "$0:$LINENO: Expected [incompatible-pointer-types]"; \
 	exit 1; \
 else \
 	true; \
