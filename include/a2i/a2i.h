@@ -37,14 +37,14 @@
 
 #define a2s(TYPE, ...)                                                        \
 ({                                                                            \
-	static_assert(a2i_is_signed(TYPE));                                   \
+	static_assert(a2i_is_signed(TYPE), "");                               \
 	a2i(TYPE, __VA_ARGS__);                                               \
 })
 
 
 #define a2u(TYPE, ...)                                                        \
 ({                                                                            \
-	static_assert(a2i_is_unsigned(TYPE));                                 \
+	static_assert(a2i_is_unsigned(TYPE), "");                             \
 	a2i(TYPE, __VA_ARGS__);                                               \
 })
 

@@ -13,10 +13,10 @@
 ({                                                                            \
 	__auto_type  e_ = e;                                                  \
                                                                               \
-	static_assert(__builtin_classify_type((T) 0) == 1);                   \
-	static_assert(__builtin_classify_type((typeof(e_)) 0) == 1);          \
-	static_assert(a2i_is_signed(T) == a2i_is_signed(typeof(e_)));         \
-	static_assert(sizeof(T) <= sizeof(e_));                               \
+	static_assert(__builtin_classify_type((T) 0) == 1, "");               \
+	static_assert(__builtin_classify_type((typeof(e_)) 0) == 1, "");      \
+	static_assert(a2i_is_signed(T) == a2i_is_signed(typeof(e_)), "");     \
+	static_assert(sizeof(T) <= sizeof(e_), "");                           \
                                                                               \
 	(T) (e_);                                                             \
 })

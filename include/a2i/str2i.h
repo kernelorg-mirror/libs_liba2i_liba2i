@@ -34,14 +34,14 @@
 
 #define str2s(TYPE, ...)                                                      \
 ({                                                                            \
-	static_assert(a2i_is_signed(TYPE));                                   \
+	static_assert(a2i_is_signed(TYPE), "");                               \
 	str2i(TYPE, __VA_ARGS__);                                             \
 })
 
 
 #define str2u(TYPE, ...)                                                      \
 ({                                                                            \
-	static_assert(a2i_is_unsigned(TYPE));                                 \
+	static_assert(a2i_is_unsigned(TYPE), "");                             \
 	str2i(TYPE, __VA_ARGS__);                                             \
 })
 
