@@ -6,18 +6,6 @@ ifndef MAKEFILE_COMPRESS_INCLUDED
 MAKEFILE_COMPRESS_INCLUDED := 1
 
 
-Z :=
-ifeq ($(Z),)
-else ifeq ($(Z),.bz2)
-else ifeq ($(Z),.gz)
-else ifeq ($(Z),.lz)
-else ifeq ($(Z),.xz)
-else
-$(warning "Z": "$(Z)")
-$(error Valid values for "Z": ["", ".bz2", ".gz", ".lz", ".xz"])
-endif
-
-
 DEFAULT_BZIP2FLAGS :=
 EXTRA_BZIP2FLAGS   :=
 BZIP2FLAGS         := $(DEFAULT_BZIP2FLAGS) $(EXTRA_BZIP2FLAGS)
