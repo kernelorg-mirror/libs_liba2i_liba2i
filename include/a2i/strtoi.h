@@ -67,7 +67,9 @@
 })
 
 
-#pragma clang assume_nonnull begin
+#if defined(__clang__)
+# pragma clang assume_nonnull begin
+#endif
 __attribute__((__access__(read_only, 1)))
 __attribute__((__access__(write_only, 2)))
 __attribute__((__access__(write_only, 6)))
@@ -126,7 +128,9 @@ a2i_strtou_noneg(const char *s,
 
 	return a2i_strtou(s, endp, base, min, max, status);
 }
-#pragma clang assume_nonnull end
+#if defined(__clang__)
+# pragma clang assume_nonnull end
+#endif
 
 
 #endif  // include guard

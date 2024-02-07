@@ -59,7 +59,9 @@
 	a2i_inline int name(TYPE *restrict n, const char *s)
 
 
-#pragma clang assume_nonnull begin
+#if defined(__clang__)
+# pragma clang assume_nonnull begin
+#endif
 A2I_STR2I_PROTOTYPE(str2shh, signed char);
 A2I_STR2I_PROTOTYPE(str2sh, short);
 A2I_STR2I_PROTOTYPE(str2si, int);
@@ -141,7 +143,9 @@ str2ull(unsigned long long *restrict n, const char *restrict s)
 {
 	return a2i_str2I(n, s);
 }
-#pragma clang assume_nonnull end
+#if defined(__clang__)
+# pragma clang assume_nonnull end
+#endif
 
 
 #endif  // include guard

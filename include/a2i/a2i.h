@@ -88,7 +88,9 @@
 	    char **a2i_nullable restrict endp, int base, TYPE min, TYPE max)
 
 
-#pragma clang assume_nonnull begin
+#if defined(__clang__)
+# pragma clang assume_nonnull begin
+#endif
 A2I_A2I_PROTOTYPE(a2shh, signed char);
 A2I_A2I_PROTOTYPE(a2sh, short);
 A2I_A2I_PROTOTYPE(a2si, int);
@@ -190,7 +192,9 @@ a2ull(unsigned long long *restrict n, const char *s,
 {
 	return a2i_a2U(n, s, endp, base, min, max);
 }
-#pragma clang assume_nonnull end
+#if defined(__clang__)
+# pragma clang assume_nonnull end
+#endif
 
 
 #endif  // include guard
