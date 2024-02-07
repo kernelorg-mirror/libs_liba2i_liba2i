@@ -13,4 +13,11 @@
 #endif
 
 
+#if defined(__clang__)
+# define A2I_ATTR_ACCESS(...)
+#else
+# define A2I_ATTR_ACCESS(...)  __attribute__((access(__VA_ARGS__)))
+#endif
+
+
 #endif  // include guard

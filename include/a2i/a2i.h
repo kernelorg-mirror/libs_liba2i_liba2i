@@ -81,9 +81,9 @@
 
 
 #define A2I_A2I_PROTOTYPE(name, TYPE)                                         \
-	__attribute__((__access__(write_only, 1)))                            \
-	__attribute__((__access__(read_only, 2)))                             \
-	__attribute__((__access__(write_only, 3)))                            \
+	A2I_ATTR_ACCESS(write_only, 1)                                        \
+	A2I_ATTR_ACCESS(read_only, 2)                                         \
+	A2I_ATTR_ACCESS(write_only, 3)                                        \
 	A2I_ATTR_STRING(2)                                                    \
 	a2i_inline int name(TYPE *restrict n, const char *s,                  \
 	    char **a2i_nullable restrict endp, int base, TYPE min, TYPE max)

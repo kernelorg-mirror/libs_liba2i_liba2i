@@ -71,23 +71,23 @@
 #if defined(__clang__)
 # pragma clang assume_nonnull begin
 #endif
-__attribute__((__access__(read_only, 1)))
-__attribute__((__access__(write_only, 2)))
-__attribute__((__access__(write_only, 6)))
+A2I_ATTR_ACCESS(read_only, 1)
+A2I_ATTR_ACCESS(write_only, 2)
+A2I_ATTR_ACCESS(write_only, 6)
 A2I_ATTR_STRING(1)
 a2i_inline intmax_t a2i_strtoi(const char *s,
     char **a2i_nullable restrict endp, int base,
     intmax_t min, intmax_t max, int *a2i_nullable restrict status);
-__attribute__((__access__(read_only, 1)))
-__attribute__((__access__(write_only, 2)))
-__attribute__((__access__(write_only, 6)))
+A2I_ATTR_ACCESS(read_only, 1)
+A2I_ATTR_ACCESS(write_only, 2)
+A2I_ATTR_ACCESS(write_only, 6)
 A2I_ATTR_STRING(1)
 a2i_inline uintmax_t a2i_strtou(const char *s,
     char **a2i_nullable restrict endp, int base,
     uintmax_t min, uintmax_t max, int *a2i_nullable restrict status);
-__attribute__((__access__(read_only, 1)))
-__attribute__((__access__(write_only, 2)))
-__attribute__((__access__(write_only, 6)))
+A2I_ATTR_ACCESS(read_only, 1)
+A2I_ATTR_ACCESS(write_only, 2)
+A2I_ATTR_ACCESS(write_only, 6)
 A2I_ATTR_STRING(1)
 a2i_inline uintmax_t a2i_strtou_noneg(const char *s,
     char **a2i_nullable restrict endp, int base,
