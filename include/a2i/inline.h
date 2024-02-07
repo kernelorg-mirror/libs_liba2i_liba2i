@@ -10,7 +10,7 @@
 
 
 #if   (A2I_FTM_INLINE == 0)
-# define a2i_inline  [[gnu::noipa]] inline
+# define a2i_inline  __attribute__((__noipa__)) inline
 #elif (A2I_FTM_INLINE == 1)
 # define a2i_inline  inline
 #elif (A2I_FTM_INLINE == 2)

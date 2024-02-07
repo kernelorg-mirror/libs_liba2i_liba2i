@@ -53,9 +53,9 @@
 
 
 #define A2I_STR2I_PROTOTYPE(name, TYPE)                                       \
-	[[gnu::access(write_only, 1)]]                                        \
-	[[gnu::access(read_only, 2)]]                                         \
-	[[gnu::null_terminated_string_arg(2)]]                                \
+	__attribute__((__access__(write_only, 1)))                            \
+	__attribute__((__access__(read_only, 2)))                             \
+	__attribute__((__null_terminated_string_arg__(2)))                    \
 	a2i_inline int name(TYPE *restrict n, const char *s)
 
 

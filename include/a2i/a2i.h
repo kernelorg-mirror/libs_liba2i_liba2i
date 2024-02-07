@@ -80,10 +80,10 @@
 
 
 #define A2I_A2I_PROTOTYPE(name, TYPE)                                         \
-	[[gnu::access(write_only, 1)]]                                        \
-	[[gnu::access(read_only, 2)]]                                         \
-	[[gnu::access(write_only, 3)]]                                        \
-	[[gnu::null_terminated_string_arg(2)]]                                \
+	__attribute__((__access__(write_only, 1)))                            \
+	__attribute__((__access__(read_only, 2)))                             \
+	__attribute__((__access__(write_only, 3)))                            \
+	__attribute__((__null_terminated_string_arg__(2)))                    \
 	a2i_inline int name(TYPE *restrict n, const char *s,                  \
 	    char **a2i_nullable restrict endp, int base, TYPE min, TYPE max)
 
