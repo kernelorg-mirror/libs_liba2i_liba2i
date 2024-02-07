@@ -14,15 +14,10 @@ include $(MAKEFILEDIR)/src.mk
 
 
 _tu_h     := $(patsubst $(INCLUDEDIR)/%,$(_includedir)/%,$(TU_h))
-_lib_a    := $(patsubst $(builddir)/%,$(_libdir)/%,$(_LIB_a))
 _lib_pc   := $(patsubst $(builddir)/%,$(_pcdir)/%,$(_LIB_pc))
 
 
 $(_tu_h): $(_includedir)/%: $(INCLUDEDIR)/% $(MK) | $$(@D)/
-	$(info	INSTALL		$@)
-	$(INSTALL_DATA) -T $< $@
-
-$(_lib_a): $(_libdir)/%: $(builddir)/% $(MK) | $$(@D)/
 	$(info	INSTALL		$@)
 	$(INSTALL_DATA) -T $< $@
 
@@ -32,7 +27,7 @@ $(_lib_pc): $(_pcdir)/%: $(builddir)/% $(MK) | $$(@D)/
 
 
 .PHONY: install-dev
-install-dev: $(_tu_h) $(_lib_a) $(_lib_pc)
+install-dev: $(_tu_h) $(_lib_pc)
 	@:
 
 

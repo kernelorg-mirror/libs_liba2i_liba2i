@@ -15,6 +15,7 @@ include $(MAKEFILEDIR)/src.mk
 
 _lib_so   := $(_libdir)/$(libname).so
 _lib_so_v := $(patsubst $(builddir)/%,$(_libdir)/%,$(_LIB_so_v))
+_lib_a    := $(patsubst $(builddir)/%,$(_libdir)/%,$(_LIB_a))
 
 
 $(_lib_so_v): $(_libdir)/%: $(builddir)/% $(MK) | $$(@D)/
@@ -25,9 +26,18 @@ $(_lib_so): $(_lib_so_v)
 	$(info	LN		$@)
 	$(LN) -sfT $@.$(MAJOR_VERSION) $@
 
+$(_lib_a): $(_libdir)/%: $(builddir)/% $(MK) | $$(@D)/
+	$(info	INSTALL		$@)
+	$(INSTALL_DATA) -T $< $@
+
 
 .PHONY: install-lib
 install-lib: $(_lib_so_v) $(_lib_so)
+	@:
+
+
+.PHONY: install-lib-static
+install-lib-static: $(_lib_a)
 	@:
 
 
