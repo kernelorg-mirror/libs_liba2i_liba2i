@@ -10,6 +10,6 @@ includedir=${prefix}/include
 exec_prefix=${prefix}
 libdir=${exec_prefix}/lib
 
-Cflags: -isystem${includedir}
+Cflags: -I${includedir}
 Libs: -L${libdir} -la2i -lc
 Libs.private:
