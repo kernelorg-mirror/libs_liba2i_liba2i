@@ -12,9 +12,12 @@ include $(MAKEFILEDIR)/install-lib.mk
 include $(MAKEFILEDIR)/src.mk
 
 
-TESTS  := $(shell $(FIND) $(TESTSDIR) -type f | $(GREP) '\.sh$$' | $(SORT))
-_TESTS := $(patsubst $(srcdir)/share/%,$(builddir)/%.ck.touch,$(TESTS))
-_tests := $(patsubst $(srcdir)/share/%,$(builddir)/%.ick.touch,$(TESTS))
+TESTS_c   := $(shell $(FIND) $(TESTSDIR) -type f | $(GREP) '\.c$$' | $(SORT))
+TESTS_sh  := $(shell $(FIND) $(TESTSDIR) -type f | $(GREP) '\.sh$$' | $(SORT))
+_TESTS_c  := $(patsubst $(srcdir)/share/%,$(builddir)/%.check,$(TESTS_c))
+_TESTS_sh := $(patsubst $(srcdir)/share/%,$(builddir)/%.check.touch,$(TESTS_sh))
+_tests_c  := $(patsubst $(srcdir)/share/%,$(builddir)/%.installcheck,$(TESTS_c))
+_tests_sh := $(patsubst $(srcdir)/share/%,$(builddir)/%.installcheck.touch,$(TESTS_sh))
 
 
 _TESTSDIRS := $(patsubst $(srcdir)/share/%,$(builddir)/%/,$(shell $(FIND) $(TESTSDIR) -type d | $(SORT)))
@@ -25,23 +28,33 @@ $(_TESTSDIRS): | $$(dir $$(@D))
 	+$(MKDIR) -p $@
 
 
-$(_TESTS): $(builddir)/%.ck.touch: $(srcdir)/share/% $(MK) $(TU_h) $(_LIB_a) $(_LIB_so_v) | $$(@D)/
-	$(info	SH (test)	$@)
+$(_TESTS_c): $(builddir)/%.check: $(srcdir)/share/% $(MK) $(TU_h) $(_LIB_a) $(_LIB_so_v) | $$(@D)/
+	$(info	CHECK	$@)
+	$(CC) $(CFLAGS) -o $@ $< $$(PKG_CONFIG_LIBDIR=$(PCDIR) $(PKGCONF) --cflags --libs liba2i)
+	$@
+
+$(_TESTS_sh): $(builddir)/%.check.touch: $(srcdir)/share/% $(MK) $(TU_h) $(_LIB_a) $(_LIB_so_v) | $$(@D)/
+	$(info	CHECK	$@)
 	PKG_CONFIG_LIBDIR=$(PCDIR) $<
 	touch $@
 
-$(_tests): $(builddir)/%.ick.touch: $(srcdir)/share/% $(MK) $(_tu_h) $(_lib_a) $(_lib_so) | $$(@D)/
-	$(info	SH (test)	$@)
+$(_tests_c): $(builddir)/%.installcheck: $(srcdir)/share/% $(MK) $(_tu_h) $(_lib_a) $(_lib_so) | $$(@D)/
+	$(info	INSTALLCHECK	$@)
+	$(CC) $(CFLAGS) -o $@ $< $$($(PKGCONF) --cflags --libs liba2i)
+	$@
+
+$(_tests_sh): $(builddir)/%.installcheck.touch: $(srcdir)/share/% $(MK) $(_tu_h) $(_lib_a) $(_lib_so) | $$(@D)/
+	$(info	INSTALLCHECK	$@)
 	$<
 	touch $@
 
 
 .PHONY: check
-check: $(_TESTS)
+check: $(_TESTS_c) $(_TESTS_sh)
 
 
 .PHONY: installcheck
-installcheck: $(_tests)
+installcheck: $(_tests_c) $(_tests_sh)
 
 
 endif  # include guard
