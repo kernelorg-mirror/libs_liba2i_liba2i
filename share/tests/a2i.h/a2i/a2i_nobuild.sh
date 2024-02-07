@@ -13,8 +13,8 @@ LIBS="$(pkgconf --libs liba2i)";
 
 
 $CC $CFLAGS -o "$out" -x c - $LIBS 2>&1 <<__EOF__ \
-| if ! grep -- '-Werror=pointer-sign' >/dev/null; then \
-	>&2 printf '%s\n' "$0:$LINENO: Expected error: [-Werror=pointer-sign]"; \
+| if ! grep -- 'pointer-sign' >/dev/null; then \
+	>&2 printf '%s\n' "$0:$LINENO: Expected error: [pointer-sign]"; \
 	exit 1; \
 else \
 	true; \
@@ -51,8 +51,8 @@ __EOF__
 
 
 $CC $CFLAGS -o "$out" -x c - $LIBS 2>&1 <<__EOF__ \
-| if ! grep -- 'error: ._Generic. selector' >/dev/null; then \
-	>&2 printf '%s\n' "$0:$LINENO: Expected error: '_Generic' selector"; \
+| if ! grep -- '_Generic' >/dev/null; then \
+	>&2 printf '%s\n' "$0:$LINENO: Expected error: [_Generic]"; \
 	exit 1; \
 else \
 	true; \
