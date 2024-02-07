@@ -55,13 +55,16 @@ $(_pdfdir)/: $(_docdir)/
 	+$(info	INSTALL		$@)
 	+$(INSTALL_DIR) $@
 
-$(_pcdir)/ \
 $(_docdir)/ \
 $(_mandir)/: $(_datarootdir)/
 	+$(info	INSTALL		$@)
 	+$(INSTALL_DIR) $@
 
 $(_libdir)/: $(_exec_prefix)/
+	+$(info	INSTALL		$@)
+	+$(INSTALL_DIR) $@
+
+$(_pcdir)/: $(_libdir)/
 	+$(info	INSTALL		$@)
 	+$(INSTALL_DIR) $@
 
