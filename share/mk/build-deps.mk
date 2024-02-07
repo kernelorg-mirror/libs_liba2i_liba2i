@@ -45,7 +45,7 @@ DEFAULT_CFLAGS += -Wno-unknown-attributes
 DEFAULT_CFLAGS += -Wno-unknown-pragmas
 DEFAULT_CFLAGS += -Wno-unused-command-line-argument
 EXTRA_CFLAGS   :=
-CFLAGS         := $(DEFAULT_CFLAGS) $(EXTRA_CFLAGS)
+export CFLAGS  := $(DEFAULT_CFLAGS) $(EXTRA_CFLAGS)
 
 
 CC   := gcc

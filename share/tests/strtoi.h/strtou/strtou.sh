@@ -3,9 +3,6 @@
 # SPDX-License-Identifier: LGPL-3.0-or-later WITH LGPL-3.0-linking-exception
 
 out="$(mktemp)";
-CFLAGS="-std=gnu2x";
-CFLAGS="$CFLAGS -Wall";
-CFLAGS="$CFLAGS -Wextra";
 CFLAGS="$CFLAGS -Werror";
 CFLAGS="$CFLAGS $(pkgconf --cflags liba2i)";
 LIBS="$(pkgconf --libs liba2i)";
