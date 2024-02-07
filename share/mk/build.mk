@@ -10,10 +10,6 @@ include $(MAKEFILEDIR)/cmd.mk
 include $(MAKEFILEDIR)/src.mk
 
 
-
-prefix := /usr/local
-
-
 _TU_DIRS  := $(patsubst $(INCLUDEDIR)/%,$(builddir)/%/,$(TU_DIRS))
 
 
