@@ -31,13 +31,18 @@ $(_lib_a): $(_libdir)/%: $(builddir)/% $(MK) | $$(@D)/
 	$(INSTALL_DATA) -T $< $@
 
 
-.PHONY: install-lib
-install-lib: $(_lib_so_v) $(_lib_so)
+.PHONY: install-lib-shared
+install-lib-shared: $(_lib_so_v) $(_lib_so)
 	@:
 
 
 .PHONY: install-lib-static
 install-lib-static: $(_lib_a)
+	@:
+
+
+.PHONY: install-lib
+install-lib: install-lib-shared install-lib-static
 	@:
 
 
