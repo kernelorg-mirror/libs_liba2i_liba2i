@@ -13,7 +13,7 @@ include $(MAKEFILEDIR)/version.mk
 INCLUDEDIR  := $(srcdir)/include
 SRCDIR      := $(srcdir)/src
 LIBDIR      := $(srcdir)/lib
-PCDIR       := $(DATAROOTDIR)/pkgconfig
+PCDIR       := $(LIBDIR)/pkgconfig
 MANDIR      := $(DATAROOTDIR)/man
 TESTSDIR    := $(DATAROOTDIR)/tests
 
