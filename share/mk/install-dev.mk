@@ -26,8 +26,18 @@ $(_lib_pc): $(_pcdir)/%: $(builddir)/% $(MK) | $$(@D)/
 	$(INSTALL_DATA) -T $< $@
 
 
+.PHONY: install-dev-include
+install-dev-include: $(_tu_h)
+	@:
+
+
+.PHONY: install-dev-pc
+install-dev-pc: $(_lib_pc)
+	@:
+
+
 .PHONY: install-dev
-install-dev: $(_tu_h) $(_lib_pc)
+install-dev: install-dev-include install-dev-pc
 	@:
 
 
