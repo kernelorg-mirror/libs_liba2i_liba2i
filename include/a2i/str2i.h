@@ -10,6 +10,7 @@
 #include <stddef.h>
 
 #include <a2i/a2i.h>
+#include <a2i/attr.h>
 #include <a2i/inline.h>
 #include <a2i/typetraits.h>
 
@@ -55,7 +56,7 @@
 #define A2I_STR2I_PROTOTYPE(name, TYPE)                                       \
 	__attribute__((__access__(write_only, 1)))                            \
 	__attribute__((__access__(read_only, 2)))                             \
-	__attribute__((__null_terminated_string_arg__(2)))                    \
+	A2I_ATTR_STRING(2)                                                    \
 	a2i_inline int name(TYPE *restrict n, const char *s)
 
 

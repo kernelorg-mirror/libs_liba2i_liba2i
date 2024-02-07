@@ -10,6 +10,7 @@
 #include <errno.h>
 #include <stdint.h>
 
+#include <a2i/attr.h>
 #include <a2i/cast.h>
 #include <a2i/inline.h>
 #include <a2i/qual.h>
@@ -83,7 +84,7 @@
 	__attribute__((__access__(write_only, 1)))                            \
 	__attribute__((__access__(read_only, 2)))                             \
 	__attribute__((__access__(write_only, 3)))                            \
-	__attribute__((__null_terminated_string_arg__(2)))                    \
+	A2I_ATTR_STRING(2)                                                    \
 	a2i_inline int name(TYPE *restrict n, const char *s,                  \
 	    char **a2i_nullable restrict endp, int base, TYPE min, TYPE max)
 
