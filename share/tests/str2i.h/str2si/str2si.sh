@@ -7,5 +7,5 @@ CFLAGS="$CFLAGS -Werror";
 CFLAGS="$CFLAGS $(pkgconf --cflags liba2i)";
 LIBS="$(pkgconf --libs liba2i)";
 
-cc $CFLAGS -o "$out" "$(dirname "$0")"/str2si.c $LIBS;
+$CC $CFLAGS -o "$out" "$(dirname "$0")"/str2si.c $LIBS;
 "$out";

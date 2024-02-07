@@ -46,9 +46,7 @@ DEFAULT_CFLAGS += -Wno-unknown-pragmas
 DEFAULT_CFLAGS += -Wno-unused-command-line-argument
 EXTRA_CFLAGS   :=
 export CFLAGS  := $(DEFAULT_CFLAGS) $(EXTRA_CFLAGS)
-
-
-CC   := gcc
+export CC      := gcc
 
 
 _TU_h := $(patsubst $(srcdir)/include/%,$(builddir)/%,$(TU_h))

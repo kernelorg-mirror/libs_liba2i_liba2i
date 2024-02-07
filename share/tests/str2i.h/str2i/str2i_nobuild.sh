@@ -12,7 +12,7 @@ CFLAGS="$CFLAGS $(pkgconf --cflags liba2i)";
 LIBS="$(pkgconf --libs liba2i)";
 
 
-cc $CFLAGS -o "$out" -x c - $LIBS 2>&1 <<__EOF__ \
+$CC $CFLAGS -o "$out" -x c - $LIBS 2>&1 <<__EOF__ \
 | if ! grep -- '-Werror=pointer-sign' >/dev/null; then \
 	>&2 printf '%s\n' "$0:$LINENO: Expected error: [-Werror=pointer-sign]"; \
 	exit 1; \
@@ -31,7 +31,7 @@ fi;
 __EOF__
 
 
-cc $CFLAGS -o "$out" -x c - $LIBS 2>&1 <<__EOF__ \
+$CC $CFLAGS -o "$out" -x c - $LIBS 2>&1 <<__EOF__ \
 | if ! grep -- 'incompatible-pointer-types' >/dev/null; then \
 	>&2 printf '%s\n' "$0:$LINENO: Expected [incompatible-pointer-types]"; \
 	exit 1; \
@@ -50,7 +50,7 @@ fi;
 __EOF__
 
 
-cc $CFLAGS -o "$out" -x c - $LIBS 2>&1 <<__EOF__ \
+$CC $CFLAGS -o "$out" -x c - $LIBS 2>&1 <<__EOF__ \
 | if ! grep -- 'error: ._Generic. selector' >/dev/null; then \
 	>&2 printf '%s\n' "$0:$LINENO: Expected error: '_Generic' selector"; \
 	exit 1; \
