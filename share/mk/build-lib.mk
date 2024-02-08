@@ -26,14 +26,12 @@ DEFAULT_LDFLAGS += $(shell $(PKGCONF_CMD) --libs-only-L $(pc_reqs) $(HIDE_ERR))
 DEFAULT_LDFLAGS += $(shell $(PKGCONF_CMD) --libs-only-other $(pc_reqs) $(HIDE_ERR))
 EXTRA_LDFLAGS   :=
 LDFLAGS         := $(DEFAULT_LDFLAGS) $(EXTRA_LDFLAGS)
+LD              := $(CC) $(CFLAGS)
 
 DEFAULT_LDLIBS := $(filter-out -la2i,$(shell $(PKGCONF_CMD) --libs-only-l $(pc_reqs) $(HIDE_ERR)))
 DEFAULT_LDLIBS += $(shell $(SED) -n '/^Libs.private: /s///p' $(LIB_pc_u))
 EXTRA_LDLIBS   :=
 LDLIBS         := $(DEFAULT_LDLIBS) $(EXTRA_LDLIBS)
-
-
-LD   := $(CC) $(CFLAGS)
 
 
 _LIB_so_v := $(builddir)/$(libname).so.$(DISTVERSION)
@@ -54,7 +52,7 @@ build-lib-ld: $(_LIB_so_v)
 
 
 .PHONY: build-lib
-build-lib: build-lib-ld
+build-lib: build-lib-ld build-lib-static
 	@:
 
 
