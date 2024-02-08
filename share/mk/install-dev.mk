@@ -7,7 +7,7 @@ MAKEFILE_INSTALL_DEV_INCLUDED := 1
 
 
 include $(MAKEFILEDIR)/build.mk
-include $(MAKEFILEDIR)/build-lib.mk
+include $(MAKEFILEDIR)/build-dev.mk
 include $(MAKEFILEDIR)/cmd.mk
 include $(MAKEFILEDIR)/install.mk
 include $(MAKEFILEDIR)/src.mk

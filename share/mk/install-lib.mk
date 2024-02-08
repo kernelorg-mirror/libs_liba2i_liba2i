@@ -7,7 +7,7 @@ MAKEFILE_INSTALL_LIB_INCLUDED := 1
 
 
 include $(MAKEFILEDIR)/build.mk
-include $(MAKEFILEDIR)/build-lib.mk
+include $(MAKEFILEDIR)/build-lib-shared.mk
 include $(MAKEFILEDIR)/build-lib-static.mk
 include $(MAKEFILEDIR)/cmd.mk
 include $(MAKEFILEDIR)/install.mk

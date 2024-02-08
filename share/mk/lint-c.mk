@@ -7,7 +7,6 @@ MAKEFILE_LINT_C_INCLUDED := 1
 
 
 include $(MAKEFILEDIR)/build.mk
-include $(MAKEFILEDIR)/build-lib.mk
 include $(MAKEFILEDIR)/src.mk
 include $(MAKEFILEDIR)/version.mk
 
@@ -35,8 +34,6 @@ DEFAULT_CHECKPATCHFLAGS :=
 EXTRA_CHECKPATCHFLAGS   :=
 CHECKPATCHFLAGS         := $(DEFAULT_CHECKPATCHFLAGS) $(EXTRA_CHECKPATCHFLAGS)
 CHECKPATCH              := checkpatch
-
-
 
 CLANG-TIDY_CONF         := $(srcdir)/etc/clang-tidy/config.yaml
 DEFAULT_CLANG-TIDYFLAGS := --config-file=$(CLANG-TIDY_CONF)
