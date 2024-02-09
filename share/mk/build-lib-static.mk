@@ -9,13 +9,8 @@ MAKEFILE_BUILD_LIB_STATIC_INCLUDED := 1
 include $(MAKEFILEDIR)/build.mk
 include $(MAKEFILEDIR)/build-obj.mk
 include $(MAKEFILEDIR)/cmd.mk
+include $(MAKEFILEDIR)/configure-ar.mk
 include $(MAKEFILEDIR)/version.mk
-
-
-DEFAULT_ARFLAGS := qcsDP
-EXTRA_ARFLAGS   :=
-ARFLAGS         := $(DEFAULT_ARFLAGS) $(EXTRA_ARFLAGS)
-AR              := gcc-ar
 
 
 _LIB_a := $(builddir)/$(libname).a
