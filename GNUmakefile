@@ -39,7 +39,7 @@ help:
 	$(info	build-dev		Wrapper for build-dev-* targets)
 	$(info	build-dev-pc		Build the pc(5) file)
 	$(info	build-lib		Wrapper for build-lib-* targets)
-	$(info	build-lib-ld		Build the shared library)
+	$(info	build-lib-shared	Build the shared library)
 	$(info	build-lib-static	Build the static library)
 	$(info	build-obj		Alias for "build-obj-as")
 	$(info	build-obj-pch		Precompile headers)
