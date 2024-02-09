@@ -10,6 +10,7 @@ include $(MAKEFILEDIR)/build.mk
 include $(MAKEFILEDIR)/build-deps.mk
 include $(MAKEFILEDIR)/build-obj.mk
 include $(MAKEFILEDIR)/cmd.mk
+include $(MAKEFILEDIR)/configure-cc.mk
 include $(MAKEFILEDIR)/src.mk
 include $(MAKEFILEDIR)/verbose.mk
 include $(MAKEFILEDIR)/version.mk

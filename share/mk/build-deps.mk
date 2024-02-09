@@ -7,6 +7,7 @@ MAKEFILE_BUILD_DEPS_INCLUDED := 1
 
 
 include $(MAKEFILEDIR)/build.mk
+include $(MAKEFILEDIR)/configure-cc.mk
 include $(MAKEFILEDIR)/cmd.mk
 include $(MAKEFILEDIR)/src.mk
 include $(MAKEFILEDIR)/verbose.mk
@@ -31,22 +32,6 @@ DEFAULT_CPPFLAGS := $(shell $(PKGCONF_CMD) --cflags $(pc_lib))
 DEFAULT_CPPFLAGS += -I$(builddir)
 EXTRA_CPPFLAGS   :=
 CPPFLAGS         := $(DEFAULT_CPPFLAGS) $(EXTRA_CPPFLAGS)
-
-DEFAULT_CFLAGS := -O3
-DEFAULT_CFLAGS += -std=gnu11
-DEFAULT_CFLAGS += -flto
-DEFAULT_CFLAGS += -Wall
-DEFAULT_CFLAGS += -Wextra
-DEFAULT_CFLAGS += -Wstrict-prototypes
-DEFAULT_CFLAGS += -Wdeclaration-after-statement
-DEFAULT_CFLAGS += -Wno-attributes
-DEFAULT_CFLAGS += -Wno-nullability-completeness
-DEFAULT_CFLAGS += -Wno-unknown-attributes
-DEFAULT_CFLAGS += -Wno-unknown-pragmas
-DEFAULT_CFLAGS += -Wno-unused-command-line-argument
-EXTRA_CFLAGS   :=
-export CFLAGS  := $(DEFAULT_CFLAGS) $(EXTRA_CFLAGS)
-export CC      := gcc
 
 
 _TU_h := $(patsubst $(srcdir)/include/%,$(builddir)/%,$(TU_h))
