@@ -6,8 +6,8 @@ ifndef MAKEFILE_CHECK_INCLUDED
 MAKEFILE_CHECK_INCLUDED := 1
 
 
-include $(MAKEFILEDIR)/build-lib-shared.mk
-include $(MAKEFILEDIR)/build-lib-static.mk
+include $(MAKEFILEDIR)/build/lib-shared.mk
+include $(MAKEFILEDIR)/build/lib-static.mk
 include $(MAKEFILEDIR)/configure-cc.mk
 include $(MAKEFILEDIR)/configure-pkgconf.mk
 include $(MAKEFILEDIR)/install-dev-include.mk

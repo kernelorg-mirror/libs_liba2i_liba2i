@@ -74,7 +74,7 @@ help:
 .SECONDEXPANSION:
 
 
-MK_ := $(wildcard $(MAKEFILEDIR)/*.mk)
+MK_ := $(wildcard $(addprefix $(MAKEFILEDIR)/, *.mk */*.mk))
 MK  := $(srcdir)/GNUmakefile $(MK_)
 include $(MK_)
 $(MK):: ;

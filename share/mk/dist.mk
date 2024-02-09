@@ -6,7 +6,7 @@ ifndef MAKEFILE_DIST_INCLUDED
 MAKEFILE_DIST_INCLUDED := 1
 
 
-include $(MAKEFILEDIR)/build.mk
+include $(MAKEFILEDIR)/build/_.mk
 include $(MAKEFILEDIR)/cmd.mk
 include $(MAKEFILEDIR)/compress.mk
 include $(MAKEFILEDIR)/install.mk

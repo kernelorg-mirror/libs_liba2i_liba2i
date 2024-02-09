@@ -6,7 +6,7 @@ ifndef MAKEFILE_BUILD_OBJ_INCLUDED
 MAKEFILE_BUILD_OBJ_INCLUDED := 1
 
 
-include $(MAKEFILEDIR)/build.mk
+include $(MAKEFILEDIR)/build/deps.mk
 include $(MAKEFILEDIR)/cmd.mk
 include $(MAKEFILEDIR)/configure-as.mk
 include $(MAKEFILEDIR)/configure-cc.mk

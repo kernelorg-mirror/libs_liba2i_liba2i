@@ -6,7 +6,7 @@ ifndef MAKEFILE_INSTALL_DEV_PC_INCLUDED
 MAKEFILE_INSTALL_DEV_PC_INCLUDED := 1
 
 
-include $(MAKEFILEDIR)/build-dev-pc.mk
+include $(MAKEFILEDIR)/build/dev-pc.mk
 include $(MAKEFILEDIR)/cmd.mk
 include $(MAKEFILEDIR)/install.mk
 

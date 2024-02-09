@@ -6,7 +6,7 @@ ifndef MAKEFILE_BUILD_DEPS_INCLUDED
 MAKEFILE_BUILD_DEPS_INCLUDED := 1
 
 
-include $(MAKEFILEDIR)/build.mk
+include $(MAKEFILEDIR)/build/_.mk
 include $(MAKEFILEDIR)/configure-cc.mk
 include $(MAKEFILEDIR)/configure-cpp.mk
 include $(MAKEFILEDIR)/configure-pkgconf.mk

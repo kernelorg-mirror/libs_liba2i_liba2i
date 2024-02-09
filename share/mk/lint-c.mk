@@ -6,7 +6,7 @@ ifndef MAKEFILE_LINT_C_INCLUDED
 MAKEFILE_LINT_C_INCLUDED := 1
 
 
-include $(MAKEFILEDIR)/build.mk
+include $(MAKEFILEDIR)/build/deps.mk
 include $(MAKEFILEDIR)/configure-cc.mk
 include $(MAKEFILEDIR)/configure-cpp.mk
 include $(MAKEFILEDIR)/src.mk
