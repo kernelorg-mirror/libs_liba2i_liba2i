@@ -85,8 +85,7 @@ $(_TU_ckp): %.lint-c.checkpatch.touch: % $(CHECKPATCH_CONF) $(MK) | %.d $$(@D)/
 
 $(_TU_ct): %.lint-c.clang-tidy.touch: % $(CLANG-TIDY_CONF) $(MK) | %.d $$(@D)/
 	$(info	LINT (clang-tidy)	$@)
-	$(CLANG-TIDY) $(CLANG-TIDYFLAGS) $< -- \
-	              $(CPPFLAGS) $(CLANGCFLAGS) 2>&1 \
+	$(CLANG-TIDY) $(CLANG-TIDYFLAGS) $< -- $(CPPFLAGS) $(CLANGCFLAGS) 2>&1 \
 	| $(SED) '/generated\.$$/d' >&2
 	$(TOUCH) $@
 
