@@ -63,4 +63,7 @@ EXTRA_CFLAGS   :=
 export CFLAGS  := $(DEFAULT_CFLAGS) $(EXTRA_CFLAGS)
 
 
+CLANGCFLAGS := $(filter-out $(GCC_CFLAGS), $(CFLAGS))
+
+
 endif  # include guard

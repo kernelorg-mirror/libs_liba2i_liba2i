@@ -13,9 +13,6 @@ include $(MAKEFILEDIR)/src.mk
 include $(MAKEFILEDIR)/version.mk
 
 
-CLANGCFLAGS := $(filter-out $(GCC_CFLAGS), $(CFLAGS))
-
-
 CHECKPATCH_CONF         := $(srcdir)/etc/checkpatch/checkpatch.conf
 DEFAULT_CHECKPATCHFLAGS :=
 EXTRA_CHECKPATCHFLAGS   :=

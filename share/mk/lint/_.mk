@@ -6,14 +6,8 @@ ifndef MAKEFILE_LINT_INCLUDED
 MAKEFILE_LINT_INCLUDED := 1
 
 
-include $(MAKEFILEDIR)/src.mk
-
-
-lint := lint-c
-
-
 .PHONY: lint
-lint: $(lint)
+lint: lint-c
 	@:
 
 
