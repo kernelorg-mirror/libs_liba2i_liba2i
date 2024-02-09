@@ -8,27 +8,13 @@ MAKEFILE_BUILD_DEPS_INCLUDED := 1
 
 include $(MAKEFILEDIR)/build.mk
 include $(MAKEFILEDIR)/configure-cc.mk
+include $(MAKEFILEDIR)/configure-pkgconf.mk
 include $(MAKEFILEDIR)/cmd.mk
 include $(MAKEFILEDIR)/src.mk
-include $(MAKEFILEDIR)/verbose.mk
 include $(MAKEFILEDIR)/version.mk
 
 
-PKGCONF_ENV          := PKG_CONFIG_PATH=$(PCDIR)
-DEFAULT_PKGCONFFLAGS :=
-EXTRA_PKGCONFFLAGS   :=
-PKGCONFFLAGS         := $(DEFAULT_PKGCONFFLAGS) $(EXTRA_PKGCONFFLAGS)
-PKGCONF              := pkgconf
-PKGCONF_CMD          := $(PKGCONF_ENV) $(PKGCONF) $(PKGCONFFLAGS)
-
-
-pc_lib    := $(libname)-uninstalled
-LIB_pc_u  := $(PCDIR)/$(pc_lib).pc
-_LIB_pc_u := $(builddir)/$(pc_lib).pc
-pc_reqs   := $(shell $(PKGCONF_CMD) --print-requires-private $(pc_lib)) $(pc_lib)
-
-
-DEFAULT_CPPFLAGS := $(shell $(PKGCONF_CMD) --cflags $(pc_lib))
+DEFAULT_CPPFLAGS := $(shell $(PKGCONF_CMD) --cflags $(pc))
 DEFAULT_CPPFLAGS += -I$(builddir)
 EXTRA_CPPFLAGS   :=
 CPPFLAGS         := $(DEFAULT_CPPFLAGS) $(EXTRA_CPPFLAGS)
