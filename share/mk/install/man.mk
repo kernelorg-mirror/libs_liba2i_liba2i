@@ -6,7 +6,7 @@ ifndef MAKEFILE_INSTALL_MAN_INCLUDED
 MAKEFILE_INSTALL_MAN_INCLUDED := 1
 
 
-include $(MAKEFILEDIR)/install.mk
+include $(MAKEFILEDIR)/install/_.mk
 include $(MAKEFILEDIR)/src.mk
 
 

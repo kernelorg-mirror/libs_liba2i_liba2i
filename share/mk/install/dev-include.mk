@@ -7,7 +7,7 @@ MAKEFILE_INSTALL_DEV_INCLUDE_INCLUDED := 1
 
 
 include $(MAKEFILEDIR)/cmd.mk
-include $(MAKEFILEDIR)/install.mk
+include $(MAKEFILEDIR)/install/_.mk
 include $(MAKEFILEDIR)/src.mk
 
 

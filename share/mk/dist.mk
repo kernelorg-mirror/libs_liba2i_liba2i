@@ -9,7 +9,7 @@ MAKEFILE_DIST_INCLUDED := 1
 include $(MAKEFILEDIR)/build/_.mk
 include $(MAKEFILEDIR)/cmd.mk
 include $(MAKEFILEDIR)/compress.mk
-include $(MAKEFILEDIR)/install.mk
+include $(MAKEFILEDIR)/install/_.mk
 include $(MAKEFILEDIR)/version.mk
 include $(MAKEFILEDIR)/verbose.mk
 

@@ -8,7 +8,7 @@ MAKEFILE_BUILD_DEV_PC_INCLUDED := 1
 
 include $(MAKEFILEDIR)/configure/pkgconf.mk
 include $(MAKEFILEDIR)/cmd.mk
-include $(MAKEFILEDIR)/install.mk
+include $(MAKEFILEDIR)/install/_.mk
 include $(MAKEFILEDIR)/src.mk
 include $(MAKEFILEDIR)/version.mk
 
