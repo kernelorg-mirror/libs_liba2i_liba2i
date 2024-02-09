@@ -8,7 +8,6 @@ MAKEFILE_LINT_C_INCLUDED := 1
 
 include $(MAKEFILEDIR)/build/deps.mk
 include $(MAKEFILEDIR)/configure/cc.mk
-include $(MAKEFILEDIR)/configure/clang-tidy.mk
 include $(MAKEFILEDIR)/configure/cpp.mk
 include $(MAKEFILEDIR)/src.mk
 include $(MAKEFILEDIR)/version.mk
@@ -39,10 +38,6 @@ IWYUFLAGS         := $(DEFAULT_IWYUFLAGS) $(EXTRA_IWYUFLAGS)
 IWYU              := iwyu
 
 
-_TU_h_ct   := $(addsuffix .lint-c.clang-tidy.touch,$(_TU_h))
-_TU_c_ct   := $(addsuffix .lint-c.clang-tidy.touch,$(_TU_c))
-_TU_ct     := $(_TU_h_ct) $(_TU_c_ct)
-
 _TU_h_cck  := $(addsuffix .lint-c.cppcheck.touch,$(_TU_h))
 _TU_c_cck  := $(addsuffix .lint-c.cppcheck.touch,$(_TU_c))
 _TU_cck    := $(_TU_h_cck) $(_TU_c_cck)
@@ -58,12 +53,6 @@ _TU_iwyu   := $(_TU_h_iwyu) $(_TU_c_iwyu)
 
 _LIB_cck := $(builddir)/$(libname).lint-c.cppcheck.touch
 
-
-$(_TU_ct): %.lint-c.clang-tidy.touch: % $(CLANG_TIDY_CONF) $(MK) | %.d $$(@D)/
-	$(info	LINT (clang-tidy)	$@)
-	$(CLANG_TIDY) $(CLANG_TIDYFLAGS) $< -- $(CPPFLAGS) $(CLANGCFLAGS) 2>&1 \
-	| $(SED) '/generated\.$$/d' >&2
-	$(TOUCH) $@
 
 $(_TU_cck): %.lint-c.cppcheck.touch: % $(CPPCHECK_CONF) $(MK) | %.d $$(@D)/
 	$(info	LINT (cppcheck)		$@)
@@ -92,10 +81,6 @@ $(_TU_iwyu): %.lint-c.iwyu.touch: % $(MK) | %.d $$(@D)/
 linters_c := checkpatch clang-tidy cppcheck cpplint iwyu
 lint_c    := $(foreach x,$(linters_c),lint-c-$(x))
 
-
-.PHONY: lint-c-clang-tidy
-lint-c-clang-tidy: $(_TU_ct)
-	@:
 
 .PHONY: lint-c-cppcheck
 lint-c-cppcheck: $(_TU_cck) $(_LIB_cck)
