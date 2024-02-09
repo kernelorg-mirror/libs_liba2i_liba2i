@@ -7,8 +7,8 @@ MAKEFILE_CONFIGURE_LD_INCLUDED := 1
 
 
 include $(MAKEFILEDIR)/cmd.mk
-include $(MAKEFILEDIR)/configure-cc.mk
-include $(MAKEFILEDIR)/configure-pkgconf.mk
+include $(MAKEFILEDIR)/configure/cc.mk
+include $(MAKEFILEDIR)/configure/pkgconf.mk
 include $(MAKEFILEDIR)/verbose.mk
 include $(MAKEFILEDIR)/version.mk
 

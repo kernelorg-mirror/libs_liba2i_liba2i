@@ -6,8 +6,8 @@ ifndef MAKEFILE_CONFIGURE_CPP_INCLUDED
 MAKEFILE_CONFIGURE_CPP_INCLUDED := 1
 
 
-include $(MAKEFILEDIR)/configure-cc.mk
-include $(MAKEFILEDIR)/configure-pkgconf.mk
+include $(MAKEFILEDIR)/configure/cc.mk
+include $(MAKEFILEDIR)/configure/pkgconf.mk
 
 
 DEFAULT_CPPFLAGS := $(shell $(PKGCONF_CMD) --cflags $(pc))

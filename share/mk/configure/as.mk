@@ -6,8 +6,8 @@ ifndef MAKEFILE_CONFIGURE_AS_INCLUDED
 MAKEFILE_CONFIGURE_AS_INCLUDED := 1
 
 
-include $(MAKEFILEDIR)/configure-cc.mk
-include $(MAKEFILEDIR)/configure-cpp.mk
+include $(MAKEFILEDIR)/configure/cc.mk
+include $(MAKEFILEDIR)/configure/cpp.mk
 
 
 DEFAULT_ASFLAGS :=

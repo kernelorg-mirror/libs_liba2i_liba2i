@@ -9,7 +9,7 @@ MAKEFILE_BUILD_LIB_STATIC_INCLUDED := 1
 include $(MAKEFILEDIR)/build/_.mk
 include $(MAKEFILEDIR)/build/obj.mk
 include $(MAKEFILEDIR)/cmd.mk
-include $(MAKEFILEDIR)/configure-ar.mk
+include $(MAKEFILEDIR)/configure/ar.mk
 include $(MAKEFILEDIR)/version.mk
 
 

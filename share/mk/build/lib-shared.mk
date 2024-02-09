@@ -7,8 +7,8 @@ MAKEFILE_BUILD_LIB_SHARED_INCLUDED := 1
 
 
 include $(MAKEFILEDIR)/build/obj.mk
-include $(MAKEFILEDIR)/configure-ld.mk
-include $(MAKEFILEDIR)/configure-pkgconf.mk
+include $(MAKEFILEDIR)/configure/ld.mk
+include $(MAKEFILEDIR)/configure/pkgconf.mk
 include $(MAKEFILEDIR)/src.mk
 include $(MAKEFILEDIR)/verbose.mk
 include $(MAKEFILEDIR)/version.mk
