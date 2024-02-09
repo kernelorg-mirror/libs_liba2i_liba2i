@@ -9,6 +9,7 @@ MAKEFILE_BUILD_OBJ_INCLUDED := 1
 include $(MAKEFILEDIR)/build.mk
 include $(MAKEFILEDIR)/cmd.mk
 include $(MAKEFILEDIR)/configure-cc.mk
+include $(MAKEFILEDIR)/configure-cpp.mk
 include $(MAKEFILEDIR)/src.mk
 include $(MAKEFILEDIR)/verbose.mk
 include $(MAKEFILEDIR)/version.mk
@@ -28,11 +29,11 @@ $(_TU_gch): %.gch: % $(MK) $(_LIB_pc_u) | %.d $$(@D)/
 	$(CC) $(CPPFLAGS) $(CFLAGS)         -c -o $@            $<
 
 $(_TU_i): %.i: % $(MK) $(_LIB_pc_u) | %.d $$(@D)/
-	$(info	CC (cpp)	$@)
+	$(info	CPP	$@)
 	for opt in g 0 1 2 s 3 fast; do \
-	$(CC) $(CPPFLAGS) $(CFLAGS) -O$$opt -E -o $*.O$$opt.i $<; \
+	$(CPP) $(CPPFLAGS) -O$$opt -o $*.O$$opt.i $<; \
 	done
-	$(CC) $(CPPFLAGS) $(CFLAGS)         -E -o $@          $<
+	$(CPP) $(CPPFLAGS)         -o $@          $<
 
 $(_TU_s): %.s: % %.i $(MK) $(_LIB_pc_u) | %.d $$(@D)/
 	$(info	CC		$@)

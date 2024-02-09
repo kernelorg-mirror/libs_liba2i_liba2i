@@ -8,16 +8,11 @@ MAKEFILE_BUILD_DEPS_INCLUDED := 1
 
 include $(MAKEFILEDIR)/build.mk
 include $(MAKEFILEDIR)/configure-cc.mk
+include $(MAKEFILEDIR)/configure-cpp.mk
 include $(MAKEFILEDIR)/configure-pkgconf.mk
 include $(MAKEFILEDIR)/cmd.mk
 include $(MAKEFILEDIR)/src.mk
 include $(MAKEFILEDIR)/version.mk
-
-
-DEFAULT_CPPFLAGS := $(shell $(PKGCONF_CMD) --cflags $(pc))
-DEFAULT_CPPFLAGS += -I$(builddir)
-EXTRA_CPPFLAGS   :=
-CPPFLAGS         := $(DEFAULT_CPPFLAGS) $(EXTRA_CPPFLAGS)
 
 
 _TU_h := $(patsubst $(srcdir)/include/%,$(builddir)/%,$(TU_h))
