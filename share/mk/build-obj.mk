@@ -8,6 +8,7 @@ MAKEFILE_BUILD_OBJ_INCLUDED := 1
 
 include $(MAKEFILEDIR)/build.mk
 include $(MAKEFILEDIR)/cmd.mk
+include $(MAKEFILEDIR)/configure-as.mk
 include $(MAKEFILEDIR)/configure-cc.mk
 include $(MAKEFILEDIR)/configure-cpp.mk
 include $(MAKEFILEDIR)/src.mk
@@ -43,11 +44,11 @@ $(_TU_s): %.s: % %.i $(MK) $(_LIB_pc_u) | %.d $$(@D)/
 	$(CC) $(CPPFLAGS) $(CFLAGS)         -S -o $@          $<
 
 $(_TU_o): %.c.o: %.c.s %.h.gch $(MK) $(_LIB_pc_u) | %.c.d $$(@D)/
-	$(info	CC (as)		$@)
+	$(info	AS		$@)
 	for opt in g 0 1 2 s 3 fast; do \
-	$(CC) $(CPPFLAGS) $(CFLAGS) -O$$opt -c -o $*.c.O$$opt.o $*.c.O$$opt.s; \
+	$(AS) -O$$opt -c -o $*.c.O$$opt.o $*.c.O$$opt.s; \
 	done
-	$(CC) $(CPPFLAGS) $(CFLAGS)         -c -o $@            $<
+	$(AS)         -c -o $@            $<
 
 
 .PHONY: build-obj-pch
