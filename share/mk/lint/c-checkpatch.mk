@@ -8,13 +8,7 @@ MAKEFILE_LINT_C_CHECKPATCH_INCLUDED := 1
 
 include $(MAKEFILEDIR)/build/deps.mk
 include $(MAKEFILEDIR)/cmd.mk
-
-
-CHECKPATCH_CONF         := $(srcdir)/etc/checkpatch/checkpatch.conf
-DEFAULT_CHECKPATCHFLAGS :=
-EXTRA_CHECKPATCHFLAGS   :=
-CHECKPATCHFLAGS         := $(DEFAULT_CHECKPATCHFLAGS) $(EXTRA_CHECKPATCHFLAGS)
-CHECKPATCH              := checkpatch
+include $(MAKEFILEDIR)/configure/checkpatch.mk
 
 
 _TU_h_ckp  := $(addsuffix .lint-c.checkpatch.touch,$(_TU_h))
