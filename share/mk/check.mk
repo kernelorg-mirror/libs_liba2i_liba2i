@@ -11,6 +11,7 @@ include $(MAKEFILEDIR)/build-lib-static.mk
 include $(MAKEFILEDIR)/configure-cc.mk
 include $(MAKEFILEDIR)/configure-pkgconf.mk
 include $(MAKEFILEDIR)/install-dev-include.mk
+include $(MAKEFILEDIR)/install-lib-shared.mk
 include $(MAKEFILEDIR)/install-lib-static.mk
 include $(MAKEFILEDIR)/src.mk
 
