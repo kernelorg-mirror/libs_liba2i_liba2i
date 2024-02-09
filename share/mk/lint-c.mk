@@ -12,23 +12,8 @@ include $(MAKEFILEDIR)/src.mk
 include $(MAKEFILEDIR)/version.mk
 
 
-DEFAULT_CLANGFLAGS := -Weverything
-DEFAULT_CLANGFLAGS += -Wno-c++98-compat
-DEFAULT_CLANGFLAGS += -Wno-empty-translation-unit
-DEFAULT_CLANGFLAGS += -Wno-extra-semi-stmt
-DEFAULT_CLANGFLAGS += -Wno-gnu-auto-type
-DEFAULT_CLANGFLAGS += -Wno-gnu-line-marker
-DEFAULT_CLANGFLAGS += -Wno-gnu-statement-expression
-DEFAULT_CLANGFLAGS += -Wno-language-extension-token
-DEFAULT_CLANGFLAGS += -Wno-nullability-completeness
-DEFAULT_CLANGFLAGS += -Wno-nullability-extension
-DEFAULT_CLANGFLAGS += -Wno-pre-c2x-compat
-DEFAULT_CLANGFLAGS += -Wno-unknown-attributes
-DEFAULT_CLANGFLAGS += -Wno-unknown-warning-option
-DEFAULT_CLANGFLAGS += -Wno-unused-command-line-argument
-DEFAULT_CLANGFLAGS += -Wno-unused-macros
-EXTRA_CLANGFLAGS   :=
-CLANGFLAGS         := $(DEFAULT_CLANGFLAGS) $(EXTRA_CLANGFLAGS)
+CLANGCFLAGS := $(filter-out $(GCC_CFLAGS), $(CFLAGS))
+
 
 CHECKPATCH_CONF         := $(srcdir)/etc/checkpatch/checkpatch.conf
 DEFAULT_CHECKPATCHFLAGS :=
@@ -101,7 +86,7 @@ $(_TU_ckp): %.lint-c.checkpatch.touch: % $(CHECKPATCH_CONF) $(MK) | %.d $$(@D)/
 $(_TU_ct): %.lint-c.clang-tidy.touch: % $(CLANG-TIDY_CONF) $(MK) | %.d $$(@D)/
 	$(info	LINT (clang-tidy)	$@)
 	$(CLANG-TIDY) $(CLANG-TIDYFLAGS) $< -- \
-	              $(CPPFLAGS) $(CFLAGS) $(CLANGFLAGS) 2>&1 \
+	              $(CPPFLAGS) $(CLANGCFLAGS) 2>&1 \
 	| $(SED) '/generated\.$$/d' >&2
 	$(TOUCH) $@
 
@@ -122,7 +107,7 @@ $(_TU_cpl): %.lint-c.cpplint.touch: % $(CPPLINT_CONF) $(MK) | %.d $$(@D)/
 
 $(_TU_iwyu): %.lint-c.iwyu.touch: % $(MK) | %.d $$(@D)/
 	$(info	LINT (iwyu)		$@)
-	$(IWYU) $(IWYUFLAGS) $(CPPFLAGS) $(CFLAGS) $(CLANGFLAGS) $< 2>&1 \
+	$(IWYU) $(IWYUFLAGS) $(CPPFLAGS) $(CLANGCFLAGS) $< 2>&1 \
 	| $(TAC) \
 	| $(SED) '/correct/{N;d}' \
 	| $(TAC) >&2

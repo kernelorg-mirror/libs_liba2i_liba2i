@@ -24,6 +24,24 @@ CC_VENDOR := \
 	)
 
 
+GCC_CFLAGS := -fanalyzer
+
+
+CLANG_CFLAGS := -Weverything
+CLANG_CFLAGS += -Wno-c++98-compat
+CLANG_CFLAGS += -Wno-empty-translation-unit
+CLANG_CFLAGS += -Wno-extra-semi-stmt
+CLANG_CFLAGS += -Wno-gnu-auto-type
+CLANG_CFLAGS += -Wno-gnu-line-marker
+CLANG_CFLAGS += -Wno-gnu-statement-expression
+CLANG_CFLAGS += -Wno-language-extension-token
+CLANG_CFLAGS += -Wno-nullability-completeness
+CLANG_CFLAGS += -Wno-nullability-extension
+CLANG_CFLAGS += -Wno-pre-c2x-compat
+CLANG_CFLAGS += -Wno-unknown-warning-option
+CLANG_CFLAGS += -Wno-unused-macros
+
+
 DEFAULT_CFLAGS := -O3
 DEFAULT_CFLAGS += -std=gnu11
 DEFAULT_CFLAGS += -flto
@@ -36,6 +54,11 @@ DEFAULT_CFLAGS += -Wno-nullability-completeness
 DEFAULT_CFLAGS += -Wno-unknown-attributes
 DEFAULT_CFLAGS += -Wno-unknown-pragmas
 DEFAULT_CFLAGS += -Wno-unused-command-line-argument
+ifeq ($(CC_VENDOR),gcc)
+DEFAULT_CFLAGS += $(GCC_CFLAGS)
+else ifeq ($(CC_VENDOR),clang)
+DEFAULT_CFLAGS += $(CLANG_CFLAGS)
+endif
 EXTRA_CFLAGS   :=
 export CFLAGS  := $(DEFAULT_CFLAGS) $(EXTRA_CFLAGS)
 
