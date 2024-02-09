@@ -8,18 +8,11 @@ MAKEFILE_LINT_C_INCLUDED := 1
 
 include $(MAKEFILEDIR)/build/deps.mk
 include $(MAKEFILEDIR)/configure/cc.mk
+include $(MAKEFILEDIR)/configure/clang-tidy.mk
 include $(MAKEFILEDIR)/configure/cpp.mk
 include $(MAKEFILEDIR)/src.mk
 include $(MAKEFILEDIR)/version.mk
 
-
-CLANG-TIDY_CONF         := $(srcdir)/etc/clang-tidy/config.yaml
-DEFAULT_CLANG-TIDYFLAGS := --config-file=$(CLANG-TIDY_CONF)
-DEFAULT_CLANG-TIDYFLAGS += --quiet
-DEFAULT_CLANG-TIDYFLAGS += --use-color
-EXTRA_CLANG-TIDYFLAGS   :=
-CLANG-TIDYFLAGS         := $(DEFAULT_CLANG-TIDYFLAGS) $(EXTRA_CLANG-TIDYFLAGS)
-CLANG-TIDY              := clang-tidy
 
 CPPLINT_CONF         := $(srcdir)/etc/cpplint/cpplint.cfg
 DEFAULT_CPPLINTFLAGS :=
@@ -66,9 +59,9 @@ _TU_iwyu   := $(_TU_h_iwyu) $(_TU_c_iwyu)
 _LIB_cck := $(builddir)/$(libname).lint-c.cppcheck.touch
 
 
-$(_TU_ct): %.lint-c.clang-tidy.touch: % $(CLANG-TIDY_CONF) $(MK) | %.d $$(@D)/
+$(_TU_ct): %.lint-c.clang-tidy.touch: % $(CLANG_TIDY_CONF) $(MK) | %.d $$(@D)/
 	$(info	LINT (clang-tidy)	$@)
-	$(CLANG-TIDY) $(CLANG-TIDYFLAGS) $< -- $(CPPFLAGS) $(CLANGCFLAGS) 2>&1 \
+	$(CLANG_TIDY) $(CLANG_TIDYFLAGS) $< -- $(CPPFLAGS) $(CLANGCFLAGS) 2>&1 \
 	| $(SED) '/generated\.$$/d' >&2
 	$(TOUCH) $@
 
