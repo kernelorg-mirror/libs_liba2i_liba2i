@@ -23,9 +23,9 @@ _DISTOTHERS := $(filter-out $(_DISTDIR)/share/man/man%,$(_DISTFILES))
 
 
 $(_DISTPAGES): $(_DISTDIR)/share/man/man%: $(srcdir)/share/man/man% $(MK) | $$(@D)/
-	$(info	INSTALL		$@)
+	$(info	SED		$@)
 	<$< \
-	$(SED) "/^.TH/s/(date)/$$(git log --format=%cs -1 -- $< $(HIDE_ERR))/" \
+	$(SED) "/^.TH/s/(date)/$$($(GIT) log --format=%cs -1 -- $< $(HIDE_ERR))/" \
 	| $(SED) '/^.TH/s/(unreleased)/$(DISTVERSION)/' \
 	| $(INSTALL_DATA) -T /dev/stdin $@
 
