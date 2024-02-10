@@ -7,7 +7,7 @@ MAKEFILE_DIST_Z_INCLUDED := 1
 
 
 include $(MAKEFILEDIR)/cmd.mk
-include $(MAKEFILEDIR)/compress.mk
+include $(MAKEFILEDIR)/configure/z.mk
 include $(MAKEFILEDIR)/dist/tar.mk
 
 
