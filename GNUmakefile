@@ -22,7 +22,7 @@ MAKEFILEDIR := $(DATAROOTDIR)/mk
 
 
 .PHONY: all
-all: lint build check
+all: lint build check dist
 	@:
 
 
@@ -30,7 +30,7 @@ all: lint build check
 help:
 	$(info	Targets:)
 	$(info	)
-	$(info	all			Alias for "lint build check")
+	$(info	all			Alias for "lint build check dist")
 	$(info	)
 	$(info	clean			Remove $$(builddir))
 	$(info	)
