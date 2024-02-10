@@ -21,8 +21,8 @@ $(_TU_c): $(builddir)/%: $(SRCDIR)/% $(MK) | $$(@D)/
 	$(CP) -T $< $@
 
 
-.PHONY: build-dev-include
-build-dev-include: $(_TU_h) $(_TU_c)
+.PHONY: build-dev-src
+build-dev-src: $(_TU_h) $(_TU_c)
 	@:
 
 
