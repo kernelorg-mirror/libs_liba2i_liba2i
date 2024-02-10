@@ -7,27 +7,19 @@ MAKEFILE_BUILD_OBJ_INCLUDED := 1
 
 
 include $(MAKEFILEDIR)/build/dev-src.mk
+include $(MAKEFILEDIR)/build/obj-pch.mk
 include $(MAKEFILEDIR)/cmd.mk
 include $(MAKEFILEDIR)/configure/as.mk
 include $(MAKEFILEDIR)/configure/cc.mk
 include $(MAKEFILEDIR)/configure/cpp.mk
+include $(MAKEFILEDIR)/configure/pkgconf.mk
 include $(MAKEFILEDIR)/src.mk
-include $(MAKEFILEDIR)/verbose.mk
-include $(MAKEFILEDIR)/version.mk
 
 
-_TU_gch   := $(addsuffix .gch,$(_TU_h))
 _TU_i     := $(addsuffix .i,$(_TU_c))
 _TU_s     := $(addsuffix .s,$(_TU_c))
 _TU_o     := $(addsuffix .o,$(_TU_c))
 
-
-$(_TU_gch): %.gch: % $(MK) $(_LIB_pc_u) | %.d $$(@D)/
-	$(info	CC (pch)	$@)
-	for opt in g 0 1 2 s 3 fast; do \
-	$(CC) $(CPPFLAGS) $(CFLAGS) -O$$opt -c -o $*.O$$opt.gch $<; \
-	done
-	$(CC) $(CPPFLAGS) $(CFLAGS)         -c -o $@            $<
 
 $(_TU_i): %.i: % $(MK) $(_LIB_pc_u) | %.d $$(@D)/
 	$(info	CPP	$@)
@@ -50,10 +42,6 @@ $(_TU_o): %.c.o: %.c.s %.h.gch $(MK) $(_LIB_pc_u) | %.c.d $$(@D)/
 	done
 	$(AS)         -c -o $@            $<
 
-
-.PHONY: build-obj-pch
-build-obj-pch: $(_TU_gch)
-	@:
 
 .PHONY: build-obj-cpp
 build-obj-cpp: $(_TU_i)
