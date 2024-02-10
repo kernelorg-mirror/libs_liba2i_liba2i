@@ -17,7 +17,7 @@ _TU_cpl    := $(_TU_h_cpl) $(_TU_c_cpl)
 
 
 $(_TU_cpl): %.lint-c.cpplint.touch: % $(CPPLINT_CONF) $(MK) | %.d $$(@D)/
-	$(info	LINT (cpplint)		$@)
+	$(info	CPPLINT		$@)
 	$(CPPLINT) $(CPPLINTFLAGS) $< >/dev/null
 	$(TOUCH) $@
 

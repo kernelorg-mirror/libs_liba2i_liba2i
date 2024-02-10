@@ -19,7 +19,7 @@ DISTFILE    := $(builddir)/$(DISTNAME).tar
 
 
 $(DISTFILE): $(_DISTFILES) $(MK) | $$(@D)/
-	$(info TAR	$@)
+	$(info	TAR		$@)
 	$(TAR) $(TARFLAGS) -cf $@ -T /dev/null
 	$(GIT) ls-files \
 	| $(SED) 's,^,$(_DISTDIR)/,' \

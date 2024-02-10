@@ -21,12 +21,12 @@ _LIB_cck := $(builddir)/$(libname).lint-c.cppcheck.touch
 
 
 $(_TU_cck): %.lint-c.cppcheck.touch: % $(CPPCHECK_CONF) $(MK) | %.d $$(@D)/
-	$(info	LINT (cppcheck)		$@)
+	$(info	CPPCHECK	$@)
 	$(CPPCHECK) $(CPPCHECKFLAGS) -I $(INCLUDEDIR) $<
 	$(TOUCH) $@
 
 $(_LIB_cck): %.lint-c.cppcheck.touch: $(_TU_c) $(_TU_h) $(CPPCHECK_CONF) $(MK) | $$(@D)/
-	$(info	LINT (cppcheck)		$@)
+	$(info	CPPCHECK	$@)
 	$(CPPCHECK) $(CPPCHECKFLAGS) -I $(INCLUDEDIR) $(_TU_c) $(_TU_h)
 	$(TOUCH) $@
 

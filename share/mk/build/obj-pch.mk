@@ -17,7 +17,7 @@ _TU_gch   := $(addsuffix .gch,$(_TU_h))
 
 
 $(_TU_gch): %.gch: % $(MK) $(_LIB_pc_u) | %.d $$(@D)/
-	$(info	CC (pch)	$@)
+	$(info	PCH		$@)
 	for opt in g 0 1 2 s 3 fast; do \
 	$(CC) $(CPPFLAGS) $(CFLAGS) -O$$opt -c -o $*.O$$opt.gch $<; \
 	done

@@ -15,7 +15,7 @@ _TU_i := $(addsuffix .i,$(_TU_c))
 
 
 $(_TU_i): %.i: % $(MK) $(_LIB_pc_u) | %.d $$(@D)/
-	$(info	CPP	$@)
+	$(info	CPP		$@)
 	for opt in g 0 1 2 s 3 fast; do \
 	$(CPP) $(CPPFLAGS) -O$$opt -o $*.O$$opt.i $<; \
 	done

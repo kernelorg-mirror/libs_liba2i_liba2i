@@ -20,7 +20,7 @@ _TU_ct     := $(_TU_h_ct) $(_TU_c_ct)
 
 
 $(_TU_ct): %.lint-c.clang-tidy.touch: % $(CLANG_TIDY_CONF) $(MK) | %.d $$(@D)/
-	$(info	LINT (clang-tidy)	$@)
+	$(info	CLANG_TIDY	$@)
 	$(CLANG_TIDY) $(CLANG_TIDYFLAGS) $< -- $(CPPFLAGS) $(CLANGCFLAGS) 2>&1 \
 	| $(SED) '/generated\.$$/d' >&2
 	$(TOUCH) $@

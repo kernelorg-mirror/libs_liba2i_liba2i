@@ -17,7 +17,7 @@ _TU_ckp    := $(_TU_h_ckp) $(_TU_c_ckp)
 
 
 $(_TU_ckp): %.lint-c.checkpatch.touch: % $(CHECKPATCH_CONF) $(MK) | %.d $$(@D)/
-	$(info	LINT (checkpatch)	$@)
+	$(info	CHECKPATCH	$@)
 	$(CHECKPATCH) $(CHECKPATCHFLAGS) -f $<
 	$(TOUCH) $@
 

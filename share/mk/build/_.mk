@@ -16,7 +16,7 @@ build: build-dev build-lib
 
 .PHONY: clean
 clean:
-	$(info	RM -rf	$(builddir))
+	$(info	RM -rf		$(builddir))
 	$(RM) -rf $(builddir)
 
 

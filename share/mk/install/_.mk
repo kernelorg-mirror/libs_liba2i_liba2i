@@ -38,7 +38,7 @@ _man3headdir := $(DESTDIR)$(man3headdir)
 
 
 %/:
-	+$(info	INSTALL		$@)
+	+$(info	MKDIR		$@)
 	+$(INSTALL_DIR) $@
 
 

@@ -20,7 +20,7 @@ _TU_iwyu   := $(_TU_h_iwyu) $(_TU_c_iwyu)
 
 
 $(_TU_iwyu): %.lint-c.iwyu.touch: % $(MK) | %.d $$(@D)/
-	$(info	LINT (iwyu)		$@)
+	$(info	IWYU		$@)
 	$(IWYU) $(IWYUFLAGS) $(CPPFLAGS) $(CLANGCFLAGS) $< 2>&1 \
 	| $(TAC) \
 	| $(SED) '/correct/{N;d}' \

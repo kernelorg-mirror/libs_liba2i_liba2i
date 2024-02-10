@@ -28,12 +28,12 @@ _tests_sh := $(patsubst $(srcdir)/share/%,$(builddir)/%.installcheck.touch,$(TES
 
 
 $(_TESTS_c): $(builddir)/%.check: $(srcdir)/share/% $(MK) $(TU_h) $(_LIB_a) $(_LIB_so_v) | $$(@D)/
-	$(info	CHECK	$@)
+	$(info	CHECK		$@)
 	$(CC) $(CFLAGS) -o $@ $< $$(PKG_CONFIG_LIBDIR=$(PCDIR) $(PKGCONF) --cflags --libs liba2i)
 	$@
 
 $(_TESTS_sh): $(builddir)/%.check.touch: $(srcdir)/share/% $(MK) $(TU_h) $(_LIB_a) $(_LIB_so_v) | $$(@D)/
-	$(info	CHECK	$@)
+	$(info	CHECK		$@)
 	PKG_CONFIG_LIBDIR=$(PCDIR) $<
 	$(TOUCH) $@
 

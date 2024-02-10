@@ -16,7 +16,7 @@ compression := bz2 gz lz xz
 
 define DISTFILE_z_rule
 $(DISTFILE).$(2): %.$(2): % $(MK) | $$$$(@D)/
-	$$(info	$(1)	$$@)
+	$$(info	$(1)		$$@)
 	$($(1)) $($(1)FLAGS) -kf $$<
 	$(TOUCH) $$@
 endef
