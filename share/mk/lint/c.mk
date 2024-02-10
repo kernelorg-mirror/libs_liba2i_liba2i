@@ -9,7 +9,6 @@ MAKEFILE_LINT_C_INCLUDED := 1
 include $(MAKEFILEDIR)/build/deps.mk
 include $(MAKEFILEDIR)/configure/cc.mk
 include $(MAKEFILEDIR)/configure/cpp.mk
-include $(MAKEFILEDIR)/configure/cppcheck.mk
 include $(MAKEFILEDIR)/src.mk
 include $(MAKEFILEDIR)/version.mk
 
@@ -21,27 +20,10 @@ IWYUFLAGS         := $(DEFAULT_IWYUFLAGS) $(EXTRA_IWYUFLAGS)
 IWYU              := iwyu
 
 
-_TU_h_cck  := $(addsuffix .lint-c.cppcheck.touch,$(_TU_h))
-_TU_c_cck  := $(addsuffix .lint-c.cppcheck.touch,$(_TU_c))
-_TU_cck    := $(_TU_h_cck) $(_TU_c_cck)
-
 _TU_h_iwyu := $(addsuffix .lint-c.iwyu.touch,$(_TU_h))
 _TU_c_iwyu := $(addsuffix .lint-c.iwyu.touch,$(_TU_c))
 _TU_iwyu   := $(_TU_h_iwyu) $(_TU_c_iwyu)
 
-
-_LIB_cck := $(builddir)/$(libname).lint-c.cppcheck.touch
-
-
-$(_TU_cck): %.lint-c.cppcheck.touch: % $(CPPCHECK_CONF) $(MK) | %.d $$(@D)/
-	$(info	LINT (cppcheck)		$@)
-	$(CPPCHECK) $(CPPCHECKFLAGS) -I $(INCLUDEDIR) $<
-	$(TOUCH) $@
-
-$(_LIB_cck): %.lint-c.cppcheck.touch: $(_TU_c) $(_TU_h) $(CPPCHECK_CONF) $(MK) | $$(@D)/
-	$(info	LINT (cppcheck)		$@)
-	$(CPPCHECK) $(CPPCHECKFLAGS) -I $(INCLUDEDIR) $(_TU_c) $(_TU_h)
-	$(TOUCH) $@
 
 $(_TU_iwyu): %.lint-c.iwyu.touch: % $(MK) | %.d $$(@D)/
 	$(info	LINT (iwyu)		$@)
@@ -55,10 +37,6 @@ $(_TU_iwyu): %.lint-c.iwyu.touch: % $(MK) | %.d $$(@D)/
 linters_c := checkpatch clang-tidy cppcheck cpplint iwyu
 lint_c    := $(foreach x,$(linters_c),lint-c-$(x))
 
-
-.PHONY: lint-c-cppcheck
-lint-c-cppcheck: $(_TU_cck) $(_LIB_cck)
-	@:
 
 .PHONY: lint-c-iwyu
 lint-c-iwyu: $(_TU_iwyu)
