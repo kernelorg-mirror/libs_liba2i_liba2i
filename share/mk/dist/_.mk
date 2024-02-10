@@ -18,13 +18,6 @@ include $(MAKEFILEDIR)/verbose.mk
 _DISTDIR := $(builddir)/dist
 
 
-DISTFILES   := $(shell $(GIT) ls-files $(HIDE_ERR) \
-			| $(SED) 's,^,$(srcdir)/,' \
-			| $(SED) 's,:,\\:,g')
-_DISTFILES  := $(patsubst $(srcdir)/%,$(_DISTDIR)/%,$(DISTFILES))
-_DISTPAGES  := $(filter     $(_DISTDIR)/share/man/man%,$(_DISTFILES))
-_DISTOTHERS := $(filter-out $(_DISTDIR)/share/man/man%,$(_DISTFILES))
-
 DISTFILE    := $(builddir)/$(DISTNAME).tar
 compression := bz2 gz lz xz
 
@@ -37,18 +30,6 @@ $(builddir)/dist/:
 $(builddir)/dist/%/: | $(builddir)/dist/
 	+$(info INSTALL	$@)
 	+$(INSTALL_DIR) $@
-
-
-$(_DISTPAGES): $(_DISTDIR)/share/man/man%: $(srcdir)/share/man/man% $(MK) | $$(@D)/
-	$(info INSTALL	$@)
-	<$< \
-	$(SED) "/^.TH/s/(date)/$$(git log --format=%cs -1 -- $< $(HIDE_ERR))/" \
-	| $(SED) '/^.TH/s/(unreleased)/$(DISTVERSION)/' \
-	| $(INSTALL_DATA) -T /dev/stdin $@
-
-$(_DISTOTHERS): $(_DISTDIR)/%: $(srcdir)/% $(MK) | $$(@D)/
-	$(info CP	$@)
-	$(CP) -dT $< $@
 
 
 $(DISTFILE): $(_DISTFILES) $(MK) | $$(@D)/
