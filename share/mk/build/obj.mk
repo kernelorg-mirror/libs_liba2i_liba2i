@@ -8,25 +8,15 @@ MAKEFILE_BUILD_OBJ_INCLUDED := 1
 
 include $(MAKEFILEDIR)/build/dev-src.mk
 include $(MAKEFILEDIR)/build/obj-pch.mk
-include $(MAKEFILEDIR)/cmd.mk
 include $(MAKEFILEDIR)/configure/as.mk
 include $(MAKEFILEDIR)/configure/cc.mk
 include $(MAKEFILEDIR)/configure/cpp.mk
 include $(MAKEFILEDIR)/configure/pkgconf.mk
-include $(MAKEFILEDIR)/src.mk
 
 
-_TU_i     := $(addsuffix .i,$(_TU_c))
 _TU_s     := $(addsuffix .s,$(_TU_c))
 _TU_o     := $(addsuffix .o,$(_TU_c))
 
-
-$(_TU_i): %.i: % $(MK) $(_LIB_pc_u) | %.d $$(@D)/
-	$(info	CPP	$@)
-	for opt in g 0 1 2 s 3 fast; do \
-	$(CPP) $(CPPFLAGS) -O$$opt -o $*.O$$opt.i $<; \
-	done
-	$(CPP) $(CPPFLAGS)         -o $@          $<
 
 $(_TU_s): %.s: % %.i $(MK) $(_LIB_pc_u) | %.d $$(@D)/
 	$(info	CC		$@)
@@ -42,10 +32,6 @@ $(_TU_o): %.c.o: %.c.s %.h.gch $(MK) $(_LIB_pc_u) | %.c.d $$(@D)/
 	done
 	$(AS)         -c -o $@            $<
 
-
-.PHONY: build-obj-cpp
-build-obj-cpp: $(_TU_i)
-	@:
 
 .PHONY: build-obj-cc
 build-obj-cc: $(_TU_s)
