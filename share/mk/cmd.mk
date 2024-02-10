@@ -13,6 +13,7 @@ ECHO    := echo
 FIND    := find
 GIT     := git
 GREP    := grep
+INSTALL := install
 LN      := ln
 MKDIR   := mkdir
 RM      := rm
