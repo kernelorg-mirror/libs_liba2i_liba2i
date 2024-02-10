@@ -16,6 +16,7 @@ include $(MAKEFILEDIR)/verbose.mk
 
 DISTFILES    := $(shell $(GIT) ls-files $(HIDE_ERR) \
 			| $(SED) 's,^,$(srcdir)/,' \
+			| $(GREP) -v '$(MAKEFILEDIR)/dist/' \
 			| $(SED) 's,:,\\:,g')
 _DISTFILES   := $(patsubst $(srcdir)/%,$(_DISTDIR)/%,$(DISTFILES))
 _DISTPAGES   := $(filter     $(_DISTDIR)/share/man/man%,$(_DISTFILES))
