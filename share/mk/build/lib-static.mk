@@ -8,8 +8,10 @@ MAKEFILE_BUILD_LIB_STATIC_INCLUDED := 1
 
 include $(MAKEFILEDIR)/build/_.mk
 include $(MAKEFILEDIR)/build/obj-as.mk
-include $(MAKEFILEDIR)/cmd.mk
 include $(MAKEFILEDIR)/configure/ar.mk
+include $(MAKEFILEDIR)/configure/coreutils.mk
+include $(MAKEFILEDIR)/configure/findutils.mk
+include $(MAKEFILEDIR)/configure/sed.mk
 include $(MAKEFILEDIR)/version.mk
 
 

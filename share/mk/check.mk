@@ -9,6 +9,9 @@ MAKEFILE_CHECK_INCLUDED := 1
 include $(MAKEFILEDIR)/build/lib-shared.mk
 include $(MAKEFILEDIR)/build/lib-static.mk
 include $(MAKEFILEDIR)/configure/cc.mk
+include $(MAKEFILEDIR)/configure/coreutils.mk
+include $(MAKEFILEDIR)/configure/findutils.mk
+include $(MAKEFILEDIR)/configure/grep.mk
 include $(MAKEFILEDIR)/configure/pkgconf.mk
 include $(MAKEFILEDIR)/install/dev-include.mk
 include $(MAKEFILEDIR)/install/lib-shared.mk
@@ -32,7 +35,7 @@ $(_TESTS_c): $(builddir)/%.check: $(srcdir)/share/% $(MK) $(TU_h) $(_LIB_a) $(_L
 $(_TESTS_sh): $(builddir)/%.check.touch: $(srcdir)/share/% $(MK) $(TU_h) $(_LIB_a) $(_LIB_so_v) | $$(@D)/
 	$(info	CHECK	$@)
 	PKG_CONFIG_LIBDIR=$(PCDIR) $<
-	touch $@
+	$(TOUCH) $@
 
 $(_tests_c): $(builddir)/%.installcheck: $(srcdir)/share/% $(MK) $(_tu_h) $(_lib_a) $(_lib_so) | $$(@D)/
 	$(info	INSTALLCHECK	$@)
@@ -42,7 +45,7 @@ $(_tests_c): $(builddir)/%.installcheck: $(srcdir)/share/% $(MK) $(_tu_h) $(_lib
 $(_tests_sh): $(builddir)/%.installcheck.touch: $(srcdir)/share/% $(MK) $(_tu_h) $(_lib_a) $(_lib_so) | $$(@D)/
 	$(info	INSTALLCHECK	$@)
 	$<
-	touch $@
+	$(TOUCH) $@
 
 
 .PHONY: check

@@ -2,24 +2,24 @@
 # SPDX-License-Identifier: LGPL-3.0-only WITH LGPL-3.0-linking-exception
 
 
-ifndef MAKEFILE_CMD_INCLUDED
-MAKEFILE_CMD_INCLUDED := 1
+ifndef MAKEFILE_CONFIGURE_COREUTILS_INCLUDED
+MAKEFILE_CONFIGURE_COREUTILS_INCLUDED := 1
 
 
 CP      := cp
 CUT     := cut
 ECHO    := echo
-FIND    := find
-GIT     := git
-GREP    := grep
 INSTALL := install
 LN      := ln
 RM      := rm
-SED     := sed
 SORT    := sort
 TAC     := tac
 TOUCH   := touch
-XARGS   := xargs
+
+
+INSTALL_DATA    := $(INSTALL) -m 644
+INSTALL_DIR     := $(INSTALL) -m 755 -d
+INSTALL_PROGRAM := $(INSTALL) -m 755
 
 
 endif  # include guard

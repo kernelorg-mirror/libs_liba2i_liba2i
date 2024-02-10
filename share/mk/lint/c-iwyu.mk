@@ -7,11 +7,11 @@ MAKEFILE_LINT_C_IWYU_INCLUDED := 1
 
 
 include $(MAKEFILEDIR)/build/dev-src.mk
-include $(MAKEFILEDIR)/cmd.mk
 include $(MAKEFILEDIR)/configure/cc.mk
+include $(MAKEFILEDIR)/configure/coreutils.mk
 include $(MAKEFILEDIR)/configure/cpp.mk
 include $(MAKEFILEDIR)/configure/iwyu.mk
-include $(MAKEFILEDIR)/src.mk
+include $(MAKEFILEDIR)/configure/sed.mk
 
 
 _TU_h_iwyu := $(addsuffix .lint-c.iwyu.touch,$(_TU_h))

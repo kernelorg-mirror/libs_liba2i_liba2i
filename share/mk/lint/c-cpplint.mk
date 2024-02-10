@@ -7,8 +7,8 @@ MAKEFILE_LINT_C_CPPLINT_INCLUDED := 1
 
 
 include $(MAKEFILEDIR)/build/dev-src.mk
+include $(MAKEFILEDIR)/configure/coreutils.mk
 include $(MAKEFILEDIR)/configure/cpplint.mk
-include $(MAKEFILEDIR)/cmd.mk
 
 
 _TU_h_cpl  := $(addsuffix .lint-c.cpplint.touch,$(_TU_h))

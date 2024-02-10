@@ -6,7 +6,9 @@ ifndef MAKEFILE_DIST_FILES_INCLUDED
 MAKEFILE_DIST_FILES_INCLUDED := 1
 
 
-include $(MAKEFILEDIR)/cmd.mk
+include $(MAKEFILEDIR)/configure/coreutils.mk
+include $(MAKEFILEDIR)/configure/git.mk
+include $(MAKEFILEDIR)/configure/sed.mk
 include $(MAKEFILEDIR)/dist/_.mk
 include $(MAKEFILEDIR)/version.mk
 include $(MAKEFILEDIR)/verbose.mk

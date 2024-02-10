@@ -6,7 +6,9 @@ ifndef MAKEFILE_CONFIGURE_CC_INCLUDED
 MAKEFILE_CONFIGURE_CC_INCLUDED := 1
 
 
-include $(MAKEFILEDIR)/cmd.mk
+include $(MAKEFILEDIR)/configure/coreutils.mk
+include $(MAKEFILEDIR)/configure/grep.mk
+include $(MAKEFILEDIR)/configure/sed.mk
 
 
 export CC      := gcc
@@ -19,8 +21,8 @@ CC_VENDOR := \
 		| $(SED) '/gcc version/s/.*/gcc/' \
 		| $(SED) '/clang version/s/.*/clang/' \
 		| $(SED) '/Apple LLVM version/s/.*/clang/' \
-		| grep -e '^gcc$$' -e '^clang$$' \
-		|| echo unknown; \
+		| $(GREP) -e '^gcc$$' -e '^clang$$' \
+		|| $(ECHO) unknown; \
 	)
 
 

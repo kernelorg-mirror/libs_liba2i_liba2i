@@ -6,7 +6,9 @@ ifndef MAKEFILE_DIST_TAR_INCLUDED
 MAKEFILE_DIST_TAR_INCLUDED := 1
 
 
-include $(MAKEFILEDIR)/cmd.mk
+include $(MAKEFILEDIR)/configure/findutils.mk
+include $(MAKEFILEDIR)/configure/git.mk
+include $(MAKEFILEDIR)/configure/sed.mk
 include $(MAKEFILEDIR)/configure/tar.mk
 include $(MAKEFILEDIR)/dist/_.mk
 include $(MAKEFILEDIR)/dist/files.mk

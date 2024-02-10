@@ -6,8 +6,9 @@ ifndef MAKEFILE_BUILD_DEV_PC_INCLUDED
 MAKEFILE_BUILD_DEV_PC_INCLUDED := 1
 
 
+include $(MAKEFILEDIR)/configure/coreutils.mk
 include $(MAKEFILEDIR)/configure/pkgconf.mk
-include $(MAKEFILEDIR)/cmd.mk
+include $(MAKEFILEDIR)/configure/sed.mk
 include $(MAKEFILEDIR)/install/_.mk
 include $(MAKEFILEDIR)/src.mk
 include $(MAKEFILEDIR)/version.mk

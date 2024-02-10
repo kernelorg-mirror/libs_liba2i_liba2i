@@ -6,7 +6,7 @@ ifndef MAKEFILE_INSTALL_DEV_INCLUDE_INCLUDED
 MAKEFILE_INSTALL_DEV_INCLUDE_INCLUDED := 1
 
 
-include $(MAKEFILEDIR)/cmd.mk
+include $(MAKEFILEDIR)/configure/coreutils.mk
 include $(MAKEFILEDIR)/install/_.mk
 include $(MAKEFILEDIR)/src.mk
 

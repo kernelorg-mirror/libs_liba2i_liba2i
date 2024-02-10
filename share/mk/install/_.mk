@@ -6,7 +6,8 @@ ifndef MAKEFILE_INSTALL_INCLUDED
 MAKEFILE_INSTALL_INCLUDED := 1
 
 
-include $(MAKEFILEDIR)/cmd.mk
+include $(MAKEFILEDIR)/configure/coreutils.mk
+include $(MAKEFILEDIR)/version.mk
 
 
 DESTDIR      :=
@@ -34,11 +35,6 @@ _libdir      := $(DESTDIR)$(libdir)
 _mandir      := $(DESTDIR)$(mandir)
 _man3dir     := $(DESTDIR)$(man3dir)
 _man3headdir := $(DESTDIR)$(man3headdir)
-
-
-INSTALL_DATA    := $(INSTALL) -m 644
-INSTALL_DIR     := $(INSTALL) -m 755 -d
-INSTALL_PROGRAM := $(INSTALL) -m 755
 
 
 %/:

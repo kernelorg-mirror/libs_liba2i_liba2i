@@ -6,7 +6,9 @@ ifndef MAKEFILE_SRC_INCLUDED
 MAKEFILE_SRC_INCLUDED := 1
 
 
-include $(MAKEFILEDIR)/cmd.mk
+include $(MAKEFILEDIR)/configure/coreutils.mk
+include $(MAKEFILEDIR)/configure/findutils.mk
+include $(MAKEFILEDIR)/configure/grep.mk
 include $(MAKEFILEDIR)/version.mk
 
 

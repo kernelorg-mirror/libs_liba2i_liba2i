@@ -7,10 +7,11 @@ MAKEFILE_LINT_C_CLANG_TIDY_INCLUDED := 1
 
 
 include $(MAKEFILEDIR)/build/dev-src.mk
-include $(MAKEFILEDIR)/cmd.mk
 include $(MAKEFILEDIR)/configure/cc.mk
 include $(MAKEFILEDIR)/configure/clang-tidy.mk
+include $(MAKEFILEDIR)/configure/coreutils.mk
 include $(MAKEFILEDIR)/configure/cpp.mk
+include $(MAKEFILEDIR)/configure/sed.mk
 
 
 _TU_h_ct   := $(addsuffix .lint-c.clang-tidy.touch,$(_TU_h))

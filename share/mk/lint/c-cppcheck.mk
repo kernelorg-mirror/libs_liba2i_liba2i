@@ -7,7 +7,7 @@ MAKEFILE_LINT_C_CPPCHECK_INCLUDED := 1
 
 
 include $(MAKEFILEDIR)/build/dev-src.mk
-include $(MAKEFILEDIR)/cmd.mk
+include $(MAKEFILEDIR)/configure/coreutils.mk
 include $(MAKEFILEDIR)/configure/cppcheck.mk
 include $(MAKEFILEDIR)/src.mk
 

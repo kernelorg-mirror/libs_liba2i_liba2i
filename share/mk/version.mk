@@ -6,7 +6,8 @@ ifndef MAKEFILE_VERSION_INCLUDED
 MAKEFILE_VERSION_INCLUDED := 1
 
 
-include $(MAKEFILEDIR)/cmd.mk
+include $(MAKEFILEDIR)/configure/coreutils.mk
+include $(MAKEFILEDIR)/configure/git.mk
 include $(MAKEFILEDIR)/verbose.mk
 
 

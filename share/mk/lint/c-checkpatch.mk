@@ -7,8 +7,8 @@ MAKEFILE_LINT_C_CHECKPATCH_INCLUDED := 1
 
 
 include $(MAKEFILEDIR)/build/dev-src.mk
-include $(MAKEFILEDIR)/cmd.mk
 include $(MAKEFILEDIR)/configure/checkpatch.mk
+include $(MAKEFILEDIR)/configure/coreutils.mk
 
 
 _TU_h_ckp  := $(addsuffix .lint-c.checkpatch.touch,$(_TU_h))
