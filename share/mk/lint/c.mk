@@ -9,15 +9,9 @@ MAKEFILE_LINT_C_INCLUDED := 1
 include $(MAKEFILEDIR)/build/deps.mk
 include $(MAKEFILEDIR)/configure/cc.mk
 include $(MAKEFILEDIR)/configure/cpp.mk
+include $(MAKEFILEDIR)/configure/iwyu.mk
 include $(MAKEFILEDIR)/src.mk
 include $(MAKEFILEDIR)/version.mk
-
-
-DEFAULT_IWYUFLAGS := -Xiwyu --no_fwd_decls
-DEFAULT_IWYUFLAGS += -Xiwyu --error
-EXTRA_IWYUFLAGS   :=
-IWYUFLAGS         := $(DEFAULT_IWYUFLAGS) $(EXTRA_IWYUFLAGS)
-IWYU              := iwyu
 
 
 _TU_h_iwyu := $(addsuffix .lint-c.iwyu.touch,$(_TU_h))
