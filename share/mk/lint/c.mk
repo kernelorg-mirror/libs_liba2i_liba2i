@@ -9,21 +9,10 @@ MAKEFILE_LINT_C_INCLUDED := 1
 include $(MAKEFILEDIR)/build/deps.mk
 include $(MAKEFILEDIR)/configure/cc.mk
 include $(MAKEFILEDIR)/configure/cpp.mk
+include $(MAKEFILEDIR)/configure/cppcheck.mk
 include $(MAKEFILEDIR)/src.mk
 include $(MAKEFILEDIR)/version.mk
 
-
-CPPCHECK_CONF         := $(srcdir)/etc/cppcheck/cppcheck.suppress
-DEFAULT_CPPCHECKFLAGS := --enable=all
-DEFAULT_CPPCHECKFLAGS += --error-exitcode=2
-DEFAULT_CPPCHECKFLAGS += --inconclusive
-DEFAULT_CPPCHECKFLAGS += --quiet
-DEFAULT_CPPCHECKFLAGS += --suppressions-list=$(CPPCHECK_CONF)
-DEFAULT_CPPCHECKFLAGS += -D__GNUC__
-DEFAULT_CPPCHECKFLAGS += -D__STDC_VERSION__=202000L
-EXTRA_CPPCHECKFLAGS   :=
-CPPCHECKFLAGS         := $(DEFAULT_CPPCHECKFLAGS) $(EXTRA_CPPCHECKFLAGS)
-CPPCHECK              := cppcheck
 
 DEFAULT_IWYUFLAGS := -Xiwyu --no_fwd_decls
 DEFAULT_IWYUFLAGS += -Xiwyu --error
