@@ -6,7 +6,7 @@ ifndef MAKEFILE_LINT_C_CHECKPATCH_INCLUDED
 MAKEFILE_LINT_C_CHECKPATCH_INCLUDED := 1
 
 
-include $(MAKEFILEDIR)/build/deps.mk
+include $(MAKEFILEDIR)/build/dev-src.mk
 include $(MAKEFILEDIR)/cmd.mk
 include $(MAKEFILEDIR)/configure/checkpatch.mk
 

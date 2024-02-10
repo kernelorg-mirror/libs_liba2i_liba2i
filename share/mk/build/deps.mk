@@ -6,17 +6,12 @@ ifndef MAKEFILE_BUILD_DEPS_INCLUDED
 MAKEFILE_BUILD_DEPS_INCLUDED := 1
 
 
-include $(MAKEFILEDIR)/build/_.mk
+include $(MAKEFILEDIR)/build/dev-src.mk
 include $(MAKEFILEDIR)/configure/cc.mk
 include $(MAKEFILEDIR)/configure/cpp.mk
 include $(MAKEFILEDIR)/configure/pkgconf.mk
-include $(MAKEFILEDIR)/cmd.mk
 include $(MAKEFILEDIR)/src.mk
-include $(MAKEFILEDIR)/version.mk
 
-
-_TU_h := $(patsubst $(srcdir)/include/%,$(builddir)/%,$(TU_h))
-_TU_c := $(patsubst $(srcdir)/src/%,$(builddir)/%,$(TU_c))
 
 _TU_h_d   := $(addsuffix .d,$(_TU_h))
 _TU_c_d   := $(addsuffix .d,$(_TU_c))
@@ -30,12 +25,6 @@ DEPTARGETS  = -MT $*.lint-c.checkpatch.touch \
 DEPHTARGETS = $(DEPTARGETS) -MT $*.gch
 DEPCTARGETS = $(DEPTARGETS) -MT $*.i
 
-
-$(_TU_h): $(builddir)/%: $(srcdir)/include/% $(MK) | $$(@D)/
-	$(CP) -T $< $@
-
-$(_TU_c): $(builddir)/%: $(srcdir)/src/% $(MK) | $$(@D)/
-	$(CP) -T $< $@
 
 $(_TU_h_d): %.d: % $(_TU_h) $(MK) $(_LIB_pc_u) | $$(@D)/
 	$(CC) $(CPPFLAGS) $(CFLAGS) -M -MP $(DEPHTARGETS) -MF$@ $<

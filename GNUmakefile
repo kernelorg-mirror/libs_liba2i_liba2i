@@ -37,6 +37,7 @@ help:
 	$(info	)
 	$(info	build-deps		Build the .d files)
 	$(info	build-dev		Wrapper for build-dev-* targets)
+	$(info	build-dev-src		Copy the source files)
 	$(info	build-dev-pc		Build the pc(5) file)
 	$(info	build-lib		Wrapper for build-lib-* targets)
 	$(info	build-lib-shared	Build the shared library)
