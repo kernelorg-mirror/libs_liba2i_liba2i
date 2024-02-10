@@ -24,14 +24,6 @@ _tests_c  := $(patsubst $(srcdir)/share/%,$(builddir)/%.installcheck,$(TESTS_c))
 _tests_sh := $(patsubst $(srcdir)/share/%,$(builddir)/%.installcheck.touch,$(TESTS_sh))
 
 
-_TESTSDIRS := $(patsubst $(srcdir)/share/%,$(builddir)/%/,$(shell $(FIND) $(TESTSDIR) -type d | $(SORT)))
-
-
-$(_TESTSDIRS): | $$(dir $$(@D))
-	+$(info	MKDIR	$@)
-	+$(MKDIR) -p $@
-
-
 $(_TESTS_c): $(builddir)/%.check: $(srcdir)/share/% $(MK) $(TU_h) $(_LIB_a) $(_LIB_so_v) | $$(@D)/
 	$(info	CHECK	$@)
 	$(CC) $(CFLAGS) -o $@ $< $$(PKG_CONFIG_LIBDIR=$(PCDIR) $(PKGCONF) --cflags --libs liba2i)

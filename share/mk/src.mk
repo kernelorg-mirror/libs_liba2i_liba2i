@@ -27,7 +27,4 @@ LIB_pc  := $(PCDIR)/$(libname)-uninstalled.pc
 MAN_man := $(shell $(FIND) $(MANDIR)     -type f | $(GREP) '$(MANEXT)' | $(SORT))
 
 
-TU_DIRS := $(filter-out $(INCLUDEDIR),$(shell $(FIND) $(INCLUDEDIR) -type d | $(SORT)))
-
-
 endif  # include guard

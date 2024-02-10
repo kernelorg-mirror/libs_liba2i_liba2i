@@ -7,19 +7,6 @@ MAKEFILE_BUILD_INCLUDED := 1
 
 
 include $(MAKEFILEDIR)/cmd.mk
-include $(MAKEFILEDIR)/src.mk
-
-
-_TU_DIRS  := $(patsubst $(INCLUDEDIR)/%,$(builddir)/%/,$(TU_DIRS))
-
-
-$(_TU_DIRS): | $$(dir $$(@D))
-	+$(info	MKDIR	$@)
-	+$(MKDIR) -p $@
-
-$(builddir)/:
-	+$(info	MKDIR	$@)
-	+$(MKDIR) -p $@
 
 
 .PHONY: build

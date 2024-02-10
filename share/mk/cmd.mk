@@ -15,7 +15,6 @@ GIT     := git
 GREP    := grep
 INSTALL := install
 LN      := ln
-MKDIR   := mkdir
 RM      := rm
 SED     := sed
 SORT    := sort
