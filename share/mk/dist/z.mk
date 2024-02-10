@@ -29,13 +29,13 @@ $(eval $(call DISTFILE_z_rule,XZ,xz))
 
 
 $(foreach z, $(compression),                                                  \
-	$(eval .PHONY: dist-$(z)))
+	$(eval .PHONY: dist-z-$(z)))
 $(foreach z, $(compression),                                                  \
-	$(eval dist-$(z): $(DISTFILE).$(z);))
+	$(eval dist-z-$(z): $(DISTFILE).$(z);))
 
 
 .PHONY: dist-z
-dist-z: $(foreach z, $(compression), dist-$(z));
+dist-z: $(foreach z, $(compression), dist-z-$(z));
 
 
 endif  # include guard
