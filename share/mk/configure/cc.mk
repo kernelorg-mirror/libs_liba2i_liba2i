@@ -27,6 +27,7 @@ CC_VENDOR := \
 
 
 GCC_CFLAGS := -fanalyzer
+GCC_CFLAGS += -flto
 
 
 CLANG_CFLAGS := -Weverything
@@ -46,7 +47,6 @@ CLANG_CFLAGS += -Wno-unused-macros
 
 DEFAULT_CFLAGS := -O3
 DEFAULT_CFLAGS += -std=gnu11
-DEFAULT_CFLAGS += -flto
 DEFAULT_CFLAGS += -Wall
 DEFAULT_CFLAGS += -Wextra
 DEFAULT_CFLAGS += -Wstrict-prototypes
