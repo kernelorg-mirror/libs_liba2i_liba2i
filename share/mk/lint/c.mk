@@ -9,15 +9,10 @@ MAKEFILE_LINT_C_INCLUDED := 1
 include $(MAKEFILEDIR)/build/deps.mk
 include $(MAKEFILEDIR)/configure/cc.mk
 include $(MAKEFILEDIR)/configure/cpp.mk
+include $(MAKEFILEDIR)/configure/cpplint.mk
 include $(MAKEFILEDIR)/src.mk
 include $(MAKEFILEDIR)/version.mk
 
-
-CPPLINT_CONF         := $(srcdir)/etc/cpplint/cpplint.cfg
-DEFAULT_CPPLINTFLAGS :=
-EXTRA_CPPLINTFLAGS   :=
-CPPLINTFLAGS         := $(DEFAULT_CPPLINTFLAGS) $(EXTRA_CPPLINTFLAGS)
-CPPLINT              := cpplint
 
 CPPCHECK_CONF         := $(srcdir)/etc/cppcheck/cppcheck.suppress
 DEFAULT_CPPCHECKFLAGS := --enable=all
