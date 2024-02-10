@@ -11,6 +11,7 @@ CUT     := cut
 ECHO    := echo
 INSTALL := install
 LN      := ln
+MKTEMP  := mktemp
 RM      := rm
 SORT    := sort
 TAC     := tac
