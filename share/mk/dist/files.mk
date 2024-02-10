@@ -14,12 +14,13 @@ include $(MAKEFILEDIR)/version.mk
 include $(MAKEFILEDIR)/verbose.mk
 
 
-DISTFILES   := $(shell $(GIT) ls-files $(HIDE_ERR) \
+DISTFILES    := $(shell $(GIT) ls-files $(HIDE_ERR) \
 			| $(SED) 's,^,$(srcdir)/,' \
 			| $(SED) 's,:,\\:,g')
-_DISTFILES  := $(patsubst $(srcdir)/%,$(_DISTDIR)/%,$(DISTFILES))
-_DISTPAGES  := $(filter     $(_DISTDIR)/share/man/man%,$(_DISTFILES))
-_DISTOTHERS := $(filter-out $(_DISTDIR)/share/man/man%,$(_DISTFILES))
+_DISTFILES   := $(patsubst $(srcdir)/%,$(_DISTDIR)/%,$(DISTFILES))
+_DISTPAGES   := $(filter     $(_DISTDIR)/share/man/man%,$(_DISTFILES))
+_DISTVERSION := $(_DISTDIR)/share/mk/version.mk
+_DISTOTHERS  := $(filter-out $(_DISTPAGES) $(_DISTVERSION),$(_DISTFILES))
 
 
 $(_DISTPAGES): $(_DISTDIR)/share/man/man%: $(srcdir)/share/man/man% $(MK) | $$(@D)/
@@ -27,6 +28,13 @@ $(_DISTPAGES): $(_DISTDIR)/share/man/man%: $(srcdir)/share/man/man% $(MK) | $$(@
 	<$< \
 	$(SED) "/^.TH/s/(date)/$$($(GIT) log --format=%cs -1 -- $< $(HIDE_ERR))/" \
 	| $(SED) '/^.TH/s/(unreleased)/$(DISTVERSION)/' \
+	| $(INSTALL_DATA) -T /dev/stdin $@
+
+$(_DISTVERSION): $(MAKEFILEDIR)/version.mk $(MK) | $$(@D)/
+	$(info	SED		$@)
+	<$< \
+	$(SED) 's/^DISTVERSION *:=.*/DISTVERSION := $(DISTVERSION)/' \
+	| $(SED) 's/^DISTDATE *:=.*/DISTDATE := $(DISTDATE)/' \
 	| $(INSTALL_DATA) -T /dev/stdin $@
 
 $(_DISTOTHERS): $(_DISTDIR)/%: $(srcdir)/% $(MK) | $$(@D)/
