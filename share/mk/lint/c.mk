@@ -9,7 +9,6 @@ MAKEFILE_LINT_C_INCLUDED := 1
 include $(MAKEFILEDIR)/build/deps.mk
 include $(MAKEFILEDIR)/configure/cc.mk
 include $(MAKEFILEDIR)/configure/cpp.mk
-include $(MAKEFILEDIR)/configure/cpplint.mk
 include $(MAKEFILEDIR)/src.mk
 include $(MAKEFILEDIR)/version.mk
 
@@ -37,10 +36,6 @@ _TU_h_cck  := $(addsuffix .lint-c.cppcheck.touch,$(_TU_h))
 _TU_c_cck  := $(addsuffix .lint-c.cppcheck.touch,$(_TU_c))
 _TU_cck    := $(_TU_h_cck) $(_TU_c_cck)
 
-_TU_h_cpl  := $(addsuffix .lint-c.cpplint.touch,$(_TU_h))
-_TU_c_cpl  := $(addsuffix .lint-c.cpplint.touch,$(_TU_c))
-_TU_cpl    := $(_TU_h_cpl) $(_TU_c_cpl)
-
 _TU_h_iwyu := $(addsuffix .lint-c.iwyu.touch,$(_TU_h))
 _TU_c_iwyu := $(addsuffix .lint-c.iwyu.touch,$(_TU_c))
 _TU_iwyu   := $(_TU_h_iwyu) $(_TU_c_iwyu)
@@ -59,11 +54,6 @@ $(_LIB_cck): %.lint-c.cppcheck.touch: $(_TU_c) $(_TU_h) $(CPPCHECK_CONF) $(MK) |
 	$(CPPCHECK) $(CPPCHECKFLAGS) -I $(INCLUDEDIR) $(_TU_c) $(_TU_h)
 	$(TOUCH) $@
 
-$(_TU_cpl): %.lint-c.cpplint.touch: % $(CPPLINT_CONF) $(MK) | %.d $$(@D)/
-	$(info	LINT (cpplint)		$@)
-	$(CPPLINT) $(CPPLINTFLAGS) $< >/dev/null
-	$(TOUCH) $@
-
 $(_TU_iwyu): %.lint-c.iwyu.touch: % $(MK) | %.d $$(@D)/
 	$(info	LINT (iwyu)		$@)
 	$(IWYU) $(IWYUFLAGS) $(CPPFLAGS) $(CLANGCFLAGS) $< 2>&1 \
@@ -79,10 +69,6 @@ lint_c    := $(foreach x,$(linters_c),lint-c-$(x))
 
 .PHONY: lint-c-cppcheck
 lint-c-cppcheck: $(_TU_cck) $(_LIB_cck)
-	@:
-
-.PHONY: lint-c-cpplint
-lint-c-cpplint: $(_TU_cpl)
 	@:
 
 .PHONY: lint-c-iwyu
