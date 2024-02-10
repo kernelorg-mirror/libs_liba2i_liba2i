@@ -6,7 +6,6 @@ ifndef MAKEFILE_CMD_INCLUDED
 MAKEFILE_CMD_INCLUDED := 1
 
 
-CD      := cd
 CP      := cp
 CUT     := cut
 ECHO    := echo

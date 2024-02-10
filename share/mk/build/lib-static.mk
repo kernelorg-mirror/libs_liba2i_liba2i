@@ -18,7 +18,7 @@ _LIB_a := $(builddir)/$(libname).a
 
 $(_LIB_a): %.a: $(_TU_o) $(MK) | $$(@D)/
 	$(info	AR		$@)
-	$(CD) $(dir $@) && \
+	cd $(dir $@) && \
 	for opt in g 0 1 2 s 3 fast; do \
 		$(RM) $(notdir $*.O$$opt.a) 2>/dev/null ||:; \
 		$(ECHO) $(patsubst $(builddir)/%,%,$(_TU_o)) \
@@ -26,7 +26,7 @@ $(_LIB_a): %.a: $(_TU_o) $(MK) | $$(@D)/
 		| $(XARGS) $(AR) $(ARFLAGS) $(notdir $*).O$$opt.a; \
 	done
 	$(RM) $@ 2>/dev/null ||:
-	$(CD) $(dir $@)/ && \
+	cd $(dir $@)/ && \
 	$(ECHO) $(patsubst $(builddir)/%,%,$(_TU_o)) \
 	| $(XARGS) $(AR) $(ARFLAGS) $(notdir $@)
 
