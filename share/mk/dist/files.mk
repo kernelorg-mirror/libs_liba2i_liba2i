@@ -14,9 +14,9 @@ include $(MAKEFILEDIR)/version.mk
 include $(MAKEFILEDIR)/verbose.mk
 
 
-DISTFILES    := $(shell $(GIT) ls-files $(HIDE_ERR) \
-			| $(SED) 's,^,$(srcdir)/,' \
-			| $(SED) 's,:,\\:,g')
+DISTFILESCMD      := $(GIT) ls-files $(HIDE_ERR) | $(SED) 's,^,$(srcdir)/,'
+
+DISTFILES    := $(shell $(DISTFILESCMD) | $(SED) 's,:,\\:,g')
 _DISTFILES   := $(patsubst $(srcdir)/%,$(_DISTDIR)/%,$(DISTFILES))
 _DISTPAGES   := $(filter     $(_DISTDIR)/share/man/man%,$(_DISTFILES))
 _DISTVERSION := $(_DISTDIR)/share/mk/version.mk

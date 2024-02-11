@@ -21,8 +21,8 @@ DISTFILE    := $(builddir)/$(DISTNAME).tar
 $(DISTFILE): $(_DISTFILES) $(MK) | $$(@D)/
 	$(info	TAR		$@)
 	$(TAR) $(TARFLAGS) -cf $@ -T /dev/null
-	$(GIT) ls-files \
-	| $(SED) 's,^,$(_DISTDIR)/,' \
+	$(DISTFILESCMD) \
+	| $(SED) 's,$(srcdir)/,$(_DISTDIR)/,' \
 	| $(XARGS) $(TAR) $(TARFLAGS) -rf $@ -C $(srcdir) \
 		--transform 's,^$(_DISTDIR),$(DISTNAME),'
 
