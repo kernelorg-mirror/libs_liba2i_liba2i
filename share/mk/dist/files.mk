@@ -18,7 +18,7 @@ DISTFILESCMD      := $(GIT) ls-files $(HIDE_ERR) | $(SED) 's,^,$(srcdir)/,'
 DISTFILESCMD_DIST := \
 	$(FIND) $(srcdir) -not -type d \
 	| $(GREP) -v '^$(srcdir)/.tmp/' \
-	| $(GREP) -v '^$(srcdir)/.checkpatch-camelcase.git.'
+	| $(GREP) -v '^$(srcdir)/.checkpatch-camelcase.'
 
 DISTFILES    := $(shell $(DISTFILESCMD) | $(SED) 's,:,\\:,g')
 _DISTFILES   := $(patsubst $(srcdir)/%,$(_DISTDIR)/%,$(DISTFILES))
