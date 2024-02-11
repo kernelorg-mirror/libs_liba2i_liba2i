@@ -7,6 +7,7 @@ MAKEFILE_DIST_CHECK_INCLUDED := 1
 
 
 include $(MAKEFILEDIR)/configure/coreutils.mk
+include $(MAKEFILEDIR)/configure/diffutils.mk
 include $(MAKEFILEDIR)/configure/tar.mk
 include $(MAKEFILEDIR)/dist/tar.mk
 include $(MAKEFILEDIR)/version.mk
@@ -40,9 +41,14 @@ $(builddir)/distcheck.dist.touch: $(builddir)/distcheck.install.touch | $$(@D)/
 	$(MAKE) -C $(TMPDIR1)/$(DISTNAME) dist
 	$(TOUCH) $@
 
+$(builddir)/distcheck.diff.touch: $(builddir)/distcheck.dist.touch | $$(@D)/
+	$(info	DIFF		$(DISTFILE) $(TMPDIR1)/$(DISTNAME).tar)
+	$(DIFF) $(DISTFILE) $(TMPDIR1)/$(DISTNAME).tar
+	$(TOUCH) $@
+
 
 .PHONY: distcheck
-distcheck: $(builddir)/distcheck.dist.touch
+distcheck: $(builddir)/distcheck.diff.touch
 
 
 endif  # include guard
