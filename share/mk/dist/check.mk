@@ -21,6 +21,7 @@ $(builddir)/distcheck.touch: $(DISTFILE) | $$(@D)/
 	cd $(TMPDIR1); $(TAR) xf $(DISTNAME).tar
 	$(MAKE) -C $(TMPDIR1)/$(DISTNAME) all
 	$(MAKE) -C $(TMPDIR1)/$(DISTNAME) install DESTDIR=$(TMPDIR2)
+	$(MAKE) -C $(TMPDIR1)/$(DISTNAME) dist
 	$(TOUCH) $@
 
 

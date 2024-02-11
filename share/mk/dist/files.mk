@@ -15,12 +15,16 @@ include $(MAKEFILEDIR)/verbose.mk
 
 
 DISTFILESCMD      := $(GIT) ls-files $(HIDE_ERR) | $(SED) 's,^,$(srcdir)/,'
+DISTFILESCMD_DIST := \
+	$(FIND) $(srcdir) -not -type d \
+	| $(GREP) -v '^$(srcdir)/.tmp/' \
+	| $(GREP) -v '^$(srcdir)/.checkpatch-camelcase.git.'
 
 DISTFILES    := $(shell $(DISTFILESCMD) | $(SED) 's,:,\\:,g')
 _DISTFILES   := $(patsubst $(srcdir)/%,$(_DISTDIR)/%,$(DISTFILES))
-_DISTPAGES   := $(filter     $(_DISTDIR)/share/man/man%,$(_DISTFILES))
-_DISTVERSION := $(_DISTDIR)/share/mk/version.mk
-_DISTOTHERS  := $(filter-out $(_DISTPAGES) $(_DISTVERSION),$(_DISTFILES))
+_DISTPAGES   := $(filter $(_DISTDIR)/share/man/man%,$(_DISTFILES))
+_DISTMK      := $(filter $(_DISTDIR)/share/mk/%,$(_DISTFILES))
+_DISTOTHERS  := $(filter-out $(_DISTPAGES) $(_DISTMK), $(_DISTFILES))
 
 
 $(_DISTPAGES): $(_DISTDIR)/share/man/man%: $(srcdir)/share/man/man% $(MK) | $$(@D)/
@@ -30,11 +34,12 @@ $(_DISTPAGES): $(_DISTDIR)/share/man/man%: $(srcdir)/share/man/man% $(MK) | $$(@
 	| $(SED) '/^.TH/s/(unreleased)/$(DISTVERSION)/' \
 	| $(INSTALL_DATA) -T /dev/stdin $@
 
-$(_DISTVERSION): $(MAKEFILEDIR)/version.mk $(MK) | $$(@D)/
+$(_DISTMK): $(_DISTDIR)/share/mk/%: $(MAKEFILEDIR)/% $(MK) | $$(@D)/
 	$(info	SED		$@)
 	<$< \
 	$(SED) 's/^DISTVERSION *:=.*/DISTVERSION := $(DISTVERSION)/' \
 	| $(SED) 's/^DISTDATE *:=.*/DISTDATE := $(DISTDATE)/' \
+	| $(SED) 's@^DISTFILESCMD *:=.*@DISTFILESCMD := $(DISTFILESCMD_DIST)@' \
 	| $(INSTALL_DATA) -T /dev/stdin $@
 
 $(_DISTOTHERS): $(_DISTDIR)/%: $(srcdir)/% $(MK) | $$(@D)/
