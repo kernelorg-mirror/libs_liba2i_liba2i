@@ -23,6 +23,7 @@ $(DISTFILE): $(_DISTFILES) $(MK) | $$(@D)/
 	$(TAR) $(TARFLAGS) -cf $@ -T /dev/null
 	$(DISTFILESCMD) \
 	| $(SED) 's,$(srcdir)/,$(_DISTDIR)/,' \
+	| $(SORT) \
 	| $(XARGS) $(TAR) $(TARFLAGS) -rf $@ -C $(srcdir) \
 		--transform 's,^$(_DISTDIR),$(DISTNAME),'
 

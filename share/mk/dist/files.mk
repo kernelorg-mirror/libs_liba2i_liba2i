@@ -20,7 +20,7 @@ DISTFILESCMD_DIST := \
 	| $(GREP) -v '^$(srcdir)/.tmp/' \
 	| $(GREP) -v '^$(srcdir)/.checkpatch-camelcase.'
 
-DISTFILES    := $(shell $(DISTFILESCMD) | $(SED) 's,:,\\:,g')
+DISTFILES    := $(shell $(DISTFILESCMD) | $(SED) 's,:,\\:,g' | $(SORT))
 _DISTFILES   := $(patsubst $(srcdir)/%,$(_DISTDIR)/%,$(DISTFILES))
 _DISTPAGES   := $(filter $(_DISTDIR)/share/man/man%,$(_DISTFILES))
 _DISTMK      := $(filter $(_DISTDIR)/share/mk/%,$(_DISTFILES))
