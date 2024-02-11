@@ -22,9 +22,7 @@ $(DISTFILE): $(_DISTFILES) $(MK) | $$(@D)/
 	$(info	TAR		$@)
 	$(TAR) $(TARFLAGS) -cf $@ -T /dev/null
 	$(GIT) ls-files \
-	| $(SED) 's,^,$(srcdir)/,' \
-	| $(GREP) -v '$(MAKEFILEDIR)/dist/' \
-	| $(SED) 's,^$(srcdir)/,$(_DISTDIR)/,' \
+	| $(SED) 's,^,$(_DISTDIR)/,' \
 	| $(XARGS) $(TAR) $(TARFLAGS) -rf $@ -C $(srcdir) \
 		--transform 's,^$(_DISTDIR),$(DISTNAME),'
 

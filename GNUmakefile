@@ -73,7 +73,6 @@ help:
 	$(info	install-man		Install manual pages)
 	$(info	installcheck		Check the installed library)
 	$(info	)
-	$(info	# 'dist' is not available in release tarballs.)
 	$(info	dist			Wrapper for dist-* targets)
 	$(info	dist-tar		Create a release tarball)
 	$(info	dist-z			Wrapper for dist-z-* targets)
