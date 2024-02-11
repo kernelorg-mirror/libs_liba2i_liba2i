@@ -55,10 +55,12 @@ Files
    README
        Main information about the project and the repository.
 
-   Makefile, share/mk/
+   Makefile
+   share/mk/
        Build system.
 
-   LICENSES/, share/licenses/
+   LICENSES/
+   share/licenses/
        Licenses in use by the project.
 
    etc/
@@ -67,14 +69,14 @@ Files
    include/a2i/
        Header files.
 
+   lib/pkgconfig/
+       Package configuration file.  See pc(5) and pkgconf(1).
+
    share/doc/
        Project documentation.
 
    share/man/
        Manual pages.
-
-   share/pkgconfig/
-       Package configuration file.  See pc(5) and pkgconf(1).
 
    src/a2i/
        Source code.
