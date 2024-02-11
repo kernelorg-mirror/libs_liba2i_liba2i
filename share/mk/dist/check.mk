@@ -36,14 +36,13 @@ $(builddir)/distcheck.install.touch: $(builddir)/distcheck.all.touch | $$(@D)/
 	$(MAKE) -C $(TMPDIR1)/$(DISTNAME) install DESTDIR=$(TMPDIR2)
 	$(TOUCH) $@
 
-$(builddir)/distcheck.dist.touch: $(builddir)/distcheck.install.touch | $$(@D)/
+$(TMPDIR1)/$(DISTNAME)/$(DISTFILE): $(builddir)/distcheck.install.touch | $$(@D)/
 	$(info	MAKE		-C $(TMPDIR1)/$(DISTNAME) dist)
 	$(MAKE) -C $(TMPDIR1)/$(DISTNAME) dist
-	$(TOUCH) $@
 
-$(builddir)/distcheck.diffoscope.touch: $(builddir)/distcheck.dist.touch | $$(@D)/
-	$(info	DIFFOSCOPE	$(DISTFILE) $(TMPDIR1)/$(DISTNAME).tar)
-	$(DIFFOSCOPE) $(DISTFILE) $(TMPDIR1)/$(DISTNAME).tar
+$(builddir)/distcheck.diffoscope.touch: $(DISTFILE) $(TMPDIR1)/$(DISTNAME)/$(DISTFILE) | $$(@D)/
+	$(info	DIFFOSCOPE	$(DISTFILE) $(TMPDIR1)/$(DISTNAME)/$(DISTFILE))
+	$(DIFFOSCOPE) $(DISTFILE) $(TMPDIR1)/$(DISTNAME)/$(DISTFILE)
 	$(TOUCH) $@
 
 
