@@ -16,17 +16,33 @@ TMPDIR1 := $(shell $(MKTEMP) -d)
 TMPDIR2 := $(shell $(MKTEMP) -d)
 
 
-$(builddir)/distcheck.touch: $(DISTFILE) | $$(@D)/
+$(TMPDIR1)/$(DISTNAME).tar: $(DISTFILE) | $$(@D)/
+	$(info	CP		$(TMPDIR1)/$(DISTNAME).tar)
 	$(CP) $(DISTFILE) $(TMPDIR1)/$(DISTNAME).tar
-	cd $(TMPDIR1); $(TAR) xf $(DISTNAME).tar
+
+$(TMPDIR1)/$(DISTNAME): $(TMPDIR1)/$(DISTNAME).tar | $$(@D)/
+	$(info	TAR xf		$(TMPDIR1)/$(DISTNAME).tar)
+	cd $(TMPDIR1)/ \
+	&& $(TAR) xf $(TMPDIR1)/$(DISTNAME).tar
+
+$(builddir)/distcheck.all.touch: $(TMPDIR1)/$(DISTNAME) | $$(@D)/
+	$(info	MAKE		-C $(TMPDIR1)/$(DISTNAME) all)
 	$(MAKE) -C $(TMPDIR1)/$(DISTNAME) all
+	$(TOUCH) $@
+
+$(builddir)/distcheck.install.touch: $(builddir)/distcheck.all.touch | $$(@D)/
+	$(info	MAKE		-C $(TMPDIR1)/$(DISTNAME) install)
 	$(MAKE) -C $(TMPDIR1)/$(DISTNAME) install DESTDIR=$(TMPDIR2)
+	$(TOUCH) $@
+
+$(builddir)/distcheck.dist.touch: $(builddir)/distcheck.install.touch | $$(@D)/
+	$(info	MAKE		-C $(TMPDIR1)/$(DISTNAME) dist)
 	$(MAKE) -C $(TMPDIR1)/$(DISTNAME) dist
 	$(TOUCH) $@
 
 
 .PHONY: distcheck
-distcheck: $(builddir)/distcheck.touch
+distcheck: $(builddir)/distcheck.dist.touch
 
 
 endif  # include guard
