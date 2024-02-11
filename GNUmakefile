@@ -127,6 +127,7 @@ help-variables:
 	$(info	GREP)
 	$(info	SED)
 	$(info	GIT)
+	$(info	DIFFOSCOPE)
 	$(info	)
 	$(info	PKGCONF, PKG_CONFIG	{EXTRA_,}PKGCONFFLAGS)
 	$(info	)
