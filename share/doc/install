@@ -43,7 +43,8 @@ Description
                 $ make help
 
    Dependencies
-       To learn the dependencies of the project, run
+       There are no run-time dependencies other than libc.  To learn the
+       build dependencies of the project, run
 
            $ find share/mk/ -type f \
            | xargs grep include.*configure \
