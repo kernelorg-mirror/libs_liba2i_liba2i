@@ -55,10 +55,8 @@ Description
 
 Files
    GNUmakefile
-       Main makefile.
-
    share/mk/
-       Other makefiles.
+       Build system.
 
    include/a2i/
        Header files.
@@ -66,14 +64,14 @@ Files
    src/a2i/
        Source files.
 
-   share/pkgconfig/*.pc
+   lib/pkgconfig/*.pc
        pc(5) file.
 
    /usr/local/include/a2i/
        Installed header files.
 
    /usr/local/lib/liba2i.a
-       Static library file.
+       Static library.
 
    /usr/local/lib/liba2i.so*
        Shared library.
