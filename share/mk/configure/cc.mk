@@ -52,6 +52,7 @@ CLANG_CFLAGS += -Wno-unused-macros
 DEFAULT_CFLAGS := -O3
 DEFAULT_CFLAGS += -Wall
 DEFAULT_CFLAGS += -Wextra
+DEFAULT_CFLAGS += -Werror
 DEFAULT_CFLAGS += -Wstrict-prototypes
 DEFAULT_CFLAGS += -Wdeclaration-after-statement
 DEFAULT_CFLAGS += -Wno-unknown-pragmas

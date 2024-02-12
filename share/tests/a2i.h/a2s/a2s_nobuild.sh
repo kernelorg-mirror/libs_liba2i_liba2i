@@ -7,7 +7,6 @@ set -Eeuf;
 
 
 out="$(mktemp)";
-CFLAGS="$CFLAGS -Werror";
 CFLAGS="$CFLAGS $(pkgconf --cflags liba2i)";
 LIBS="$(pkgconf --libs liba2i)";
 
