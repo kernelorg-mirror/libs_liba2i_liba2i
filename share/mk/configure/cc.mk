@@ -26,8 +26,18 @@ CC_VENDOR := \
 	)
 
 
+CC_HAS_FFAT_LTO_OBJECTS := \
+	$(shell \
+		if $(ECHO) 'int main(void) {}' \
+		   | $(CC) -Werror -ffat-lto-objects -x c -o /dev/null - $(HIDE_ERR); then \
+			$(ECHO) yes; \
+		else \
+			$(ECHO) no; \
+		fi \
+	)
+
+
 GCC_CFLAGS := -fanalyzer
-GCC_CFLAGS += -flto
 
 
 CLANG_CFLAGS := -Weverything
@@ -56,16 +66,23 @@ DEFAULT_CFLAGS += -Wno-nullability-completeness
 DEFAULT_CFLAGS += -Wno-unknown-attributes
 DEFAULT_CFLAGS += -Wno-unknown-pragmas
 DEFAULT_CFLAGS += -Wno-unused-command-line-argument
+
 ifeq ($(CC_VENDOR),gcc)
 DEFAULT_CFLAGS += $(GCC_CFLAGS)
 else ifeq ($(CC_VENDOR),clang)
 DEFAULT_CFLAGS += $(CLANG_CFLAGS)
 endif
+
+ifeq ($(CC_HAS_FFAT_LTO_OBJECTS),yes)
+DEFAULT_CFLAGS += -flto
+DEFAULT_CFLAGS += -ffat-lto-objects
+endif
+
 EXTRA_CFLAGS   :=
 export CFLAGS  := $(DEFAULT_CFLAGS) $(EXTRA_CFLAGS)
 
 
-CLANGCFLAGS := $(filter-out $(GCC_CFLAGS), $(CFLAGS))
+CLANGCFLAGS := $(filter-out $(GCC_CFLAGS) -flto -ffat-lto-objects, $(CFLAGS))
 
 
 endif  # include guard
