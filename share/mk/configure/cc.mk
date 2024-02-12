@@ -28,12 +28,9 @@ CC_VENDOR := \
 
 CC_HAS_FFAT_LTO_OBJECTS := \
 	$(shell \
-		if $(ECHO) 'int main(void) {}' \
-		   | $(CC) -Werror -ffat-lto-objects -x c -o /dev/null - $(HIDE_ERR); then \
-			$(ECHO) yes; \
-		else \
-			$(ECHO) no; \
-		fi \
+		$(CC) -Werror -ffat-lto-objects -S -x c -o /dev/null /dev/null $(HIDE_ERR) \
+		&& $(ECHO) yes \
+		|| $(ECHO) no; \
 	)
 
 
