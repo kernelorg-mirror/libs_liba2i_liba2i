@@ -51,7 +51,7 @@ __EOF__
 
 
 $CC $CFLAGS -o "$out" -x c - $LIBS 2>&1 <<__EOF__ \
-| if ! grep -- 'static assertion failed' >/dev/null; then \
+| if ! grep -- 'static.assert.* failed' >/dev/null; then \
 	>&2 printf '%s\n' "$0:$LINENO: Expected static assertion failed"; \
 	exit 1; \
 else \
