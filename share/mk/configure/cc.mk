@@ -50,6 +50,7 @@ CLANG_CFLAGS += -Wno-unused-macros
 
 
 DEFAULT_CFLAGS := -O3
+DEFAULT_CFLAGS += -flto
 DEFAULT_CFLAGS += -Wall
 DEFAULT_CFLAGS += -Wextra
 DEFAULT_CFLAGS += -Werror
@@ -64,7 +65,6 @@ DEFAULT_CFLAGS += $(CLANG_CFLAGS)
 endif
 
 ifeq ($(CC_HAS_FFAT_LTO_OBJECTS),yes)
-DEFAULT_CFLAGS += -flto
 DEFAULT_CFLAGS += -ffat-lto-objects
 endif
 
@@ -72,7 +72,7 @@ EXTRA_CFLAGS   :=
 export CFLAGS  := $(DEFAULT_CFLAGS) $(EXTRA_CFLAGS)
 
 
-CLANGCFLAGS := $(filter-out $(GCC_CFLAGS) -flto -ffat-lto-objects, $(CLANG_CFLAGS) $(CFLAGS))
+CLANGCFLAGS := $(filter-out $(GCC_CFLAGS) -ffat-lto-objects, $(CLANG_CFLAGS) $(CFLAGS))
 
 
 endif  # include guard
