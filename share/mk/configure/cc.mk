@@ -49,7 +49,6 @@ CLANG_CFLAGS += -Wno-unused-macros
 
 
 DEFAULT_CFLAGS := -O3
-DEFAULT_CFLAGS += -std=gnu11
 DEFAULT_CFLAGS += -Wall
 DEFAULT_CFLAGS += -Wextra
 DEFAULT_CFLAGS += -Wstrict-prototypes
