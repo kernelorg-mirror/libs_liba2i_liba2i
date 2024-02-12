@@ -7,7 +7,7 @@ MAKEFILE_BUILD_DEV_INCLUDED := 1
 
 
 .PHONY: build-dev
-build-dev: build-dev-src build-dev-pc
+build-dev: build-dev-pc
 	@:
 
 

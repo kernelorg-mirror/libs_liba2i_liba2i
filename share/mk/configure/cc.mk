@@ -9,6 +9,7 @@ MAKEFILE_CONFIGURE_CC_INCLUDED := 1
 include $(MAKEFILEDIR)/configure/coreutils.mk
 include $(MAKEFILEDIR)/configure/grep.mk
 include $(MAKEFILEDIR)/configure/sed.mk
+include $(MAKEFILEDIR)/verbose.mk
 
 
 export CC      := gcc

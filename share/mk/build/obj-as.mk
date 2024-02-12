@@ -6,21 +6,22 @@ ifndef MAKEFILE_BUILD_OBJ_AS_INCLUDED
 MAKEFILE_BUILD_OBJ_AS_INCLUDED := 1
 
 
-include $(MAKEFILEDIR)/build/dev-src.mk
 include $(MAKEFILEDIR)/build/obj-pch.mk
 include $(MAKEFILEDIR)/configure/as.mk
 include $(MAKEFILEDIR)/configure/pkgconf.mk
+include $(MAKEFILEDIR)/src.mk
 
 
-_TU_o := $(addsuffix .o,$(_TU_c))
+_TU_o := $(patsubst $(SRCDIR)/%,$(builddir)/%.o,$(TU_c))
 
 
-$(_TU_o): %.c.o: %.c.s %.h.gch $(MK) $(_LIB_pc_u) | %.c.d $$(@D)/
+$(_TU_o): %.o: $(MK) $(_LIB_pc_u) | %.d $$(@D)/
+$(_TU_o): $(builddir)/%.o: $(SRCDIR)/%
 	$(info	AS		$@)
 	for opt in g 0 1 2 s 3 fast; do \
-	$(AS) -O$$opt -c -o $*.c.O$$opt.o $*.c.O$$opt.s; \
+	$(AS) -O$$opt -c -o $(builddir)/$*.O$$opt.o $<; \
 	done
-	$(AS)         -c -o $@            $<
+	$(AS)         -c -o $@                      $<
 
 
 .PHONY: build-obj-as

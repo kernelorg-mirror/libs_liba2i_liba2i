@@ -6,15 +6,15 @@ ifndef MAKEFILE_BUILD_DEPS_INCLUDED
 MAKEFILE_BUILD_DEPS_INCLUDED := 1
 
 
-include $(MAKEFILEDIR)/build/dev-src.mk
 include $(MAKEFILEDIR)/configure/cc.mk
 include $(MAKEFILEDIR)/configure/cpp.mk
 include $(MAKEFILEDIR)/configure/pkgconf.mk
 include $(MAKEFILEDIR)/src.mk
 
 
-_TU_h_d   := $(addsuffix .d,$(_TU_h))
-_TU_c_d   := $(addsuffix .d,$(_TU_c))
+_TU_h_d := $(patsubst $(INCLUDEDIR)/%,$(builddir)/%.d,$(TU_h))
+_TU_c_d := $(patsubst $(SRCDIR)/%,$(builddir)/%.d,$(TU_c))
+_TU_d   := $(_TU_h_d) $(_TU_c_d)
 
 
 DEPTARGETS  = -MT $*.lint-c.checkpatch.touch \
@@ -26,10 +26,13 @@ DEPHTARGETS = $(DEPTARGETS) -MT $*.gch
 DEPCTARGETS = $(DEPTARGETS) -MT $*.i
 
 
-$(_TU_h_d): %.d: % $(_TU_h) $(MK) $(_LIB_pc_u) | $$(@D)/
+$(_TU_d): $(MK) $(_LIB_pc_u) | $$(@D)/
+
+
+$(_TU_h_d): $(builddir)/%.d: $(INCLUDEDIR)/%
 	$(CC) $(CPPFLAGS) $(CFLAGS) -M -MP $(DEPHTARGETS) -MF$@ $<
 
-$(_TU_c_d): %.d: % $(_TU_h) $(_TU_c) $(MK) $(_LIB_pc_u) | $$(@D)/
+$(_TU_c_d): $(builddir)/%.d: $(SRCDIR)/%
 	$(CC) $(CPPFLAGS) $(CFLAGS) -M -MP $(DEPCTARGETS) -MF$@ $<
 
 

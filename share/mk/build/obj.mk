@@ -7,7 +7,7 @@ MAKEFILE_BUILD_OBJ_INCLUDED := 1
 
 
 .PHONY: build-obj
-build-obj: build-obj-as
+build-obj: build-obj-cpp build-obj-pch build-obj-cc build-obj-as
 	@:
 
 

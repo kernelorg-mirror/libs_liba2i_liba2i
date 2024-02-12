@@ -22,7 +22,7 @@ MAKEFILEDIR := $(DATAROOTDIR)/mk
 
 
 .PHONY: all
-all: lint build check
+all: lint build check build-obj
 	@:
 
 
@@ -35,25 +35,25 @@ extra: all dist distcheck
 help:
 	$(info	Targets:)
 	$(info	)
-	$(info	all			Alias for "lint build check")
+	$(info	all			Alias for "lint build check build-obj")
 	$(info	extra			Alias for "all dist distcheck")
 	$(info	)
 	$(info	clean			Remove $$(builddir))
 	$(info	)
 	$(info	build (.DEFAULT_GOAL)	Wrapper for "build-lib build-dev")
-	$(info	build-deps		Build the .d files)
 	$(info	build-dev		Wrapper for build-dev-* targets)
-	$(info	build-dev-src		Copy the source files)
 	$(info	build-dev-pc		Build the pc(5) file)
 	$(info	build-lib		Wrapper for build-lib-* targets)
 	$(info	build-lib-shared	Build the shared library)
 	$(info	build-lib-static	Build the static library)
-	$(info	build-obj		Alias for "build-obj-as")
+	$(info	check			Check the built library)
+	$(info	)
+	$(info	build-deps		Build the .d files)
+	$(info	build-obj		Wrapper for build-obj-* targets)
 	$(info	build-obj-pch		Precompile headers)
 	$(info	build-obj-cpp		Preprocess source TUs)
 	$(info	build-obj-cc		Compile TUs)
 	$(info	build-obj-as		Assemble TUs)
-	$(info	check			Check the built library)
 	$(info	)
 	$(info	lint			Alias for "lint-c")
 	$(info	lint-c			Wrapper for lint-c-* targets)

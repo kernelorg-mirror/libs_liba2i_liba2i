@@ -6,22 +6,22 @@ ifndef MAKEFILE_BUILD_OBJ_PCH_INCLUDED
 MAKEFILE_BUILD_OBJ_PCH_INCLUDED := 1
 
 
-include $(MAKEFILEDIR)/build/dev-src.mk
 include $(MAKEFILEDIR)/configure/cc.mk
 include $(MAKEFILEDIR)/configure/cpp.mk
 include $(MAKEFILEDIR)/configure/pkgconf.mk
 include $(MAKEFILEDIR)/src.mk
 
 
-_TU_gch   := $(addsuffix .gch,$(_TU_h))
+_TU_gch := $(patsubst $(INCLUDEDIR)/%,$(builddir)/%.gch,$(TU_h))
 
 
-$(_TU_gch): %.gch: % $(MK) $(_LIB_pc_u) | %.d $$(@D)/
+$(_TU_gch): %.gch: $(MK) $(_LIB_pc_u) | %.d $$(@D)/
+$(_TU_gch): $(builddir)/%.gch: $(INCLUDEDIR)/%
 	$(info	PCH		$@)
 	for opt in g 0 1 2 s 3 fast; do \
-	$(CC) $(CPPFLAGS) $(CFLAGS) -O$$opt -c -o $*.O$$opt.gch $<; \
+	$(CC) $(CPPFLAGS) $(CFLAGS) -O$$opt -c -o $(builddir)/$*.O$$opt.gch $<; \
 	done
-	$(CC) $(CPPFLAGS) $(CFLAGS)         -c -o $@            $<
+	$(CC) $(CPPFLAGS) $(CFLAGS)         -c -o $@                        $<
 
 
 .PHONY: build-obj-pch
