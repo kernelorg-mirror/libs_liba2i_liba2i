@@ -6,8 +6,11 @@ ifndef MAKEFILE_DIST_Z_INCLUDED
 MAKEFILE_DIST_Z_INCLUDED := 1
 
 
+include $(MAKEFILEDIR)/configure/bzip2.mk
 include $(MAKEFILEDIR)/configure/coreutils.mk
-include $(MAKEFILEDIR)/configure/z.mk
+include $(MAKEFILEDIR)/configure/gzip.mk
+include $(MAKEFILEDIR)/configure/lzip.mk
+include $(MAKEFILEDIR)/configure/xz-utils.mk
 include $(MAKEFILEDIR)/dist/tar.mk
 
 
