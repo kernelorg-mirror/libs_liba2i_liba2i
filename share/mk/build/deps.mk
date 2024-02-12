@@ -9,6 +9,7 @@ MAKEFILE_BUILD_DEPS_INCLUDED := 1
 include $(MAKEFILEDIR)/configure/cc.mk
 include $(MAKEFILEDIR)/configure/cpp.mk
 include $(MAKEFILEDIR)/configure/pkgconf.mk
+include $(MAKEFILEDIR)/build/lib-shared.mk
 include $(MAKEFILEDIR)/src.mk
 
 
@@ -17,13 +18,21 @@ _TU_c_d := $(patsubst $(SRCDIR)/%,$(builddir)/%.d,$(TU_c))
 _TU_d   := $(_TU_h_d) $(_TU_c_d)
 
 
-DEPTARGETS  = -MT $*.lint-c.checkpatch.touch \
-              -MT $*.lint-c.clang-tidy.touch \
-              -MT $*.lint-c.cppcheck.touch \
-              -MT $*.lint-c.cpplint.touch \
-              -MT $*.lint-c.iwyu.touch
-DEPHTARGETS = $(DEPTARGETS) -MT $*.gch
-DEPCTARGETS = $(DEPTARGETS) -MT $*.i
+DEPTARGETS  = \
+	-MT $(builddir)/$*.lint-c.checkpatch.touch \
+	-MT $(builddir)/$*.lint-c.clang-tidy.touch \
+	-MT $(builddir)/$*.lint-c.cppcheck.touch \
+	-MT $(builddir)/$*.lint-c.cpplint.touch \
+	-MT $(builddir)/$*.lint-c.iwyu.touch
+DEPHTARGETS = \
+	-MT $(builddir)/$*.gch \
+	$(DEPTARGETS)
+DEPCTARGETS = \
+	-MT $(builddir)/$*.i \
+	-MT $(builddir)/$*.s \
+	-MT $(builddir)/$*.o \
+	-MT $(_LIB_so_v) \
+	$(DEPTARGETS)
 
 
 $(_TU_d): $(MK) $(_LIB_pc_u) | $$(@D)/
