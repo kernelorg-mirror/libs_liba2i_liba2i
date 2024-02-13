@@ -12,7 +12,7 @@ include $(MAKEFILEDIR)/configure/sed.mk
 include $(MAKEFILEDIR)/verbose.mk
 
 
-export CC      := gcc
+export CC := gcc
 
 
 CC_VENDOR := \
@@ -35,6 +35,16 @@ CC_HAS_FFAT_LTO_OBJECTS := \
 	)
 
 
+COMMON_CFLAGS := -O3
+COMMON_CFLAGS += -flto
+COMMON_CFLAGS += -Wall
+COMMON_CFLAGS += -Wextra
+COMMON_CFLAGS += -Werror
+COMMON_CFLAGS += -Wstrict-prototypes
+COMMON_CFLAGS += -Wdeclaration-after-statement
+COMMON_CFLAGS += -Wno-unknown-pragmas
+
+
 GCC_CFLAGS := -fanalyzer
 
 
@@ -49,14 +59,7 @@ CLANG_CFLAGS += -Wno-nullability-extension
 CLANG_CFLAGS += -Wno-unused-macros
 
 
-DEFAULT_CFLAGS := -O3
-DEFAULT_CFLAGS += -flto
-DEFAULT_CFLAGS += -Wall
-DEFAULT_CFLAGS += -Wextra
-DEFAULT_CFLAGS += -Werror
-DEFAULT_CFLAGS += -Wstrict-prototypes
-DEFAULT_CFLAGS += -Wdeclaration-after-statement
-DEFAULT_CFLAGS += -Wno-unknown-pragmas
+DEFAULT_CFLAGS := $(COMMON_CFLAGS)
 
 ifeq ($(CC_VENDOR),gcc)
 DEFAULT_CFLAGS += $(GCC_CFLAGS)
@@ -70,9 +73,6 @@ endif
 
 EXTRA_CFLAGS   :=
 export CFLAGS  := $(DEFAULT_CFLAGS) $(EXTRA_CFLAGS)
-
-
-CLANGCFLAGS := $(filter-out $(GCC_CFLAGS) -ffat-lto-objects, $(CLANG_CFLAGS) $(CFLAGS))
 
 
 endif  # include guard

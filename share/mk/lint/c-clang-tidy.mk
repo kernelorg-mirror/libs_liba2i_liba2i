@@ -7,6 +7,7 @@ MAKEFILE_LINT_C_CLANG_TIDY_INCLUDED := 1
 
 
 include $(MAKEFILEDIR)/configure/cc.mk
+include $(MAKEFILEDIR)/configure/clang.mk
 include $(MAKEFILEDIR)/configure/clang-tidy.mk
 include $(MAKEFILEDIR)/configure/coreutils.mk
 include $(MAKEFILEDIR)/configure/cpp.mk
@@ -24,13 +25,13 @@ $(_TU_ct): %.lint-c.clang-tidy.touch: $(CLANG_TIDY_CONF) $(MK) | %.d $$(@D)/
 
 $(_TU_h_ct): $(builddir)/%.lint-c.clang-tidy.touch: $(INCLUDEDIR)/%
 	$(info	CLANG_TIDY	$@)
-	$(CLANG_TIDY) $(CLANG_TIDYFLAGS) $< -- $(CPPFLAGS) $(CLANGCFLAGS) 2>&1 \
+	$(CLANG_TIDY) $(CLANG_TIDYFLAGS) $< -- $(CPPFLAGS) $(CLANGFLAGS) 2>&1 \
 	| $(SED) '/generated\.$$/d' >&2
 	$(TOUCH) $@
 
 $(_TU_c_ct): $(builddir)/%.lint-c.clang-tidy.touch: $(SRCDIR)/%
 	$(info	CLANG_TIDY	$@)
-	$(CLANG_TIDY) $(CLANG_TIDYFLAGS) $< -- $(CPPFLAGS) $(CLANGCFLAGS) 2>&1 \
+	$(CLANG_TIDY) $(CLANG_TIDYFLAGS) $< -- $(CPPFLAGS) $(CLANGFLAGS) 2>&1 \
 	| $(SED) '/generated\.$$/d' >&2
 	$(TOUCH) $@
 

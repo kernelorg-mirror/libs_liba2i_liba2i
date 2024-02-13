@@ -7,6 +7,7 @@ MAKEFILE_LINT_C_IWYU_INCLUDED := 1
 
 
 include $(MAKEFILEDIR)/configure/cc.mk
+include $(MAKEFILEDIR)/configure/clang.mk
 include $(MAKEFILEDIR)/configure/coreutils.mk
 include $(MAKEFILEDIR)/configure/cpp.mk
 include $(MAKEFILEDIR)/configure/iwyu.mk
@@ -24,7 +25,7 @@ $(_TU_iwyu): %.lint-c.iwyu.touch: $(MK) | %.d $$(@D)/
 
 $(_TU_h_iwyu): $(builddir)/%.lint-c.iwyu.touch: $(INCLUDEDIR)/%
 	$(info	IWYU		$@)
-	$(IWYU) $(IWYUFLAGS) $(CPPFLAGS) $(CLANGCFLAGS) $< 2>&1 \
+	$(IWYU) $(IWYUFLAGS) $(CPPFLAGS) $(CLANGFLAGS) $< 2>&1 \
 	| $(TAC) \
 	| $(SED) '/correct/{N;d}' \
 	| $(TAC) >&2
@@ -32,7 +33,7 @@ $(_TU_h_iwyu): $(builddir)/%.lint-c.iwyu.touch: $(INCLUDEDIR)/%
 
 $(_TU_c_iwyu): $(builddir)/%.lint-c.iwyu.touch: $(SRCDIR)/%
 	$(info	IWYU		$@)
-	$(IWYU) $(IWYUFLAGS) $(CPPFLAGS) $(CLANGCFLAGS) $< 2>&1 \
+	$(IWYU) $(IWYUFLAGS) $(CPPFLAGS) $(CLANGFLAGS) $< 2>&1 \
 	| $(TAC) \
 	| $(SED) '/correct/{N;d}' \
 	| $(TAC) >&2
