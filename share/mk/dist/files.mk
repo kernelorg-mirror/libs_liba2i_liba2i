@@ -10,15 +10,15 @@ include $(MAKEFILEDIR)/configure/coreutils.mk
 include $(MAKEFILEDIR)/configure/git.mk
 include $(MAKEFILEDIR)/configure/sed.mk
 include $(MAKEFILEDIR)/dist/_.mk
-include $(MAKEFILEDIR)/version.mk
 include $(MAKEFILEDIR)/verbose.mk
+include $(MAKEFILEDIR)/version.mk
 
 
 DISTFILESCMD      := $(GIT) ls-files $(HIDE_ERR) | $(SED) 's,^,$(srcdir)/,'
 DISTFILESCMD_DIST := \
-	$(FIND) $(srcdir) -not -type d \
-	| $(GREP) -v '^$(srcdir)/.tmp/' \
-	| $(GREP) -v '^$(srcdir)/.checkpatch-camelcase.'
+	$$(FIND) $$(srcdir) -not -type d \
+	| $$(GREP) -v "^$$(srcdir)/.tmp/" \
+	| $$(GREP) -v "^$$(srcdir)/.checkpatch-camelcase."
 
 DISTFILES    := $(shell $(DISTFILESCMD) | $(SED) 's,:,\\:,g' | $(SORT))
 _DISTFILES   := $(patsubst $(srcdir)/%,$(_DISTDIR)/%,$(DISTFILES))
