@@ -1,4 +1,4 @@
-# Copyright 2021-2024 Alejandro Colomar <alx@kernel.org>
+# Copyright 2021-2024, Alejandro Colomar <alx@kernel.org>
 # SPDX-License-Identifier: LGPL-3.0-or-later WITH LGPL-3.0-linking-exception
 
 
@@ -18,17 +18,18 @@ DATAROOTDIR := $(srcdir)/share
 MAKEFILEDIR := $(DATAROOTDIR)/mk
 
 
+INFO_ :=
+
+
 .DEFAULT_GOAL := build
 
 
 .PHONY: all
-all: lint build check build-obj
-	@:
+all: lint build check build-obj;
 
 
 .PHONY: extra
-extra: all dist distcheck
-	@:
+extra: all dist distcheck;
 
 
 .PHONY: help
@@ -92,7 +93,7 @@ help:
 .SECONDEXPANSION:
 
 
-MK_ := $(wildcard $(addprefix $(MAKEFILEDIR)/, *.mk */*.mk))
+MK_ := $(wildcard $(addprefix $(MAKEFILEDIR)/, *.mk */*.mk */*/*.mk))
 MK  := $(srcdir)/GNUmakefile $(MK_)
 include $(MK_)
 $(MK):: ;
@@ -156,8 +157,7 @@ nothing:;
 
 
 .DELETE_ON_ERROR:
-
-
+.SILENT:
 FORCE:
 
 

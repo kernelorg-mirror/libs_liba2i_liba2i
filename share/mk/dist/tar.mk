@@ -1,4 +1,4 @@
-# Copyright 2021-2024 Alejandro Colomar <alx@kernel.org>
+# Copyright 2021-2024, Alejandro Colomar <alx@kernel.org>
 # SPDX-License-Identifier: LGPL-3.0-only WITH LGPL-3.0-linking-exception
 
 
@@ -6,30 +6,32 @@ ifndef MAKEFILE_DIST_TAR_INCLUDED
 MAKEFILE_DIST_TAR_INCLUDED := 1
 
 
-include $(MAKEFILEDIR)/configure/findutils.mk
-include $(MAKEFILEDIR)/configure/git.mk
-include $(MAKEFILEDIR)/configure/sed.mk
-include $(MAKEFILEDIR)/configure/tar.mk
+include $(MAKEFILEDIR)/configure/build-depends/coreutils.mk
+include $(MAKEFILEDIR)/configure/build-depends/findutils.mk
+include $(MAKEFILEDIR)/configure/build-depends/git.mk
+include $(MAKEFILEDIR)/configure/build-depends/sed.mk
+include $(MAKEFILEDIR)/configure/build-depends/tar.mk
+include $(MAKEFILEDIR)/configure/version.mk
 include $(MAKEFILEDIR)/dist/_.mk
 include $(MAKEFILEDIR)/dist/files.mk
-include $(MAKEFILEDIR)/version.mk
 
 
-DISTFILE    := $(builddir)/$(DISTNAME).tar
+DISTFILE  := $(DISTNAME).tar
+_DISTFILE := $(builddir)/$(DISTFILE)
 
 
-$(DISTFILE): $(_DISTFILES) $(MK) | $$(@D)/
-	$(info	TAR		$@)
+$(_DISTFILE): $(_DISTFILES) $(MK) | $$(@D)/
+	$(info	$(INFO_)TAR		$@)
 	$(TAR) $(TARFLAGS) -cf $@ -T /dev/null
 	$(DISTFILESCMD) \
-	| $(SED) 's,$(srcdir)/,$(_DISTDIR)/,' \
+	| $(SED) 's,^$(srcdir)/,$(_DISTDIR)/,' \
 	| $(SORT) \
 	| $(XARGS) $(TAR) $(TARFLAGS) -rf $@ -C $(srcdir) \
-		--transform 's,^$(_DISTDIR),$(DISTNAME),'
+		--transform 's,^$(patsubst /%,%,$(_DISTDIR)),$(DISTNAME),'
 
 
 .PHONY: dist-tar
-dist-tar: $(DISTFILE);
+dist-tar: $(_DISTFILE);
 
 
 endif  # include guard

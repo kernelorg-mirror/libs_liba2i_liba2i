@@ -1,4 +1,4 @@
-# Copyright 2022-2024 Alejandro Colomar <alx@kernel.org>
+# Copyright 2021-2024, Alejandro Colomar <alx@kernel.org>
 # SPDX-License-Identifier: LGPL-3.0-only WITH LGPL-3.0-linking-exception
 
 
@@ -7,8 +7,7 @@ MAKEFILE_LINT_INCLUDED := 1
 
 
 .PHONY: lint
-lint: lint-c
-	@:
+lint: lint-c lint-man;
 
 
 endif  # include guard

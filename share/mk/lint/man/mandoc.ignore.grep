@@ -1,0 +1,7 @@
+ERROR: skipping unknown macro: \.MR
+STYLE: lower case character in document title:
+UNSUPP: ignoring macro in table:
+WARNING: cannot parse date, using it verbatim: TH (date)
+WARNING: empty block: UR
+WARNING: missing date, using "": TH
+WARNING: undefined escape, printing literally: \\\\

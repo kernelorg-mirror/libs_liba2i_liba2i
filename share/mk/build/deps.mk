@@ -1,4 +1,4 @@
-# Copyright 2022-2024 Alejandro Colomar <alx@kernel.org>
+# Copyright 2022-2024, Alejandro Colomar <alx@kernel.org>
 # SPDX-License-Identifier: LGPL-3.0-only WITH LGPL-3.0-linking-exception
 
 
@@ -6,10 +6,10 @@ ifndef MAKEFILE_BUILD_DEPS_INCLUDED
 MAKEFILE_BUILD_DEPS_INCLUDED := 1
 
 
-include $(MAKEFILEDIR)/configure/cc.mk
-include $(MAKEFILEDIR)/configure/cpp.mk
-include $(MAKEFILEDIR)/configure/pkgconf.mk
-include $(MAKEFILEDIR)/build/lib-shared.mk
+include $(MAKEFILEDIR)/configure/build-depends/cc.mk
+include $(MAKEFILEDIR)/configure/build-depends/cpp.mk
+include $(MAKEFILEDIR)/configure/build-depends/pkgconf.mk
+include $(MAKEFILEDIR)/build/lib/shared.mk
 include $(MAKEFILEDIR)/src.mk
 
 
@@ -31,11 +31,11 @@ DEPCTARGETS = \
 	-MT $(builddir)/$*.i \
 	-MT $(builddir)/$*.s \
 	-MT $(builddir)/$*.o \
-	-MT $(_LIB_so_v) \
+	-MT $(_REALNAME) \
 	$(DEPTARGETS)
 
 
-$(_TU_d): $(MK) $(_LIB_pc_u) | $$(@D)/
+$(_TU_d): $(MK) $(LIB_pc) | $$(@D)/
 
 
 $(_TU_h_d): $(builddir)/%.d: $(INCLUDEDIR)/%
@@ -46,8 +46,7 @@ $(_TU_c_d): $(builddir)/%.d: $(SRCDIR)/%
 
 
 .PHONY: build-deps
-build-deps: $(_TU_h_d) $(_TU_c_d)
-	@:
+build-deps: $(_TU_h_d) $(_TU_c_d);
 
 
 endif  # include guard
