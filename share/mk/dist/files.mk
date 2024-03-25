@@ -20,7 +20,7 @@ include $(MAKEFILEDIR)/dist/_.mk
 
 DISTFILES    := $(shell $(DISTFILESCMD) | $(SED) 's,:,\\:,g')
 _DISTFILES   := $(patsubst $(srcdir)/%, $(_DISTDIR)/%, $(DISTFILES))
-_DISTPAGES   := $(filter $(_DISTDIR)/share/man/%, $(_DISTFILES))
+_DISTPAGES   := $(filter $(_DISTDIR)/man/%, $(_DISTFILES))
 _DISTVERSION := $(_DISTDIR)/share/mk/configure/version.mk
 _DISTOTHERS  := $(filter-out $(_DISTPAGES) $(_DISTVERSION), $(_DISTFILES))
 
@@ -40,7 +40,7 @@ FORCE_DISTVERSION := \
 	)
 
 
-$(_DISTPAGES): $(_DISTDIR)/share/man/man%: $(srcdir)/share/man/man% $(MK) | $$(@D)/
+$(_DISTPAGES): $(_DISTDIR)/man/%: $(srcdir)/man/% $(MK) | $$(@D)/
 	$(info	$(INFO_)SED		$@)
 	$(SED) "/^\.TH/s/(date)/$$($(MANPAGEDATECMD))/" <$< >$@
 

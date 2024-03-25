@@ -9,10 +9,10 @@ MAKEFILE_CONFIGURE_DIRECTORY_VARIABLES_SRC_INCLUDED := 1
 INCLUDEDIR  := $(srcdir)/include
 SRCDIR      := $(srcdir)/src
 SYSCONFDIR  := $(srcdir)/etc
+MANDIR      := $(srcdir)/man
 LIBDIR      := $(srcdir)/lib
 DATAROOTDIR := $(srcdir)/share
 PCDIR       := $(LIBDIR)/pkgconfig
-MANDIR      := $(DATAROOTDIR)/man
 TESTSDIR    := $(DATAROOTDIR)/tests
 
 
