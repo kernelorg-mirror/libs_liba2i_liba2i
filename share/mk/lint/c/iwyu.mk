@@ -22,14 +22,14 @@ include $(MAKEFILEDIR)/src/tu.mk
 
 
 _LINT_c_TU_h_iwyu := $(patsubst $(INCLUDEDIR)/%, $(builddir)/%.lint-c.iwyu.touch, $(TU_h))
-_LINT_c_TU_c_iwyu := $(patsubst $(SRCDIR)/%,     $(builddir)/%.lint-c.iwyu.touch, $(TU_c))
+_LINT_c_TU_c_iwyu := $(patsubst $(LIBSRCDIR)/%,  $(builddir)/%.lint-c.iwyu.touch, $(TU_c))
 _LINT_c_TU_iwyu   := $(_LINT_c_TU_h_iwyu) $(_LINT_c_TU_c_iwyu)
 _LINT_c_EX_iwyu   := $(patsubst %, %.lint-c.iwyu.touch, $(_EX_TU_src))
 _LINT_c_iwyu      := $(_LINT_c_TU_iwyu) $(_LINT_c_EX_iwyu)
 
 
 $(_LINT_c_TU_h_iwyu): $(builddir)/%.lint-c.iwyu.touch: $(INCLUDEDIR)/%
-$(_LINT_c_TU_c_iwyu): $(builddir)/%.lint-c.iwyu.touch: $(SRCDIR)/%
+$(_LINT_c_TU_c_iwyu): $(builddir)/%.lint-c.iwyu.touch: $(LIBSRCDIR)/%
 $(_LINT_c_TU_iwyu): %.lint-c.iwyu.touch: | %.d
 $(_LINT_c_EX_iwyu): %.lint-c.iwyu.touch: %
 $(_LINT_c_iwyu): $(MK) | $$(@D)/

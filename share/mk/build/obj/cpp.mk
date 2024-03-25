@@ -14,11 +14,11 @@ include $(MAKEFILEDIR)/src/lib.mk
 include $(MAKEFILEDIR)/src/tu.mk
 
 
-_TU_i := $(patsubst $(SRCDIR)/%, $(builddir)/%.i, $(TU_c))
+_TU_i := $(patsubst $(LIBSRCDIR)/%, $(builddir)/%.i, $(TU_c))
 
 
 $(_TU_i): %.i: $(MK) $(LIB_pc) | %.d $$(@D)/
-$(_TU_i): $(builddir)/%.i: $(SRCDIR)/%
+$(_TU_i): $(builddir)/%.i: $(LIBSRCDIR)/%
 	$(info	CPP		$@)
 	for opt in g 0 1 2 s 3 fast; do \
 	$(CPP) $(CPPFLAGS) -O$$opt -o $(builddir)/$*.O$$opt.i $<; \

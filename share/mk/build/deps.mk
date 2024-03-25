@@ -17,7 +17,7 @@ include $(MAKEFILEDIR)/src/tu.mk
 
 
 _TU_h_d := $(patsubst $(INCLUDEDIR)/%, $(builddir)/%.d, $(TU_h))
-_TU_c_d := $(patsubst $(SRCDIR)/%,     $(builddir)/%.d, $(TU_c))
+_TU_c_d := $(patsubst $(LIBSRCDIR)/%,  $(builddir)/%.d, $(TU_c))
 _TU_d   := $(_TU_h_d) $(_TU_c_d)
 
 
@@ -44,7 +44,7 @@ $(_TU_d): $(MK) $(LIB_pc) | $$(@D)/
 $(_TU_h_d): $(builddir)/%.d: $(INCLUDEDIR)/%
 	$(CC) $(CPPFLAGS) $(CFLAGS) -M -MP $(DEPHTARGETS) -MF$@ $<
 
-$(_TU_c_d): $(builddir)/%.d: $(SRCDIR)/%
+$(_TU_c_d): $(builddir)/%.d: $(LIBSRCDIR)/%
 	$(CC) $(CPPFLAGS) $(CFLAGS) -M -MP $(DEPCTARGETS) -MF$@ $<
 
 
