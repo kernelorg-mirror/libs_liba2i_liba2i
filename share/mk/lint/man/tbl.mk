@@ -6,19 +6,18 @@ ifndef MAKEFILE_LINT_MAN_TBL_INCLUDED
 MAKEFILE_LINT_MAN_TBL_INCLUDED := 1
 
 
-include $(MAKEFILEDIR)/build/_.mk
-include $(MAKEFILEDIR)/configure/build-depends/coreutils.mk
-include $(MAKEFILEDIR)/configure/build-depends/grep.mk
-include $(MAKEFILEDIR)/configure/src.mk
-include $(MAKEFILEDIR)/lint/man/_.mk
-include $(MAKEFILEDIR)/src.mk
+include $(MAKEFILEDIR)/build/man/man.mk
+include $(MAKEFILEDIR)/configure/build-depends/coreutils/echo.mk
+include $(MAKEFILEDIR)/configure/build-depends/coreutils/head.mk
+include $(MAKEFILEDIR)/configure/build-depends/coreutils/tail.mk
+include $(MAKEFILEDIR)/configure/build-depends/coreutils/touch.mk
+include $(MAKEFILEDIR)/configure/build-depends/grep/grep.mk
 
 
-_LINT_man_tbl := \
-	$(patsubst $(MANDIR)/%, $(_MANDIR)/%.lint-man.tbl.touch, $(NONSO_MAN))
+_LINT_man_tbl := $(patsubst %, %.lint-man.tbl.touch, $(_NONSO_MAN))
 
 
-$(_LINT_man_tbl): $(_MANDIR)/%.lint-man.tbl.touch: $(MANDIR)/% $(MK) | $$(@D)/
+$(_LINT_man_tbl): %.lint-man.tbl.touch: % $(MK) | $$(@D)/
 	$(info	$(INFO_)GREP		$@)
 	if $(GREP) -q '^\.TS$$' $< && ! $(HEAD) -n1 $< | $(GREP) -q '\\" t$$'; \
 	then \

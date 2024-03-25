@@ -6,8 +6,10 @@ ifndef MAKEFILE_DIST_CHECK_TAR_INCLUDED
 MAKEFILE_DIST_CHECK_TAR_INCLUDED := 1
 
 
-include $(MAKEFILEDIR)/configure/build-depends/coreutils.mk
-include $(MAKEFILEDIR)/configure/build-depends/tar.mk
+include $(MAKEFILEDIR)/configure/build-depends/coreutils/cp.mk
+include $(MAKEFILEDIR)/configure/build-depends/coreutils/rm.mk
+include $(MAKEFILEDIR)/configure/build-depends/coreutils/touch.mk
+include $(MAKEFILEDIR)/configure/build-depends/tar/tar.mk
 include $(MAKEFILEDIR)/configure/version.mk
 include $(MAKEFILEDIR)/dist/check/_.mk
 include $(MAKEFILEDIR)/dist/tar.mk

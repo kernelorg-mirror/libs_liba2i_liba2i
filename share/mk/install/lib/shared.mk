@@ -7,7 +7,8 @@ MAKEFILE_INSTALL_LIB_SHARED_INCLUDED := 1
 
 
 include $(MAKEFILEDIR)/build/lib/shared.mk
-include $(MAKEFILEDIR)/configure/build-depends/coreutils.mk
+include $(MAKEFILEDIR)/configure/build-depends/coreutils/install.mk
+include $(MAKEFILEDIR)/configure/build-depends/coreutils/ln.mk
 include $(MAKEFILEDIR)/configure/version.mk
 include $(MAKEFILEDIR)/install/lib/_.mk
 

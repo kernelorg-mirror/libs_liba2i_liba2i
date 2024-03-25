@@ -7,15 +7,16 @@ MAKEFILE_INSTALL_DEV_PC_INCLUDED := 1
 
 
 include $(MAKEFILEDIR)/build/dev/pc.mk
-include $(MAKEFILEDIR)/configure/build-depends/coreutils.mk
-include $(MAKEFILEDIR)/configure/directory_variables.mk
+include $(MAKEFILEDIR)/configure/build-depends/coreutils/install.mk
+include $(MAKEFILEDIR)/configure/directory_variables/build.mk
+include $(MAKEFILEDIR)/configure/directory_variables/install.mk
 include $(MAKEFILEDIR)/install/_.mk
 
 
 _pcdir := $(DESTDIR)$(pcdir)
 
 
-_lib_pc := $(patsubst $(builddir)/%,$(_pcdir)/%,$(_LIB_pc))
+_lib_pc := $(patsubst $(builddir)/%, $(_pcdir)/%, $(_LIB_pc))
 
 
 $(_lib_pc): $(_pcdir)/%: $(builddir)/% $(MK) | $$(@D)/

@@ -7,8 +7,8 @@ MAKEFILE_BUILD_PS_EQN_INCLUDED := 1
 
 
 include $(MAKEFILEDIR)/build/pre/tbl.mk
-include $(MAKEFILEDIR)/configure/build-depends/grep.mk
-include $(MAKEFILEDIR)/configure/build-depends/groff-base.mk
+include $(MAKEFILEDIR)/configure/build-depends/grep/grep.mk
+include $(MAKEFILEDIR)/configure/build-depends/groff-base/eqn.mk
 
 
 _PSMAN_troff := $(patsubst %.eqn,%.ps.troff,$(_MAN_eqn))

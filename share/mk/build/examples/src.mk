@@ -7,16 +7,17 @@ MAKEFILE_BUILD_EX_SRC_INCLUDED := 1
 
 
 include $(MAKEFILEDIR)/build/_.mk
-include $(MAKEFILEDIR)/configure/build-depends/coreutils.mk
-include $(MAKEFILEDIR)/configure/build-depends/findutils.mk
-include $(MAKEFILEDIR)/configure/build-depends/grep.mk
-include $(MAKEFILEDIR)/configure/build-depends/mandoc.mk
-include $(MAKEFILEDIR)/configure/build-depends/sed.mk
-include $(MAKEFILEDIR)/configure/directory_variables.mk
-include $(MAKEFILEDIR)/src.mk
+include $(MAKEFILEDIR)/configure/build-depends/coreutils/head.mk
+include $(MAKEFILEDIR)/configure/build-depends/coreutils/sort.mk
+include $(MAKEFILEDIR)/configure/build-depends/findutils/find.mk
+include $(MAKEFILEDIR)/configure/build-depends/findutils/xargs.mk
+include $(MAKEFILEDIR)/configure/build-depends/grep/grep.mk
+include $(MAKEFILEDIR)/configure/build-depends/mandoc/mandoc.mk
+include $(MAKEFILEDIR)/configure/build-depends/sed/sed.mk
+include $(MAKEFILEDIR)/configure/directory_variables/src.mk
 
 
-_UNITS_ex_src := \
+_EX_TU_src := \
 	$(patsubst $(MANDIR)/%, $(_MANDIR)/%, \
 		$(shell \
 			$(FIND) $(MANDIR)/* -type f \
@@ -28,13 +29,13 @@ _UNITS_ex_src := \
 			| $(SED) 's,:,\\:,g' \
 		) \
 	)
-_UNITS_ex_h := $(filter %.h,$(_UNITS_ex_src))
-_UNITS_ex_c := $(filter %.c,$(_UNITS_ex_src))
+_EX_TU_h := $(filter %.h, $(_EX_TU_src))
+_EX_TU_c := $(filter %.c, $(_EX_TU_src))
 
 
-$(_UNITS_ex_src): $$(patsubst $(_MANDIR)/%.d,$(MANDIR)/%,$$(@D)) $(MK) | $$(@D)/
-$(_UNITS_ex_c):   $$(filter $$(@D)/%.h,$(_UNITS_ex_h))
-$(_UNITS_ex_src):
+$(_EX_TU_src): $$(patsubst %.d, %, $$(@D)) $(MK) | $$(@D)/
+$(_EX_TU_c):   $$(filter $$(@D)/%.h, $(_EX_TU_h))
+$(_EX_TU_src):
 	$(info	$(INFO_)SED		$@)
 	<$< \
 	$(SED) -n \
@@ -49,7 +50,7 @@ $(_UNITS_ex_src):
 
 
 .PHONY: build-ex-src
-build-ex-src: $(_UNITS_ex_src);
+build-ex-src: $(_EX_TU_src);
 
 
 endif  # include guard

@@ -7,10 +7,10 @@ MAKEFILE_BUILD_PS_GROPS_INCLUDED := 1
 
 
 include $(MAKEFILEDIR)/build/ps/troff.mk
-include $(MAKEFILEDIR)/configure/build-depends/groff-base.mk
+include $(MAKEFILEDIR)/configure/build-depends/groff-base/grops.mk
 
 
-_PSMAN := $(patsubst %.ps.set,%.ps,$(_PSMAN_MAN_set))
+_PSMAN := $(patsubst %.ps.set, %.ps, $(_PSMAN_MAN_set) $(_PSMAN_MDOC_set))
 
 
 $(_PSMAN): %.ps: %.ps.set $(MK) | $$(@D)/

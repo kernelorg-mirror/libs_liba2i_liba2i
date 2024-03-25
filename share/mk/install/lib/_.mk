@@ -6,7 +6,7 @@ ifndef MAKEFILE_INSTALL_LIB_INCLUDED
 MAKEFILE_INSTALL_LIB_INCLUDED := 1
 
 
-include $(MAKEFILEDIR)/configure/directory_variables.mk
+include $(MAKEFILEDIR)/configure/directory_variables/install.mk
 
 
 _libdir := $(DESTDIR)$(libdir)

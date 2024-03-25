@@ -6,7 +6,8 @@ ifndef MAKEFILE_INSTALL_INCLUDED
 MAKEFILE_INSTALL_INCLUDED := 1
 
 
-include $(MAKEFILEDIR)/configure/build-depends/coreutils.mk
+include $(MAKEFILEDIR)/configure/build-depends/coreutils/install.mk
+include $(MAKEFILEDIR)/configure/build-depends/coreutils/rm.mk
 
 
 %/:

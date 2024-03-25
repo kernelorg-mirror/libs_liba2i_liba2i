@@ -6,14 +6,16 @@ ifndef MAKEFILE_BUILD_OBJ_PCH_INCLUDED
 MAKEFILE_BUILD_OBJ_PCH_INCLUDED := 1
 
 
-include $(MAKEFILEDIR)/configure/build-depends/cc.mk
-include $(MAKEFILEDIR)/configure/build-depends/cpp.mk
-include $(MAKEFILEDIR)/configure/build-depends/pkgconf.mk
-include $(MAKEFILEDIR)/configure/directory_variables.mk
-include $(MAKEFILEDIR)/src.mk
+include $(MAKEFILEDIR)/configure/build-depends/gcc/cc.mk
+include $(MAKEFILEDIR)/configure/build-depends/cpp/cpp.mk
+include $(MAKEFILEDIR)/configure/build-depends/pkgconf/pkgconf.mk
+include $(MAKEFILEDIR)/configure/directory_variables/build.mk
+include $(MAKEFILEDIR)/configure/directory_variables/src.mk
+include $(MAKEFILEDIR)/src/lib.mk
+include $(MAKEFILEDIR)/src/tu.mk
 
 
-_TU_gch := $(patsubst $(INCLUDEDIR)/%,$(builddir)/%.gch,$(TU_h))
+_TU_gch := $(patsubst $(INCLUDEDIR)/%, $(builddir)/%.gch, $(TU_h))
 
 
 $(_TU_gch): %.gch: $(MK) $(LIB_pc) | %.d $$(@D)/

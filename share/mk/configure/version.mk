@@ -6,18 +6,29 @@ ifndef MAKEFILE_CONFIGURE_VERSION_INCLUDED
 MAKEFILE_CONFIGURE_VERSION_INCLUDED := 1
 
 
-include $(MAKEFILEDIR)/configure/build-depends/coreutils.mk
-include $(MAKEFILEDIR)/configure/build-depends/findutils.mk
-include $(MAKEFILEDIR)/configure/build-depends/git.mk
-include $(MAKEFILEDIR)/configure/build-depends/grep.mk
+include $(MAKEFILEDIR)/configure/build-depends/coreutils/echo.mk
+include $(MAKEFILEDIR)/configure/build-depends/coreutils/cut.mk
+include $(MAKEFILEDIR)/configure/build-depends/coreutils/sort.mk
+include $(MAKEFILEDIR)/configure/build-depends/coreutils/stat.mk
+include $(MAKEFILEDIR)/configure/build-depends/coreutils/tail.mk
+include $(MAKEFILEDIR)/configure/build-depends/findutils/find.mk
+include $(MAKEFILEDIR)/configure/build-depends/findutils/xargs.mk
+include $(MAKEFILEDIR)/configure/build-depends/git/git.mk
+include $(MAKEFILEDIR)/configure/build-depends/grep/grep.mk
 include $(MAKEFILEDIR)/configure/verbose.mk
 
 
-libname       := liba2i
-DISTVERSION   := $(shell $(GIT) describe --dirty)
-DISTNAME      := $(libname)-$(DISTVERSION)
-DISTDATE      := $(shell $(GIT) log -1 --format='%aD' $(HIDE_ERR))
+projname      := liba2i
+VERSION       := $(shell $(GIT) describe --dirty)
+EXTRAVERSION  :=
+
+
+DISTVERSION   := $(VERSION)$(EXTRAVERSION)
+DISTNAME      := $(projname)-$(DISTVERSION)
+
+
 MAJOR_VERSION := $(shell $(ECHO) $(DISTVERSION) | $(CUT) -f1 -d. )
+libname       := $(projname)
 SONAME        := $(libname).so.$(MAJOR_VERSION)
 REALNAME      := $(libname).so.$(DISTVERSION)
 LINKERNAME    := $(libname).so
@@ -44,6 +55,9 @@ DISTDATECMD := \
 
 
 DISTDATE := $(shell $(DISTDATECMD))
+
+
+MANPAGEDATECMD = $(GIT) log --format=%cs -1 -- $< $(HIDE_ERR)
 
 
 endif  # include guard

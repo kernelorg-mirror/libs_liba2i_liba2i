@@ -6,10 +6,11 @@ ifndef MAKEFILE_BUILD_DEV_PC_INCLUDED
 MAKEFILE_BUILD_DEV_PC_INCLUDED := 1
 
 
-include $(MAKEFILEDIR)/configure/build-depends/pkgconf.mk
-include $(MAKEFILEDIR)/configure/build-depends/sed.mk
-include $(MAKEFILEDIR)/configure/directory_variables.mk
+include $(MAKEFILEDIR)/configure/build-depends/pkgconf/pkgconf.mk
+include $(MAKEFILEDIR)/configure/build-depends/sed/sed.mk
+include $(MAKEFILEDIR)/configure/directory_variables/build.mk
 include $(MAKEFILEDIR)/configure/version.mk
+include $(MAKEFILEDIR)/src/lib.mk
 
 
 _LIB_pc := $(builddir)/$(libname).pc

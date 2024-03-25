@@ -7,7 +7,7 @@ MAKEFILE_BUILD_PDF_INCLUDED := 1
 
 
 .PHONY: build-pdf
-build-pdf: build-pdf-gropdf;
+build-pdf: build-pdf-pages;
 
 
 endif  # include guard

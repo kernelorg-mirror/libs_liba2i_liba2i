@@ -2,23 +2,8 @@
 # SPDX-License-Identifier: LGPL-3.0-only WITH LGPL-3.0-linking-exception
 
 
-ifndef MAKEFILE_BUILD_EX_DIR_INCLUDED
-MAKEFILE_BUILD_EX_DIR_INCLUDED := 1
-
-
-include $(MAKEFILEDIR)/build/_.mk
-include $(MAKEFILEDIR)/configure/build-depends/coreutils.mk
-include $(MAKEFILEDIR)/configure/src.mk
-include $(MAKEFILEDIR)/src.mk
-
-
-_PAGEEXDIRS := $(patsubst $(MANDIR)/%,$(_MANDIR)/%.d/,$(NONSO_MAN))
-
-
-$(_PAGEEXDIRS):
-	+$(info	$(INFO_)MKDIR		$@)
-	+$(MKDIR) -p $@
-	+$(TOUCH) $@
+ifndef MAKEFILE_BUILD_EX_INCLUDED
+MAKEFILE_BUILD_EX_INCLUDED := 1
 
 
 .PHONY: build-ex

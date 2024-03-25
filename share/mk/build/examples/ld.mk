@@ -6,21 +6,20 @@ ifndef MAKEFILE_BUILD_EX_LD_INCLUDED
 MAKEFILE_BUILD_EX_LD_INCLUDED := 1
 
 
-include $(MAKEFILEDIR)/build/_.mk
 include $(MAKEFILEDIR)/build/examples/cc.mk
-include $(MAKEFILEDIR)/configure/build-depends/ld.mk
+include $(MAKEFILEDIR)/configure/build-depends/binutils/ld.mk
 
 
-_UNITS_ex_bin := $(patsubst %.o,%,$(_UNITS_ex_o))
+_EX_TU_bin := $(patsubst %.o, %, $(_EX_TU_o))
 
 
-$(_UNITS_ex_bin): %: %.o $(MK)
+$(_EX_TU_bin): %: %.o $(MK)
 	$(info	$(INFO_)LD		$@)
 	$(LD) $(LDFLAGS) -o $@ $< $(LDLIBS)
 
 
 .PHONY: build-ex-ld
-build-ex-ld: $(_UNITS_ex_bin);
+build-ex-ld: $(_EX_TU_bin);
 
 
 endif  # include guard

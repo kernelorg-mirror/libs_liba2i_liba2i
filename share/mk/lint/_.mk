@@ -7,7 +7,7 @@ MAKEFILE_LINT_INCLUDED := 1
 
 
 .PHONY: lint
-lint: lint-c lint-man;
+lint: lint-c lint-man lint-mdoc;
 
 
 endif  # include guard

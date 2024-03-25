@@ -7,12 +7,12 @@ MAKEFILE_CHECK_CATMAN_GREP_INCLUDED := 1
 
 
 include $(MAKEFILEDIR)/build/_.mk
-include $(MAKEFILEDIR)/configure/build-depends/coreutils.mk
-include $(MAKEFILEDIR)/configure/build-depends/grep.mk
-include $(MAKEFILEDIR)/configure/build-depends/man.mk
+include $(MAKEFILEDIR)/configure/build-depends/coreutils/touch.mk
+include $(MAKEFILEDIR)/configure/build-depends/grep/grep.mk
+include $(MAKEFILEDIR)/configure/build-depends/man/man.mk
 
 
-_CHECK_catman := $(patsubst %.cat.grep,%.check-catman.touch,$(_CHECK_catman_grep))
+_CHECK_catman := $(patsubst %.cat.grep, %.check-catman.touch, $(_CHECK_catman_grep))
 
 
 $(_CHECK_catman): %.check-catman.touch: %.cat.grep $(MK) | $$(@D)/

@@ -6,8 +6,8 @@ ifndef MAKEFILE_CLEAN_INCLUDED
 MAKEFILE_CLEAN_INCLUDED := 1
 
 
-include $(MAKEFILEDIR)/configure/build-depends/coreutils.mk
-include $(MAKEFILEDIR)/configure/directory_variables.mk
+include $(MAKEFILEDIR)/configure/build-depends/coreutils/rm.mk
+include $(MAKEFILEDIR)/configure/directory_variables/build.mk
 
 
 .PHONY: clean

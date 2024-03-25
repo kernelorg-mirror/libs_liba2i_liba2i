@@ -7,29 +7,35 @@ MAKEFILE_LINT_C_CPPLINT_INCLUDED := 1
 
 
 include $(MAKEFILEDIR)/build/examples/src.mk
-include $(MAKEFILEDIR)/configure/build-depends/coreutils.mk
-include $(MAKEFILEDIR)/configure/build-depends/cpplint.mk
-include $(MAKEFILEDIR)/src.mk
+include $(MAKEFILEDIR)/configure/build-depends/coreutils/touch.mk
+include $(MAKEFILEDIR)/configure/build-depends/cpplint/cpplint.mk
+include $(MAKEFILEDIR)/configure/directory_variables/build.mk
+include $(MAKEFILEDIR)/configure/directory_variables/src.mk
+include $(MAKEFILEDIR)/src/tu.mk
 
 
-_TU_h_cpl := $(patsubst $(INCLUDEDIR)/%,$(builddir)/%.lint-c.cpplint.touch,$(TU_h))
-_TU_c_cpl := $(patsubst $(SRCDIR)/%,$(builddir)/%.lint-c.cpplint.touch,$(TU_c))
-_TU_cpl   := $(_TU_h_cpl) $(_TU_c_cpl)
+_LINT_c_TU_h_cpplint := $(patsubst $(INCLUDEDIR)/%, $(builddir)/%.lint-c.cpplint.touch, $(TU_h))
+_LINT_c_TU_c_cpplint := $(patsubst $(SRCDIR)/%,     $(builddir)/%.lint-c.cpplint.touch, $(TU_c))
+_LINT_c_TU_cpplint   := $(_LINT_c_TU_h_cpplint) $(_LINT_c_TU_c_cpplint)
+_LINT_c_EX_cpplint   := $(patsubst %, %.lint-c.cpplint.touch, $(_EX_TU_src))
+_LINT_c_cpplint      := $(_LINT_c_TU_cpplint) $(_LINT_c_EX_cpplint)
 
 
-$(_TU_h_cpl): $(builddir)/%.lint-c.cpplint.touch: $(INCLUDEDIR)/%
-$(_TU_c_cpl): $(builddir)/%.lint-c.cpplint.touch: $(SRCDIR)/%
-$(_TU_cpl): %.lint-c.cpplint.touch: $(CPPLINT_CONF) $(MK) | %.d $$(@D)/
+$(_LINT_c_TU_h_cpplint): $(builddir)/%.lint-c.cpplint.touch: $(INCLUDEDIR)/%
+$(_LINT_c_TU_c_cpplint): $(builddir)/%.lint-c.cpplint.touch: $(SRCDIR)/%
+$(_LINT_c_TU_cpplint): %.lint-c.cpplint.touch: | %.d
+$(_LINT_c_EX_cpplint): %.lint-c.cpplint.touch: %
+$(_LINT_c_cpplint): $(CPPLINT_CONF) $(MK) | $$(@D)/
 
 
-$(_TU_cpl):
+$(_LINT_c_cpplint):
 	$(info	$(INFO_)CPPLINT		$@)
 	$(CPPLINT) $(CPPLINTFLAGS) $< >/dev/null
 	$(TOUCH) $@
 
 
 .PHONY: lint-c-cpplint
-lint-c-cpplint: $(_TU_cpl);
+lint-c-cpplint: $(_LINT_c_cpplint);
 
 
 endif  # include guard

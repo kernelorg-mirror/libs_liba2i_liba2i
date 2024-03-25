@@ -6,7 +6,7 @@ ifndef MAKEFILE_BUILD_INCLUDED
 MAKEFILE_BUILD_INCLUDED := 1
 
 
-include $(MAKEFILEDIR)/configure/directory_variables.mk
+include $(MAKEFILEDIR)/configure/directory_variables/build.mk
 
 
 _MANDIR := $(builddir)/man
@@ -18,6 +18,7 @@ build: \
 	build-dev \
 	build-html \
 	build-lib \
+	build-man \
 	build-obj \
 	build-pdf \
 	build-ps \

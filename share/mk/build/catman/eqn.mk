@@ -7,8 +7,9 @@ MAKEFILE_BUILD_CATMAN_EQN_INCLUDED := 1
 
 
 include $(MAKEFILEDIR)/build/pre/tbl.mk
-include $(MAKEFILEDIR)/configure/build-depends/grep.mk
-include $(MAKEFILEDIR)/configure/build-depends/groff-base.mk
+include $(MAKEFILEDIR)/configure/build-depends/grep/grep.mk
+include $(MAKEFILEDIR)/configure/build-depends/groff-base/eqn.mk
+include $(MAKEFILEDIR)/configure/build-depends/groff-base/nroff.mk
 
 
 _CATMAN_troff := $(patsubst %.eqn,%.cat.troff,$(_MAN_eqn))

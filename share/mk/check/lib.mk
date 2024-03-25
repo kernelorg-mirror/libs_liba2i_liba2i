@@ -8,23 +8,25 @@ MAKEFILE_CHECK_LIB_INCLUDED := 1
 
 include $(MAKEFILEDIR)/build/lib/shared.mk
 include $(MAKEFILEDIR)/build/lib/static.mk
-include $(MAKEFILEDIR)/configure/build-depends/cc.mk
-include $(MAKEFILEDIR)/configure/build-depends/coreutils.mk
-include $(MAKEFILEDIR)/configure/build-depends/findutils.mk
-include $(MAKEFILEDIR)/configure/build-depends/grep.mk
-include $(MAKEFILEDIR)/configure/build-depends/pkgconf.mk
+include $(MAKEFILEDIR)/configure/build-depends/gcc/cc.mk
+include $(MAKEFILEDIR)/configure/build-depends/coreutils/touch.mk
+include $(MAKEFILEDIR)/configure/build-depends/findutils/find.mk
+include $(MAKEFILEDIR)/configure/build-depends/grep/grep.mk
+include $(MAKEFILEDIR)/configure/build-depends/pkgconf/pkgconf.mk
+include $(MAKEFILEDIR)/configure/directory_variables/build.mk
+include $(MAKEFILEDIR)/configure/directory_variables/src.mk
 include $(MAKEFILEDIR)/install/dev/include.mk
 include $(MAKEFILEDIR)/install/lib/shared.mk
 include $(MAKEFILEDIR)/install/lib/static.mk
-include $(MAKEFILEDIR)/src.mk
+include $(MAKEFILEDIR)/src/tu.mk
 
 
 TESTS_c   := $(shell $(FIND) $(TESTSDIR) -type f | $(GREP) '\.c$$' | $(SORT))
 TESTS_sh  := $(shell $(FIND) $(TESTSDIR) -type f | $(GREP) '\.sh$$' | $(SORT))
-_TESTS_c  := $(patsubst $(srcdir)/share/%,$(builddir)/%.check,$(TESTS_c))
-_TESTS_sh := $(patsubst $(srcdir)/share/%,$(builddir)/%.check.touch,$(TESTS_sh))
-_tests_c  := $(patsubst $(srcdir)/share/%,$(builddir)/%.installcheck,$(TESTS_c))
-_tests_sh := $(patsubst $(srcdir)/share/%,$(builddir)/%.installcheck.touch,$(TESTS_sh))
+_TESTS_c  := $(patsubst $(srcdir)/share/%, $(builddir)/%.check, $(TESTS_c))
+_TESTS_sh := $(patsubst $(srcdir)/share/%, $(builddir)/%.check.touch, $(TESTS_sh))
+_tests_c  := $(patsubst $(srcdir)/share/%, $(builddir)/%.installcheck, $(TESTS_c))
+_tests_sh := $(patsubst $(srcdir)/share/%, $(builddir)/%.installcheck.touch, $(TESTS_sh))
 
 
 $(_TESTS_c): $(builddir)/%.check: $(srcdir)/share/% $(MK) $(TU_h) $(_LIB_a) $(_REALNAME) | $$(@D)/

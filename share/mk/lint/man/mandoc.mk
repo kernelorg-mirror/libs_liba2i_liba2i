@@ -6,23 +6,20 @@ ifndef MAKEFILE_LINT_MAN_MANDOC_INCLUDED
 MAKEFILE_LINT_MAN_MANDOC_INCLUDED := 1
 
 
-include $(MAKEFILEDIR)/build/_.mk
-include $(MAKEFILEDIR)/configure/build-depends/coreutils.mk
-include $(MAKEFILEDIR)/configure/build-depends/grep.mk
-include $(MAKEFILEDIR)/configure/build-depends/mandoc.mk
-include $(MAKEFILEDIR)/configure/src.mk
-include $(MAKEFILEDIR)/lint/man/_.mk
-include $(MAKEFILEDIR)/src.mk
+include $(MAKEFILEDIR)/build/man/man.mk
+include $(MAKEFILEDIR)/configure/build-depends/coreutils/touch.mk
+include $(MAKEFILEDIR)/configure/build-depends/coreutils/true.mk
+include $(MAKEFILEDIR)/configure/build-depends/grep/grep.mk
+include $(MAKEFILEDIR)/configure/build-depends/mandoc/mandoc.mk
 
 
-_LINT_man_mandoc := \
-	$(patsubst $(MANDIR)/%, $(_MANDIR)/%.lint-man.mandoc.touch, $(NONSO_MAN))
+_LINT_man_mandoc := $(patsubst %, %.lint-man.mandoc.touch, $(_NONSO_MAN))
 
 
 mandoc_man_ignore_grep := $(MAKEFILEDIR)/lint/man/mandoc.ignore.grep
 
 
-$(_LINT_man_mandoc): $(_MANDIR)/%.lint-man.mandoc.touch: $(MANDIR)/% $(mandoc_man_ignore_grep) $(MK) | $$(@D)/
+$(_LINT_man_mandoc): %.lint-man.mandoc.touch: % $(mandoc_man_ignore_grep) $(MK) | $$(@D)/
 	$(info	$(INFO_)MANDOC		$@)
 	! ($(MANDOC) -man $(MANDOCFLAGS) $< 2>&1 \
 	   | $(GREP) -v -f '$(mandoc_man_ignore_grep)' \

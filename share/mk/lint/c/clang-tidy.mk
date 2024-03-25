@@ -8,25 +8,31 @@ MAKEFILE_LINT_C_CLANG_TIDY_INCLUDED := 1
 
 include $(MAKEFILEDIR)/build/_.mk
 include $(MAKEFILEDIR)/build/examples/src.mk
-include $(MAKEFILEDIR)/configure/build-depends/clang.mk
-include $(MAKEFILEDIR)/configure/build-depends/clang-tidy.mk
-include $(MAKEFILEDIR)/configure/build-depends/coreutils.mk
-include $(MAKEFILEDIR)/configure/build-depends/cpp.mk
-include $(MAKEFILEDIR)/configure/build-depends/sed.mk
-include $(MAKEFILEDIR)/src.mk
+include $(MAKEFILEDIR)/configure/build-depends/clang/clang.mk
+include $(MAKEFILEDIR)/configure/build-depends/clang-tidy/clang-tidy.mk
+include $(MAKEFILEDIR)/configure/build-depends/coreutils/touch.mk
+include $(MAKEFILEDIR)/configure/build-depends/cpp/cpp.mk
+include $(MAKEFILEDIR)/configure/build-depends/sed/sed.mk
+include $(MAKEFILEDIR)/configure/directory_variables/build.mk
+include $(MAKEFILEDIR)/configure/directory_variables/src.mk
+include $(MAKEFILEDIR)/src/tu.mk
 
 
-_TU_h_ct := $(patsubst $(INCLUDEDIR)/%,$(builddir)/%.lint-c.clang-tidy.touch,$(TU_h))
-_TU_c_ct := $(patsubst $(SRCDIR)/%,$(builddir)/%.lint-c.clang-tidy.touch,$(TU_c))
-_TU_ct   := $(_TU_h_ct) $(_TU_c_ct)
+_LINT_c_TU_h_clang_tidy := $(patsubst $(INCLUDEDIR)/%, $(builddir)/%.lint-c.clang-tidy.touch, $(TU_h))
+_LINT_c_TU_c_clang_tidy := $(patsubst $(SRCDIR)/%,     $(builddir)/%.lint-c.clang-tidy.touch, $(TU_c))
+_LINT_c_TU_clang_tidy   := $(_LINT_c_TU_h_clang_tidy) $(_LINT_c_TU_c_clang_tidy)
+_LINT_c_EX_clang_tidy   := $(patsubst %, %.lint-c.clang-tidy.touch, $(_EX_TU_src))
+_LINT_c_clang_tidy      := $(_LINT_c_TU_clang_tidy) $(_LINT_c_EX_clang_tidy)
 
 
-$(_TU_h_ct): $(builddir)/%.lint-c.clang-tidy.touch: $(INCLUDEDIR)/%
-$(_TU_c_ct): $(builddir)/%.lint-c.clang-tidy.touch: $(SRCDIR)/%
-$(_TU_ct): %.lint-c.clang-tidy.touch: $(CLANG_TIDY_CONF) $(MK) | %.d $$(@D)/
+$(_LINT_c_TU_h_clang_tidy): $(builddir)/%.lint-c.clang-tidy.touch: $(INCLUDEDIR)/%
+$(_LINT_c_TU_c_clang_tidy): $(builddir)/%.lint-c.clang-tidy.touch: $(SRCDIR)/%
+$(_LINT_c_TU_clang_tidy): %.lint-c.clang-tidy.touch: | %.d
+$(_LINT_c_EX_clang_tidy): %.lint-c.clang-tidy.touch: %
+$(_LINT_c_clang_tidy): $(CLANG_TIDY_CONF) $(MK) | $$(@D)/
 
 
-$(_TU_ct):
+$(_LINT_c_clang_tidy):
 	$(info	$(INFO_)CLANG_TIDY	$@)
 	$(CLANG_TIDY) $(CLANG_TIDYFLAGS) $< -- $(CPPFLAGS) $(CLANGFLAGS) 2>&1 \
 	| $(SED) '/generated\.$$/d' >&2
@@ -34,7 +40,7 @@ $(_TU_ct):
 
 
 .PHONY: lint-c-clang-tidy
-lint-c-clang-tidy: $(_TU_ct);
+lint-c-clang-tidy: $(_LINT_c_clang_tidy);
 
 
 endif  # include guard

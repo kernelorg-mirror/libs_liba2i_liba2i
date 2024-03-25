@@ -6,19 +6,23 @@ ifndef MAKEFILE_INSTALL_MAN_INCLUDED
 MAKEFILE_INSTALL_MAN_INCLUDED := 1
 
 
-include $(MAKEFILEDIR)/configure/build-depends/bzip2.mk
-include $(MAKEFILEDIR)/configure/build-depends/coreutils.mk
-include $(MAKEFILEDIR)/configure/build-depends/findutils.mk
-include $(MAKEFILEDIR)/configure/build-depends/grep.mk
-include $(MAKEFILEDIR)/configure/build-depends/gzip.mk
-include $(MAKEFILEDIR)/configure/build-depends/lzip.mk
-include $(MAKEFILEDIR)/configure/build-depends/moreutils.mk
-include $(MAKEFILEDIR)/configure/build-depends/sed.mk
-include $(MAKEFILEDIR)/configure/build-depends/xz-utils.mk
-include $(MAKEFILEDIR)/configure/directory_variables.mk
-include $(MAKEFILEDIR)/configure/z.mk
+include $(MAKEFILEDIR)/configure/build-depends/bzip2/bzip2.mk
+include $(MAKEFILEDIR)/configure/build-depends/coreutils/install.mk
+include $(MAKEFILEDIR)/configure/build-depends/coreutils/ln.mk
+include $(MAKEFILEDIR)/configure/build-depends/coreutils/test.mk
+include $(MAKEFILEDIR)/configure/build-depends/findutils/xargs.mk
+include $(MAKEFILEDIR)/configure/build-depends/grep/grep.mk
+include $(MAKEFILEDIR)/configure/build-depends/gzip/gzip.mk
+include $(MAKEFILEDIR)/configure/build-depends/lzip/lzip.mk
+include $(MAKEFILEDIR)/configure/build-depends/moreutils/sponge.mk
+include $(MAKEFILEDIR)/configure/build-depends/sed/sed.mk
+include $(MAKEFILEDIR)/configure/build-depends/xz-utils/xz.mk
+include $(MAKEFILEDIR)/configure/directory_variables/install.mk
+include $(MAKEFILEDIR)/configure/directory_variables/src.mk
+include $(MAKEFILEDIR)/configure/man/link_pages.mk
+include $(MAKEFILEDIR)/configure/man/z.mk
 include $(MAKEFILEDIR)/install/_.mk
-include $(MAKEFILEDIR)/src.mk
+include $(MAKEFILEDIR)/src/man.mk
 
 
 _mandir := $(DESTDIR)$(mandir)
@@ -40,7 +44,7 @@ $(foreach s, $(MANSECTIONS),                                                  \
 $(foreach s, $(MANSECTIONS),                                                  \
 	$(eval $(_man$(s)pages):                                              \
 		$(_man$(s)dir)/%$(man$(s)ext)$(Z):                            \
-			$(MAN$(s)DIR)/%.$(s) $(MK) | $$$$(@D)/))
+			$(_MANDIR)/man$(s)/%.$(s) $(MK) | $$$$(@D)/))
 
 
 $(_manpages):

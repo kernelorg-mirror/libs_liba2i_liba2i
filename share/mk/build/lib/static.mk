@@ -8,11 +8,12 @@ MAKEFILE_BUILD_LIB_STATIC_INCLUDED := 1
 
 include $(MAKEFILEDIR)/build/_.mk
 include $(MAKEFILEDIR)/build/obj/as.mk
-include $(MAKEFILEDIR)/configure/build-depends/ar.mk
-include $(MAKEFILEDIR)/configure/build-depends/coreutils.mk
-include $(MAKEFILEDIR)/configure/build-depends/findutils.mk
-include $(MAKEFILEDIR)/configure/build-depends/sed.mk
-include $(MAKEFILEDIR)/configure/directory_variables.mk
+include $(MAKEFILEDIR)/configure/build-depends/binutils/ar.mk
+include $(MAKEFILEDIR)/configure/build-depends/coreutils/echo.mk
+include $(MAKEFILEDIR)/configure/build-depends/coreutils/rm.mk
+include $(MAKEFILEDIR)/configure/build-depends/findutils/xargs.mk
+include $(MAKEFILEDIR)/configure/build-depends/sed/sed.mk
+include $(MAKEFILEDIR)/configure/directory_variables/build.mk
 include $(MAKEFILEDIR)/configure/version.mk
 
 

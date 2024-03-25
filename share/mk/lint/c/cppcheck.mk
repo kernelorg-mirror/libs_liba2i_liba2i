@@ -8,36 +8,50 @@ MAKEFILE_LINT_C_CPPCHECK_INCLUDED := 1
 
 include $(MAKEFILEDIR)/build/_.mk
 include $(MAKEFILEDIR)/build/examples/src.mk
-include $(MAKEFILEDIR)/configure/build-depends/coreutils.mk
-include $(MAKEFILEDIR)/configure/build-depends/cppcheck.mk
-include $(MAKEFILEDIR)/src.mk
+include $(MAKEFILEDIR)/configure/build-depends/coreutils/touch.mk
+include $(MAKEFILEDIR)/configure/build-depends/cppcheck/cppcheck.mk
+include $(MAKEFILEDIR)/configure/directory_variables/build.mk
+include $(MAKEFILEDIR)/configure/directory_variables/src.mk
+include $(MAKEFILEDIR)/src/tu.mk
 
 
-_TU_h_cck := $(patsubst $(INCLUDEDIR)/%,$(builddir)/%.lint-c.cppcheck.touch,$(TU_h))
-_TU_c_cck := $(patsubst $(SRCDIR)/%,$(builddir)/%.lint-c.cppcheck.touch,$(TU_c))
-_TU_cck   := $(_TU_h_cck) $(_TU_c_cck)
-_LIB_cck  := $(builddir)/$(libname).lint-c.cppcheck.touch
+_LINT_c_TU_h_cppcheck := $(patsubst $(INCLUDEDIR)/%, $(builddir)/%.lint-c.cppcheck.touch, $(TU_h))
+_LINT_c_TU_c_cppcheck := $(patsubst $(SRCDIR)/%,     $(builddir)/%.lint-c.cppcheck.touch, $(TU_c))
+_LINT_c_TU_cppcheck   := $(_LINT_c_TU_h_cppcheck) $(_LINT_c_TU_c_cppcheck)
+_LINT_c_LIB_cppcheck  := $(builddir)/$(libname).lint-c.cppcheck.touch
+_LINT_c_EX_cppcheck   := $(patsubst %, %.lint-c.cppcheck.touch, $(_EX_TU_src))
+_LINT_c_cppcheck      := \
+	$(_LINT_c_TU_cppcheck) \
+	$(_LINT_c_LIB_cppcheck) \
+	$(_LINT_c_EX_cppcheck)
 
 
-$(_TU_h_cck): $(builddir)/%.lint-c.cppcheck.touch: $(INCLUDEDIR)/%
-$(_TU_c_cck): $(builddir)/%.lint-c.cppcheck.touch: $(SRCDIR)/%
-$(_TU_cck): %.lint-c.cppcheck.touch: $(CPPCHECK_SUPPRESS) $(MK) | %.d $$(@D)/
-$(_LIB_cck): $(TU_c) $(TU_h) $(CPPCHECK_SUPPRESS) $(MK) | $$(@D)/
+$(_LINT_c_TU_h_cppcheck): $(builddir)/%.lint-c.cppcheck.touch: $(INCLUDEDIR)/%
+$(_LINT_c_TU_c_cppcheck): $(builddir)/%.lint-c.cppcheck.touch: $(SRCDIR)/%
+$(_LINT_c_TU_cppcheck): %.lint-c.cppcheck.touch: | %.d
+$(_LINT_c_LIB_cppcheck): $(TU_c) $(TU_h)
+$(_LINT_c_EX_cppcheck): %.lint-c.cppcheck.touch: %
+$(_LINT_c_cppcheck): $(CPPCHECK_SUPPRESS) $(MK) | $$(@D)/
 
 
-$(_TU_cck):
+$(_LINT_c_TU_cppcheck):
 	$(info	$(INFO_)CPPCHECK	$@)
 	$(CPPCHECK) $(CPPCHECKFLAGS) -I $(INCLUDEDIR) $<
 	$(TOUCH) $@
 
-$(_LIB_cck):
+$(_LINT_c_LIB_cppcheck):
 	$(info	$(INFO_)CPPCHECK	$@)
 	$(CPPCHECK) $(CPPCHECKFLAGS) -I $(INCLUDEDIR) $(TU_c) $(TU_h)
 	$(TOUCH) $@
 
+$(_LINT_c_EX_cppcheck):
+	$(info	$(INFO_)CPPCHECK	$@)
+	$(CPPCHECK) $(CPPCHECKFLAGS) $<
+	$(TOUCH) $@
+
 
 .PHONY: lint-c-cppcheck
-lint-c-cppcheck: $(_TU_cck) $(_LIB_cck);
+lint-c-cppcheck: $(_LINT_c_cppcheck);
 
 
 endif  # include guard

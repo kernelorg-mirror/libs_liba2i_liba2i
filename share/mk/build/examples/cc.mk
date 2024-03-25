@@ -6,22 +6,21 @@ ifndef MAKEFILE_BUILD_EX_CC_INCLUDED
 MAKEFILE_BUILD_EX_CC_INCLUDED := 1
 
 
-include $(MAKEFILEDIR)/build/_.mk
 include $(MAKEFILEDIR)/build/examples/src.mk
-include $(MAKEFILEDIR)/configure/build-depends/cc.mk
-include $(MAKEFILEDIR)/configure/build-depends/cpp.mk
+include $(MAKEFILEDIR)/configure/build-depends/gcc/cc.mk
+include $(MAKEFILEDIR)/configure/build-depends/cpp/cpp.mk
 
 
-_UNITS_ex_o := $(patsubst %.c,%.o,$(_UNITS_ex_c))
+_EX_TU_o := $(patsubst %.c, %.o, $(_EX_TU_c))
 
 
-$(_UNITS_ex_o): %.o: %.c $(MK)
+$(_EX_TU_o): %.o: %.c $(MK)
 	$(info	$(INFO_)CC		$@)
 	$(CC) -c $(CPPFLAGS) $(CFLAGS) -o $@ $<
 
 
 .PHONY: build-ex-cc
-build-ex-cc:  $(_UNITS_ex_o);
+build-ex-cc:  $(_EX_TU_o);
 
 
 endif  # include guard

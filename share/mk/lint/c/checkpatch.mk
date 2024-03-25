@@ -8,29 +8,35 @@ MAKEFILE_LINT_C_CHECKPATCH_INCLUDED := 1
 
 include $(MAKEFILEDIR)/build/_.mk
 include $(MAKEFILEDIR)/build/examples/src.mk
-include $(MAKEFILEDIR)/configure/build-depends/checkpatch.mk
-include $(MAKEFILEDIR)/configure/build-depends/coreutils.mk
-include $(MAKEFILEDIR)/src.mk
+include $(MAKEFILEDIR)/configure/build-depends/checkpatch/checkpatch.mk
+include $(MAKEFILEDIR)/configure/build-depends/coreutils/touch.mk
+include $(MAKEFILEDIR)/configure/directory_variables/build.mk
+include $(MAKEFILEDIR)/configure/directory_variables/src.mk
+include $(MAKEFILEDIR)/src/tu.mk
 
 
-_TU_h_ckp := $(patsubst $(INCLUDEDIR)/%,$(builddir)/%.lint-c.checkpatch.touch,$(TU_h))
-_TU_c_ckp := $(patsubst $(SRCDIR)/%,$(builddir)/%.lint-c.checkpatch.touch,$(TU_c))
-_TU_ckp   := $(_TU_h_ckp) $(_TU_c_ckp)
+_LINT_c_TU_h_checkpatch := $(patsubst $(INCLUDEDIR)/%, $(builddir)/%.lint-c.checkpatch.touch, $(TU_h))
+_LINT_c_TU_c_checkpatch := $(patsubst $(SRCDIR)/%,     $(builddir)/%.lint-c.checkpatch.touch, $(TU_c))
+_LINT_c_TU_checkpatch   := $(_LINT_c_TU_h_checkpatch) $(_LINT_c_TU_c_checkpatch)
+_LINT_c_EX_checkpatch   := $(patsubst %, %.lint-c.checkpatch.touch, $(_EX_TU_src))
+_LINT_c_checkpatch      := $(_LINT_c_TU_checkpatch) $(_LINT_c_EX_checkpatch)
 
 
-$(_TU_h_ckp): $(builddir)/%.lint-c.checkpatch.touch: $(INCLUDEDIR)/%
-$(_TU_c_ckp): $(builddir)/%.lint-c.checkpatch.touch: $(SRCDIR)/%
-$(_TU_ckp): %.lint-c.checkpatch.touch: $(CHECKPATCH_CONF) $(MK) | %.d $$(@D)/
+$(_LINT_c_TU_h_checkpatch): $(builddir)/%.lint-c.checkpatch.touch: $(INCLUDEDIR)/%
+$(_LINT_c_TU_c_checkpatch): $(builddir)/%.lint-c.checkpatch.touch: $(SRCDIR)/%
+$(_LINT_c_TU_checkpatch): %.lint-c.checkpatch.touch: | %.d
+$(_LINT_c_EX_checkpatch): %.lint-c.checkpatch.touch: %
+$(_LINT_c_checkpatch): $(CHECKPATCH_CONF) $(MK) | $$(@D)/
 
 
-$(_TU_ckp):
+$(_LINT_c_checkpatch):
 	$(info	$(INFO_)CHECKPATCH	$@)
-	$(CHECKPATCH) $(CHECKPATCHFLAGS) -f $<
+	$(CHECKPATCH) $(CHECKPATCHFLAGS) -f $< >&2
 	$(TOUCH) $@
 
 
 .PHONY: lint-c-checkpatch
-lint-c-checkpatch: $(_TU_ckp);
+lint-c-checkpatch: $(_LINT_c_checkpatch);
 
 
 endif  # include guard

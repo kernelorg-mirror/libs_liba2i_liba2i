@@ -6,16 +6,17 @@ ifndef MAKEFILE_INSTALL_DEV_INCLUDE_INCLUDED
 MAKEFILE_INSTALL_DEV_INCLUDE_INCLUDED := 1
 
 
-include $(MAKEFILEDIR)/configure/build-depends/coreutils.mk
-include $(MAKEFILEDIR)/configure/directory_variables.mk
+include $(MAKEFILEDIR)/configure/build-depends/coreutils/install.mk
+include $(MAKEFILEDIR)/configure/directory_variables/install.mk
+include $(MAKEFILEDIR)/configure/directory_variables/src.mk
 include $(MAKEFILEDIR)/install/_.mk
-include $(MAKEFILEDIR)/src.mk
+include $(MAKEFILEDIR)/src/tu.mk
 
 
 _includedir := $(DESTDIR)$(includedir)
 
 
-_tu_h := $(patsubst $(INCLUDEDIR)/%,$(_includedir)/%,$(TU_h))
+_tu_h := $(patsubst $(INCLUDEDIR)/%, $(_includedir)/%, $(TU_h))
 
 
 $(_tu_h): $(_includedir)/%: $(INCLUDEDIR)/% $(MK) | $$(@D)/

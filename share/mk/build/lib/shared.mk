@@ -6,12 +6,12 @@ ifndef MAKEFILE_BUILD_LIB_SHARED_INCLUDED
 MAKEFILE_BUILD_LIB_SHARED_INCLUDED := 1
 
 
-include $(MAKEFILEDIR)/configure/build-depends/ld.mk
-include $(MAKEFILEDIR)/configure/build-depends/pkgconf.mk
-include $(MAKEFILEDIR)/configure/directory_variables.mk
+include $(MAKEFILEDIR)/configure/build-depends/binutils/ld.mk
+include $(MAKEFILEDIR)/configure/build-depends/pkgconf/pkgconf.mk
+include $(MAKEFILEDIR)/configure/directory_variables/build.mk
 include $(MAKEFILEDIR)/configure/verbose.mk
 include $(MAKEFILEDIR)/configure/version.mk
-include $(MAKEFILEDIR)/src.mk
+include $(MAKEFILEDIR)/src/tu.mk
 
 
 _REALNAME := $(builddir)/$(REALNAME)

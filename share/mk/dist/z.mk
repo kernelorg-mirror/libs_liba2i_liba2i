@@ -6,11 +6,11 @@ ifndef MAKEFILE_DIST_Z_INCLUDED
 MAKEFILE_DIST_Z_INCLUDED := 1
 
 
-include $(MAKEFILEDIR)/configure/build-depends/bzip2.mk
-include $(MAKEFILEDIR)/configure/build-depends/coreutils.mk
-include $(MAKEFILEDIR)/configure/build-depends/gzip.mk
-include $(MAKEFILEDIR)/configure/build-depends/lzip.mk
-include $(MAKEFILEDIR)/configure/build-depends/xz-utils.mk
+include $(MAKEFILEDIR)/configure/build-depends/bzip2/bzip2.mk
+include $(MAKEFILEDIR)/configure/build-depends/coreutils/touch.mk
+include $(MAKEFILEDIR)/configure/build-depends/gzip/gzip.mk
+include $(MAKEFILEDIR)/configure/build-depends/lzip/lzip.mk
+include $(MAKEFILEDIR)/configure/build-depends/xz-utils/xz.mk
 include $(MAKEFILEDIR)/dist/tar.mk
 
 

@@ -6,15 +6,18 @@ ifndef MAKEFILE_BUILD_DEPS_INCLUDED
 MAKEFILE_BUILD_DEPS_INCLUDED := 1
 
 
-include $(MAKEFILEDIR)/configure/build-depends/cc.mk
-include $(MAKEFILEDIR)/configure/build-depends/cpp.mk
-include $(MAKEFILEDIR)/configure/build-depends/pkgconf.mk
+include $(MAKEFILEDIR)/configure/build-depends/gcc/cc.mk
+include $(MAKEFILEDIR)/configure/build-depends/cpp/cpp.mk
+include $(MAKEFILEDIR)/configure/build-depends/pkgconf/pkgconf.mk
+include $(MAKEFILEDIR)/configure/directory_variables/build.mk
+include $(MAKEFILEDIR)/configure/directory_variables/src.mk
 include $(MAKEFILEDIR)/build/lib/shared.mk
-include $(MAKEFILEDIR)/src.mk
+include $(MAKEFILEDIR)/src/lib.mk
+include $(MAKEFILEDIR)/src/tu.mk
 
 
-_TU_h_d := $(patsubst $(INCLUDEDIR)/%,$(builddir)/%.d,$(TU_h))
-_TU_c_d := $(patsubst $(SRCDIR)/%,$(builddir)/%.d,$(TU_c))
+_TU_h_d := $(patsubst $(INCLUDEDIR)/%, $(builddir)/%.d, $(TU_h))
+_TU_c_d := $(patsubst $(SRCDIR)/%,     $(builddir)/%.d, $(TU_c))
 _TU_d   := $(_TU_h_d) $(_TU_c_d)
 
 
