@@ -45,10 +45,10 @@ $(foreach s, $(MANSECTIONS),                                                  \
 
 $(_manpages):
 	$(info	$(INFO_)INSTALL		$@)
-	<$< \
-	$(SED) $(foreach s, $(MANSECTIONS), \
+	$(INSTALL_DATA) -T $< $@
+	$(SED) -i $(foreach s, $(MANSECTIONS), \
 		-e '/^\.so /s, man$(s)/\(.*\)\.$(s)$$, $(notdir $(man$(s)dir))/\1$(man$(s)ext),') \
-	| $(INSTALL_DATA) -T /dev/stdin $@
+		$@
 ifeq ($(LINK_PAGES),symlink)
 	$(CAT) <$@ \
 	| if $(GREP) '^\.so ' >/dev/null; then \
