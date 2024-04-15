@@ -2,9 +2,8 @@
 # SPDX-License-Identifier: LGPL-3.0-only WITH LGPL-3.0-linking-exception
 
 
-BASH        := bash
-SHELL       := /usr/bin/env
-.SHELLFLAGS := -S '$(BASH) -Eeuo pipefail -c'
+SHELL       := bash
+.SHELLFLAGS := -Eeuo pipefail -c
 
 
 MAKEFLAGS += --no-builtin-rules
