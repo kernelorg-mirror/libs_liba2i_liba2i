@@ -29,12 +29,12 @@ _tests_c  := $(patsubst $(srcdir)/share/%, $(builddir)/%.installcheck, $(TESTS_c
 _tests_sh := $(patsubst $(srcdir)/share/%, $(builddir)/%.installcheck.touch, $(TESTS_sh))
 
 
-$(_TESTS_c): $(builddir)/%.check: $(srcdir)/share/% $(MK) $(TU_h) $(_LIB_a) $(_REALNAME) | $$(@D)/
+$(_TESTS_c): $(builddir)/%.check: $(srcdir)/share/% $(MK) $(TU_h) $(_LIB_a) $(_LINKERNAME) | $$(@D)/
 	$(info	CHECK		$@)
 	$(CC) $(CFLAGS) -o $@ $< $$(PKG_CONFIG_LIBDIR=$(PCDIR) $(PKGCONF) --cflags --libs liba2i)
 	$@
 
-$(_TESTS_sh): $(builddir)/%.check.touch: $(srcdir)/share/% $(MK) $(TU_h) $(_LIB_a) $(_REALNAME) | $$(@D)/
+$(_TESTS_sh): $(builddir)/%.check.touch: $(srcdir)/share/% $(MK) $(TU_h) $(_LIB_a) $(_LINKERNAME) | $$(@D)/
 	$(info	CHECK		$@)
 	PKG_CONFIG_LIBDIR=$(PCDIR) $<
 	$(TOUCH) $@

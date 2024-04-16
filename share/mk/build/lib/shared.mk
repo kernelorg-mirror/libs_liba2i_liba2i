@@ -14,7 +14,9 @@ include $(MAKEFILEDIR)/configure/version.mk
 include $(MAKEFILEDIR)/src/tu.mk
 
 
-_REALNAME := $(builddir)/$(REALNAME)
+_REALNAME   := $(builddir)/$(REALNAME)
+_SONAME     := $(builddir)/$(SONAME)
+_LINKERNAME := $(builddir)/$(LINKERNAME)
 
 
 $(_REALNAME): %.so.$(DISTVERSION): $(TU_h) $(TU_c) $(MK) $(LIB_pc) | $$(@D)/
@@ -25,8 +27,18 @@ $(_REALNAME): %.so.$(DISTVERSION): $(TU_h) $(TU_c) $(MK) $(LIB_pc) | $$(@D)/
 	$(LD) $(LDFLAGS)         -o $@                          $(TU_c) $(LDLIBS)
 
 
+$(_SONAME): $(_REALNAME) $(MK) | $$(@D)/
+	$(info	$(INFO_)LN		$@)
+	$(LN) -sfT $(REALNAME) $@
+
+
+$(_LINKERNAME): $(_SONAME) $(MK) | $$(@D)/
+	$(info	$(INFO_)LN		$@)
+	$(LN) -sfT $(SONAME) $@
+
+
 .PHONY: build-lib-shared
-build-lib-shared: $(_REALNAME);
+build-lib-shared: $(_LINKERNAME);
 
 
 endif  # include guard
