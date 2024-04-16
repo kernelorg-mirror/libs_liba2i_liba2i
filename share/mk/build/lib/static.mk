@@ -9,6 +9,7 @@ MAKEFILE_BUILD_LIB_STATIC_INCLUDED := 1
 include $(MAKEFILEDIR)/build/_.mk
 include $(MAKEFILEDIR)/build/obj/as.mk
 include $(MAKEFILEDIR)/configure/build-depends/binutils/ar.mk
+include $(MAKEFILEDIR)/configure/build-depends/binutils/ranlib.mk
 include $(MAKEFILEDIR)/configure/build-depends/coreutils/echo.mk
 include $(MAKEFILEDIR)/configure/build-depends/coreutils/rm.mk
 include $(MAKEFILEDIR)/configure/build-depends/findutils/xargs.mk
@@ -28,11 +29,13 @@ $(_LIB_a): %.a: $(_TU_o) $(MK) | $$(@D)/
 		$(ECHO) $(patsubst $(builddir)/%,%,$(_TU_o)) \
 		| $(SED) "s,.o\>,.O$$opt.o," \
 		| $(XARGS) $(AR) $(ARFLAGS) $(notdir $*).O$$opt.a; \
+		$(RANLIB) $(RANLIBFLAGS) $(notdir $*).O$$opt.a; \
 	done
 	$(RM) -f $@
 	cd $(dir $@)/ && \
 	$(ECHO) $(patsubst $(builddir)/%,%,$(_TU_o)) \
-	| $(XARGS) $(AR) $(ARFLAGS) $(notdir $@)
+	| $(XARGS) $(AR) $(ARFLAGS) $(notdir $@); \
+	$(RANLIB) $(RANLIBFLAGS) $(notdir $@)
 
 
 .PHONY: build-lib-static
