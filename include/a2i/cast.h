@@ -6,6 +6,8 @@
 #define INCLUDE_A2I_CAST_H_
 
 
+#include <assert.h>  // IWYU pragma: keep
+
 #include <a2i/typetraits.h>
 
 
