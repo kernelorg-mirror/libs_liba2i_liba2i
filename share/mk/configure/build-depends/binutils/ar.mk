@@ -6,10 +6,18 @@ ifndef MAKEFILE_CONFIGURE_BUILD_DEPENDS_BINUTILS_AR_INCLUDED
 MAKEFILE_CONFIGURE_BUILD_DEPENDS_BINUTILS_AR_INCLUDED := 1
 
 
+include $(MAKEFILEDIR)/configure/build-depends/gcc/cc.mk
+
+
 DEFAULT_ARFLAGS := qcDP
 EXTRA_ARFLAGS   :=
 ARFLAGS         := $(DEFAULT_ARFLAGS) $(EXTRA_ARFLAGS)
+
+ifeq ($(CC_VENDOR),gcc)
 AR              := gcc-ar
+else
+AR              := ar
+endif
 
 
 endif  # include guard

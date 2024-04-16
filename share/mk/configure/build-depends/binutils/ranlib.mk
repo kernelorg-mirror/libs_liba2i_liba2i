@@ -6,10 +6,18 @@ ifndef MAKEFILE_CONFIGURE_BUILD_DEPENDS_BINUTILS_RANLIB_INCLUDED
 MAKEFILE_CONFIGURE_BUILD_DEPENDS_BINUTILS_RANLIB_INCLUDED := 1
 
 
+include $(MAKEFILEDIR)/configure/build-depends/gcc/cc.mk
+
+
 DEFAULT_RANLIBFLAGS :=
 EXTRA_RANLIBFLAGS   :=
 RANLIBFLAGS         := $(DEFAULT_RANLIBFLAGS) $(EXTRA_RANLIBFLAGS)
+
+ifeq ($(CC_VENDOR),gcc)
 RANLIB              := gcc-ranlib
+else
+RANLIB              := ranlib
+endif
 
 
 endif  # include guard
