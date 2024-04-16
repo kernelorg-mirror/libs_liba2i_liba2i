@@ -25,6 +25,8 @@ ifneq ($(filter includedir=%,$(MAKEOVERRIDES)),)
 endif
 ifneq ($(filter libdir=%,$(MAKEOVERRIDES)),)
 	$(SED) -i 's,^libdir=.*,libdir=$(libdir),' $@
+else
+	$(SED) -i 's,^libdir=.*,libdir=$${exec_prefix}/lib,' $@
 endif
 
 

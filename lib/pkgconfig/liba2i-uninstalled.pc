@@ -8,7 +8,7 @@ Requires.private:
 prefix=.
 includedir=${prefix}/include
 exec_prefix=${prefix}
-libdir=${exec_prefix}/lib
+libdir=.tmp
 
 Cflags: -I${includedir}
 Libs: -L${libdir} -la2i -lc
