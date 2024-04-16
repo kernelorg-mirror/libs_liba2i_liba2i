@@ -31,8 +31,8 @@ __EOF__
 
 
 $CC $CFLAGS -o "$out" -x c - $LIBS 2>&1 <<__EOF__ \
-| if ! grep -- 'incompatible-pointer-types' >/dev/null; then \
-	>&2 printf '%s\n' "$0:$LINENO: Expected [incompatible-pointer-types]"; \
+| if ! grep -- 'error:.*[Gg]eneric.* association' >/dev/null; then \
+	>&2 printf '%s\n' "$0:$LINENO: Expected error: [_Generic]"; \
 	exit 1; \
 else \
 	true; \
