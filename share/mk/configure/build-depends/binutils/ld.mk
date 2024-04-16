@@ -6,6 +6,7 @@ ifndef MAKEFILE_CONFIGURE_BUILD_DEPENDS_BINUTILS_LD_INCLUDED
 MAKEFILE_CONFIGURE_BUILD_DEPENDS_BINUTILS_LD_INCLUDED := 1
 
 
+include $(MAKEFILEDIR)/configure/build-depends/cpp/cpp.mk
 include $(MAKEFILEDIR)/configure/build-depends/gcc/cc.mk
 include $(MAKEFILEDIR)/configure/build-depends/coreutils/echo.mk
 include $(MAKEFILEDIR)/configure/build-depends/pkgconf/pkgconf.mk
@@ -14,7 +15,7 @@ include $(MAKEFILEDIR)/configure/verbose.mk
 include $(MAKEFILEDIR)/configure/version.mk
 
 
-LD := $(CC) $(CFLAGS)
+LD := $(CC) $(CPPFLAGS) $(CFLAGS)
 
 
 LD_HAS_FUSE_LINKER_PLUGIN := \
