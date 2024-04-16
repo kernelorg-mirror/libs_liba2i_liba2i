@@ -6,7 +6,6 @@
 #define INCLUDE_A2I_STR2I_H_
 
 
-#include <assert.h>  // IWYU pragma: keep
 #include <stddef.h>
 
 #include <a2i/a2i.h>
@@ -34,17 +33,27 @@
 
 
 #define str2s(TYPE, ...)                                                      \
-({                                                                            \
-	static_assert(a2i_is_signed(TYPE), "");                               \
-	str2i(TYPE, __VA_ARGS__);                                             \
-})
+(                                                                             \
+	_Generic((TYPE) 0,                                                    \
+		signed char:         str2shh,                                 \
+		short:               str2sh,                                  \
+		int:                 str2si,                                  \
+		long:                str2sl,                                  \
+		long long:           str2sll                                  \
+	)(__VA_ARGS__)                                                        \
+)
 
 
 #define str2u(TYPE, ...)                                                      \
-({                                                                            \
-	static_assert(a2i_is_unsigned(TYPE), "");                             \
-	str2i(TYPE, __VA_ARGS__);                                             \
-})
+(                                                                            \
+	_Generic((TYPE) 0,                                                    \
+		unsigned char:       str2uhh,                                 \
+		unsigned short:      str2uh,                                  \
+		unsigned int:        str2ui,                                  \
+		unsigned long:       str2ul,                                  \
+		unsigned long long:  str2ull                                  \
+	)(__VA_ARGS__)                                                        \
+)
 
 
 #define a2i_str2I(n, s)                                                       \
