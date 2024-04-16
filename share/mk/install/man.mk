@@ -6,6 +6,7 @@ ifndef MAKEFILE_INSTALL_MAN_INCLUDED
 MAKEFILE_INSTALL_MAN_INCLUDED := 1
 
 
+include $(MAKEFILEDIR)/configure/build-depends/coreutils/cat.mk
 include $(MAKEFILEDIR)/configure/build-depends/coreutils/install.mk
 include $(MAKEFILEDIR)/configure/build-depends/coreutils/ln.mk
 include $(MAKEFILEDIR)/configure/build-depends/coreutils/test.mk
@@ -49,7 +50,8 @@ $(_manpages):
 		-e '/^\.so /s, man$(s)/\(.*\)\.$(s)$$, $(notdir $(man$(s)dir))/\1$(man$(s)ext),') \
 	| $(INSTALL_DATA) -T /dev/stdin $@
 ifeq ($(LINK_PAGES),symlink)
-	if $(GREP) '^\.so ' <$@ >/dev/null; then \
+	$(CAT) <$@ \
+	| if $(GREP) '^\.so ' >/dev/null; then \
 		$(GREP) '^\.so ' <$@ \
 		| $(SED) 's,^\.so \(.*\),../\1,' \
 		| $(XARGS) -I tgt $(LN) -fsT tgt $@; \
