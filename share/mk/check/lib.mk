@@ -33,7 +33,7 @@ $(_TESTS_c): $(builddir)/%.check: $(srcdir)/share/% \
 		$(MK) $(TU_h) $(wildcard $(_LIB_a) $(_LINKERNAME)) | $$(@D)/
 	$(info	CHECK		$@)
 	$(CC) $(CFLAGS) -o $@ $< $$(PKG_CONFIG_LIBDIR=$(PCDIR) $(PKGCONF) --cflags --libs liba2i)
-	$@
+	LD_LIBRARY_PATH=$(builddir) $@
 
 $(_TESTS_sh): $(builddir)/%.check.touch: $(srcdir)/share/% \
 		$(MK) $(TU_h) $(wildcard $(_LIB_a) $(_LINKERNAME)) | $$(@D)/
