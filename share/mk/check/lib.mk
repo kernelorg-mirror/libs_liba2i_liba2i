@@ -29,22 +29,26 @@ _tests_c  := $(patsubst $(srcdir)/share/%, $(builddir)/%.installcheck, $(TESTS_c
 _tests_sh := $(patsubst $(srcdir)/share/%, $(builddir)/%.installcheck.touch, $(TESTS_sh))
 
 
-$(_TESTS_c): $(builddir)/%.check: $(srcdir)/share/% $(MK) $(TU_h) $(_LIB_a) $(_LINKERNAME) | $$(@D)/
+$(_TESTS_c): $(builddir)/%.check: $(srcdir)/share/% \
+		$(MK) $(TU_h) $(wildcard $(_LIB_a) $(_LINKERNAME)) | $$(@D)/
 	$(info	CHECK		$@)
 	$(CC) $(CFLAGS) -o $@ $< $$(PKG_CONFIG_LIBDIR=$(PCDIR) $(PKGCONF) --cflags --libs liba2i)
 	$@
 
-$(_TESTS_sh): $(builddir)/%.check.touch: $(srcdir)/share/% $(MK) $(TU_h) $(_LIB_a) $(_LINKERNAME) | $$(@D)/
+$(_TESTS_sh): $(builddir)/%.check.touch: $(srcdir)/share/% \
+		$(MK) $(TU_h) $(wildcard $(_LIB_a) $(_LINKERNAME)) | $$(@D)/
 	$(info	CHECK		$@)
 	PKG_CONFIG_LIBDIR=$(PCDIR) $<
 	$(TOUCH) $@
 
-$(_tests_c): $(builddir)/%.installcheck: $(srcdir)/share/% $(MK) $(_tu_h) $(_lib_a) $(_linkername) | $$(@D)/
+$(_tests_c): $(builddir)/%.installcheck: $(srcdir)/share/% \
+		$(MK) $(_tu_h) $(wildcard $(_lib_a) $(_linkername)) | $$(@D)/
 	$(info	INSTALLCHECK	$@)
 	$(CC) $(CFLAGS) -o $@ $< $$($(PKGCONF) --cflags --libs liba2i)
 	$@
 
-$(_tests_sh): $(builddir)/%.installcheck.touch: $(srcdir)/share/% $(MK) $(_tu_h) $(_lib_a) $(_linkername) | $$(@D)/
+$(_tests_sh): $(builddir)/%.installcheck.touch: $(srcdir)/share/% \
+		$(MK) $(_tu_h) $(wildcard $(_lib_a) $(_linkername)) | $$(@D)/
 	$(info	INSTALLCHECK	$@)
 	$<
 	$(TOUCH) $@
