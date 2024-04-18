@@ -45,7 +45,7 @@
 
 
 #define str2u(TYPE, ...)                                                      \
-(                                                                            \
+(                                                                             \
 	_Generic((TYPE) 0,                                                    \
 		unsigned char:       str2uhh,                                 \
 		unsigned short:      str2uh,                                  \
