@@ -6,12 +6,12 @@
 #define INCLUDE_A2I_STR2I_H_
 
 
+#include <limits.h>
 #include <stddef.h>
 
 #include <a2i/a2i.h>
 #include <a2i/attr.h>
 #include <a2i/inline.h>
-#include <a2i/typetraits.h>
 
 
 #define str2i(TYPE, ...)                                                      \
@@ -56,12 +56,6 @@
 )
 
 
-#define a2i_str2I(n, s)                                                       \
-(                                                                             \
-	a2i(typeof(*n), n, s, NULL, 0, a2i_typeof_min(*n), a2i_typeof_max(*n))\
-)
-
-
 #define A2I_STR2I_PROTOTYPE(name, TYPE)                                       \
 	A2I_ATTR_ACCESS(write_only, 1)                                        \
 	A2I_ATTR_ACCESS(read_only, 2)                                         \
@@ -88,70 +82,70 @@ A2I_STR2I_PROTOTYPE(str2ull, unsigned long long);
 a2i_inline int
 str2shh(signed char *restrict n, const char *restrict s)
 {
-	return a2i_str2I(n, s);
+	return a2i(signed char, n, s, NULL, 0, SCHAR_MIN, SCHAR_MAX);
 }
 
 
 a2i_inline int
 str2sh(short *restrict n, const char *restrict s)
 {
-	return a2i_str2I(n, s);
+	return a2i(short, n, s, NULL, 0, SHRT_MIN, SHRT_MAX);
 }
 
 
 a2i_inline int
 str2si(int *restrict n, const char *restrict s)
 {
-	return a2i_str2I(n, s);
+	return a2i(int, n, s, NULL, 0, INT_MIN, INT_MAX);
 }
 
 
 a2i_inline int
 str2sl(long *restrict n, const char *restrict s)
 {
-	return a2i_str2I(n, s);
+	return a2i(long, n, s, NULL, 0, LONG_MIN, LONG_MAX);
 }
 
 
 a2i_inline int
 str2sll(long long *restrict n, const char *restrict s)
 {
-	return a2i_str2I(n, s);
+	return a2i(long long, n, s, NULL, 0, LLONG_MIN, LLONG_MAX);
 }
 
 
 a2i_inline int
 str2uhh(unsigned char *restrict n, const char *restrict s)
 {
-	return a2i_str2I(n, s);
+	return a2i(unsigned char, n, s, NULL, 0, 0, UCHAR_MAX);
 }
 
 
 a2i_inline int
 str2uh(unsigned short *restrict n, const char *restrict s)
 {
-	return a2i_str2I(n, s);
+	return a2i(unsigned short, n, s, NULL, 0, 0, USHRT_MAX);
 }
 
 
 a2i_inline int
 str2ui(unsigned int *restrict n, const char *restrict s)
 {
-	return a2i_str2I(n, s);
+	return a2i(unsigned int, n, s, NULL, 0, 0, UINT_MAX);
 }
 
 
 a2i_inline int
 str2ul(unsigned long *restrict n, const char *restrict s)
 {
-	return a2i_str2I(n, s);
+	return a2i(unsigned long, n, s, NULL, 0, 0, ULONG_MAX);
 }
 
 
 a2i_inline int
 str2ull(unsigned long long *restrict n, const char *restrict s)
 {
-	return a2i_str2I(n, s);
+	return a2i(unsigned long long, n, s, NULL, 0, 0, ULLONG_MAX);
 }
 #if defined(__clang__)
 # pragma clang assume_nonnull end
