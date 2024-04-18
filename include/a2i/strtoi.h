@@ -17,15 +17,6 @@
 #include <a2i/qual.h>
 
 
-#define a2i_strtoImax(TYPE, ...)                                              \
-(                                                                             \
-	_Generic((TYPE) 0,                                                    \
-		intmax_t:  strtoimax,                                         \
-		uintmax_t: strtoumax                                          \
-	)(__VA_ARGS__)                                                        \
-)
-
-
 #define a2i_strtoI(TYPE, s, endp, base, min, max, status)                     \
 ({                                                                            \
 	const char  *s_ = s;                                                  \
@@ -51,7 +42,10 @@
 	} else {                                                              \
 		errno_saved_ = errno;                                         \
 		errno = 0;                                                    \
-		n_ = a2i_strtoImax(TYPE, s_, endp_, base_);                   \
+		n_ = _Generic((TYPE) 0,                                       \
+			intmax_t:  strtoimax,                                 \
+			uintmax_t: strtoumax                                  \
+		)(s_, endp_, base_);                                          \
                                                                               \
 		if (*endp_ == s_)                                             \
 			*status_ = ECANCELED;                                 \
