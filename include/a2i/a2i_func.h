@@ -7,10 +7,8 @@
 
 
 #include <errno.h>
-#include <stdint.h>
 
 #include <a2i/attr.h>
-#include <a2i/cast.h>
 #include <a2i/inline.h>
 #include <a2i/qual.h>
 #include <a2i/strtoi.h>
@@ -35,12 +33,9 @@
 
 #define a2i_a2S_nc(n, s, endp, base, min, max)                                \
 ({                                                                            \
-	int       status_;                                                    \
-	intmax_t  n_;                                                         \
+	int  status_;                                                         \
                                                                               \
-	n_ = a2i_strtoi(s, endp, base, min, max, &status_);                   \
-	*n = a2i_narrow_int_cast(typeof(*n), n_);                             \
-                                                                              \
+	*n = a2i_strtoi(s, endp, base, min, max, &status_);                   \
 	if (status_ != 0)                                                     \
 		errno = status_;                                              \
                                                                               \
@@ -50,11 +45,8 @@
 #define a2i_a2U_nc(n, s, endp, base, min, max)                                \
 ({                                                                            \
 	int        status_;                                                   \
-	uintmax_t  n_;                                                        \
                                                                               \
-	n_ = a2i_strtou_noneg(s, endp, base, min, max, &status_);             \
-	*n = a2i_narrow_int_cast(typeof(*n), n_);                             \
-                                                                              \
+	*n = a2i_strtou_noneg(s, endp, base, min, max, &status_);             \
 	if (status_ != 0)                                                     \
 		errno = status_;                                              \
                                                                               \
@@ -91,6 +83,11 @@ A2I_A2I_PROTOTYPES(a2ul, unsigned long);
 A2I_A2I_PROTOTYPES(a2ull, unsigned long long);
 
 
+#if defined(__clang__)
+# pragma clang diagnostic push
+# pragma clang diagnostic ignored "-Wimplicit-int-conversion"
+# pragma clang diagnostic ignored "-Wshorten-64-to-32"
+#endif
 a2i_inline int
 a2shh_c(signed char *restrict n, const char *s,
     const char **a2i_nullable restrict endp, int base,
@@ -270,6 +267,7 @@ a2ull_nc(unsigned long long *restrict n, const char *s,
 	return a2i_a2U_nc(n, s, endp, base, min, max);
 }
 #if defined(__clang__)
+# pragma clang diagnostic pop  // -Wimplicit-int-conversion, -Wshorten-64-to-32
 # pragma clang assume_nonnull end
 #endif
 
