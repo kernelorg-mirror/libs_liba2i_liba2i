@@ -14,6 +14,7 @@ DEFAULT_CPPCHECKFLAGS := \
 	--enable=all \
 	--error-exitcode=2 \
 	--inconclusive \
+	--check-level=exhaustive \
 	--quiet \
 	-D__GNUC__ \
 	-D__STDC_VERSION__=202000L \
