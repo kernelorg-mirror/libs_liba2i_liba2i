@@ -5,6 +5,7 @@
 #include <a2i/a2i.h>
 
 #include <errno.h>
+#include <limits.h>
 #include <stdint.h>
 #include <stdio.h>
 #include <string.h>
