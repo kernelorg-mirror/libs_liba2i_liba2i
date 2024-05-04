@@ -12,7 +12,7 @@ include $(MAKEFILEDIR)/configure/build-depends/sed/sed.mk
 include $(MAKEFILEDIR)/configure/verbose.mk
 
 
-export CC := gcc
+CC := gcc
 
 
 CC_VENDOR := \
@@ -74,7 +74,7 @@ DEFAULT_CFLAGS += -ffat-lto-objects
 endif
 
 EXTRA_CFLAGS   :=
-export CFLAGS  := $(DEFAULT_CFLAGS) $(EXTRA_CFLAGS)
+CFLAGS         := $(DEFAULT_CFLAGS) $(EXTRA_CFLAGS)
 
 
 endif  # include guard

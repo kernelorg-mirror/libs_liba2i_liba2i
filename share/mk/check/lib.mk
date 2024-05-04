@@ -38,7 +38,10 @@ $(_TESTS_c): $(builddir)/%.check: $(srcdir)/share/% \
 $(_TESTS_sh): $(builddir)/%.check.touch: $(srcdir)/share/% \
 		$(MK) $(TU_h) $(wildcard $(_LIB_a) $(_LINKERNAME)) | $$(@D)/
 	$(info	CHECK		$@)
-	PKG_CONFIG_LIBDIR=$(PCDIR) $<
+	PKG_CONFIG_LIBDIR=$(PCDIR) \
+	CC='$(CC)' \
+	CFLAGS='$(CFLAGS)' \
+	$<
 	$(TOUCH) $@
 
 $(_tests_c): $(builddir)/%.installcheck: $(srcdir)/share/% \
@@ -50,6 +53,8 @@ $(_tests_c): $(builddir)/%.installcheck: $(srcdir)/share/% \
 $(_tests_sh): $(builddir)/%.installcheck.touch: $(srcdir)/share/% \
 		$(MK) $(_tu_h) $(wildcard $(_lib_a) $(_linkername)) | $$(@D)/
 	$(info	INSTALLCHECK	$@)
+	CC='$(CC)' \
+	CFLAGS='$(CFLAGS)' \
 	$<
 	$(TOUCH) $@
 
