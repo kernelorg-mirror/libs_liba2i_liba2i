@@ -38,9 +38,9 @@ $(_TESTS_c): $(builddir)/%.check: $(srcdir)/share/% \
 $(_TESTS_sh): $(builddir)/%.check.touch: $(srcdir)/share/% \
 		$(MK) $(TU_h) $(wildcard $(_LIB_a) $(_LINKERNAME)) | $$(@D)/
 	$(info	CHECK		$@)
-	PKG_CONFIG_LIBDIR=$(PCDIR) \
 	CC='$(CC)' \
 	CFLAGS="$(CFLAGS) $$(PKG_CONFIG_LIBDIR=$(PCDIR) $(PKGCONF) --cflags liba2i)" \
+	LDLIBS="$$(PKG_CONFIG_LIBDIR=$(PCDIR) $(PKGCONF) --libs liba2i)" \
 	$<
 	$(TOUCH) $@
 
@@ -55,6 +55,7 @@ $(_tests_sh): $(builddir)/%.installcheck.touch: $(srcdir)/share/% \
 	$(info	INSTALLCHECK	$@)
 	CC='$(CC)' \
 	CFLAGS="$(CFLAGS) $$($(PKGCONF) --cflags liba2i)" \
+	LDLIBS="$$($(PKGCONF) --libs liba2i)" \
 	$<
 	$(TOUCH) $@
 

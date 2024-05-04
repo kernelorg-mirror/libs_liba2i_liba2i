@@ -7,10 +7,9 @@ set -Eeuf;
 
 
 out="$(mktemp)";
-LIBS="$(pkgconf --libs liba2i)";
 
 
-$CC $CFLAGS -o "$out" -x c - $LIBS 2>&1 <<__EOF__ \
+$CC $CFLAGS -o "$out" -x c - $LDLIBS 2>&1 <<__EOF__ \
 | if ! grep -- 'pointer-sign' >/dev/null; then \
 	>&2 printf '%s\n' "$0:$LINENO: Expected error: [pointer-sign]"; \
 	exit 1; \
@@ -30,7 +29,7 @@ fi;
 __EOF__
 
 
-$CC $CFLAGS -o "$out" -x c - $LIBS 2>&1 <<__EOF__ \
+$CC $CFLAGS -o "$out" -x c - $LDLIBS 2>&1 <<__EOF__ \
 | if ! grep -- 'incompatible-pointer-types' >/dev/null; then \
 	>&2 printf '%s\n' "$0:$LINENO: Expected error: [incompatible-pointer-types]"; \
 	exit 1; \
@@ -50,7 +49,7 @@ fi;
 __EOF__
 
 
-$CC $CFLAGS -o "$out" -x c - $LIBS 2>&1 <<__EOF__ \
+$CC $CFLAGS -o "$out" -x c - $LDLIBS 2>&1 <<__EOF__ \
 | if ! grep -- 'error:.*[Gg]eneric.* association' >/dev/null; then \
 	>&2 printf '%s\n' "$0:$LINENO: Expected error: [_Generic]"; \
 	exit 1; \
