@@ -34,8 +34,8 @@ main(void)
 static void
 test_null(void)
 {
-	int   s;
-	char  *e = "unmodified";
+	int         s;
+	const char  *e = "unmodified";
 
 	errno = 0;
 
@@ -91,8 +91,8 @@ test_null(void)
 static void
 test_base(void)
 {
-	int   s;
-	char  *e = "unmodified";
+	int         s;
+	const char  *e = "unmodified";
 
 	errno = 0;
 
@@ -271,8 +271,8 @@ test_base(void)
 static void
 test_leading_text(void)
 {
-	int   s;
-	char  *e;
+	int         s;
+	const char  *e;
 
 	errno = 0;
 
@@ -306,8 +306,8 @@ test_leading_text(void)
 static void
 test_range(void)
 {
-	int   s;
-	char  *e;
+	int         s;
+	const char  *e;
 
 	errno = 0;
 
@@ -368,8 +368,8 @@ test_range(void)
 static void
 test_trailing_text(void)
 {
-	int   s;
-	char  *e;
+	int         s;
+	const char  *e;
 
 	errno = 0;
 

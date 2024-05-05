@@ -35,8 +35,8 @@ main(void)
 static void
 test_null(void)
 {
-	char  *e = "unmodified";
-	int   n;
+	int         n;
+	const char  *e = "unmodified";
 
 	assert(a2s(int, &n, "x99z", NULL, 1, -7, 42) == -1);
 	assert(n == 0);
@@ -86,8 +86,8 @@ test_null(void)
 static void
 test_base(void)
 {
-	char  *e = "unmodified";
-	long  n;
+	long        n;
+	const char  *e = "unmodified";
 
 	assert(a2s(long, &n, "1", &e, 1, -42, 42) == -1);
 	assert(n == 0);
@@ -321,8 +321,8 @@ test_base(void)
 static void
 test_leading_text(void)
 {
-	char       *e;
-	long long  n;
+	long long   n;
+	const char  *e;
 
 	assert(a2s(long long, &n, "", &e, 0, -42, 42) == -1);
 	assert(n == 0);
@@ -361,7 +361,7 @@ test_leading_text(void)
 static void
 test_range(void)
 {
-	char         *e;
+	const char   *e;
 	signed char  n;
 
 	assert(a2s(signed char, &n, "-9", &e, 0, -7, 42) == -1);
@@ -440,8 +440,8 @@ test_range(void)
 static void
 test_trailing_text(void)
 {
-	char   *e;
-	short  n;
+	short       n;
+	const char  *e;
 
 	assert(a2s(short, &n, "\n9 fff 7", &e, 0, -7, 42) == -1);
 	assert(n == 9);

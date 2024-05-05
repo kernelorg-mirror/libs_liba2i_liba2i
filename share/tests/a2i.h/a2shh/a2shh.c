@@ -35,7 +35,7 @@ main(void)
 static void
 test_null(void)
 {
-	char         *e = "unmodified";
+	const char   *e = "unmodified";
 	signed char  n;
 
 	assert(a2shh(&n, "x99z", NULL, 1, -7, 42) == -1);
@@ -86,7 +86,7 @@ test_null(void)
 static void
 test_base(void)
 {
-	char         *e = "unmodified";
+	const char   *e = "unmodified";
 	signed char  n;
 
 	assert(a2shh(&n, "1", &e, 1, -42, 42) == -1);
@@ -321,7 +321,7 @@ test_base(void)
 static void
 test_leading_text(void)
 {
-	char         *e;
+	const char   *e;
 	signed char  n;
 
 	assert(a2shh(&n, "", &e, 0, -42, 42) == -1);
@@ -361,7 +361,7 @@ test_leading_text(void)
 static void
 test_range(void)
 {
-	char         *e;
+	const char   *e;
 	signed char  n;
 
 	assert(a2shh(&n, "-9", &e, 0, -7, 42) == -1);
@@ -440,7 +440,7 @@ test_range(void)
 static void
 test_trailing_text(void)
 {
-	char         *e;
+	const char   *e;
 	signed char  n;
 
 	assert(a2shh(&n, "\n9 fff 7", &e, 0, -7, 42) == -1);
