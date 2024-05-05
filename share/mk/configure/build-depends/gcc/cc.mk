@@ -43,7 +43,8 @@ COMMON_CFLAGS := \
 	-Werror \
 	-Wstrict-prototypes \
 	-Wdeclaration-after-statement \
-	-Wno-unknown-pragmas
+	-Wno-unknown-pragmas \
+	-Wwrite-strings
 
 
 GCC_CFLAGS := -fanalyzer
