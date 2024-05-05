@@ -1,4 +1,5 @@
 checkersReport
+internalAstError
 missingIncludeSystem
 shadowArgument
 unassignedVariable
