@@ -272,6 +272,27 @@ if (a2s(int64_t, &i, s, NULL, 0, -7, 42) == -1)
 .EE
 .in
 .
+.SS QChar
+These functions have const-generic wrapper macros.
+These decide the const-ness of
+.I endp
+depending on the const-ness of the input
+.IR s .
+So, if
+.I s
+is of type
+.IR const\~char\~* ,
+.I endp
+will be of type
+.IR const\~char\~** ;
+and if
+.I s
+is of type
+.IR char\~* ,
+.I endp
+will be of type
+.IR char\~** .
+.
 .
 .SH Return value
 On success,
