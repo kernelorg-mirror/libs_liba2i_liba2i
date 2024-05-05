@@ -73,7 +73,7 @@ String-to-integer library
 .BI TYPE\~ max );
 .YS
 .
-.SS Signed functions
+.SS Signed const-generic functions
 .B int
 .SY a2shh (
 .BI signed\~char\~*restrict\~ n ,
@@ -130,7 +130,7 @@ String-to-integer library
 .BI long\~long\~ max );
 .YS .
 .
-.SS Unsigned functions
+.SS Unsigned const-generic functions
 .B int
 .SY a2uhh (
 .BI unsigned\~char\~*restrict\~ n ,
@@ -273,7 +273,7 @@ if (a2s(int64_t, &i, s, NULL, 0, -7, 42) == -1)
 .in
 .
 .SS QChar
-These functions have const-generic wrapper macros.
+These functions are implemented with const-generic wrapper macros.
 These decide the const-ness of
 .I endp
 depending on the const-ness of the input
@@ -292,6 +292,16 @@ is of type
 .I endp
 will be of type
 .IR char\~** .
+.P
+There are functions of the same name,
+which don't have any const parameters.
+And functions named with a
+.I _c
+suffix,
+which use const in both
+.I s
+and
+.IR endp .
 .
 .
 .SH Return value
