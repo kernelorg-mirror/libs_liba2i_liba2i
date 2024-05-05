@@ -10,7 +10,7 @@
 #include <a2i/strtoi.h>
 
 
-#define a2i_a2I_nc(n, s, endp, base, min, max)                                \
+#define a2i_a2I_nc(n, ...)                                                    \
 ({                                                                            \
 	int  status_;                                                         \
                                                                               \
@@ -25,7 +25,7 @@
 		unsigned int:        a2i_strtou_noneg,                        \
 		unsigned long:       a2i_strtou_noneg,                        \
 		unsigned long long:  a2i_strtou_noneg                         \
-	)(s, endp, base, min, max, &status_);                                 \
+	)(__VA_ARGS__, &status_);                                             \
 	if (status_ != 0)                                                     \
 		errno = status_;                                              \
                                                                               \
