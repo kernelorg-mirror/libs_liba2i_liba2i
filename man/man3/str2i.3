@@ -35,30 +35,79 @@ String-to-integer library
 .fi
 .
 .SS Type-generic macros
-.nf
-.BI "int str2i(TYPE, TYPE *restrict " n ", const char *" s );
+.B int
+.SY str2i (
+.B TYPE,
+.BI TYPE\~*restrict\~ n ,
+.BI const\~char\~* s );
+.YS .
 .P
-.BI "int str2s(TYPE, TYPE *restrict " n ", const char *" s );
-.BI "int str2u(TYPE, TYPE *restrict " n ", const char *" s );
-.fi
+.B int
+.SY str2s (
+.B TYPE,
+.BI TYPE\~*restrict\~ n ,
+.BI const\~char\~* s );
+.YS .
+.B int
+.SY str2u (
+.B TYPE,
+.BI TYPE\~*restrict\~ n ,
+.BI const\~char\~* s );
+.YS
 .
 .SS Signed functions
-.nf
-.BI "int str2shh(signed char *restrict " n ", const char *" s );
-.BI "int str2sh(short *restrict " n ", const char *" s );
-.BI "int str2si(int *restrict " n ", const char *" s );
-.BI "int str2sl(long *restrict " n ", const char *" s );
-.BI "int str2sll(long long *restrict " n ", const char *" s );
-.fi
+.B int
+.SY str2shh (
+.BI signed\~char\~*restrict\~ n ,
+.BI const\~char\~* s );
+.YS .
+.B int
+.SY str2sh (
+.BI short\~*restrict\~ n ,
+.BI const\~char\~* s );
+.YS .
+.B int
+.SY str2si (
+.BI int\~*restrict\~ n ,
+.BI const\~char\~* s );
+.YS .
+.B int
+.SY str2sl (
+.BI long\~*restrict\~ n ,
+.BI const\~char\~* s );
+.YS .
+.B int
+.SY str2sll (
+.BI long\~long\~*restrict\~ n ,
+.BI const\~char\~* s );
+.YS .
 .
 .SS Unsigned functions
-.nf
-.BI "int str2uhh(unsigned char *restrict " n ", const char *" s );
-.BI "int str2uh(unsigned short *restrict " n ", const char *" s );
-.BI "int str2ui(unsigned int *restrict " n ", const char *" s );
-.BI "int str2ul(unsigned long *restrict " n ", const char *" s );
-.BI "int str2ull(unsigned long long *restrict " n ", const char *" s );
-.fi
+.B int
+.SY str2uhh (
+.BI unsigned\~char\~*restrict\~ n ,
+.BI const\~char\~* s );
+.YS .
+.B int
+.SY str2uh (
+.BI unsigned\~short\~*restrict\~ n ,
+.BI const\~char\~* s );
+.YS .
+.B int
+.SY str2ui (
+.BI unsigned\~int\~*restrict\~ n ,
+.BI const\~char\~* s );
+.YS .
+.B int
+.SY str2ul (
+.BI unsigned\~long\~*restrict\~ n ,
+.BI const\~char\~* s );
+.YS .
+.B int
+.SY str2ull (
+.BI unsigned\~long\~long\~*restrict\~ n ,
+.BI const\~char\~* s );
+.YS
 .
 .SH Description
 These functions and macros
