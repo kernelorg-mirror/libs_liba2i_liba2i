@@ -14,35 +14,35 @@
 (                                                                             \
 	_Generic((void (*)(TYPE, typeof(endp))) 0,                            \
 		void (*)(signed char,        const char **):  a2shh_c,        \
-		void (*)(signed char,        char **):        a2shh_nc,       \
-		void (*)(signed char,        void *):         a2shh_nc,       \
+		void (*)(signed char,        char **):        a2shh,          \
+		void (*)(signed char,        void *):         a2shh,          \
 		void (*)(short,              const char **):  a2sh_c,         \
-		void (*)(short,              char **):        a2sh_nc,        \
-		void (*)(short,              void *):         a2sh_nc,        \
+		void (*)(short,              char **):        a2sh,           \
+		void (*)(short,              void *):         a2sh,           \
 		void (*)(int,                const char **):  a2si_c,         \
-		void (*)(int,                char **):        a2si_nc,        \
-		void (*)(int,                void *):         a2si_nc,        \
+		void (*)(int,                char **):        a2si,           \
+		void (*)(int,                void *):         a2si,           \
 		void (*)(long,               const char **):  a2sl_c,         \
-		void (*)(long,               char **):        a2sl_nc,        \
-		void (*)(long,               void *):         a2sl_nc,        \
+		void (*)(long,               char **):        a2sl,           \
+		void (*)(long,               void *):         a2sl,           \
 		void (*)(long long,          const char **):  a2sll_c,        \
-		void (*)(long long,          char **):        a2sll_nc,       \
-		void (*)(long long,          void *):         a2sll_nc,       \
+		void (*)(long long,          char **):        a2sll,          \
+		void (*)(long long,          void *):         a2sll,          \
 		void (*)(unsigned char,      const char **):  a2uhh_c,        \
-		void (*)(unsigned char,      char **):        a2uhh_nc,       \
-		void (*)(unsigned char,      void *):         a2uhh_nc,       \
+		void (*)(unsigned char,      char **):        a2uhh,          \
+		void (*)(unsigned char,      void *):         a2uhh,          \
 		void (*)(unsigned short,     const char **):  a2uh_c,         \
-		void (*)(unsigned short,     char **):        a2uh_nc,        \
-		void (*)(unsigned short,     void *):         a2uh_nc,        \
+		void (*)(unsigned short,     char **):        a2uh,           \
+		void (*)(unsigned short,     void *):         a2uh,           \
 		void (*)(unsigned int,       const char **):  a2ui_c,         \
-		void (*)(unsigned int,       char **):        a2ui_nc,        \
-		void (*)(unsigned int,       void *):         a2ui_nc,        \
+		void (*)(unsigned int,       char **):        a2ui,           \
+		void (*)(unsigned int,       void *):         a2ui,           \
 		void (*)(unsigned long,      const char **):  a2ul_c,         \
-		void (*)(unsigned long,      char **):        a2ul_nc,        \
-		void (*)(unsigned long,      void *):         a2ul_nc,        \
+		void (*)(unsigned long,      char **):        a2ul,           \
+		void (*)(unsigned long,      void *):         a2ul,           \
 		void (*)(unsigned long long, const char **):  a2ull_c,        \
-		void (*)(unsigned long long, char **):        a2ull_nc,       \
-		void (*)(unsigned long long, void *):         a2ull_nc        \
+		void (*)(unsigned long long, char **):        a2ull,          \
+		void (*)(unsigned long long, void *):         a2ull           \
 	)(n, s, endp, __VA_ARGS__)                                            \
 )
 
@@ -51,20 +51,20 @@
 (                                                                             \
 	_Generic((void (*)(TYPE, typeof(endp))) 0,                            \
 		void (*)(signed char,        const char **):  a2shh_c,        \
-		void (*)(signed char,        char **):        a2shh_nc,       \
-		void (*)(signed char,        void *):         a2shh_nc,       \
+		void (*)(signed char,        char **):        a2shh,          \
+		void (*)(signed char,        void *):         a2shh,          \
 		void (*)(short,              const char **):  a2sh_c,         \
-		void (*)(short,              char **):        a2sh_nc,        \
-		void (*)(short,              void *):         a2sh_nc,        \
+		void (*)(short,              char **):        a2sh,           \
+		void (*)(short,              void *):         a2sh,           \
 		void (*)(int,                const char **):  a2si_c,         \
-		void (*)(int,                char **):        a2si_nc,        \
-		void (*)(int,                void *):         a2si_nc,        \
+		void (*)(int,                char **):        a2si,           \
+		void (*)(int,                void *):         a2si,           \
 		void (*)(long,               const char **):  a2sl_c,         \
-		void (*)(long,               char **):        a2sl_nc,        \
-		void (*)(long,               void *):         a2sl_nc,        \
+		void (*)(long,               char **):        a2sl,           \
+		void (*)(long,               void *):         a2sl,           \
 		void (*)(long long,          const char **):  a2sll_c,        \
-		void (*)(long long,          char **):        a2sll_nc,       \
-		void (*)(long long,          void *):         a2sll_nc        \
+		void (*)(long long,          char **):        a2sll,          \
+		void (*)(long long,          void *):         a2sll           \
 	)(n, s, endp, __VA_ARGS__)                                            \
 )
 
@@ -72,20 +72,20 @@
 (                                                                             \
 	_Generic((void (*)(TYPE, typeof(endp))) 0,                            \
 		void (*)(unsigned char,      const char **):  a2uhh_c,        \
-		void (*)(unsigned char,      char **):        a2uhh_nc,       \
-		void (*)(unsigned char,      void *):         a2uhh_nc,       \
+		void (*)(unsigned char,      char **):        a2uhh,          \
+		void (*)(unsigned char,      void *):         a2uhh,          \
 		void (*)(unsigned short,     const char **):  a2uh_c,         \
-		void (*)(unsigned short,     char **):        a2uh_nc,        \
-		void (*)(unsigned short,     void *):         a2uh_nc,        \
+		void (*)(unsigned short,     char **):        a2uh,           \
+		void (*)(unsigned short,     void *):         a2uh,           \
 		void (*)(unsigned int,       const char **):  a2ui_c,         \
-		void (*)(unsigned int,       char **):        a2ui_nc,        \
-		void (*)(unsigned int,       void *):         a2ui_nc,        \
+		void (*)(unsigned int,       char **):        a2ui,           \
+		void (*)(unsigned int,       void *):         a2ui,           \
 		void (*)(unsigned long,      const char **):  a2ul_c,         \
-		void (*)(unsigned long,      char **):        a2ul_nc,        \
-		void (*)(unsigned long,      void *):         a2ul_nc,        \
+		void (*)(unsigned long,      char **):        a2ul,           \
+		void (*)(unsigned long,      void *):         a2ul,           \
 		void (*)(unsigned long long, const char **):  a2ull_c,        \
-		void (*)(unsigned long long, char **):        a2ull_nc,       \
-		void (*)(unsigned long long, void *):         a2ull_nc        \
+		void (*)(unsigned long long, char **):        a2ull,          \
+		void (*)(unsigned long long, void *):         a2ull           \
 	)(n, s, endp, __VA_ARGS__)                                            \
 )
 
@@ -94,8 +94,8 @@
 (                                                                             \
 	_Generic(endp,                                                        \
 		const char **:  a2shh_c,                                      \
-		char **:        a2shh_nc,                                     \
-		void *:         a2shh_nc                                      \
+		char **:        a2shh,                                        \
+		void *:         a2shh                                         \
 	)(n, s, endp, __VA_ARGS__)                                            \
 )
 
@@ -103,8 +103,8 @@
 (                                                                             \
 	_Generic(endp,                                                        \
 		const char **:  a2sh_c,                                       \
-		char **:        a2sh_nc,                                      \
-		void *:         a2sh_nc                                       \
+		char **:        a2sh,                                         \
+		void *:         a2sh                                          \
 	)(n, s, endp, __VA_ARGS__)                                            \
 )
 
@@ -112,8 +112,8 @@
 (                                                                             \
 	_Generic(endp,                                                        \
 		const char **:  a2si_c,                                       \
-		char **:        a2si_nc,                                      \
-		void *:         a2si_nc                                       \
+		char **:        a2si,                                         \
+		void *:         a2si                                          \
 	)(n, s, endp, __VA_ARGS__)                                            \
 )
 
@@ -121,8 +121,8 @@
 (                                                                             \
 	_Generic(endp,                                                        \
 		const char **:  a2sl_c,                                       \
-		char **:        a2sl_nc,                                      \
-		void *:         a2sl_nc                                       \
+		char **:        a2sl,                                         \
+		void *:         a2sl                                          \
 	)(n, s, endp, __VA_ARGS__)                                            \
 )
 
@@ -130,8 +130,8 @@
 (                                                                             \
 	_Generic(endp,                                                        \
 		const char **:  a2sll_c,                                      \
-		char **:        a2sll_nc,                                     \
-		void *:         a2sll_nc                                      \
+		char **:        a2sll,                                        \
+		void *:         a2sll                                         \
 	)(n, s, endp, __VA_ARGS__)                                            \
 )
 
@@ -140,8 +140,8 @@
 (                                                                             \
 	_Generic(endp,                                                        \
 		const char **:  a2uhh_c,                                      \
-		char **:        a2uhh_nc,                                     \
-		void *:         a2uhh_nc                                      \
+		char **:        a2uhh,                                        \
+		void *:         a2uhh                                         \
 	)(n, s, endp, __VA_ARGS__)                                            \
 )
 
@@ -149,8 +149,8 @@
 (                                                                             \
 	_Generic(endp,                                                        \
 		const char **:  a2uh_c,                                       \
-		char **:        a2uh_nc,                                      \
-		void *:         a2uh_nc                                       \
+		char **:        a2uh,                                         \
+		void *:         a2uh                                          \
 	)(n, s, endp, __VA_ARGS__)                                            \
 )
 
@@ -158,8 +158,8 @@
 (                                                                             \
 	_Generic(endp,                                                        \
 		const char **:  a2ui_c,                                       \
-		char **:        a2ui_nc,                                      \
-		void *:         a2ui_nc                                       \
+		char **:        a2ui,                                         \
+		void *:         a2ui                                          \
 	)(n, s, endp, __VA_ARGS__)                                            \
 )
 
@@ -167,8 +167,8 @@
 (                                                                             \
 	_Generic(endp,                                                        \
 		const char **:  a2ul_c,                                       \
-		char **:        a2ul_nc,                                      \
-		void *:         a2ul_nc                                       \
+		char **:        a2ul,                                         \
+		void *:         a2ul                                          \
 	)(n, s, endp, __VA_ARGS__)                                            \
 )
 
@@ -176,8 +176,8 @@
 (                                                                             \
 	_Generic(endp,                                                        \
 		const char **:  a2ull_c,                                      \
-		char **:        a2ull_nc,                                     \
-		void *:         a2ull_nc                                      \
+		char **:        a2ull,                                        \
+		void *:         a2ull                                         \
 	)(n, s, endp, __VA_ARGS__)                                            \
 )
 
@@ -236,44 +236,44 @@ int a2ull_c(unsigned long long *restrict n, const char *s,
 
 
 A2I_A2I_ATTR
-int a2shh_nc(signed char *restrict n, const char *s,
+int (a2shh)(signed char *restrict n, const char *s,
     char **a2i_nullable restrict endp, int base,
     signed char min, signed char max);
 A2I_A2I_ATTR
-int a2sh_nc(short *restrict n, const char *s,
+int (a2sh)(short *restrict n, const char *s,
     char **a2i_nullable restrict endp, int base,
     short min, short max);
 A2I_A2I_ATTR
-int a2si_nc(int *restrict n, const char *s,
+int (a2si)(int *restrict n, const char *s,
     char **a2i_nullable restrict endp, int base,
     int min, int max);
 A2I_A2I_ATTR
-int a2sl_nc(long *restrict n, const char *s,
+int (a2sl)(long *restrict n, const char *s,
     char **a2i_nullable restrict endp, int base,
     long min, long max);
 A2I_A2I_ATTR
-int a2sll_nc(long long *restrict n, const char *s,
+int (a2sll)(long long *restrict n, const char *s,
     char **a2i_nullable restrict endp, int base,
     long long min, long long max);
 
 A2I_A2I_ATTR
-int a2uhh_nc(unsigned char *restrict n, const char *s,
+int (a2uhh)(unsigned char *restrict n, const char *s,
     char **a2i_nullable restrict endp, int base,
     unsigned char min, unsigned char max);
 A2I_A2I_ATTR
-int a2uh_nc(unsigned short *restrict n, const char *s,
+int (a2uh)(unsigned short *restrict n, const char *s,
     char **a2i_nullable restrict endp, int base,
     unsigned short min, unsigned short max);
 A2I_A2I_ATTR
-int a2ui_nc(unsigned int *restrict n, const char *s,
+int (a2ui)(unsigned int *restrict n, const char *s,
     char **a2i_nullable restrict endp, int base,
     unsigned int min, unsigned int max);
 A2I_A2I_ATTR
-int a2ul_nc(unsigned long *restrict n, const char *s,
+int (a2ul)(unsigned long *restrict n, const char *s,
     char **a2i_nullable restrict endp, int base,
     unsigned long min, unsigned long max);
 A2I_A2I_ATTR
-int a2ull_nc(unsigned long long *restrict n, const char *s,
+int (a2ull)(unsigned long long *restrict n, const char *s,
     char **a2i_nullable restrict endp, int base,
     unsigned long long min, unsigned long long max);
 #if defined(__clang__)
