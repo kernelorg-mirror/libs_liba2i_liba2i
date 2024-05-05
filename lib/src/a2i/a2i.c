@@ -46,7 +46,7 @@ a2shh_c(signed char *restrict n, const char *s,
     const char **a2i_nullable restrict endp, int base,
     signed char min, signed char max)
 {
-	return a2i_a2I_nc(n, s, (char **a2i_nullable) endp, base, min, max);
+	return a2shh(n, (char *) s, (char **a2i_nullable) endp, base, min, max);
 }
 
 int
@@ -54,7 +54,7 @@ a2sh_c(short *restrict n, const char *s,
     const char **a2i_nullable restrict endp, int base,
     short min, short max)
 {
-	return a2i_a2I_nc(n, s, (char **a2i_nullable) endp, base, min, max);
+	return a2sh(n, (char *) s, (char **a2i_nullable) endp, base, min, max);
 }
 
 int
@@ -62,7 +62,7 @@ a2si_c(int *restrict n, const char *s,
     const char **a2i_nullable restrict endp, int base,
     int min, int max)
 {
-	return a2i_a2I_nc(n, s, (char **a2i_nullable) endp, base, min, max);
+	return a2si(n, (char *) s, (char **a2i_nullable) endp, base, min, max);
 }
 
 int
@@ -70,7 +70,7 @@ a2sl_c(long *restrict n, const char *s,
     const char **a2i_nullable restrict endp, int base,
     long min, long max)
 {
-	return a2i_a2I_nc(n, s, (char **a2i_nullable) endp, base, min, max);
+	return a2sl(n, (char *) s, (char **a2i_nullable) endp, base, min, max);
 }
 
 int
@@ -78,7 +78,7 @@ a2sll_c(long long *restrict n, const char *s,
     const char **a2i_nullable restrict endp, int base,
     long long min, long long max)
 {
-	return a2i_a2I_nc(n, s, (char **a2i_nullable) endp, base, min, max);
+	return a2sll(n, (char *) s, (char **a2i_nullable) endp, base, min, max);
 }
 
 
@@ -87,7 +87,7 @@ a2uhh_c(unsigned char *restrict n, const char *s,
     const char **a2i_nullable restrict endp, int base,
     unsigned char min, unsigned char max)
 {
-	return a2i_a2I_nc(n, s, (char **a2i_nullable) endp, base, min, max);
+	return a2uhh(n, (char *) s, (char **a2i_nullable) endp, base, min, max);
 }
 
 int
@@ -95,7 +95,7 @@ a2uh_c(unsigned short *restrict n, const char *s,
     const char **a2i_nullable restrict endp, int base,
     unsigned short min, unsigned short max)
 {
-	return a2i_a2I_nc(n, s, (char **a2i_nullable) endp, base, min, max);
+	return a2uh(n, (char *) s, (char **a2i_nullable) endp, base, min, max);
 }
 
 int
@@ -103,7 +103,7 @@ a2ui_c(unsigned int *restrict n, const char *s,
     const char **a2i_nullable restrict endp, int base,
     unsigned int min, unsigned int max)
 {
-	return a2i_a2I_nc(n, s, (char **a2i_nullable) endp, base, min, max);
+	return a2ui(n, (char *) s, (char **a2i_nullable) endp, base, min, max);
 }
 
 int
@@ -111,7 +111,7 @@ a2ul_c(unsigned long *restrict n, const char *s,
     const char **a2i_nullable restrict endp, int base,
     unsigned long min, unsigned long max)
 {
-	return a2i_a2I_nc(n, s, (char **a2i_nullable) endp, base, min, max);
+	return a2ul(n, (char *) s, (char **a2i_nullable) endp, base, min, max);
 }
 
 int
@@ -119,13 +119,13 @@ a2ull_c(unsigned long long *restrict n, const char *s,
     const char **a2i_nullable restrict endp, int base,
     unsigned long long min, unsigned long long max)
 {
-	return a2i_a2I_nc(n, s, (char **a2i_nullable) endp, base, min, max);
+	return a2ull(n, (char *) s, (char **a2i_nullable) endp, base, min, max);
 }
 #pragma GCC diagnostic pop  // -Wcast-qual
 
 
 int
-(a2shh)(signed char *restrict n, const char *s,
+(a2shh)(signed char *restrict n, char *s,
     char **a2i_nullable restrict endp, int base,
     signed char min, signed char max)
 {
@@ -133,7 +133,7 @@ int
 }
 
 int
-(a2sh)(short *restrict n, const char *s,
+(a2sh)(short *restrict n, char *s,
     char **a2i_nullable restrict endp, int base,
     short min, short max)
 {
@@ -141,7 +141,7 @@ int
 }
 
 int
-(a2si)(int *restrict n, const char *s,
+(a2si)(int *restrict n, char *s,
     char **a2i_nullable restrict endp, int base,
     int min, int max)
 {
@@ -149,7 +149,7 @@ int
 }
 
 int
-(a2sl)(long *restrict n, const char *s,
+(a2sl)(long *restrict n, char *s,
     char **a2i_nullable restrict endp, int base,
     long min, long max)
 {
@@ -157,7 +157,7 @@ int
 }
 
 int
-(a2sll)(long long *restrict n, const char *s,
+(a2sll)(long long *restrict n, char *s,
     char **a2i_nullable restrict endp, int base,
     long long min, long long max)
 {
@@ -166,7 +166,7 @@ int
 
 
 int
-(a2uhh)(unsigned char *restrict n, const char *s,
+(a2uhh)(unsigned char *restrict n, char *s,
     char **a2i_nullable restrict endp, int base,
     unsigned char min, unsigned char max)
 {
@@ -174,7 +174,7 @@ int
 }
 
 int
-(a2uh)(unsigned short *restrict n, const char *s,
+(a2uh)(unsigned short *restrict n, char *s,
     char **a2i_nullable restrict endp, int base,
     unsigned short min, unsigned short max)
 {
@@ -182,7 +182,7 @@ int
 }
 
 int
-(a2ui)(unsigned int *restrict n, const char *s,
+(a2ui)(unsigned int *restrict n, char *s,
     char **a2i_nullable restrict endp, int base,
     unsigned int min, unsigned int max)
 {
@@ -190,7 +190,7 @@ int
 }
 
 int
-(a2ul)(unsigned long *restrict n, const char *s,
+(a2ul)(unsigned long *restrict n, char *s,
     char **a2i_nullable restrict endp, int base,
     unsigned long min, unsigned long max)
 {
@@ -198,7 +198,7 @@ int
 }
 
 int
-(a2ull)(unsigned long long *restrict n, const char *s,
+(a2ull)(unsigned long long *restrict n, char *s,
     char **a2i_nullable restrict endp, int base,
     unsigned long long min, unsigned long long max)
 {
