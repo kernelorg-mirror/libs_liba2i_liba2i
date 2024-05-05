@@ -36,53 +36,53 @@ String-to-integer library
 .
 .SS Type-generic macros
 .nf
-.BI "int a2i(TYPE, TYPE *restrict " n ", const char *" s ,
-.BI "          char **_Nullable restrict " endp ", int " base ,
+.BI "int a2i(TYPE, TYPE *restrict " n ", QChar *" s ,
+.BI "          QChar **_Nullable restrict " endp ", int " base ,
 .BI "          TYPE " min ", TYPE " max );
 .P
-.BI "int a2s(TYPE, TYPE *restrict " n ", const char *" s ,
-.BI "          char **_Nullable restrict " endp ", int " base ,
+.BI "int a2s(TYPE, TYPE *restrict " n ", QChar *" s ,
+.BI "          QChar **_Nullable restrict " endp ", int " base ,
 .BI "          TYPE " min ", TYPE " max );
-.BI "int a2u(TYPE, TYPE *restrict " n ", const char *" s ,
-.BI "          char **_Nullable restrict " endp ", int " base ,
+.BI "int a2u(TYPE, TYPE *restrict " n ", QChar *" s ,
+.BI "          QChar **_Nullable restrict " endp ", int " base ,
 .BI "          TYPE " min ", TYPE " max );
 .fi
 .
 .SS Signed functions
 .nf
-.BI "int a2shh(signed char *restrict " n ", const char *" s ,
-.BI "          char **_Nullable restrict " endp ", int " base ,
+.BI "int a2shh(signed char *restrict " n ", QChar *" s ,
+.BI "          QChar **_Nullable restrict " endp ", int " base ,
 .BI "          signed char " min ", signed char " max );
-.BI "int a2sh(short *restrict " n ", const char *" s ,
-.BI "          char **_Nullable restrict " endp ", int " base ,
+.BI "int a2sh(short *restrict " n ", QChar *" s ,
+.BI "          QChar **_Nullable restrict " endp ", int " base ,
 .BI "          short " min ", short " max );
-.BI "int a2si(int *restrict " n ", const char *" s ,
-.BI "          char **_Nullable restrict " endp ", int " base ,
+.BI "int a2si(int *restrict " n ", QChar *" s ,
+.BI "          QChar **_Nullable restrict " endp ", int " base ,
 .BI "          int " min ", int " max );
-.BI "int a2sl(long *restrict " n ", const char *" s ,
-.BI "          char **_Nullable restrict " endp ", int " base ,
+.BI "int a2sl(long *restrict " n ", QChar *" s ,
+.BI "          QChar **_Nullable restrict " endp ", int " base ,
 .BI "          long " min ", long " max );
-.BI "int a2sll(long long *restrict " n ", const char *" s ,
-.BI "          char **_Nullable restrict " endp ", int " base ,
+.BI "int a2sll(long long *restrict " n ", QChar *" s ,
+.BI "          QChar **_Nullable restrict " endp ", int " base ,
 .BI "          long long " min ", long long " max );
 .fi
 .
 .SS Unsigned functions
 .nf
-.BI "int a2uhh(unsigned char *restrict " n ", const char *" s ,
-.BI "          char **_Nullable restrict " endp ", int " base ,
+.BI "int a2uhh(unsigned char *restrict " n ", QChar *" s ,
+.BI "          QChar **_Nullable restrict " endp ", int " base ,
 .BI "          unsigned char " min ", unsigned char " max );
-.BI "int a2uh(unsigned short *restrict " n ", const char *" s ,
-.BI "          char **_Nullable restrict " endp ", int " base ,
+.BI "int a2uh(unsigned short *restrict " n ", QChar *" s ,
+.BI "          QChar **_Nullable restrict " endp ", int " base ,
 .BI "          unsigned short " min ", unsigned short " max );
-.BI "int a2ui(unsigned int *restrict " n ", const char *" s ,
-.BI "          char **_Nullable restrict " endp ", int " base ,
+.BI "int a2ui(unsigned int *restrict " n ", QChar *" s ,
+.BI "          QChar **_Nullable restrict " endp ", int " base ,
 .BI "          unsigned int " min ", unsigned int " max );
-.BI "int a2ul(unsigned long *restrict " n ", const char *" s ,
-.BI "          char **_Nullable restrict " endp ", int " base ,
+.BI "int a2ul(unsigned long *restrict " n ", QChar *" s ,
+.BI "          QChar **_Nullable restrict " endp ", int " base ,
 .BI "          unsigned long " min ", unsigned long " max );
-.BI "int a2ull(unsigned long long *restrict " n ", const char *" s ,
-.BI "          char **_Nullable restrict " endp ", int " base ,
+.BI "int a2ull(unsigned long long *restrict " n ", QChar *" s ,
+.BI "          QChar **_Nullable restrict " endp ", int " base ,
 .BI "          unsigned long long " min ", unsigned long long " max );
 .fi
 .
