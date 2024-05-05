@@ -6,6 +6,7 @@ ifndef MAKEFILE_CHECK_LIB_INCLUDED
 MAKEFILE_CHECK_LIB_INCLUDED := 1
 
 
+include $(MAKEFILEDIR)/build/dev/pc.mk
 include $(MAKEFILEDIR)/build/lib/shared.mk
 include $(MAKEFILEDIR)/build/lib/static.mk
 include $(MAKEFILEDIR)/configure/build-depends/gcc/cc.mk
