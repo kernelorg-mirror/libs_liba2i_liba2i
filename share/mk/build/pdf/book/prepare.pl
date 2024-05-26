@@ -31,6 +31,7 @@ my %Sections=
 (
 	"1"	=> "General Commands Manual",
 	"2"	=> "System Calls Manual",
+	"2const"	=> "System Calls Manual (constants)",
 	"2type"	=> "System Calls Manual (types)",
 	"3"	=> "Library Functions Manual",
 	"3const"	=> "Library Functions Manual (constants)",
