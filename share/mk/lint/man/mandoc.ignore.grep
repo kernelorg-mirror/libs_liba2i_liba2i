@@ -1,5 +1,6 @@
 ERROR: skipping unknown macro: \.MR
 STYLE: lower case character in document title:
+STYLE: legacy man(7) date format: Dd
 UNSUPP: ignoring macro in table:
 WARNING: empty block: UR
 WARNING: missing date, using "": TH
