@@ -15,11 +15,12 @@ include $(MAKEFILEDIR)/configure/build-depends/findutils/find.mk
 include $(MAKEFILEDIR)/configure/build-depends/findutils/xargs.mk
 include $(MAKEFILEDIR)/configure/build-depends/git/git.mk
 include $(MAKEFILEDIR)/configure/build-depends/grep/grep.mk
+include $(MAKEFILEDIR)/configure/build-depends/sed/sed.mk
 include $(MAKEFILEDIR)/configure/verbose.mk
 
 
 projname      := liba2i
-VERSION       := $(shell $(GIT) describe --dirty)
+VERSION       := $(shell $(GIT) describe --dirty | $(SED) 's/$(projname)-//')
 EXTRAVERSION  :=
 
 
