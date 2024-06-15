@@ -7,7 +7,7 @@ MAKEFILE_LINT_MAN_INCLUDED := 1
 
 
 .PHONY: lint-man
-lint-man: lint-man-mandoc lint-man-tbl;
+lint-man: lint-man-mandoc lint-man-tbl lint-man-so;
 
 
 endif  # include guard
