@@ -1,4 +1,5 @@
 checkersReport
+constParameterCallback
 internalAstError
 missingIncludeSystem
 shadowArgument
