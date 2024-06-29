@@ -1,1 +1,132 @@
-.so man3/a2i.3
+.\" Copyright 2024 Alejandro Colomar <alx@kernel.org>
+.\" SPDX-License-Identifier: Linux-man-pages-copyleft
+.
+.
+.TH a2u 3 (date) liba2i-(unreleased)
+.
+.
+.SH Name
+a2u,
+a2uhh,
+a2uh,
+a2ui,
+a2ul,
+a2ull
+\-
+convert a string to an unsigned integer
+.
+.
+.SH Library
+String-to-integer library
+.RI ( liba2i ,\~ \-la2i )
+.
+.
+.SH Synopsis
+.nf
+.B include <a2i/a2i/a2u.h>
+.fi
+.
+.SS Type-generic macro
+.B int
+.SY a2u (
+.B TYPE,
+.BI TYPE\~*restrict\~ n ,
+.BI QChar\~* s ,
+.br
+.BI QChar\~**_Nullable\~restrict\~ endp ,
+.BI int\~ base ,
+.br
+.BI TYPE\~ min ,
+.BI TYPE\~ max );
+.YS
+.
+.SS const-generic functions
+.B int
+.SY a2uhh (
+.BI unsigned\~char\~*restrict\~ n ,
+.BI QChar\~* s ,
+.br
+.BI QChar\~**_Nullable\~restrict\~ endp ,
+.BI int\~ base ,
+.br
+.BI unsigned\~char\~ min ,
+.BI unsigned\~char\~ max );
+.YS .
+.B int
+.SY a2uh (
+.BI unsigned\~short\~*restrict\~ n ,
+.BI QChar\~* s ,
+.br
+.BI QChar\~**_Nullable\~restrict\~ endp ,
+.BI int\~ base ,
+.br
+.BI unsigned\~short\~ min ,
+.BI unsigned\~short\~ max );
+.YS .
+.B int
+.SY a2ui (
+.BI unsigned\~int\~*restrict\~ n ,
+.BI QChar\~* s ,
+.br
+.BI QChar\~**_Nullable\~restrict\~ endp ,
+.BI int\~ base ,
+.br
+.BI unsigned\~int\~ min ,
+.BI unsigned\~int\~ max );
+.YS .
+.B int
+.SY a2ul (
+.BI unsigned\~long\~*restrict\~ n ,
+.BI QChar\~* s ,
+.br
+.BI QChar\~**_Nullable\~restrict\~ endp ,
+.BI int\~ base ,
+.br
+.BI unsigned\~long\~ min ,
+.BI unsigned\~long\~ max );
+.YS .
+.B int
+.SY a2ull (
+.BI unsigned\~long\~long\~*restrict\~ n ,
+.BI QChar\~* s ,
+.br
+.BI QChar\~**_Nullable\~restrict\~ endp ,
+.BI int\~ base ,
+.br
+.BI unsigned\~long\~long\~ min ,
+.BI unsigned\~long\~long\~ max );
+.YS
+.
+.SH Description
+These functions and macros
+are the unsigned counterparts of
+.MR a2s 3 .
+.P
+These reject negative values,
+instead of silently wrapping them around
+(both
+.MR strtoul 3
+and
+.MR strtou 3bsd
+wrap around negative values before checking for overflow).
+.
+.
+.SH Examples
+.EX
+if (a2u(useconds_t, &us, s, NULL, 10, 0, 1000000) == \-1)
+	goto err;
+.EE
+.
+.
+.SH See also
+.MR a2i 3 ,
+.MR a2s 3 ,
+.MR str2i 3 ,
+.MR str2s 3 ,
+.MR str2u 3 ,
+.MR atof 3 ,
+.MR atoi 3 ,
+.MR strtod 3 ,
+.MR strtoumax 3 ,
+.MR strtoul 3 ,
+.MR strtou 3

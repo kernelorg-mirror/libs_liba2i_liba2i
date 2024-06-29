@@ -1,1 +1,94 @@
-.so man3/str2i.3
+.\" Copyright 2024 Alejandro Colomar <alx@kernel.org>
+.\" SPDX-License-Identifier: Linux-man-pages-copyleft
+.
+.
+.TH str2s 3 (date) liba2i-(unreleased)
+.
+.
+.SH Name
+str2s,
+str2shh,
+str2sh,
+str2si,
+str2sl,
+str2sll,
+\-
+convert a string to a signed integer
+.
+.
+.SH Library
+String-to-integer library
+.RI ( liba2i ", " \-la2i )
+.
+.
+.SH Synopsis
+.nf
+.B include <a2i/str2i/str2s.h>
+.fi
+.
+.P
+.B int
+.SY str2s (
+.B TYPE,
+.BI TYPE\~*restrict\~ n ,
+.BI const\~char\~* s );
+.YS
+.
+.P
+.B int
+.SY str2shh (
+.BI signed\~char\~*restrict\~ n ,
+.BI const\~char\~* s );
+.YS .
+.B int
+.SY str2sh (
+.BI short\~*restrict\~ n ,
+.BI const\~char\~* s );
+.YS .
+.B int
+.SY str2si (
+.BI int\~*restrict\~ n ,
+.BI const\~char\~* s );
+.YS .
+.B int
+.SY str2sl (
+.BI long\~*restrict\~ n ,
+.BI const\~char\~* s );
+.YS .
+.B int
+.SY str2sll (
+.BI long\~long\~*restrict\~ n ,
+.BI const\~char\~* s );
+.YS .
+.
+.SH Description
+These functions and macro
+are convenience wrappers around
+.MR a2s 3 ,
+providing common defaults for the remaining arguments.
+The base is 0;
+the end pointer is NULL;
+and the limits are those of the type.
+.
+.
+.SH Examples
+The following calls are all equivalent:
+.P
+.in +4n
+.EX
+str2sl(&n, s);
+str2s(long, &n, s);
+str2i(long, &n, s);
+a2sl(&n, s, NULL, 0, LONG_MIN, LONG_MAX);
+a2s(long, &n, s, NULL, 0, LONG_MIN, LONG_MAX);
+a2i(long, &n, s, NULL, 0, LONG_MIN, LONG_MAX);
+.EE
+.in
+.
+.
+.SH See also
+.MR a2i 3 ,
+.MR a2s 3 ,
+.MR a2u 3 ,
+.MR str2i 3 ,
+.MR str2u 3
