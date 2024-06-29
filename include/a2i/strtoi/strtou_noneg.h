@@ -17,8 +17,8 @@
 	_Generic(s,                                                           \
 		const char *:  a2i_strtou_noneg_c,                            \
 		const void *:  a2i_strtou_noneg_c,                            \
-		char *:        a2i_strtou_noneg,                              \
-		void *:        a2i_strtou_noneg                               \
+		char *:        a2i_strtou_noneg_nc,                           \
+		void *:        a2i_strtou_noneg_nc                            \
 	)(s, __VA_ARGS__)                                                     \
 )
 
@@ -38,7 +38,7 @@ A2I_ATTR_ACCESS(read_only, 1)
 A2I_ATTR_ACCESS(write_only, 2)
 A2I_ATTR_ACCESS(write_only, 6)
 A2I_ATTR_STRING(1)
-uintmax_t (a2i_strtou_noneg)(char *s,
+uintmax_t a2i_strtou_noneg_nc(char *s,
     char **a2i_nullable restrict endp, int base,
     uintmax_t min, uintmax_t max, int *a2i_nullable restrict status);
 #if defined(__clang__)

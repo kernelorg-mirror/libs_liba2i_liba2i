@@ -15,24 +15,24 @@
 	_Generic((void (*)(TYPE, typeof(s))) 0,                               \
 		void (*)(unsigned char,      const char *):  a2uhh_c,         \
 		void (*)(unsigned char,      const void *):  a2uhh_c,         \
-		void (*)(unsigned char,      char *):        a2uhh,           \
-		void (*)(unsigned char,      void *):        a2uhh,           \
+		void (*)(unsigned char,      char *):        a2uhh_nc,        \
+		void (*)(unsigned char,      void *):        a2uhh_nc,        \
 		void (*)(unsigned short,     const char *):  a2uh_c,          \
 		void (*)(unsigned short,     const void *):  a2uh_c,          \
-		void (*)(unsigned short,     char *):        a2uh,            \
-		void (*)(unsigned short,     void *):        a2uh,            \
+		void (*)(unsigned short,     char *):        a2uh_nc,         \
+		void (*)(unsigned short,     void *):        a2uh_nc,         \
 		void (*)(unsigned int,       const char *):  a2ui_c,          \
 		void (*)(unsigned int,       const void *):  a2ui_c,          \
-		void (*)(unsigned int,       char *):        a2ui,            \
-		void (*)(unsigned int,       void *):        a2ui,            \
+		void (*)(unsigned int,       char *):        a2ui_nc,         \
+		void (*)(unsigned int,       void *):        a2ui_nc,         \
 		void (*)(unsigned long,      const char *):  a2ul_c,          \
 		void (*)(unsigned long,      const void *):  a2ul_c,          \
-		void (*)(unsigned long,      char *):        a2ul,            \
-		void (*)(unsigned long,      void *):        a2ul,            \
+		void (*)(unsigned long,      char *):        a2ul_nc,         \
+		void (*)(unsigned long,      void *):        a2ul_nc,         \
 		void (*)(unsigned long long, const char *):  a2ull_c,         \
 		void (*)(unsigned long long, const void *):  a2ull_c,         \
-		void (*)(unsigned long long, char *):        a2ull,           \
-		void (*)(unsigned long long, void *):        a2ull            \
+		void (*)(unsigned long long, char *):        a2ull_nc,        \
+		void (*)(unsigned long long, void *):        a2ull_nc         \
 	)(n, s, __VA_ARGS__)                                                  \
 )
 
@@ -42,8 +42,8 @@
 	_Generic(s,                                                           \
 		const char *:  a2uhh_c,                                       \
 		const void *:  a2uhh_c,                                       \
-		char *:        a2uhh,                                         \
-		void *:        a2uhh                                          \
+		char *:        a2uhh_nc,                                      \
+		void *:        a2uhh_nc                                       \
 	)(n, s, __VA_ARGS__)                                                  \
 )
 
@@ -52,8 +52,8 @@
 	_Generic(s,                                                           \
 		const char *:  a2uh_c,                                        \
 		const void *:  a2uh_c,                                        \
-		char *:        a2uh,                                          \
-		void *:        a2uh                                           \
+		char *:        a2uh_nc,                                       \
+		void *:        a2uh_nc                                        \
 	)(n, s, __VA_ARGS__)                                                  \
 )
 
@@ -62,8 +62,8 @@
 	_Generic(s,                                                           \
 		const char *:  a2ui_c,                                        \
 		const void *:  a2ui_c,                                        \
-		char *:        a2ui,                                          \
-		void *:        a2ui                                           \
+		char *:        a2ui_nc,                                       \
+		void *:        a2ui_nc                                        \
 	)(n, s, __VA_ARGS__)                                                  \
 )
 
@@ -72,8 +72,8 @@
 	_Generic(s,                                                           \
 		const char *:  a2ul_c,                                        \
 		const void *:  a2ul_c,                                        \
-		char *:        a2ul,                                          \
-		void *:        a2ul                                           \
+		char *:        a2ul_nc,                                       \
+		void *:        a2ul_nc                                        \
 	)(n, s, __VA_ARGS__)                                                  \
 )
 
@@ -82,8 +82,8 @@
 	_Generic(s,                                                           \
 		const char *:  a2ull_c,                                       \
 		const void *:  a2ull_c,                                       \
-		char *:        a2ull,                                         \
-		void *:        a2ull                                          \
+		char *:        a2ull_nc,                                      \
+		void *:        a2ull_nc                                       \
 	)(n, s, __VA_ARGS__)                                                  \
 )
 
@@ -120,23 +120,23 @@ int a2ull_c(unsigned long long *restrict n, const char *s,
     unsigned long long min, unsigned long long max);
 
 A2I_A2U_ATTR
-int (a2uhh)(unsigned char *restrict n, char *s,
+int a2uhh_nc(unsigned char *restrict n, char *s,
     char **a2i_nullable restrict endp, int base,
     unsigned char min, unsigned char max);
 A2I_A2U_ATTR
-int (a2uh)(unsigned short *restrict n, char *s,
+int a2uh_nc(unsigned short *restrict n, char *s,
     char **a2i_nullable restrict endp, int base,
     unsigned short min, unsigned short max);
 A2I_A2U_ATTR
-int (a2ui)(unsigned int *restrict n, char *s,
+int a2ui_nc(unsigned int *restrict n, char *s,
     char **a2i_nullable restrict endp, int base,
     unsigned int min, unsigned int max);
 A2I_A2U_ATTR
-int (a2ul)(unsigned long *restrict n, char *s,
+int a2ul_nc(unsigned long *restrict n, char *s,
     char **a2i_nullable restrict endp, int base,
     unsigned long min, unsigned long max);
 A2I_A2U_ATTR
-int (a2ull)(unsigned long long *restrict n, char *s,
+int a2ull_nc(unsigned long long *restrict n, char *s,
     char **a2i_nullable restrict endp, int base,
     unsigned long long min, unsigned long long max);
 #if defined(__clang__)

@@ -15,11 +15,11 @@
 	int  status_;                                                         \
                                                                               \
 	*n = _Generic(*n,                                                     \
-		unsigned char:       a2i_strtou_noneg,                        \
-		unsigned short:      a2i_strtou_noneg,                        \
-		unsigned int:        a2i_strtou_noneg,                        \
-		unsigned long:       a2i_strtou_noneg,                        \
-		unsigned long long:  a2i_strtou_noneg                         \
+		unsigned char:       a2i_strtou_noneg_nc,                     \
+		unsigned short:      a2i_strtou_noneg_nc,                     \
+		unsigned int:        a2i_strtou_noneg_nc,                     \
+		unsigned long:       a2i_strtou_noneg_nc,                     \
+		unsigned long long:  a2i_strtou_noneg_nc                      \
 	)(__VA_ARGS__, &status_);                                             \
 	if (status_ != 0)                                                     \
 		errno = status_;                                              \
@@ -79,7 +79,7 @@ a2ull_c(unsigned long long *restrict n, const char *s,
 
 
 int
-(a2uhh)(unsigned char *restrict n, char *s,
+a2uhh_nc(unsigned char *restrict n, char *s,
     char **a2i_nullable restrict endp, int base,
     unsigned char min, unsigned char max)
 {
@@ -87,7 +87,7 @@ int
 }
 
 int
-(a2uh)(unsigned short *restrict n, char *s,
+a2uh_nc(unsigned short *restrict n, char *s,
     char **a2i_nullable restrict endp, int base,
     unsigned short min, unsigned short max)
 {
@@ -95,7 +95,7 @@ int
 }
 
 int
-(a2ui)(unsigned int *restrict n, char *s,
+a2ui_nc(unsigned int *restrict n, char *s,
     char **a2i_nullable restrict endp, int base,
     unsigned int min, unsigned int max)
 {
@@ -103,7 +103,7 @@ int
 }
 
 int
-(a2ul)(unsigned long *restrict n, char *s,
+a2ul_nc(unsigned long *restrict n, char *s,
     char **a2i_nullable restrict endp, int base,
     unsigned long min, unsigned long max)
 {
@@ -111,7 +111,7 @@ int
 }
 
 int
-(a2ull)(unsigned long long *restrict n, char *s,
+a2ull_nc(unsigned long long *restrict n, char *s,
     char **a2i_nullable restrict endp, int base,
     unsigned long long min, unsigned long long max)
 {

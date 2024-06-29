@@ -15,11 +15,11 @@
 	int  status_;                                                         \
                                                                               \
 	*n = _Generic(*n,                                                     \
-		signed char:         a2i_strtoi,                              \
-		short:               a2i_strtoi,                              \
-		int:                 a2i_strtoi,                              \
-		long:                a2i_strtoi,                              \
-		long long:           a2i_strtoi                               \
+		signed char:         a2i_strtoi_nc,                           \
+		short:               a2i_strtoi_nc,                           \
+		int:                 a2i_strtoi_nc,                           \
+		long:                a2i_strtoi_nc,                           \
+		long long:           a2i_strtoi_nc                            \
 	)(__VA_ARGS__, &status_);                                             \
 	if (status_ != 0)                                                     \
 		errno = status_;                                              \
@@ -79,7 +79,7 @@ a2sll_c(long long *restrict n, const char *s,
 
 
 int
-(a2shh)(signed char *restrict n, char *s,
+a2shh_nc(signed char *restrict n, char *s,
     char **a2i_nullable restrict endp, int base,
     signed char min, signed char max)
 {
@@ -87,7 +87,7 @@ int
 }
 
 int
-(a2sh)(short *restrict n, char *s,
+a2sh_nc(short *restrict n, char *s,
     char **a2i_nullable restrict endp, int base,
     short min, short max)
 {
@@ -95,7 +95,7 @@ int
 }
 
 int
-(a2si)(int *restrict n, char *s,
+a2si_nc(int *restrict n, char *s,
     char **a2i_nullable restrict endp, int base,
     int min, int max)
 {
@@ -103,7 +103,7 @@ int
 }
 
 int
-(a2sl)(long *restrict n, char *s,
+a2sl_nc(long *restrict n, char *s,
     char **a2i_nullable restrict endp, int base,
     long min, long max)
 {
@@ -111,7 +111,7 @@ int
 }
 
 int
-(a2sll)(long long *restrict n, char *s,
+a2sll_nc(long long *restrict n, char *s,
     char **a2i_nullable restrict endp, int base,
     long long min, long long max)
 {

@@ -30,7 +30,7 @@ a2i_strtoi_c(const char *s,
 
 
 intmax_t
-(a2i_strtoi)(char *s,
+a2i_strtoi_nc(char *s,
     char **a2i_nullable restrict endp, int base,
     intmax_t min, intmax_t max, int *a2i_nullable restrict status)
 {
