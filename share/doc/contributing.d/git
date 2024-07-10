@@ -25,7 +25,7 @@ See also
        mutt(1)
        neomutt(1)
 
-       CONTRIBUTING.d/*
+       share/doc/contributing.d/*
 
        <https://git-send-email.io/>
        <https://neomutt.org/feature/cli-crypto>

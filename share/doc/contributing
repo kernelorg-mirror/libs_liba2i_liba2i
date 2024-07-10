@@ -15,17 +15,17 @@ Description
            Cc: <liba2i@lists.linux.dev>
 
 Files
-   CONTRIBUTING.d/mail
+   share/doc/contributing.d/mail
        Instructions for sending emails to the project
 
-   CONTRIBUTING.d/patches
+   share/doc/contributing.d/patches
        Instructions for contributing patches
 
-   CONTRIBUTING.d/bugs
+   share/doc/contributing.d/bugs
        Instructions for reporting bugs
 
-   CONTRIBUTING.d/lint
+   share/doc/contributing.d/lint
        Instructions for linting source code
 
-   CONTRIBUTING.d/style
+   share/doc/contributing.d/style
        Preferred layout and style guide notes

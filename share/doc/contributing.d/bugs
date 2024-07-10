@@ -9,5 +9,5 @@ Description
        logically-separate issues in the same page, send separate emails.
 
 See also
-       CONTRIBUTING
-       CONTRIBUTING.d/*
+       share/doc/contributing
+       share/doc/contributing.d/*

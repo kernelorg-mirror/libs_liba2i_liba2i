@@ -38,5 +38,5 @@ Description
             set crypt_protected_headers_write = yes
 
 See also
-       CONTRIBUTING
-       CONTRIBUTING.d/*
+       share/doc/contributing
+       share/doc/contributing.d/*

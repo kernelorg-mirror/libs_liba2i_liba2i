@@ -3,12 +3,13 @@ Name
 
 Description
        If you know how to fix a problem in a manual page (if not, see
-       <CONTRIBUTING.d/bugs>), then send a patch in an email.
+       <share/doc/contributing.d/bugs>), then send a patch in an email.
 
-       -  Configure git(1) for this project.  See <CONTRIBUTING.d/git>.
+       -  Configure git(1) for this project.  See
+          <share/doc/contributing.d/git>.
 
        -  Follow the instructions for sending mail to the mailing list
-          from <CONTRIBUTING.d/mail>.  See also "Send the patches"
+          from <share/doc/contributing.d/mail>.  See also "Send the patches"
           below.
 
        -  The subject of the email should contain "[PATCH]" in the
@@ -101,16 +102,18 @@ Description
    Send the patches
        We recommend using git-send-email(1) to send the patches to the
        mailing list.  For instructions on how to configure and use it,
-       see <https://git-send-email.io/>.  See also <CONTRIBUTING.d/git>.
+       see <https://git-send-email.io/>.  See also
+       <share/doc/contributing.d/git>.
 
    Sign the patches with PGP
-       See <CONTRIBUTING.d/mail> for more details on signing your mail
-       to the list.  See also <CONTRIBUTING.d/git> for instructions for
-       configuring git-send-email(1) to use neomutt(1) as a driver.
+       See <share/doc/contributing.d/mail> for more details on signing
+       your mail to the list.  See also <share/doc/contributing.d/git>
+       for instructions for configuring git-send-email(1) to use
+       neomutt(1) as a driver.
 
 See also
-       CONTRIBUTING
-       CONTRIBUTING.d/*
+       share/doc/contributing
+       share/doc/contributing.d/*
 
        <https://www.kernel.org/doc/Documentation/process/submitting-patches.rst>
        <https://inbox.sourceware.org/gcc/ZiV5unTogyI7rPJA@debian/>

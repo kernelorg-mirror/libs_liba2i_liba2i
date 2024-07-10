@@ -11,8 +11,8 @@ Description
         'SKIP_XFAIL=no'.
 
 See also
-        CONTRIBUTING
-        CONTRIBUTING.d/*
-        INSTALL
+        share/doc/contributing
+        share/doc/contributing.d/*
+        share/doc/install
 
         $ make help

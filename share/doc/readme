@@ -49,19 +49,6 @@ Description
        simple API (almost as simple as atoi(3)) with common defaults.
 
 Files
-   CONTRIBUTING
-   CONTRIBUTING.d/
-       Instructions for reporting bugs and contributing.
-
-   INSTALL
-       Instructions for installing the library.
-
-   README
-       Main information about the project and the repository.
-
-   RELEASE
-       Instructions for releasing and distributing new versions.
-
    GNUmakefile
    share/mk/
        Build system.  For help, run `make help`.
@@ -107,7 +94,7 @@ Maintainers
        Alejandro Colomar <alx@kernel.org> <https://www.alejandro-colomar.es/>
 
 Bugs
-       See the <CONTRIBUTING> file.
+       See the <share/doc/contributing> file.
 
 Copyright
        LGPL-3.0-or-later WITH LGPL-3.0-linking-exception
