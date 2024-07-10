@@ -1,0 +1,16 @@
+Begin4
+Title:          liba2i
+Version:        0.8
+Entered-date:   2024-07-10
+Description:    Library to parse numbers from strings.
+Keywords:       liba2i a2i str2i
+Author:         Alejandro Colomar <alx@kernel.org>
+Maintained-by:  Alejandro Colomar <alx@kernel.org>
+Primary-site:   https://www.alejandro-colomar.es /share/dist/liba2i/
+                2.7M  0/0.8/liba2i-0.8.tar.gz
+Alternate-site: https://www.alejandro-colomar.es /share/dist/liba2i/
+                2.7M  0/0.8/liba2i-0.8.tar.gz
+Original-site:  https://git.kernel.org/pub/scm/libs/liba2i/liba2i.git/
+Platforms:      ISO C11, POSIX.1-2008
+Copying-policy: LGPL-3.0-or-later WITH LGPL-3.0-linking-exception
+End

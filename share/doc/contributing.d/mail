@@ -1,0 +1,42 @@
+Name
+       Mail - instructions for sending email to the project
+
+Description
+       The main discussions regarding development of the project,
+       patches, bugs, news, doubts, etc. happen on the mailing list.
+       To send an email to the project, send it to Alejandro and CC the
+       mailing list:
+
+           To: Alejandro Colomar <alx@kernel.org>
+           Cc: <liba2i@lists.linux.dev>
+
+       Please don't send HTML email; it will be discarded by the list.
+
+       Archives:
+             <https://lore.kernel.org/liba2i/>
+
+       Subscription:
+             It is not necessary to subscribe to the list to send an
+             email.  For subscribing to the list, or information about
+             it, go to
+             <https://subspace.kernel.org/lists.linux.dev.html>.
+
+   Sign your emails with PGP
+        We encourage that you sign all of your emails sent to the
+        mailing list, (especially) including the ones containing
+        patches, with your PGP key.  This helps establish trust between
+        you and other contributors of this project, and prevent others
+        impersonating you.  If you don't have a key, it's not mandatory
+        to sign your email, but you're encouraged to create and start
+        using a PGP key.  See also:
+        <https://www.gnupg.org/faq/gnupg-faq.html#use_pgpmime>
+
+        If you use mutt(1), we recommend the following configuration for
+        PGP:
+
+            set crypt_autosign = yes
+            set crypt_protected_headers_write = yes
+
+See also
+       CONTRIBUTING
+       CONTRIBUTING.d/*

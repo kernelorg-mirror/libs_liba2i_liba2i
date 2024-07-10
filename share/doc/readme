@@ -49,22 +49,30 @@ Description
        simple API (almost as simple as atoi(3)) with common defaults.
 
 Files
+   CONTRIBUTING
+   CONTRIBUTING.d/
+       Instructions for reporting bugs and contributing.
+
    INSTALL
        Instructions for installing the library.
 
    README
        Main information about the project and the repository.
 
-   Makefile
+   RELEASE
+       Instructions for releasing and distributing new versions.
+
+   GNUmakefile
    share/mk/
-       Build system.
+       Build system.  For help, run `make help`.
 
    LICENSES/
    share/licenses/
        Licenses in use by the project.
 
    etc/
-       Configuration files for (linter) programs called by the build system.
+       Configuration files for (linter) programs called by the build
+       system.
 
    include/a2i/
        Header files.
@@ -72,20 +80,38 @@ Files
    lib/pkgconfig/
        Package configuration file.  See pc(5) and pkgconf(1).
 
+   lib/src/a2i/
+       Source code.
+
    share/doc/
        Project documentation.
 
-   share/man/
+   man/
        Manual pages.
 
-   src/a2i/
-       Source code.
+   .tmp/
+       Default directory for files created by the build system.
+
+Versions
+   Distribution
+       <https://www.alejandro-colomar.es/share/dist/liba2i/>
+
+   Git
+       <https://git.kernel.org/pub/scm/libs/liba2i/liba2i.git/>
+       <https://www.alejandro-colomar.es/src/alx/alx/liba2i.git/>
+
+   Online man-pages
+       <https://www.alejandro-colomar.es/share/dist/liba2i/git/HEAD/liba2i-HEAD.pdf>
 
 Maintainers
        Alejandro Colomar <alx@kernel.org> <https://www.alejandro-colomar.es/>
+
+Bugs
+       See the <CONTRIBUTING> file.
 
 Copyright
        LGPL-3.0-or-later WITH LGPL-3.0-linking-exception
 
 See also
-       <https://www.alejandro-colomar.es/src/alx/alx/liba2i.git>
+       <https://git.kernel.org/pub/scm/libs/liba2i/liba2i.git/tree/share/docs/readme>
+       <https://www.alejandro-colomar.es/src/alx/alx/liba2i.git/tree/share/docs/readme>

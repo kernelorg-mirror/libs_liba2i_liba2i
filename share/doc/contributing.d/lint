@@ -1,0 +1,18 @@
+Name
+        Lint - instructions for linting manual pages
+
+Description
+        To run the linters and checks for the entire project, run
+
+            $ make lint build;
+            $ make check;  # check must be run after a successful build
+
+        This skips tests that are known to fail.  To run those too, set
+        'SKIP_XFAIL=no'.
+
+See also
+        CONTRIBUTING
+        CONTRIBUTING.d/*
+        INSTALL
+
+        $ make help

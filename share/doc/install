@@ -2,56 +2,26 @@ Name
        Install - instructions for installing library into the system
 
 Synopsis
+       make [-j] lint [...]          # Optional
+       make [-j] build [...]         # Optional
+       make [-j] check [...]         # Optional
        sudo make [-j] install [prefix=...] [DESTDIR=...] [...]
-       make [-j] installcheck [...]
+       make [-j] installcheck [...]  # Optional
 
 Description
    Install manually from source
-       In most cases, you just want to install the entire library.  To install
-       all the files in the default system directories (per GNU guidelines),
-       use:
+       In most cases, you just want to install the entire library.  To
+       install all the files in the default system directories (per GNU
+       guidelines), use:
 
            $ make               # optional
            $ sudo make install
            $ make installcheck  # optional
 
-       You can install in parallel if you want.  A few features can be used to
-       tweak the install:
+       You can install in parallel if you want.  A few features can be
+       used to tweak the install.  To get some help, run:
 
-       Variables
-           There are many variables available with which you can tweak
-           the build system.  Most of them are directory variables and
-           command variables, based on the GNU Coding Standards.  Others
-           are specially designed for this project.  To see the
-           available variables, use:
-
-               $ make help-variables
-
-       Uninstall
-            TODO
-
-       Targets
-            There are targets for more granular control, such as 'install-dev'.
-            See the help to know all of them:
-
-                $ make help
-
-   Dependencies
-       There are no run-time dependencies other than libc.  To learn the
-       build dependencies of the project, run
-
-           $ find share/mk/ -type f \
-           | xargs grep include.*configure/build-depends/ \
-           | sed 's,share/mk/,,' \
-           | sed 's,/.*:,:,' \
-           | sed 's,include $.*/, ,' \
-           | sed 's,\.mk,,g' \
-           | sort \
-           | uniq;
-
-   Lint
-       You can lint the source code.  See 'make help' for a list of targets
-       that can be used.
+           $ make help
 
 Files
    GNUmakefile
@@ -61,11 +31,11 @@ Files
    include/a2i/
        Header files.
 
-   src/a2i/
-       Source files.
-
    lib/pkgconfig/*.pc
        pc(5) file.
+
+   lib/src/a2i/
+       Source files.
 
    /usr/local/include/a2i/
        Installed header files.

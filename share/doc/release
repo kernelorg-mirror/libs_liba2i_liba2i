@@ -1,0 +1,152 @@
+Name
+       Release - instructions for releasing a new version
+
+Synopsis
+       git tag, tarball, LSM, email, and push.
+
+Description
+       This are the instructions to release a new official version of
+       the project.  However, these should also be useful for those who
+       simply want to package a random commit.  For packaging a random
+       commit without an official release, you only need step (3)
+       "Tarball".
+
+   Dependencies
+       To see the build-dependencies of the project, that is, the
+       dependencies of the build system, run `make help`.
+
+       Apart from that, the following commands are also needed for other
+       tasks shown below:
+
+       -  gpg(1)
+       -  kup(1)
+
+   Steps
+       (1)  Version
+
+            -  Decide the version number:
+
+                   $ old=6.01
+                   $ new=6.02
+
+       (2)  Tag
+
+            Create a signed tag.  The tag message should note the most
+            important changes in the version being released, since it
+            will be read by users and packagers.  It should include any
+            information that is especially relevant for them.  Check old
+            tags:
+            `git tag | grep 'liba2i-' | tac | xargs git show --stat`
+
+            -  Tag:
+
+                   $ git tag -s liba2i-$new
+
+       (3)  Tarball
+
+            Creating the tarball will embed in the manual pages both the
+            version number, and the date of last modification (in the
+            git repository, the pages have placeholders for the date and
+            the version).
+
+            You need to create a set of tarballs, sign the .tar archive,
+            and upload the compressed tarballs to <kernel.org>.
+
+            In case you're creating a tarball for distributing a random
+            commit, it might be interesting to tweak a few parameters;
+            check the variables available at <share/mk/dist/>, and any
+            makefiles included by that one.  See the "Versions" section
+            below.
+
+            -  Create the tarball:
+
+                   $ make -Bj4 dist
+
+            -  Check the tarball:
+
+                   $ make -j4 distcheck
+
+            -  Sign the tarball:
+
+                   $ cd .tmp/
+                   $ gpg --detach-sign --armor man-pages-$new.tar
+
+            -  Verify the signature:
+
+                   $ gpg --verify man-pages-$new.tar{.asc,}
+
+            -  Upload the tarball:
+
+                   $ kup put man-pages-$new.tar.{xz,asc} \
+                             /pub/linux/docs/man-pages/
+                   $ cd ..
+
+       (4)  LSM
+
+            Update the <lsm> file.  Check old commits:
+            `git log -p -- share/doc/lsm`.
+
+            -  Update the project version number.
+
+            -  Update the release date.
+
+            -  Update the tarball name and size.
+
+            -  Commit:
+
+                   $ git add share/doc/lsm
+                   $ git commit -sm "lsm: Released $new"
+
+            -  Send (email) the lsm file to <lsm@qqx.org> with the
+               subject "add":
+
+                   $ neomutt -C -s add -i lsm lsm@qqx.org;
+
+       (5)  Email
+
+            Send an announce email to liba2i@, and possibly others that
+            might be interested in the release, such as distribution
+            maintainers, or those who have contributed to the release.
+
+            The email should contain a mix of the git tag message, and
+            anything else that might be relevant.  Check old emails such
+            as
+            <https://lore.kernel.org/linux-man/4ba6c215-6d28-1769-52d3-04941b962ff3@kernel.org/T/#u>.
+
+            The subject of the email should be
+            "liba2i-$new released".
+
+            A list of contributors can be obtained with:
+
+                $ git log liba2i-$old..HEAD \
+                | grep -v -e Message-ID: -e Link: \
+                | grep '<.*@.*>' \
+                | sed 's/^ *//' \
+                | sed 's/[^:]*: //' \
+                | sort \
+                | uniq;
+
+       (6)  Push
+
+            You've finished.  When you confirm it's good, push to the
+            git repository.
+
+            -  Push:
+
+                   $ git push
+                   $ git push korg liba2i-$new
+
+               korg is just my name for the remote.
+
+Files
+   GNUmakefile
+   share/mk/
+       Main makefiles used for releasing (however, others may also be
+       used by inclusion).
+
+   share/doc/lsm
+       Linux software map.  See also <https://lsm.qqx.org/>.
+
+   .tmp/liba2i-<version>.tar*
+       Generated tarballs.  You can generate all with 'make -B dist', or
+       generate only some of them, with targets of the form dist-*.

@@ -1,0 +1,15 @@
+Name
+        Style - preferred layout and style guide notes
+
+Description
+        We use a mix of styles.  Please try to keep it similar to
+        existing code.
+
+See also
+        <https://git.kernel.org/pub/scm/git/git.git/tree/Documentation/CodingGuidelines>
+        <https://www.gnu.org/prep/standards/standards.html>
+        <https://google.github.io/styleguide/>
+        <https://www.kernel.org/doc/html/latest/process/coding-style.html>
+        <https://www.alejandro-colomar.es/share/dist/man-pages/git/HEAD/man-pages-HEAD.pdf#man-pages.7>
+        <http://doc.cat-v.org/bell_labs/pikestyle>
+        <https://www.cis.upenn.edu/~lee/06cse480/data/cstyle.ms.pdf>
