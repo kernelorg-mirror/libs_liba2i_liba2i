@@ -10,4 +10,7 @@
 // IWYU pragma: no_include "a2i/attr.h"
 
 
+#define A2I_ATTR_ALIAS(original)  __attribute__((alias(original)))
+
+
 #endif  // include guard
