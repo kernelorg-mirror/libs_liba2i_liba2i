@@ -6,11 +6,19 @@
 #define LIB_SRC_A2I_STRTOI_STRTOI_STRTOI_H_
 
 
-#include "include/a2i/strtoi/strtoi/strtoi.h"  // IWYU pragma: export
-// IWYU pragma: no_include "a2i/strtoi/strtoi/strtoi.h"
+#include "lib/src/a2i/strtoi/strtoi/strtoi_c.h"   // IWYU pragma: keep
+#include "lib/src/a2i/strtoi/strtoi/strtoi_nc.h"  // IWYU pragma: keep
 
-#include "lib/src/a2i/strtoi/strtoi/strtoi_c.h" // IWYU pragma: keep
-#include "lib/src/a2i/strtoi/strtoi/strtoi_nc.h"// IWYU pragma: keep
+
+#define a2i_strtoi(s, ...)                                                    \
+(                                                                             \
+	_Generic(s,                                                           \
+		const char *:  a2i_strtoi_c,                                  \
+		const void *:  a2i_strtoi_c,                                  \
+		char *:        a2i_strtoi_nc,                                 \
+		void *:        a2i_strtoi_nc                                  \
+	)(s, __VA_ARGS__)                                                     \
+)
 
 
 #endif  // include guard

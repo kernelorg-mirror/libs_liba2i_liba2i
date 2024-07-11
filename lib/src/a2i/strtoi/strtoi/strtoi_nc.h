@@ -6,20 +6,28 @@
 #define LIB_SRC_A2I_STRTOI_STRTOI_STRTOI_NC_H_
 
 
-#include "include/a2i/strtoi/strtoi/strtoi_nc.h"
-
 #include <errno.h>
 #include <inttypes.h>
 #include <stddef.h>
 #include <stdint.h>
 #include <sys/param.h>
 
+#include "lib/src/a2i/attr.h"
 #include "lib/src/a2i/qual.h"
 
 
 #if defined(__clang__)
 # pragma clang assume_nonnull begin
 #endif
+A2I_ATTR_ACCESS(read_only, 1)
+A2I_ATTR_ACCESS(write_only, 2)
+A2I_ATTR_ACCESS(write_only, 6)
+A2I_ATTR_STRING(1)
+inline intmax_t a2i_strtoi_nc(char *s,
+    char **a2i_nullable restrict endp, int base,
+    intmax_t min, intmax_t max, int *a2i_nullable restrict status);
+
+
 inline intmax_t
 a2i_strtoi_nc(char *s,
     char **a2i_nullable restrict endp, int base,
