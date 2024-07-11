@@ -7,6 +7,7 @@
 
 
 #include <a2i/attr.h>
+#include <a2i/inline.h>
 
 
 #define str2u(TYPE, ...)                                                      \
@@ -30,11 +31,20 @@
 #if defined(__clang__)
 # pragma clang assume_nonnull begin
 #endif
-A2I_STR2U_ATTR int str2uhh(unsigned char *restrict n, const char *s);
-A2I_STR2U_ATTR int str2uh(unsigned short *restrict n, const char *s);
-A2I_STR2U_ATTR int str2ui(unsigned int *restrict n, const char *s);
-A2I_STR2U_ATTR int str2ul(unsigned long *restrict n, const char *s);
-A2I_STR2U_ATTR int str2ull(unsigned long long *restrict n, const char *s);
+A2I_STR2U_ATTR
+a2i_inline int str2uhh(unsigned char *restrict n, const char *s);
+
+A2I_STR2U_ATTR
+a2i_inline int str2uh(unsigned short *restrict n, const char *s);
+
+A2I_STR2U_ATTR
+a2i_inline int str2ui(unsigned int *restrict n, const char *s);
+
+A2I_STR2U_ATTR
+a2i_inline int str2ul(unsigned long *restrict n, const char *s);
+
+A2I_STR2U_ATTR
+a2i_inline int str2ull(unsigned long long *restrict n, const char *s);
 #if defined(__clang__)
 # pragma clang assume_nonnull end
 #endif

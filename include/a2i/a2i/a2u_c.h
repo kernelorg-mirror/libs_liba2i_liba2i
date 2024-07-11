@@ -7,6 +7,7 @@
 
 
 #include <a2i/attr.h>
+#include <a2i/inline.h>
 #include <a2i/qual.h>
 
 
@@ -21,22 +22,31 @@
 # pragma clang assume_nonnull begin
 #endif
 A2I_A2U_C_ATTR
+a2i_inline
 int a2uhh_c(unsigned char *restrict n, const char *s,
     const char **a2i_nullable restrict endp, int base,
     unsigned char min, unsigned char max);
+
 A2I_A2U_C_ATTR
+a2i_inline
 int a2uh_c(unsigned short *restrict n, const char *s,
     const char **a2i_nullable restrict endp, int base,
     unsigned short min, unsigned short max);
+
 A2I_A2U_C_ATTR
+a2i_inline
 int a2ui_c(unsigned int *restrict n, const char *s,
     const char **a2i_nullable restrict endp, int base,
     unsigned int min, unsigned int max);
+
 A2I_A2U_C_ATTR
+a2i_inline
 int a2ul_c(unsigned long *restrict n, const char *s,
     const char **a2i_nullable restrict endp, int base,
     unsigned long min, unsigned long max);
+
 A2I_A2U_C_ATTR
+a2i_inline
 int a2ull_c(unsigned long long *restrict n, const char *s,
     const char **a2i_nullable restrict endp, int base,
     unsigned long long min, unsigned long long max);

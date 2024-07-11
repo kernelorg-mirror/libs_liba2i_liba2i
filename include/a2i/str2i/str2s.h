@@ -7,6 +7,7 @@
 
 
 #include <a2i/attr.h>
+#include <a2i/inline.h>
 
 
 #define str2s(TYPE, ...)                                                      \
@@ -30,11 +31,20 @@
 #if defined(__clang__)
 # pragma clang assume_nonnull begin
 #endif
-A2I_STR2S_ATTR int str2shh(signed char *restrict n, const char *s);
-A2I_STR2S_ATTR int str2sh(short *restrict n, const char *s);
-A2I_STR2S_ATTR int str2si(int *restrict n, const char *s);
-A2I_STR2S_ATTR int str2sl(long *restrict n, const char *s);
-A2I_STR2S_ATTR int str2sll(long long *restrict n, const char *s);
+A2I_STR2S_ATTR
+a2i_inline int str2shh(signed char *restrict n, const char *s);
+
+A2I_STR2S_ATTR
+a2i_inline int str2sh(short *restrict n, const char *s);
+
+A2I_STR2S_ATTR
+a2i_inline int str2si(int *restrict n, const char *s);
+
+A2I_STR2S_ATTR
+a2i_inline int str2sl(long *restrict n, const char *s);
+
+A2I_STR2S_ATTR
+a2i_inline int str2sll(long long *restrict n, const char *s);
 #if defined(__clang__)
 # pragma clang assume_nonnull end
 #endif

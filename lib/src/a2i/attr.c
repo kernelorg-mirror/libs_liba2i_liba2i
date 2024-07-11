@@ -2,4 +2,4 @@
 // SPDX-License-Identifier: LGPL-3.0-only WITH LGPL-3.0-linking-exception
 
 
-#include <a2i/attr.h>
+#include "lib/src/a2i/attr.h"

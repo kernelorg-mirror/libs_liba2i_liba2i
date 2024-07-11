@@ -2,7 +2,11 @@
 // SPDX-License-Identifier: LGPL-3.0-only WITH LGPL-3.0-linking-exception
 
 
-#include <a2i/strtoi/strtou.h>
+#ifndef LIB_SRC_A2I_STRTOI_STRTOI_STRTOI_NC_H_
+#define LIB_SRC_A2I_STRTOI_STRTOI_STRTOI_NC_H_
+
+
+#include "include/a2i/strtoi/strtoi/strtoi_nc.h"
 
 #include <errno.h>
 #include <inttypes.h>
@@ -10,33 +14,20 @@
 #include <stdint.h>
 #include <sys/param.h>
 
-#include <a2i/qual.h>
+#include "lib/src/a2i/qual.h"
 
 
 #if defined(__clang__)
 # pragma clang assume_nonnull begin
 #endif
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wcast-qual"
-uintmax_t
-a2i_strtou_c(const char *s,
-    const char **a2i_nullable restrict endp, int base,
-    uintmax_t min, uintmax_t max, int *a2i_nullable restrict status)
-{
-	return a2i_strtou((char *) s, (char **a2i_nullable) endp, base,
-	                  min, max, status);
-}
-#pragma GCC diagnostic pop
-
-
-uintmax_t
-a2i_strtou_nc(char *s,
+inline intmax_t
+a2i_strtoi_nc(char *s,
     char **a2i_nullable restrict endp, int base,
-    uintmax_t min, uintmax_t max, int *a2i_nullable restrict status)
+    intmax_t min, intmax_t max, int *a2i_nullable restrict status)
 {
 	int        errno_saved, st;
 	char       *e;
-	uintmax_t  n;
+	intmax_t   n;
 
 	if (endp == NULL)
 		endp = &e;
@@ -45,13 +36,13 @@ a2i_strtou_nc(char *s,
 
 	if (base != 0 && (base < 2 || base > 36)) {
 		*status = EINVAL;
-		return MAX(min, 0);
+		return MAX(min, MIN(max, 0));
 	}
 
 	errno_saved = errno;
 	errno = 0;
 
-	n = strtoumax(s, endp, base);
+	n = strtoimax(s, endp, base);
 
 	if (*endp == s)
 		*status = ECANCELED;
@@ -69,3 +60,6 @@ a2i_strtou_nc(char *s,
 #if defined(__clang__)
 # pragma clang assume_nonnull end
 #endif
+
+
+#endif  // include guard
