@@ -9,8 +9,7 @@
 #include "include/a2i/a2i/a2s.h"     // IWYU pragma: export
 // IWYU pragma: no_include "a2i/a2i/a2s.h"
 
-#include "lib/src/a2i/a2i/a2s_c.h"   // IWYU pragma: keep
-#include "lib/src/a2i/a2i/a2s_nc.h"  // IWYU pragma: keep
+#include "lib/src/a2i/a2i/a2s_.h"   // IWYU pragma: keep
 
 
 #endif  // include guard

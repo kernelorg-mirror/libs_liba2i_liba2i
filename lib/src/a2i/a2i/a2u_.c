@@ -2,8 +2,7 @@
 // SPDX-License-Identifier: LGPL-3.0-only WITH LGPL-3.0-linking-exception
 
 
-#include "lib/src/a2i/a2i/a2u_nc.h"
-#include "lib/src/a2i/a2i/a2u_c.h"
+#include "lib/src/a2i/a2i/a2u_.h"
 
 #include "lib/src/a2i/attr.h"
 #include "lib/src/a2i/qual.h"

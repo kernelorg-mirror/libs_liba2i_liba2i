@@ -2,16 +2,17 @@
 // SPDX-License-Identifier: LGPL-3.0-only WITH LGPL-3.0-linking-exception
 
 
-#ifndef LIB_SRC_A2I_A2I_A2U_NC_H_
-#define LIB_SRC_A2I_A2I_A2U_NC_H_
+#ifndef LIB_SRC_A2I_A2I_A2S__H_
+#define LIB_SRC_A2I_A2I_A2S__H_
 
 
-#include "include/a2i/a2i/a2u_nc.h"
+#include "include/a2i/a2i/a2s_.h"  // IWYU pragma: export
+// IWYU pragma: no_include "a2i/a2i/a2s_.h"
 
 #include <errno.h>
 
 #include "lib/src/a2i/qual.h"
-#include "lib/src/a2i/strtoi/strtou_noneg/strtou_noneg.h"
+#include "lib/src/a2i/strtoi/strtoi/strtoi.h"
 
 
 #if defined(__clang__)
@@ -21,13 +22,13 @@
 # pragma clang diagnostic ignored "-Wshorten-64-to-32"
 #endif
 inline int
-a2uhh_nc(unsigned char *restrict n, char *s,
+a2shh_nc(signed char *restrict n, char *s,
     char **a2i_nullable restrict endp, int base,
-    unsigned char min, unsigned char max)
+    signed char min, signed char max)
 {
 	int  status;
 
-	*n = a2i_strtou_noneg(s, endp, base, min, max, &status);
+	*n = a2i_strtoi(s, endp, base, min, max, &status);
 	if (status != 0)
 		errno = status;
 
@@ -35,13 +36,13 @@ a2uhh_nc(unsigned char *restrict n, char *s,
 }
 
 inline int
-a2uh_nc(unsigned short *restrict n, char *s,
+a2sh_nc(short *restrict n, char *s,
     char **a2i_nullable restrict endp, int base,
-    unsigned short min, unsigned short max)
+    short min, short max)
 {
 	int  status;
 
-	*n = a2i_strtou_noneg(s, endp, base, min, max, &status);
+	*n = a2i_strtoi(s, endp, base, min, max, &status);
 	if (status != 0)
 		errno = status;
 
@@ -49,13 +50,13 @@ a2uh_nc(unsigned short *restrict n, char *s,
 }
 
 inline int
-a2ui_nc(unsigned int *restrict n, char *s,
+a2si_nc(int *restrict n, char *s,
     char **a2i_nullable restrict endp, int base,
-    unsigned int min, unsigned int max)
+    int min, int max)
 {
 	int  status;
 
-	*n = a2i_strtou_noneg(s, endp, base, min, max, &status);
+	*n = a2i_strtoi(s, endp, base, min, max, &status);
 	if (status != 0)
 		errno = status;
 
@@ -63,13 +64,13 @@ a2ui_nc(unsigned int *restrict n, char *s,
 }
 
 inline int
-a2ul_nc(unsigned long *restrict n, char *s,
+a2sl_nc(long *restrict n, char *s,
     char **a2i_nullable restrict endp, int base,
-    unsigned long min, unsigned long max)
+    long min, long max)
 {
 	int  status;
 
-	*n = a2i_strtou_noneg(s, endp, base, min, max, &status);
+	*n = a2i_strtoi(s, endp, base, min, max, &status);
 	if (status != 0)
 		errno = status;
 
@@ -77,13 +78,13 @@ a2ul_nc(unsigned long *restrict n, char *s,
 }
 
 inline int
-a2ull_nc(unsigned long long *restrict n, char *s,
+a2sll_nc(long long *restrict n, char *s,
     char **a2i_nullable restrict endp, int base,
-    unsigned long long min, unsigned long long max)
+    long long min, long long max)
 {
 	int  status;
 
-	*n = a2i_strtou_noneg(s, endp, base, min, max, &status);
+	*n = a2i_strtoi(s, endp, base, min, max, &status);
 	if (status != 0)
 		errno = status;
 

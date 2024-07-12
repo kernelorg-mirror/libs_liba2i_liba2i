@@ -6,8 +6,7 @@
 #define INCLUDE_A2I_A2I_A2S_H_
 
 
-#include <a2i/a2i/a2s_c.h>   // IWYU pragma: keep
-#include <a2i/a2i/a2s_nc.h>  // IWYU pragma: keep
+#include <a2i/a2i/a2s_.h>  // IWYU pragma: keep
 
 
 #define a2s(TYPE, n, s, ...)                                                  \

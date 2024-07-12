@@ -6,13 +6,11 @@
 #define LIB_SRC_A2I_A2I_A2I_H_
 
 
-#include "include/a2i/a2i/a2i.h"     // IWYU pragma: export
+#include "include/a2i/a2i/a2i.h"   // IWYU pragma: export
 // IWYU pragma: no_include "a2i/a2i/a2i.h"
 
-#include "lib/src/a2i/a2i/a2s_c.h"   // IWYU pragma: keep
-#include "lib/src/a2i/a2i/a2s_nc.h"  // IWYU pragma: keep
-#include "lib/src/a2i/a2i/a2u_c.h"   // IWYU pragma: keep
-#include "lib/src/a2i/a2i/a2u_nc.h"  // IWYU pragma: keep
+#include "lib/src/a2i/a2i/a2s_.h"  // IWYU pragma: keep
+#include "lib/src/a2i/a2i/a2u_.h"  // IWYU pragma: keep
 
 
 #endif  // include guard
