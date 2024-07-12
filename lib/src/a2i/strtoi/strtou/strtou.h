@@ -23,6 +23,8 @@ A2I_ATTR_ACCESS(read_only, 1)
 A2I_ATTR_ACCESS(write_only, 2)
 A2I_ATTR_ACCESS(write_only, 6)
 A2I_ATTR_STRING(1)
+A2I_ATTR_LEAF
+A2I_ATTR_NOTHROW
 inline
 uintmax_t a2i_strtou(char *s,
     char **a2i_nullable restrict endp, int base,

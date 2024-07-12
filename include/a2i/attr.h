@@ -20,4 +20,9 @@
 #endif
 
 
+#define A2I_ATTR_LEAF          __attribute__((__leaf__))
+
+#define A2I_ATTR_NOTHROW       __attribute__((__nothrow__))
+
+
 #endif  // include guard
