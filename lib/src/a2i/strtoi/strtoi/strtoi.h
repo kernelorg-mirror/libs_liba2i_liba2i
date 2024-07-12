@@ -26,6 +26,7 @@ A2I_ATTR_NONNULL(1)
 A2I_ATTR_STRING(1)
 A2I_ATTR_LEAF
 A2I_ATTR_NOTHROW
+A2I_ATTR_VISIBILITY("internal")
 inline intmax_t a2i_strtoi(char *s,
     char **a2i_nullable restrict endp, int base,
     intmax_t min, intmax_t max, int *a2i_nullable restrict status);

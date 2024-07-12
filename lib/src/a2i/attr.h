@@ -12,5 +12,7 @@
 
 #define A2I_ATTR_ALIAS(original)  __attribute__((alias(original)))
 
+#define A2I_ATTR_VISIBILITY(v)    __attribute__((visibility(v)))
+
 
 #endif  // include guard
