@@ -24,7 +24,7 @@ _LIB_a := $(builddir)/$(libname).a
 $(_LIB_a): %.a: $(_TU_o) $(MK) | $$(@D)/
 	$(info	AR		$@)
 	cd $(dir $@) && \
-	for opt in g 0 1 2 s 3 fast; do \
+	for opt in g 0 1 2 s z 3 fast; do \
 		$(RM) -f $(notdir $*.O$$opt.a); \
 		$(ECHO) $(patsubst $(builddir)/%,%,$(_TU_o)) \
 		| $(SED) "s,.o\>,.O$$opt.o," \

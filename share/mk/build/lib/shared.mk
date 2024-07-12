@@ -21,7 +21,7 @@ _LINKERNAME := $(builddir)/$(LINKERNAME)
 
 $(_REALNAME): %.so.$(DISTVERSION): $(TU_h) $(TU_c) $(MK) $(LIB_pc) | $$(@D)/
 	$(info	$(INFO_)LD		$@)
-	for opt in g 0 1 2 s 3 fast; do \
+	for opt in g 0 1 2 s z 3 fast; do \
 	$(LD) $(LDFLAGS) -O$$opt -o $*.O$$opt.so.$(DISTVERSION) $(TU_c) $(LDLIBS); \
 	done
 	$(LD) $(LDFLAGS)         -o $@                          $(TU_c) $(LDLIBS)

@@ -21,7 +21,7 @@ _TU_gch := $(patsubst $(INCLUDEDIR)/%, $(builddir)/%.gch, $(TU_h))
 $(_TU_gch): %.gch: $(MK) $(LIB_pc) | %.d $$(@D)/
 $(_TU_gch): $(builddir)/%.gch: $(INCLUDEDIR)/%
 	$(info	PCH		$@)
-	for opt in g 0 1 2 s 3 fast; do \
+	for opt in g 0 1 2 s z 3 fast; do \
 	$(CC) $(CPPFLAGS) $(CFLAGS) -O$$opt -c -o $(builddir)/$*.O$$opt.gch $<; \
 	done
 	$(CC) $(CPPFLAGS) $(CFLAGS)         -c -o $@                        $<

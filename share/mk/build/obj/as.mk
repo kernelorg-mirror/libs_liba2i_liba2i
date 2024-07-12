@@ -20,7 +20,7 @@ _TU_o := $(patsubst $(LIBSRCDIR)/%, $(builddir)/%.o, $(TU_c))
 $(_TU_o): %.o: $(MK) $(LIB_pc) | %.d $$(@D)/
 $(_TU_o): $(builddir)/%.o: $(LIBSRCDIR)/%
 	$(info	AS		$@)
-	for opt in g 0 1 2 s 3 fast; do \
+	for opt in g 0 1 2 s z 3 fast; do \
 	$(AS) -O$$opt -c -o $(builddir)/$*.O$$opt.o $<; \
 	done
 	$(AS)         -c -o $@                      $<

@@ -20,7 +20,7 @@ _TU_i := $(patsubst $(LIBSRCDIR)/%, $(builddir)/%.i, $(TU_c))
 $(_TU_i): %.i: $(MK) $(LIB_pc) | %.d $$(@D)/
 $(_TU_i): $(builddir)/%.i: $(LIBSRCDIR)/%
 	$(info	CPP		$@)
-	for opt in g 0 1 2 s 3 fast; do \
+	for opt in g 0 1 2 s z 3 fast; do \
 	$(CPP) $(CPPFLAGS) -O$$opt -o $(builddir)/$*.O$$opt.i $<; \
 	done
 	$(CPP) $(CPPFLAGS)         -o $@                      $<
