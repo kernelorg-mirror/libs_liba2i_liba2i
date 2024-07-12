@@ -22,6 +22,8 @@
 
 #define A2I_ATTR_LEAF          __attribute__((__leaf__))
 
+#define A2I_ATTR_NONNULL(...)  __attribute__((__nonnull__(__VA_ARGS__)))
+
 #define A2I_ATTR_NOTHROW       __attribute__((__nothrow__))
 
 

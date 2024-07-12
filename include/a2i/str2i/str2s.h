@@ -25,6 +25,7 @@
 #define A2I_STR2S_ATTR                                                        \
 	A2I_ATTR_ACCESS(write_only, 1)                                        \
 	A2I_ATTR_ACCESS(read_only, 2)                                         \
+	A2I_ATTR_NONNULL(1, 2)                                                \
 	A2I_ATTR_STRING(2)                                                    \
 	A2I_ATTR_LEAF                                                         \
 	A2I_ATTR_NOTHROW
