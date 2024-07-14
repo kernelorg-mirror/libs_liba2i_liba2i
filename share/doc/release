@@ -69,16 +69,16 @@ Description
             -  Sign the tarball:
 
                    $ cd .tmp/
-                   $ gpg --detach-sign --armor man-pages-$new.tar
+                   $ gpg --detach-sign --armor liba2i-$new.tar
 
             -  Verify the signature:
 
-                   $ gpg --verify man-pages-$new.tar{.asc,}
+                   $ gpg --verify liba2i-$new.tar{.asc,}
 
             -  Upload the tarball:
 
-                   $ kup put man-pages-$new.tar.{xz,asc} \
-                             /pub/linux/docs/man-pages/
+                   $ kup put liba2i-$new.tar.{xz,asc} \
+                             /pub/linux/libs/liba2i/
                    $ cd ..
 
        (4)  LSM
