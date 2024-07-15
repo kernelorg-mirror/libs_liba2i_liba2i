@@ -13,6 +13,7 @@ include $(MAKEFILEDIR)/configure/verbose.mk
 
 DEFAULT_CPPFLAGS := \
 	$(shell $(PKGCONF_CMD) --cflags $(pc) $(HIDE_ERR)) \
+	-D_FORTIFY_SOURCE=2 \
 	-DA2I_INTERNAL \
 	-I$(srcdir)/
 EXTRA_CPPFLAGS   :=
