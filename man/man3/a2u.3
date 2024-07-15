@@ -100,14 +100,14 @@ String-to-integer library
 .SH Description
 These functions and macros
 are the unsigned counterparts of
-.MR a2s 3 .
+.BR a2s (3).
 .P
 These reject negative values,
 instead of silently wrapping them around
 (both
-.MR strtoul 3
+.BR strtoul (3)
 and
-.MR strtou 3bsd
+.BR strtou (3bsd)
 wrap around negative values before checking for overflow).
 .
 .
@@ -119,14 +119,14 @@ if (a2u(useconds_t, &us, s, NULL, 10, 0, 1000000) == \-1)
 .
 .
 .SH See also
-.MR a2i 3 ,
-.MR a2s 3 ,
-.MR str2i 3 ,
-.MR str2s 3 ,
-.MR str2u 3 ,
-.MR atof 3 ,
-.MR atoi 3 ,
-.MR strtod 3 ,
-.MR strtoumax 3 ,
-.MR strtoul 3 ,
-.MR strtou 3
+.BR a2i (3),
+.BR a2s (3),
+.BR str2i (3),
+.BR str2s (3),
+.BR str2u (3),
+.BR atof (3),
+.BR atoi (3),
+.BR strtod (3),
+.BR strtoumax (3),
+.BR strtoul (3),
+.BR strtou (3)
