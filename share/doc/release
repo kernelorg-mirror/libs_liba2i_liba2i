@@ -78,7 +78,7 @@ Description
             -  Upload the tarball:
 
                    $ kup put liba2i-$new.tar.{xz,asc} \
-                             /pub/linux/libs/liba2i/
+                             /pub/software/libs/liba2i/
                    $ cd ..
 
        (4)  LSM
