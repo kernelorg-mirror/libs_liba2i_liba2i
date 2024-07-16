@@ -8,8 +8,10 @@ Author:         Alejandro Colomar <alx@kernel.org>
 Maintained-by:  Alejandro Colomar <alx@kernel.org>
 Primary-site:   https://kernel.org /pub/software/libs/liba2i/
                 63K  1/1.0/1.0-rc2/liba2i-1.0-rc2.tar.gz
+                23K  1/1.0/1.0-rc2/liba2i-1.0-rc2.pdf
 Alternate-site: https://www.alejandro-colomar.es /share/dist/liba2i/
                 63K  1/1.0/1.0-rc2/liba2i-1.0-rc2.tar.gz
+                23K  1/1.0/1.0-rc2/liba2i-1.0-rc2.pdf
 Original-site:  https://git.kernel.org/pub/scm/libs/liba2i/liba2i.git/
 Platforms:      ISO C11, POSIX.1-2008
 Copying-policy: LGPL-3.0-or-later WITH LGPL-3.0-linking-exception
