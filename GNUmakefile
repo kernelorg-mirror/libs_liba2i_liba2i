@@ -6,9 +6,9 @@ SHELL       := bash
 .SHELLFLAGS := -Eeuo pipefail -c
 
 
-GNUMAKEFLAGS += --no-builtin-rules
-GNUMAKEFLAGS += --no-builtin-variables
-GNUMAKEFLAGS += --warn-undefined-variables
+MAKEFLAGS += --no-builtin-rules
+MAKEFLAGS += --no-builtin-variables
+MAKEFLAGS += --warn-undefined-variables
 
 
 srcdir      := .
