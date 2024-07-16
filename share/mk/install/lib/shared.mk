@@ -13,21 +13,27 @@ include $(MAKEFILEDIR)/configure/version.mk
 include $(MAKEFILEDIR)/install/lib/_.mk
 
 
-_linkername := $(_libdir)/$(LINKERNAME)
 _realname   := $(_libdir)/$(REALNAME)
+_soname     := $(_libdir)/$(SONAME)
+_linkername := $(_libdir)/$(LINKERNAME)
 
 
 $(_realname): $(_REALNAME) $(MK) | $$(@D)/
 	$(info	$(INFO_)INSTALL		$@)
 	$(INSTALL_PROGRAM) -T $< $@
 
-$(_linkername): $(_realname)
+
+$(_soname): $(_realname) $(MK) | $$(@D)/
+	$(info	$(INFO_)LN		$@)
+	$(LN) -sfT $(REALNAME) $@
+
+$(_linkername): $(_soname)
 	$(info	$(INFO_)LN		$@)
 	$(LN) -sfT $(SONAME) $@
 
 
 .PHONY: install-lib-shared
-install-lib-shared: $(_realname) $(_linkername);
+install-lib-shared: $(_realname) $(_soname) $(_linkername);
 
 
 endif  # include guard
