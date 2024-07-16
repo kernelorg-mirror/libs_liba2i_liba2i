@@ -14,8 +14,8 @@ DEFAULT_TARFLAGS := \
 	--owner=root:0 \
 	--group=root:0 \
 	--mtime='$(DISTDATE)'
-EXTRA_TARFLAGS   :=
-TARFLAGS         := $(DEFAULT_TARFLAGS) $(EXTRA_TARFLAGS)
+TARFLAGS         :=
+TARFLAGS_        := $(DEFAULT_TARFLAGS) $(TARFLAGS)
 TAR              := tar
 
 

@@ -33,30 +33,30 @@ _tests_sh := $(patsubst $(srcdir)/share/%, $(builddir)/%.installcheck.touch, $(T
 $(_TESTS_c): $(builddir)/%.check: $(srcdir)/share/% \
 		$(MK) $(TU_h) $(_LIB_pc_u) $(wildcard $(_LIB_a) $(_LINKERNAME)) | $$(@D)/
 	$(info	CHECK		$@)
-	$(CC) $(CFLAGS) -o $@ $< $$(PKG_CONFIG_LIBDIR=$(builddir) $(PKGCONF) --cflags --libs liba2i-uninstalled)
+	$(CC) $(CFLAGS_) -o $@ $< $$(PKG_CONFIG_LIBDIR=$(builddir) $(PKGCONF) --cflags --libs liba2i-uninstalled)
 	LD_LIBRARY_PATH=$(builddir) $@
 
 $(_TESTS_sh): $(builddir)/%.check.touch: $(srcdir)/share/% \
 		$(MK) $(TU_h) $(_LIB_pc_u) $(wildcard $(_LIB_a) $(_LINKERNAME)) | $$(@D)/
 	$(info	CHECK		$@)
 	CC='$(CC)' \
-	CFLAGS="$(CFLAGS) $$(PKG_CONFIG_LIBDIR=$(builddir) $(PKGCONF) --cflags liba2i-uninstalled)" \
-	LDLIBS="$$(PKG_CONFIG_LIBDIR=$(builddir) $(PKGCONF) --libs liba2i-uninstalled)" \
+	CFLAGS_="$(CFLAGS_) $$(PKG_CONFIG_LIBDIR=$(builddir) $(PKGCONF) --cflags liba2i-uninstalled)" \
+	LDLIBS_="$$(PKG_CONFIG_LIBDIR=$(builddir) $(PKGCONF) --libs liba2i-uninstalled)" \
 	$<
 	$(TOUCH) $@
 
 $(_tests_c): $(builddir)/%.installcheck: $(srcdir)/share/% \
 		$(MK) $(_tu_h) $(wildcard $(_lib_a) $(_linkername)) | $$(@D)/
 	$(info	INSTALLCHECK	$@)
-	$(CC) $(CFLAGS) -o $@ $< $$($(PKGCONF) --cflags --libs liba2i)
+	$(CC) $(CFLAGS_) -o $@ $< $$($(PKGCONF) --cflags --libs liba2i)
 	$@
 
 $(_tests_sh): $(builddir)/%.installcheck.touch: $(srcdir)/share/% \
 		$(MK) $(_tu_h) $(wildcard $(_lib_a) $(_linkername)) | $$(@D)/
 	$(info	INSTALLCHECK	$@)
 	CC='$(CC)' \
-	CFLAGS="$(CFLAGS) $$($(PKGCONF) --cflags liba2i)" \
-	LDLIBS="$$($(PKGCONF) --libs liba2i)" \
+	CFLAGS_="$(CFLAGS_) $$($(PKGCONF) --cflags liba2i)" \
+	LDLIBS_="$$($(PKGCONF) --libs liba2i)" \
 	$<
 	$(TOUCH) $@
 

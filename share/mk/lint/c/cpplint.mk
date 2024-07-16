@@ -30,7 +30,7 @@ $(_LINT_c_cpplint): $(CPPLINT_CONF) $(MK) | $$(@D)/
 
 $(_LINT_c_cpplint):
 	$(info	$(INFO_)CPPLINT		$@)
-	$(CPPLINT) $(CPPLINTFLAGS) $< >/dev/null
+	$(CPPLINT) $(CPPLINTFLAGS_) $< >/dev/null
 	$(TOUCH) $@
 
 

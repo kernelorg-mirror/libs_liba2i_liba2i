@@ -34,7 +34,7 @@ $(_LINT_c_clang_tidy): $(CLANG_TIDY_CONF) $(MK) | $$(@D)/
 
 $(_LINT_c_clang_tidy):
 	$(info	$(INFO_)CLANG_TIDY	$@)
-	$(CLANG_TIDY) $(CLANG_TIDYFLAGS) $< -- $(CPPFLAGS) $(CLANGFLAGS) 2>&1 \
+	$(CLANG_TIDY) $(CLANG_TIDYFLAGS_) $< -- $(CLANGFLAGS_) $(CPPFLAGS_) 2>&1 \
 	| $(SED) '/generated\.$$/d' >&2
 	$(TOUCH) $@
 

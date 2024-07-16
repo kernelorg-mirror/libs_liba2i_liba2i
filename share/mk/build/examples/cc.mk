@@ -16,7 +16,7 @@ _EX_TU_o := $(patsubst %.c, %.o, $(_EX_TU_c))
 
 $(_EX_TU_o): %.o: %.c $(MK)
 	$(info	$(INFO_)CC		$@)
-	$(CC) -c $(CPPFLAGS) $(CFLAGS) -o $@ $<
+	$(CC) -c $(CFLAGS_) $(CPPFLAGS_) -o $@ $<
 
 
 .PHONY: build-ex-cc

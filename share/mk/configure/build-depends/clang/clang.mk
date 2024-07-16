@@ -12,8 +12,8 @@ include $(MAKEFILEDIR)/configure/build-depends/gcc/cc.mk
 DEFAULT_CLANGFLAGS := \
 	$(COMMON_CFLAGS) \
 	$(CLANG_CFLAGS)
-EXTRA_CLANGFLAGS   :=
-CLANGFLAGS         := $(DEFAULT_CLANGFLAGS) $(EXTRA_CLANGFLAGS)
+CLANGFLAGS         :=
+CLANGFLAGS_        := $(DEFAULT_CLANGFLAGS) $(CLANGFLAGS)
 
 
 endif  # include guard

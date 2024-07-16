@@ -21,9 +21,9 @@ $(_TU_i): %.i: $(MK) $(LIB_pc) | %.d $$(@D)/
 $(_TU_i): $(builddir)/%.i: $(LIBSRCDIR)/%
 	$(info	CPP		$@)
 	for opt in g 0 1 2 s z 3 fast; do \
-	$(CPP) $(CPPFLAGS) -O$$opt -o $(builddir)/$*.O$$opt.i $<; \
+	$(CPP) $(CPPFLAGS_) -O$$opt -o $(builddir)/$*.O$$opt.i $<; \
 	done
-	$(CPP) $(CPPFLAGS)         -o $@                      $<
+	$(CPP) $(CPPFLAGS_)         -o $@                      $<
 
 
 .PHONY: build-obj-cpp

@@ -15,7 +15,7 @@ _HTMLMAN := $(patsubst %.html.set, %.html, $(_HTMLMAN_MAN_set) $(_HTMLMAN_MDOC_s
 
 $(_HTMLMAN): %.html: %.html.set $(MK) | $$(@D)/
 	$(info	$(INFO_)POST_GROHTML	$@)
-	$(POST_GROHTML) $(POST_GROHTMLFLAGS) <$< >$@
+	$(POST_GROHTML) $(POST_GROHTMLFLAGS_) <$< >$@
 
 
 .PHONY: build-html-post-grohtml

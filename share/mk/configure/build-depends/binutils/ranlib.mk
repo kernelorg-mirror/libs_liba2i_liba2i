@@ -10,8 +10,8 @@ include $(MAKEFILEDIR)/configure/build-depends/gcc/cc.mk
 
 
 DEFAULT_RANLIBFLAGS :=
-EXTRA_RANLIBFLAGS   :=
-RANLIBFLAGS         := $(DEFAULT_RANLIBFLAGS) $(EXTRA_RANLIBFLAGS)
+RANLIBFLAGS         :=
+RANLIBFLAGS_        := $(DEFAULT_RANLIBFLAGS) $(RANLIBFLAGS)
 
 ifeq ($(CC_VENDOR),gcc)
 RANLIB              := gcc-ranlib

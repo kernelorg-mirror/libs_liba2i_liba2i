@@ -15,7 +15,7 @@ _PSMAN := $(patsubst %.ps.set, %.ps, $(_PSMAN_MAN_set) $(_PSMAN_MDOC_set))
 
 $(_PSMAN): %.ps: %.ps.set $(MK) | $$(@D)/
 	$(info	$(INFO_)GROPS		$@)
-	$(GROPS) $(GROPSFLAGS) <$< >$@
+	$(GROPS) $(GROPSFLAGS_) <$< >$@
 
 
 .PHONY: build-ps-grops

@@ -31,7 +31,7 @@ $(_LINT_c_checkpatch): $(CHECKPATCH_CONF) $(MK) | $$(@D)/
 
 $(_LINT_c_checkpatch):
 	$(info	$(INFO_)CHECKPATCH	$@)
-	$(CHECKPATCH) $(CHECKPATCHFLAGS) -f $< >&2
+	$(CHECKPATCH) $(CHECKPATCHFLAGS_) -f $< >&2
 	$(TOUCH) $@
 
 

@@ -10,8 +10,8 @@ DEFAULT_TROFFFLAGS := \
 	-wbreak \
 	-rS12 \
 	-rU0
-EXTRA_TROFFFLAGS   :=
-TROFFFLAGS         := $(DEFAULT_TROFFFLAGS) $(EXTRA_TROFFFLAGS)
+TROFFFLAGS         :=
+TROFFFLAGS_        := $(DEFAULT_TROFFFLAGS) $(TROFFFLAGS)
 TROFF              := troff
 
 

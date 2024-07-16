@@ -10,8 +10,8 @@ include $(MAKEFILEDIR)/configure/build-depends/gcc/cc.mk
 
 
 DEFAULT_ARFLAGS := qcDP
-EXTRA_ARFLAGS   :=
-ARFLAGS         := $(DEFAULT_ARFLAGS) $(EXTRA_ARFLAGS)
+ARFLAGS         :=
+ARFLAGS_        := $(DEFAULT_ARFLAGS) $(ARFLAGS)
 
 ifeq ($(CC_VENDOR),gcc)
 AR              := gcc-ar

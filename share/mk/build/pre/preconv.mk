@@ -16,7 +16,7 @@ _MAN_tbl := $(patsubst %, %.tbl, $(_NONSO_MAN) $(_NONSO_MDOC))
 
 $(_MAN_tbl): %.tbl: % $(MK) | $$(@D)/
 	$(info	$(INFO_)PRECONV		$@)
-	$(PRECONV) $(PRECONVFLAGS) $< >$@
+	$(PRECONV) $(PRECONVFLAGS_) $< >$@
 
 
 .PHONY: build-pre-preconv

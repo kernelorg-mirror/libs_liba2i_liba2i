@@ -37,7 +37,7 @@ $(_LINT_c_iwyu): $(MK) | $$(@D)/
 
 $(_LINT_c_iwyu):
 	$(info	$(INFO_)IWYU		$@)
-	! ($(IWYU) $(IWYUFLAGS) $(CPPFLAGS) $(CLANGFLAGS) $< 2>&1 \
+	! ($(IWYU) $(IWYUFLAGS_) $(CLANGFLAGS_) $(CPPFLAGS_) $< 2>&1 \
 	   | $(SED) -n '/should add these lines:/,$$p' \
 	   | $(TAC) \
 	   | $(SED) '/correct/{N;d}' \

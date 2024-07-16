@@ -22,9 +22,9 @@ $(_TU_s): %.s: $(MK) $(LIB_pc) | %.d $$(@D)/
 $(_TU_s): $(builddir)/%.s: $(LIBSRCDIR)/%
 	$(info	CC		$@)
 	for opt in g 0 1 2 s z 3 fast; do \
-	$(CC) $(CPPFLAGS) $(CFLAGS) -O$$opt -S -o $(builddir)/$*.O$$opt.s $<; \
+	$(CC) $(CFLAGS_) $(CPPFLAGS_) -O$$opt -S -o $(builddir)/$*.O$$opt.s $<; \
 	done
-	$(CC) $(CPPFLAGS) $(CFLAGS)         -S -o $@                      $<
+	$(CC) $(CFLAGS_) $(CPPFLAGS_)         -S -o $@                      $<
 
 
 .PHONY: build-obj-cc

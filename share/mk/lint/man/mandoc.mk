@@ -22,7 +22,7 @@ mandoc_man_ignore_grep := $(MAKEFILEDIR)/lint/man/mandoc.ignore.grep
 
 $(_LINT_man_mandoc): %.lint-man.mandoc.touch: % $(mandoc_man_ignore_grep) $(MK) | $$(@D)/
 	$(info	$(INFO_)MANDOC		$@)
-	! ($(MANDOC) $(MANDOCFLAGS) $< 2>&1 \
+	! ($(MANDOC) $(MANDOCFLAGS_) $< 2>&1 \
 	   | $(GREP) -v -f '$(mandoc_man_ignore_grep)' \
 	   || $(TRUE); \
 	) \

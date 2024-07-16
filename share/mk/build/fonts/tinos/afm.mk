@@ -16,7 +16,7 @@ _TINOSR_AFM := $(_FONTSDIR)/devpdf/TinosR.afm
 
 $(_TINOSR_AFM): $(TINOSR_TTF) $(MK) | $$(@D)/
 	$(info	$(INFO_)FONTFORGE	$@)
-	$(FONTFORGE) $(FONTFORGEFLAGS) -lang=ff -c 'Open("$<");Generate("$@");'
+	$(FONTFORGE) $(FONTFORGEFLAGS_) -lang=ff -c 'Open("$<");Generate("$@");'
 
 
 endif  # include guard

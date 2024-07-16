@@ -21,11 +21,11 @@ _DISTFILE := $(builddir)/$(DISTFILE)
 
 $(_DISTFILE): $(_DISTFILES) $(MK) | $$(@D)/
 	$(info	$(INFO_)TAR		$@)
-	$(TAR) $(TARFLAGS) -cf $@ -T /dev/null
+	$(TAR) $(TARFLAGS_) -cf $@ -T /dev/null
 	$(DISTFILESCMD) \
 	| $(SED) 's,^$(srcdir)/,$(_DISTDIR)/,' \
 	| $(SORT) \
-	| $(XARGS) $(TAR) $(TARFLAGS) -rf $@ -C $(srcdir) \
+	| $(XARGS) $(TAR) $(TARFLAGS_) -rf $@ -C $(srcdir) \
 		--transform 's,^$(patsubst /%,%,$(_DISTDIR)),$(DISTNAME),'
 
 

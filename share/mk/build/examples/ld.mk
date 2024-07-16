@@ -15,7 +15,7 @@ _EX_TU_bin := $(patsubst %.o, %, $(_EX_TU_o))
 
 $(_EX_TU_bin): %: %.o $(MK)
 	$(info	$(INFO_)LD		$@)
-	$(LD) $(LDFLAGS) -o $@ $< $(LDLIBS)
+	$(LD) $(LDFLAGS_) -o $@ $< $(LDLIBS_)
 
 
 .PHONY: build-ex-ld

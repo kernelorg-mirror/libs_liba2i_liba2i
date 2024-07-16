@@ -42,10 +42,10 @@ $(_TU_d): $(MK) $(LIB_pc) | $$(@D)/
 
 
 $(_TU_h_d): $(builddir)/%.d: $(INCLUDEDIR)/%
-	$(CC) $(CPPFLAGS) $(CFLAGS) -M -MP $(DEPHTARGETS) -MF$@ $<
+	$(CC) $(CFLAGS_) $(CPPFLAGS_) -M -MP $(DEPHTARGETS) -MF$@ $<
 
 $(_TU_c_d): $(builddir)/%.d: $(LIBSRCDIR)/%
-	$(CC) $(CPPFLAGS) $(CFLAGS) -M -MP $(DEPCTARGETS) -MF$@ $<
+	$(CC) $(CFLAGS_) $(CPPFLAGS_) -M -MP $(DEPCTARGETS) -MF$@ $<
 
 
 .PHONY: build-deps

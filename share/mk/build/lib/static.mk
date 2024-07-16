@@ -28,14 +28,14 @@ $(_LIB_a): %.a: $(_TU_o) $(MK) | $$(@D)/
 		$(RM) -f $(notdir $*.O$$opt.a); \
 		$(ECHO) $(patsubst $(builddir)/%,%,$(_TU_o)) \
 		| $(SED) "s,.o\>,.O$$opt.o," \
-		| $(XARGS) $(AR) $(ARFLAGS) $(notdir $*).O$$opt.a; \
-		$(RANLIB) $(RANLIBFLAGS) $(notdir $*).O$$opt.a; \
+		| $(XARGS) $(AR) $(ARFLAGS_) $(notdir $*).O$$opt.a; \
+		$(RANLIB) $(RANLIBFLAGS_) $(notdir $*).O$$opt.a; \
 	done
 	$(RM) -f $@
 	cd $(dir $@)/ && \
 	$(ECHO) $(patsubst $(builddir)/%,%,$(_TU_o)) \
-	| $(XARGS) $(AR) $(ARFLAGS) $(notdir $@); \
-	$(RANLIB) $(RANLIBFLAGS) $(notdir $@)
+	| $(XARGS) $(AR) $(ARFLAGS_) $(notdir $@); \
+	$(RANLIB) $(RANLIBFLAGS_) $(notdir $@)
 
 
 .PHONY: build-lib-static

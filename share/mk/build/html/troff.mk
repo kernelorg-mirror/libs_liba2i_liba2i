@@ -18,12 +18,12 @@ _HTMLMAN_MDOC_set := $(patsubst %, %.html.set, $(_NONSO_MDOC))
 
 $(_HTMLMAN_MAN_set): %.html.set: %.eqn $(MK) | $$(@D)/
 	$(info	$(INFO_)TROFF		$@)
-	! ($(TROFF) -man -Thtml $(TROFFFLAGS) <$< 2>&1 >$@) \
+	! ($(TROFF) -man -Thtml $(TROFFFLAGS_) <$< 2>&1 >$@) \
 	| $(GREP) ^ >&2
 
 $(_HTMLMAN_MDOC_set): %.html.set: %.eqn $(MK) | $$(@D)/
 	$(info	$(INFO_)TROFF		$@)
-	! ($(TROFF) -mdoc -Thtml $(TROFFFLAGS) <$< 2>&1 >$@) \
+	! ($(TROFF) -mdoc -Thtml $(TROFFFLAGS_) <$< 2>&1 >$@) \
 	| $(GREP) ^ >&2
 
 

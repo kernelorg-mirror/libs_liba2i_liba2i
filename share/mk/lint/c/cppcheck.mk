@@ -36,17 +36,17 @@ $(_LINT_c_cppcheck): $(CPPCHECK_SUPPRESS) $(MK) | $$(@D)/
 
 $(_LINT_c_TU_cppcheck):
 	$(info	$(INFO_)CPPCHECK	$@)
-	$(CPPCHECK) $(CPPCHECKFLAGS) -I $(INCLUDEDIR) -I $(srcdir) $<
+	$(CPPCHECK) $(CPPCHECKFLAGS_) -I $(INCLUDEDIR) -I $(srcdir) $<
 	$(TOUCH) $@
 
 $(_LINT_c_LIB_cppcheck):
 	$(info	$(INFO_)CPPCHECK	$@)
-	$(CPPCHECK) $(CPPCHECKFLAGS) -I $(INCLUDEDIR) -I $(srcdir) $(TU_c) $(TU_h)
+	$(CPPCHECK) $(CPPCHECKFLAGS_) -I $(INCLUDEDIR) -I $(srcdir) $(TU_c) $(TU_h)
 	$(TOUCH) $@
 
 $(_LINT_c_EX_cppcheck):
 	$(info	$(INFO_)CPPCHECK	$@)
-	$(CPPCHECK) $(CPPCHECKFLAGS) $<
+	$(CPPCHECK) $(CPPCHECKFLAGS_) $<
 	$(TOUCH) $@
 
 

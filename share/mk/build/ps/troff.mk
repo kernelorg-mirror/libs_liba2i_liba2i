@@ -19,12 +19,12 @@ _PSMAN_MDOC_set := $(patsubst %, %.ps.set, $(_NONSO_MDOC))
 
 $(_PSMAN_MAN_set): %.ps.set: %.ps.troff $(MK) | $$(@D)/
 	$(info	$(INFO_)TROFF		$@)
-	! ($(TROFF) -man -Tps $(TROFFFLAGS) <$< 2>&1 >$@) \
+	! ($(TROFF) -man -Tps $(TROFFFLAGS_) <$< 2>&1 >$@) \
 	| $(GREP) ^ >&2
 
 $(_PSMAN_MDOC_set): %.ps.set: %.ps.troff $(MK) | $$(@D)/
 	$(info	$(INFO_)TROFF		$@)
-	! ($(TROFF) -mdoc -Tps $(TROFFFLAGS) <$< 2>&1 >$@) \
+	! ($(TROFF) -mdoc -Tps $(TROFFFLAGS_) <$< 2>&1 >$@) \
 	| $(GREP) ^ >&2
 
 

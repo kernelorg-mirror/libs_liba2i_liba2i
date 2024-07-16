@@ -15,9 +15,9 @@ DEFAULT_CPPFLAGS := \
 	$(shell $(PKGCONF_CMD) --cflags $(pc) $(HIDE_ERR)) \
 	-D_FORTIFY_SOURCE=2 \
 	-I$(srcdir)/
-EXTRA_CPPFLAGS   :=
-CPPFLAGS         := $(DEFAULT_CPPFLAGS) $(EXTRA_CPPFLAGS)
-CPP              := $(CC) $(CFLAGS) -E
+CPPFLAGS         :=
+CPPFLAGS_        := $(DEFAULT_CPPFLAGS) $(CPPFLAGS)
+CPP              := $(CC) $(CFLAGS_) -E
 
 
 endif  # include guard

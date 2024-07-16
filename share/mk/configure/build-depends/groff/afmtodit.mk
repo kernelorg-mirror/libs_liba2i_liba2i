@@ -11,8 +11,8 @@ PDF_TEXT_MAP := /usr/share/groff/current/font/devpdf/map/text.map
 
 
 DEFAULT_AFMTODITFLAGS :=
-EXTRA_AFMTODITFLAGS   :=
-AFMTODITFLAGS         := $(DEFAULT_AFMTODITFLAGS) $(EXTRA_AFMTODITFLAGS)
+AFMTODITFLAGS         :=
+AFMTODITFLAGS_        := $(DEFAULT_AFMTODITFLAGS) $(AFMTODITFLAGS)
 AFMTODIT              := afmtodit
 
 

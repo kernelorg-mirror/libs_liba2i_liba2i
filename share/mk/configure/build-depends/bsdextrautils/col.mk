@@ -10,8 +10,8 @@ DEFAULT_COLFLAGS := \
 	-b \
 	-p \
 	-x
-EXTRA_COLFLAGS   :=
-COLFLAGS         := $(DEFAULT_COLFLAGS) $(EXTRA_COLFLAGS)
+COLFLAGS         :=
+COLFLAGS_        := $(DEFAULT_COLFLAGS) $(COLFLAGS)
 COL              := col
 
 

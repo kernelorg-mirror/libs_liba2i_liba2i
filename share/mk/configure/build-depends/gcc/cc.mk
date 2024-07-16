@@ -74,8 +74,8 @@ ifeq ($(CC_HAS_FFAT_LTO_OBJECTS),yes)
 DEFAULT_CFLAGS += -ffat-lto-objects
 endif
 
-EXTRA_CFLAGS   :=
-CFLAGS         := $(DEFAULT_CFLAGS) $(EXTRA_CFLAGS)
+CFLAGS         :=
+CFLAGS_        := $(DEFAULT_CFLAGS) $(CFLAGS)
 
 
 endif  # include guard

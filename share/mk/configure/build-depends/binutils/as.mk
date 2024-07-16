@@ -11,9 +11,9 @@ include $(MAKEFILEDIR)/configure/build-depends/cpp/cpp.mk
 
 
 DEFAULT_ASFLAGS :=
-EXTRA_ASFLAGS   :=
-ASFLAGS         := $(DEFAULT_ASFLAGS) $(EXTRA_ASFLAGS)
-AS              := $(CC) $(CPPFLAGS) $(CFLAGS)
+ASFLAGS         :=
+ASFLAGS_        := $(DEFAULT_ASFLAGS) $(ASFLAGS)
+AS              := $(CC) $(CPPFLAGS_) $(CFLAGS_)
 
 
 endif  # include guard
