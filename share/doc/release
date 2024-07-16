@@ -26,8 +26,8 @@ Description
 
             -  Decide the version number:
 
-                   $ old=6.01
-                   $ new=6.02
+                   $ old=1.0-rc1
+                   $ new=1.0-rc2
 
        (2)  Tag
 
@@ -77,8 +77,9 @@ Description
 
             -  Upload the tarball:
 
+                   $ kup mkdir /pub/software/libs/liba2i/1/1.0/$new
                    $ kup put liba2i-$new.tar.{xz,asc} \
-                             /pub/software/libs/liba2i/
+                             /pub/software/libs/liba2i/1/1.0/$new/
                    $ cd ..
 
        (4)  LSM
