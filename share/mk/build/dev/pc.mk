@@ -14,7 +14,6 @@ include $(MAKEFILEDIR)/src/lib.mk
 
 
 _LIB_pc_u := $(builddir)/$(libname)-uninstalled.pc
-_LIB_pc   := $(builddir)/$(libname).pc
 
 
 $(_LIB_pc_u): $(LIB_pc) $(MK) | $$(@D)/
@@ -24,22 +23,8 @@ $(_LIB_pc_u): $(LIB_pc) $(MK) | $$(@D)/
 	$(SED) -i 's,^libdir=.*,libdir=$(builddir),' $@
 
 
-$(_LIB_pc): $(LIB_pc) $(MK) | $$(@D)/
-	$(info	SED		$@)
-	$(SED) 's/^Version:.*/Version: $(DISTVERSION)/' <$< >$@
-	$(SED) -i 's,^prefix=.*,prefix=$(prefix),' $@
-ifneq ($(filter includedir=%,$(MAKEOVERRIDES)),)
-	$(SED) -i 's,^includedir=.*,includedir=$(includedir),' $@
-endif
-ifneq ($(filter libdir=%,$(MAKEOVERRIDES)),)
-	$(SED) -i 's,^libdir=.*,libdir=$(libdir),' $@
-else
-	$(SED) -i 's,^libdir=.*,libdir=$${exec_prefix}/lib,' $@
-endif
-
-
 .PHONY: build-dev-pc
-build-dev-pc: $(_LIB_pc_u) $(_LIB_pc);
+build-dev-pc: $(_LIB_pc_u);
 
 
 endif  # include guard
