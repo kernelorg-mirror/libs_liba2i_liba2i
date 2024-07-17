@@ -1,17 +1,17 @@
 Begin4
 Title:          liba2i
-Version:        1.0-rc2
-Entered-date:   2024-07-16
+Version:        1.0-rc3
+Entered-date:   2024-07-17
 Description:    string-to-numeric library
 Keywords:       liba2i a2i str2i
 Author:         Alejandro Colomar <alx@kernel.org>
 Maintained-by:  Alejandro Colomar <alx@kernel.org>
 Primary-site:   https://kernel.org /pub/software/libs/liba2i/
-                63K  1/1.0/1.0-rc2/liba2i-1.0-rc2.tar.gz
-                23K  1/1.0/1.0-rc2/liba2i-1.0-rc2.pdf
+                63K  1/1.0/1.0-rc3/liba2i-1.0-rc3.tar.gz
+                23K  1/1.0/1.0-rc3/liba2i-1.0-rc3.pdf
 Alternate-site: https://www.alejandro-colomar.es /share/dist/liba2i/
-                63K  1/1.0/1.0-rc2/liba2i-1.0-rc2.tar.gz
-                23K  1/1.0/1.0-rc2/liba2i-1.0-rc2.pdf
+                63K  1/1.0/1.0-rc3/liba2i-1.0-rc3.tar.gz
+                23K  1/1.0/1.0-rc3/liba2i-1.0-rc3.pdf
 Original-site:  https://git.kernel.org/pub/scm/libs/liba2i/liba2i.git/
 Platforms:      ISO C11, POSIX.1-2008
 Copying-policy: LGPL-3.0-only WITH LGPL-3.0-linking-exception
