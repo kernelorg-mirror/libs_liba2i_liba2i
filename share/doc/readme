@@ -98,7 +98,7 @@ Bugs
        See the <share/doc/contributing> file.
 
 Copyright
-       LGPL-3.0-or-later WITH LGPL-3.0-linking-exception
+       LGPL-3.0-only WITH LGPL-3.0-linking-exception
 
 See also
        <https://git.kernel.org/pub/scm/libs/liba2i/liba2i.git/tree/share/docs/readme>
