@@ -33,8 +33,8 @@ distcheck-%: $(_DISTCHECKSRCDIR) $(MK) | $$(@D)/
 .PHONY: distcheck
 distcheck: distcheck-diffoscope
 distcheck: $(_DISTCHECKSRCDIR) $(MK)
-	$(info	$(INFO_)MAKE		lint build install dist)
-	$(MAKE) $(_MAKE_OPTS) lint build install dist \
+	$(info	$(INFO_)MAKE		lint build-all install-all dist)
+	$(MAKE) $(_MAKE_OPTS) lint build-all install-all dist \
 		'INFO_= distcheck:	'
 	$(info	$(INFO_)MAKE		check)
 	$(MAKE) $(_MAKE_OPTS) check \
