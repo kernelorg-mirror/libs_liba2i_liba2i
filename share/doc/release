@@ -82,7 +82,18 @@ Description
                              /pub/software/libs/liba2i/1/1.0/$new/
                    $ cd ..
 
-       (4)  LSM
+       (4)  Push
+
+            When you confirm it's good, push to the git repository.
+
+            -  Push:
+
+                   $ git push
+                   $ git push korg liba2i-$new
+
+               korg is just my name for the remote.
+
+       (5)  LSM
 
             Update the <lsm> file.  Check old commits:
             `git log -p -- share/doc/lsm`.
@@ -103,11 +114,14 @@ Description
 
                    $ neomutt -C -s add -i lsm lsm@qqx.org;
 
-       (5)  Email
+       (6)  Email
 
             Send an announce email to liba2i@, and possibly others that
             might be interested in the release, such as distribution
             maintainers, or those who have contributed to the release.
+
+            The email should contain a forwarding of the lsm email from
+            step (5).
 
             The email should contain a mix of the git tag message, and
             anything else that might be relevant.  Check old emails such
@@ -126,18 +140,6 @@ Description
                 | sed 's/[^:]*: //' \
                 | sort \
                 | uniq;
-
-       (6)  Push
-
-            You've finished.  When you confirm it's good, push to the
-            git repository.
-
-            -  Push:
-
-                   $ git push
-                   $ git push korg liba2i-$new
-
-               korg is just my name for the remote.
 
 Files
    GNUmakefile
