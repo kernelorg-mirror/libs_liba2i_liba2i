@@ -27,7 +27,8 @@ build-all: \
 .PHONY: build
 build: \
 	build-dev \
-	build-lib-shared;
+	build-lib-shared \
+	build-man;
 
 
 endif  # include guard
