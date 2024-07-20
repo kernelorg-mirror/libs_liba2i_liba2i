@@ -41,8 +41,6 @@ a2i_strtoi(char *s,
 	char       *e;
 	intmax_t   n;
 
-	if (endp == NULL)
-		endp = &e;
 	if (status == NULL)
 		status = &st;
 
@@ -54,16 +52,19 @@ a2i_strtoi(char *s,
 	errno_saved = errno;
 	errno = 0;
 
-	n = strtoimax(s, endp, base);
+	n = strtoimax(s, &e, base);
 
-	if (*endp == s)
+	if (e == s)
 		*status = ECANCELED;
 	else if (errno == ERANGE || n < min || n > max)
 		*status = ERANGE;
-	else if (**endp != '\0')
+	else if (*e != '\0')
 		*status = ENOTSUP;
 	else
 		*status = 0;
+
+	if (endp != NULL)
+		*endp = e;
 
 	errno = errno_saved;
 
