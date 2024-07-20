@@ -41,9 +41,6 @@ a2i_strtou(char *s,
 	char       *e;
 	uintmax_t  n;
 
-	if (status == NULL)
-		status = &st;
-
 	errno_saved = errno;
 	errno = 0;
 
@@ -52,16 +49,18 @@ a2i_strtou(char *s,
 	n = strtoumax(s, &e, base);
 
 	if (e == NULL)
-		*status = errno;
+		st = errno;
 	else if (e == s)
-		*status = ECANCELED;
+		st = ECANCELED;
 	else if (errno == ERANGE || n < min || n > max)
-		*status = ERANGE;
+		st = ERANGE;
 	else if (*e != '\0')
-		*status = ENOTSUP;
+		st = ENOTSUP;
 	else
-		*status = 0;
+		st = 0;
 
+	if (status != NULL)
+		*status = st;
 	if (endp != NULL && e != NULL)
 		*endp = e;
 
