@@ -44,17 +44,16 @@ a2i_strtoi(char *s,
 	if (status == NULL)
 		status = &st;
 
-	if (base != 0 && (base < 2 || base > 36)) {
-		*status = EINVAL;
-		return MAX(min, MIN(max, 0));
-	}
-
 	errno_saved = errno;
 	errno = 0;
 
+	e = NULL;
+
 	n = strtoimax(s, &e, base);
 
-	if (e == s)
+	if (e == NULL)
+		*status = errno;
+	else if (e == s)
 		*status = ECANCELED;
 	else if (errno == ERANGE || n < min || n > max)
 		*status = ERANGE;
@@ -63,7 +62,7 @@ a2i_strtoi(char *s,
 	else
 		*status = 0;
 
-	if (endp != NULL)
+	if (endp != NULL && e != NULL)
 		*endp = e;
 
 	errno = errno_saved;
