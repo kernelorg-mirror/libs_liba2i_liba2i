@@ -18,31 +18,31 @@
 # pragma clang assume_nonnull begin
 #endif
 inline int
-str2shh(signed char *restrict n, const char *s)
+str2shh(signed char *restrict n, const char *restrict s)
 {
 	return a2shh(n, s, NULL, 0, SCHAR_MIN, SCHAR_MAX);
 }
 
 inline int
-str2sh(short *restrict n, const char *s)
+str2sh(short *restrict n, const char *restrict s)
 {
 	return a2sh(n, s, NULL, 0, SHRT_MIN, SHRT_MAX);
 }
 
 inline int
-str2si(int *restrict n, const char *s)
+str2si(int *restrict n, const char *restrict s)
 {
 	return a2si(n, s, NULL, 0, INT_MIN, INT_MAX);
 }
 
 inline int
-str2sl(long *restrict n, const char *s)
+str2sl(long *restrict n, const char *restrict s)
 {
 	return a2sl(n, s, NULL, 0, LONG_MIN, LONG_MAX);
 }
 
 inline int
-str2sll(long long *restrict n, const char *s)
+str2sll(long long *restrict n, const char *restrict s)
 {
 	return a2sll(n, s, NULL, 0, LLONG_MIN, LLONG_MAX);
 }
