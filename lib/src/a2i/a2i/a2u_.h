@@ -22,7 +22,7 @@
 # pragma clang diagnostic ignored "-Wshorten-64-to-32"
 #endif
 inline int
-a2uhh_nc(unsigned char *restrict n, char *s,
+a2uhh_nc(unsigned char *restrict n, char *restrict s,
     char **a2i_nullable restrict endp, int base,
     unsigned char min, unsigned char max)
 {
@@ -36,7 +36,7 @@ a2uhh_nc(unsigned char *restrict n, char *s,
 }
 
 inline int
-a2uh_nc(unsigned short *restrict n, char *s,
+a2uh_nc(unsigned short *restrict n, char *restrict s,
     char **a2i_nullable restrict endp, int base,
     unsigned short min, unsigned short max)
 {
@@ -50,7 +50,7 @@ a2uh_nc(unsigned short *restrict n, char *s,
 }
 
 inline int
-a2ui_nc(unsigned int *restrict n, char *s,
+a2ui_nc(unsigned int *restrict n, char *restrict s,
     char **a2i_nullable restrict endp, int base,
     unsigned int min, unsigned int max)
 {
@@ -64,7 +64,7 @@ a2ui_nc(unsigned int *restrict n, char *s,
 }
 
 inline int
-a2ul_nc(unsigned long *restrict n, char *s,
+a2ul_nc(unsigned long *restrict n, char *restrict s,
     char **a2i_nullable restrict endp, int base,
     unsigned long min, unsigned long max)
 {
@@ -78,7 +78,7 @@ a2ul_nc(unsigned long *restrict n, char *s,
 }
 
 inline int
-a2ull_nc(unsigned long long *restrict n, char *s,
+a2ull_nc(unsigned long long *restrict n, char *restrict s,
     char **a2i_nullable restrict endp, int base,
     unsigned long long min, unsigned long long max)
 {

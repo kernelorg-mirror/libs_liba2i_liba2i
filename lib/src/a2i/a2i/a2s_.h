@@ -22,7 +22,7 @@
 # pragma clang diagnostic ignored "-Wshorten-64-to-32"
 #endif
 inline int
-a2shh_nc(signed char *restrict n, char *s,
+a2shh_nc(signed char *restrict n, char *restrict s,
     char **a2i_nullable restrict endp, int base,
     signed char min, signed char max)
 {
@@ -36,7 +36,7 @@ a2shh_nc(signed char *restrict n, char *s,
 }
 
 inline int
-a2sh_nc(short *restrict n, char *s,
+a2sh_nc(short *restrict n, char *restrict s,
     char **a2i_nullable restrict endp, int base,
     short min, short max)
 {
@@ -50,7 +50,7 @@ a2sh_nc(short *restrict n, char *s,
 }
 
 inline int
-a2si_nc(int *restrict n, char *s,
+a2si_nc(int *restrict n, char *restrict s,
     char **a2i_nullable restrict endp, int base,
     int min, int max)
 {
@@ -64,7 +64,7 @@ a2si_nc(int *restrict n, char *s,
 }
 
 inline int
-a2sl_nc(long *restrict n, char *s,
+a2sl_nc(long *restrict n, char *restrict s,
     char **a2i_nullable restrict endp, int base,
     long min, long max)
 {
@@ -78,7 +78,7 @@ a2sl_nc(long *restrict n, char *s,
 }
 
 inline int
-a2sll_nc(long long *restrict n, char *s,
+a2sll_nc(long long *restrict n, char *restrict s,
     char **a2i_nullable restrict endp, int base,
     long long min, long long max)
 {

@@ -26,57 +26,57 @@
 #endif
 A2I_A2U_ATTR
 a2i_inline
-int a2uhh_nc(unsigned char *restrict n, char *s,
+int a2uhh_nc(unsigned char *restrict n, char *restrict s,
     char **a2i_nullable restrict endp, int base,
     unsigned char min, unsigned char max);
 
 A2I_A2U_ATTR
 a2i_inline
-int a2uh_nc(unsigned short *restrict n, char *s,
+int a2uh_nc(unsigned short *restrict n, char *restrict s,
     char **a2i_nullable restrict endp, int base,
     unsigned short min, unsigned short max);
 
 A2I_A2U_ATTR
 a2i_inline
-int a2ui_nc(unsigned int *restrict n, char *s,
+int a2ui_nc(unsigned int *restrict n, char *restrict s,
     char **a2i_nullable restrict endp, int base,
     unsigned int min, unsigned int max);
 
 A2I_A2U_ATTR
 a2i_inline
-int a2ul_nc(unsigned long *restrict n, char *s,
+int a2ul_nc(unsigned long *restrict n, char *restrict s,
     char **a2i_nullable restrict endp, int base,
     unsigned long min, unsigned long max);
 
 A2I_A2U_ATTR
 a2i_inline
-int a2ull_nc(unsigned long long *restrict n, char *s,
+int a2ull_nc(unsigned long long *restrict n, char *restrict s,
     char **a2i_nullable restrict endp, int base,
     unsigned long long min, unsigned long long max);
 
 
 A2I_A2U_ATTR
-int a2uhh_c(unsigned char *restrict n, const char *s,
+int a2uhh_c(unsigned char *restrict n, const char *restrict s,
     const char **a2i_nullable restrict endp, int base,
     unsigned char min, unsigned char max);
 
 A2I_A2U_ATTR
-int a2uh_c(unsigned short *restrict n, const char *s,
+int a2uh_c(unsigned short *restrict n, const char *restrict s,
     const char **a2i_nullable restrict endp, int base,
     unsigned short min, unsigned short max);
 
 A2I_A2U_ATTR
-int a2ui_c(unsigned int *restrict n, const char *s,
+int a2ui_c(unsigned int *restrict n, const char *restrict s,
     const char **a2i_nullable restrict endp, int base,
     unsigned int min, unsigned int max);
 
 A2I_A2U_ATTR
-int a2ul_c(unsigned long *restrict n, const char *s,
+int a2ul_c(unsigned long *restrict n, const char *restrict s,
     const char **a2i_nullable restrict endp, int base,
     unsigned long min, unsigned long max);
 
 A2I_A2U_ATTR
-int a2ull_c(unsigned long long *restrict n, const char *s,
+int a2ull_c(unsigned long long *restrict n, const char *restrict s,
     const char **a2i_nullable restrict endp, int base,
     unsigned long long min, unsigned long long max);
 #if defined(__clang__)

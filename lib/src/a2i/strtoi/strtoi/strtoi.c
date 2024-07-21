@@ -13,7 +13,7 @@
 #if defined(__clang__)
 # pragma clang assume_nonnull begin
 #endif
-extern inline intmax_t a2i_strtoi(char *s,
+extern inline intmax_t a2i_strtoi(char *restrict s,
     char **a2i_nullable restrict endp, int base,
     intmax_t min, intmax_t max, int *a2i_nullable restrict status);
 #if defined(__clang__)
