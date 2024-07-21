@@ -48,6 +48,9 @@ a2i_strtoi(char *s,
 
 	n = strtoimax(s, &e, base);
 
+	if (endp != NULL && e != NULL)
+		*endp = e;
+
 	if (e == NULL)
 		st = errno;
 	else if (e == s)
@@ -61,8 +64,6 @@ a2i_strtoi(char *s,
 
 	if (status != NULL)
 		*status = st;
-	if (endp != NULL && e != NULL)
-		*endp = e;
 
 	errno = errno_saved;
 
