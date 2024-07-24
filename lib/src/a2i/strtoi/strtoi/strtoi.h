@@ -41,9 +41,6 @@ a2i_strtoi(char *restrict s,
 	char       *e;
 	intmax_t   n;
 
-	errno_saved = errno;
-	errno = 0;
-
 	if (status == NULL)
 		status = &st;
 	if (endp == NULL)
@@ -54,8 +51,11 @@ a2i_strtoi(char *restrict s,
 	if (base < 0 || base == 1 || base > 36) {
 		n = 0;
 		*status = EINVAL;
-		goto out;
+		goto clamp;
 	}
+
+	errno_saved = errno;
+	errno = 0;
 
 	n = strtoimax(s, endp, base);
 
@@ -70,9 +70,8 @@ a2i_strtoi(char *restrict s,
 	else
 		*status = 0;
 
-out:
 	errno = errno_saved;
-
+clamp:
 	return MAX(min, MIN(max, n));
 }
 #if defined(__clang__)

@@ -41,9 +41,6 @@ a2i_strtou(char *restrict s,
 	char       *e;
 	uintmax_t  n;
 
-	errno_saved = errno;
-	errno = 0;
-
 	if (status == NULL)
 		status = &st;
 	if (endp == NULL)
@@ -54,8 +51,11 @@ a2i_strtou(char *restrict s,
 	if (base < 0 || base == 1 || base > 36) {
 		n = 0;
 		*status = EINVAL;
-		goto out;
+		goto clamp;
 	}
+
+	errno_saved = errno;
+	errno = 0;
 
 	n = strtoumax(s, endp, base);
 
@@ -70,9 +70,8 @@ a2i_strtou(char *restrict s,
 	else
 		*status = 0;
 
-out:
 	errno = errno_saved;
-
+clamp:
 	return MAX(min, MIN(max, n));
 }
 #if defined(__clang__)
