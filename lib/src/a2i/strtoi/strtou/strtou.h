@@ -46,6 +46,8 @@ a2i_strtou(char *restrict s,
 
 	if (endp == NULL)
 		endp = &e;
+	*endp = (char *) s;
+
 	if (base < 0 || base == 1 || base > 36) {
 		n = 0;
 		st = EINVAL;

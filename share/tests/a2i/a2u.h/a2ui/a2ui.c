@@ -35,7 +35,7 @@ main(void)
 static void
 test_null(void)
 {
-	const char    *e = "unmodified";
+	const char    *e;
 	unsigned int  n;
 
 	assert(a2ui(&n, "x99z", NULL, 1, 0, 42) == -1);
@@ -44,8 +44,7 @@ test_null(void)
 	assert(a2ui(&n, "x99z", &e, 1, 0, 42) == -1);
 	assert(n == 0);
 	assert(errno == EINVAL);
-
-	assert(strcmp(e, "unmodified") == 0);
+	assert(strcmp(e, "x99z") == 0);
 
 	assert(a2ui(&n, "x99z", NULL, 0, 0, 42) == -1);
 	assert(n == 0);
@@ -86,48 +85,58 @@ test_null(void)
 static void
 test_base(void)
 {
-	const char    *e = "unmodified";
+	const char    *e;
 	unsigned int  n;
 
 	assert(a2ui(&n, "9", &e, 1, 0, 42) == -1);
 	assert(n == 0);
 	assert(errno == EINVAL);
+	assert(strcmp(e, "9") == 0);
 	assert(a2ui(&n, "9", &e, -1, 0, 42) == -1);
 	assert(n == 0);
 	assert(errno == EINVAL);
+	assert(strcmp(e, "9") == 0);
 	assert(a2ui(&n, "9", &e, -2, 0, 42) == -1);
 	assert(n == 0);
 	assert(errno == EINVAL);
+	assert(strcmp(e, "9") == 0);
 	assert(a2ui(&n, "9", &e, 37, 0, 42) == -1);
 	assert(n == 0);
 	assert(errno == EINVAL);
+	assert(strcmp(e, "9") == 0);
 	assert(a2ui(&n, "9", &e, 38, 0, 42) == -1);
 	assert(n == 0);
 	assert(errno == EINVAL);
+	assert(strcmp(e, "9") == 0);
 	assert(a2ui(&n, "9", &e, 1, 0, 42) == -1);
 	assert(n == 0);
 	assert(errno == EINVAL);
+	assert(strcmp(e, "9") == 0);
 
 	assert(a2ui(&n, "", &e, 1, 0, 42) == -1);
 	assert(n == 0);
 	assert(errno == EINVAL);
+	assert(strcmp(e, "") == 0);
 	assert(a2ui(&n, "foo", &e, 1, 0, 42) == -1);
 	assert(n == 0);
 	assert(errno == EINVAL);
+	assert(strcmp(e, "foo") == 0);
 	assert(a2ui(&n, "43", &e, 1, 0, 42) == -1);
 	assert(n == 0);
 	assert(errno == EINVAL);
+	assert(strcmp(e, "43") == 0);
 	assert(a2ui(&n, "9", &e, 1, 42, 0) == -1);
 	assert(n == 42);
 	assert(errno == EINVAL);
+	assert(strcmp(e, "9") == 0);
 	assert(a2ui(&n, "9", &e, 1, 42, 0) == -1);
 	assert(n == 42);
 	assert(errno == EINVAL);
+	assert(strcmp(e, "9") == 0);
 	assert(a2ui(&n, "9foo", &e, 1, 0, 42) == -1);
 	assert(n == 0);
 	assert(errno == EINVAL);
-
-	assert(strcmp(e, "unmodified") == 0);
+	assert(strcmp(e, "9foo") == 0);
 
 	errno = 0;
 

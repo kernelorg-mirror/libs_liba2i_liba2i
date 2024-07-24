@@ -36,7 +36,7 @@ static void
 test_null(void)
 {
 	short       n;
-	const char  *e = "unmodified";
+	const char  *e;
 
 	assert(a2sh(&n, "x99z", NULL, 1, -7, 42) == -1);
 	assert(n == 0);
@@ -44,8 +44,7 @@ test_null(void)
 	assert(a2sh(&n, "x99z", &e, 1, -7, 42) == -1);
 	assert(n == 0);
 	assert(errno == EINVAL);
-
-	assert(strcmp(e, "unmodified") == 0);
+	assert(strcmp(e, "x99z") == 0);
 
 	assert(a2sh(&n, "x99z", NULL, 0, -7, 42) == -1);
 	assert(n == 0);
@@ -87,47 +86,57 @@ static void
 test_base(void)
 {
 	short       n;
-	const char  *e = "unmodified";
+	const char  *e;
 
 	assert(a2sh(&n, "1", &e, 1, -42, 42) == -1);
 	assert(n == 0);
 	assert(errno == EINVAL);
+	assert(strcmp(e, "1") == 0);
 	assert(a2sh(&n, "1", &e, -1, -42, 42) == -1);
 	assert(n == 0);
 	assert(errno == EINVAL);
+	assert(strcmp(e, "1") == 0);
 	assert(a2sh(&n, "1", &e, -2, -42, 42) == -1);
 	assert(n == 0);
 	assert(errno == EINVAL);
+	assert(strcmp(e, "1") == 0);
 	assert(a2sh(&n, "1", &e, 37, -42, 42) == -1);
 	assert(n == 0);
 	assert(errno == EINVAL);
+	assert(strcmp(e, "1") == 0);
 	assert(a2sh(&n, "1", &e, 38, -42, 42) == -1);
 	assert(n == 0);
 	assert(errno == EINVAL);
+	assert(strcmp(e, "1") == 0);
 	assert(a2sh(&n, "1", &e, 1, -42, 42) == -1);
 	assert(n == 0);
 	assert(errno == EINVAL);
+	assert(strcmp(e, "1") == 0);
 
 	assert(a2sh(&n, "", &e, 1, -42, 42) == -1);
 	assert(n == 0);
 	assert(errno == EINVAL);
+	assert(strcmp(e, "") == 0);
 	assert(a2sh(&n, "foo", &e, 1, -42, 42) == -1);
 	assert(n == 0);
 	assert(errno == EINVAL);
+	assert(strcmp(e, "foo") == 0);
 	assert(a2sh(&n, "43", &e, 1, -42, 42) == -1);
 	assert(n == 0);
 	assert(errno == EINVAL);
+	assert(strcmp(e, "43") == 0);
 	assert(a2sh(&n, "1", &e, 1, -42, -7) == -1);
 	assert(n == -7);
 	assert(errno == EINVAL);
+	assert(strcmp(e, "1") == 0);
 	assert(a2sh(&n, "1", &e, 1, 42, -42) == -1);
 	assert(n == 42);
 	assert(errno == EINVAL);
+	assert(strcmp(e, "1") == 0);
 	assert(a2sh(&n, "4foo", &e, 1, -42, 42) == -1);
 	assert(n == 0);
 	assert(errno == EINVAL);
-
-	assert(strcmp(e, "unmodified") == 0);
+	assert(strcmp(e, "4foo") == 0);
 
 	errno = 0;
 
