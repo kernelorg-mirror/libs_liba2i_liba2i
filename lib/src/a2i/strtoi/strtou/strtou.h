@@ -53,9 +53,12 @@ a2i_strtou(char *restrict s,
 
 	if (e == NULL)
 		st = errno;
+	else
+	if (errno != 0 && errno != EINVAL)
+		st = errno;
 	else if (e == s)
 		st = ECANCELED;
-	else if (errno == ERANGE || n < min || n > max)
+	else if (n < min || n > max)
 		st = ERANGE;
 	else if (*e != '\0')
 		st = ENOTSUP;
