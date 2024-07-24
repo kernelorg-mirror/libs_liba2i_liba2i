@@ -44,33 +44,33 @@ a2i_strtoi(char *restrict s,
 	errno_saved = errno;
 	errno = 0;
 
+	if (status == NULL)
+		status = &st;
 	if (endp == NULL)
 		endp = &e;
+
 	*endp = (char *) s;
 
 	if (base < 0 || base == 1 || base > 36) {
 		n = 0;
-		st = EINVAL;
+		*status = EINVAL;
 		goto out;
 	}
 
 	n = strtoimax(s, endp, base);
 
 	if (errno != 0 && errno != EINVAL)
-		st = errno;
+		*status = errno;
 	else if (*endp == s)
-		st = ECANCELED;
+		*status = ECANCELED;
 	else if (n < min || n > max)
-		st = ERANGE;
+		*status = ERANGE;
 	else if (**endp != '\0')
-		st = ENOTSUP;
+		*status = ENOTSUP;
 	else
-		st = 0;
+		*status = 0;
 
 out:
-	if (status != NULL)
-		*status = st;
-
 	errno = errno_saved;
 
 	return MAX(min, MIN(max, n));
