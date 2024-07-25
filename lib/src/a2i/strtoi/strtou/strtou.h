@@ -10,6 +10,7 @@
 #include <inttypes.h>
 #include <stddef.h>
 #include <stdint.h>
+#include <string.h>
 #include <sys/param.h>
 
 #include "lib/src/a2i/attr.h"
@@ -65,7 +66,7 @@ a2i_strtou(char *restrict s,
 		*status = ECANCELED;
 	else if (n < min || n > max)
 		*status = ERANGE;
-	else if (**endp != '\0')
+	else if (strcmp(*endp, "") != 0)
 		*status = ENOTSUP;
 	else
 		*status = 0;
