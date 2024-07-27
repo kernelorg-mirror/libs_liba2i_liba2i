@@ -6,15 +6,9 @@
 #include "lib/src/a2i/str2i/str2u.h"
 
 
-#if defined(__clang__)
-# pragma clang assume_nonnull begin
-#endif
 extern inline int str2uhh(unsigned char *restrict n, const char *restrict s);
 extern inline int str2uh(unsigned short *restrict n, const char *restrict s);
 extern inline int str2ui(unsigned int *restrict n, const char *restrict s);
 extern inline int str2ul(unsigned long *restrict n, const char *restrict s);
 extern inline int str2ull(unsigned long long *restrict n,
     const char *restrict s);
-#if defined(__clang__)
-# pragma clang assume_nonnull end
-#endif

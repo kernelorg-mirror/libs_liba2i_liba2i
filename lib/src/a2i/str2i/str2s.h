@@ -14,9 +14,6 @@
 #include "lib/src/a2i/a2i/a2s.h"
 
 
-#if defined(__clang__)
-# pragma clang assume_nonnull begin
-#endif
 inline int
 str2shh(signed char *restrict n, const char *restrict s)
 {
@@ -46,9 +43,6 @@ str2sll(long long *restrict n, const char *restrict s)
 {
 	return a2sll(n, s, NULL, 0, LLONG_MIN, LLONG_MAX);
 }
-#if defined(__clang__)
-# pragma clang assume_nonnull end
-#endif
 
 
 #endif  // include guard

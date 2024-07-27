@@ -57,8 +57,6 @@ CLANG_CFLAGS := \
 	-Wno-gnu-auto-type \
 	-Wno-gnu-statement-expression \
 	-Wno-language-extension-token \
-	-Wno-nullability-completeness \
-	-Wno-nullability-extension \
 	-Wno-unused-macros
 
 

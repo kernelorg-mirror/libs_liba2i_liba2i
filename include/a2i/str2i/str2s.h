@@ -31,9 +31,6 @@
 	A2I_ATTR_NOTHROW
 
 
-#if defined(__clang__)
-# pragma clang assume_nonnull begin
-#endif
 A2I_STR2S_ATTR
 a2i_inline int str2shh(signed char *restrict n, const char *restrict s);
 
@@ -48,9 +45,6 @@ a2i_inline int str2sl(long *restrict n, const char *restrict s);
 
 A2I_STR2S_ATTR
 a2i_inline int str2sll(long long *restrict n, const char *restrict s);
-#if defined(__clang__)
-# pragma clang assume_nonnull end
-#endif
 
 
 #endif  // include guard

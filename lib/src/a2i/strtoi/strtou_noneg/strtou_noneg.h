@@ -11,14 +11,10 @@
 #include <stdint.h>
 
 #include "lib/src/a2i/attr.h"
-#include "lib/src/a2i/qual.h"
 #include "lib/src/a2i/strtoi/strtoi/strtoi.h"
 #include "lib/src/a2i/strtoi/strtou/strtou.h"
 
 
-#if defined(__clang__)
-# pragma clang assume_nonnull begin
-#endif
 A2I_ATTR_ACCESS(read_only, 1)
 A2I_ATTR_ACCESS(write_only, 2)
 A2I_ATTR_ACCESS(write_only, 6)
@@ -28,14 +24,14 @@ A2I_ATTR_LEAF
 A2I_ATTR_NOTHROW
 A2I_ATTR_VISIBILITY("internal")
 inline uintmax_t a2i_strtou_noneg(char *restrict s,
-    char **a2i_nullable restrict endp, int base,
-    uintmax_t min, uintmax_t max, int *a2i_nullable restrict status);
+    char **restrict endp, int base,
+    uintmax_t min, uintmax_t max, int *restrict status);
 
 
 inline uintmax_t
 a2i_strtou_noneg(char *restrict s,
-    char **a2i_nullable restrict endp, int base,
-    uintmax_t min, uintmax_t max, int *a2i_nullable restrict status)
+    char **restrict endp, int base,
+    uintmax_t min, uintmax_t max, int *restrict status)
 {
 	int  st;
 
@@ -46,9 +42,6 @@ a2i_strtou_noneg(char *restrict s,
 
 	return a2i_strtou(s, endp, base, min, max, status);
 }
-#if defined(__clang__)
-# pragma clang assume_nonnull end
-#endif
 
 
 #endif  // include guard

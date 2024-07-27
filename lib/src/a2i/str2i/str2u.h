@@ -14,9 +14,6 @@
 #include "lib/src/a2i/a2i/a2u.h"
 
 
-#if defined(__clang__)
-# pragma clang assume_nonnull begin
-#endif
 inline int
 str2uhh(unsigned char *restrict n, const char *restrict s)
 {
@@ -46,9 +43,6 @@ str2ull(unsigned long long *restrict n, const char *restrict s)
 {
 	return a2ull(n, s, NULL, 0, 0, ULLONG_MAX);
 }
-#if defined(__clang__)
-# pragma clang assume_nonnull end
-#endif
 
 
 #endif  // include guard

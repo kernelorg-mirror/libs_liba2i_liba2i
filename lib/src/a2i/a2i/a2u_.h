@@ -11,19 +11,17 @@
 
 #include <errno.h>
 
-#include "lib/src/a2i/qual.h"
 #include "lib/src/a2i/strtoi/strtou_noneg/strtou_noneg.h"
 
 
 #if defined(__clang__)
-# pragma clang assume_nonnull begin
 # pragma clang diagnostic push
 # pragma clang diagnostic ignored "-Wimplicit-int-conversion"
 # pragma clang diagnostic ignored "-Wshorten-64-to-32"
 #endif
 inline int
 a2uhh_nc(unsigned char *restrict n, char *restrict s,
-    char **a2i_nullable restrict endp, int base,
+    char **restrict endp, int base,
     unsigned char min, unsigned char max)
 {
 	int  status;
@@ -37,7 +35,7 @@ a2uhh_nc(unsigned char *restrict n, char *restrict s,
 
 inline int
 a2uh_nc(unsigned short *restrict n, char *restrict s,
-    char **a2i_nullable restrict endp, int base,
+    char **restrict endp, int base,
     unsigned short min, unsigned short max)
 {
 	int  status;
@@ -51,7 +49,7 @@ a2uh_nc(unsigned short *restrict n, char *restrict s,
 
 inline int
 a2ui_nc(unsigned int *restrict n, char *restrict s,
-    char **a2i_nullable restrict endp, int base,
+    char **restrict endp, int base,
     unsigned int min, unsigned int max)
 {
 	int  status;
@@ -65,7 +63,7 @@ a2ui_nc(unsigned int *restrict n, char *restrict s,
 
 inline int
 a2ul_nc(unsigned long *restrict n, char *restrict s,
-    char **a2i_nullable restrict endp, int base,
+    char **restrict endp, int base,
     unsigned long min, unsigned long max)
 {
 	int  status;
@@ -79,7 +77,7 @@ a2ul_nc(unsigned long *restrict n, char *restrict s,
 
 inline int
 a2ull_nc(unsigned long long *restrict n, char *restrict s,
-    char **a2i_nullable restrict endp, int base,
+    char **restrict endp, int base,
     unsigned long long min, unsigned long long max)
 {
 	int  status;
@@ -92,7 +90,6 @@ a2ull_nc(unsigned long long *restrict n, char *restrict s,
 }
 #if defined(__clang__)
 # pragma clang diagnostic pop  // -Wimplicit-int-conversion, -Wshorten-64-to-32
-# pragma clang assume_nonnull end
 #endif
 
 
