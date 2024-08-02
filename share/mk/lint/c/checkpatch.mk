@@ -16,14 +16,14 @@ include $(MAKEFILEDIR)/src/tu.mk
 
 
 _LINT_c_TU_h_checkpatch := $(patsubst $(INCLUDEDIR)/%, $(builddir)/%.lint-c.checkpatch.touch, $(TU_h))
-_LINT_c_TU_c_checkpatch := $(patsubst $(LIBSRCDIR)/%,  $(builddir)/%.lint-c.checkpatch.touch, $(TU_c))
+_LINT_c_TU_c_checkpatch := $(patsubst $(SRCLIBDIR)/%,  $(builddir)/%.lint-c.checkpatch.touch, $(TU_c))
 _LINT_c_TU_checkpatch   := $(_LINT_c_TU_h_checkpatch) $(_LINT_c_TU_c_checkpatch)
 _LINT_c_EX_checkpatch   := $(patsubst %, %.lint-c.checkpatch.touch, $(_EX_TU_src))
 _LINT_c_checkpatch      := $(_LINT_c_TU_checkpatch) $(_LINT_c_EX_checkpatch)
 
 
 $(_LINT_c_TU_h_checkpatch): $(builddir)/%.lint-c.checkpatch.touch: $(INCLUDEDIR)/%
-$(_LINT_c_TU_c_checkpatch): $(builddir)/%.lint-c.checkpatch.touch: $(LIBSRCDIR)/%
+$(_LINT_c_TU_c_checkpatch): $(builddir)/%.lint-c.checkpatch.touch: $(SRCLIBDIR)/%
 $(_LINT_c_TU_checkpatch): %.lint-c.checkpatch.touch: | %.d
 $(_LINT_c_EX_checkpatch): %.lint-c.checkpatch.touch: %
 $(_LINT_c_checkpatch): $(CHECKPATCH_CONF) $(MK) | $$(@D)/

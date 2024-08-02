@@ -15,14 +15,14 @@ include $(MAKEFILEDIR)/src/tu.mk
 
 
 _LINT_c_TU_h_cpplint := $(patsubst $(INCLUDEDIR)/%, $(builddir)/%.lint-c.cpplint.touch, $(TU_h))
-_LINT_c_TU_c_cpplint := $(patsubst $(LIBSRCDIR)/%,  $(builddir)/%.lint-c.cpplint.touch, $(TU_c))
+_LINT_c_TU_c_cpplint := $(patsubst $(SRCLIBDIR)/%,  $(builddir)/%.lint-c.cpplint.touch, $(TU_c))
 _LINT_c_TU_cpplint   := $(_LINT_c_TU_h_cpplint) $(_LINT_c_TU_c_cpplint)
 _LINT_c_EX_cpplint   := $(patsubst %, %.lint-c.cpplint.touch, $(_EX_TU_src))
 _LINT_c_cpplint      := $(_LINT_c_TU_cpplint) $(_LINT_c_EX_cpplint)
 
 
 $(_LINT_c_TU_h_cpplint): $(builddir)/%.lint-c.cpplint.touch: $(INCLUDEDIR)/%
-$(_LINT_c_TU_c_cpplint): $(builddir)/%.lint-c.cpplint.touch: $(LIBSRCDIR)/%
+$(_LINT_c_TU_c_cpplint): $(builddir)/%.lint-c.cpplint.touch: $(SRCLIBDIR)/%
 $(_LINT_c_TU_cpplint): %.lint-c.cpplint.touch: | %.d
 $(_LINT_c_EX_cpplint): %.lint-c.cpplint.touch: %
 $(_LINT_c_cpplint): $(CPPLINT_CONF) $(MK) | $$(@D)/

@@ -16,7 +16,7 @@ include $(MAKEFILEDIR)/src/tu.mk
 
 
 _LINT_c_TU_h_cppcheck := $(patsubst $(INCLUDEDIR)/%, $(builddir)/%.lint-c.cppcheck.touch, $(TU_h))
-_LINT_c_TU_c_cppcheck := $(patsubst $(LIBSRCDIR)/%,  $(builddir)/%.lint-c.cppcheck.touch, $(TU_c))
+_LINT_c_TU_c_cppcheck := $(patsubst $(SRCLIBDIR)/%,  $(builddir)/%.lint-c.cppcheck.touch, $(TU_c))
 _LINT_c_TU_cppcheck   := $(_LINT_c_TU_h_cppcheck) $(_LINT_c_TU_c_cppcheck)
 _LINT_c_LIB_cppcheck  := $(builddir)/$(libname).lint-c.cppcheck.touch
 _LINT_c_EX_cppcheck   := $(patsubst %, %.lint-c.cppcheck.touch, $(_EX_TU_src))
@@ -27,7 +27,7 @@ _LINT_c_cppcheck      := \
 
 
 $(_LINT_c_TU_h_cppcheck): $(builddir)/%.lint-c.cppcheck.touch: $(INCLUDEDIR)/%
-$(_LINT_c_TU_c_cppcheck): $(builddir)/%.lint-c.cppcheck.touch: $(LIBSRCDIR)/%
+$(_LINT_c_TU_c_cppcheck): $(builddir)/%.lint-c.cppcheck.touch: $(SRCLIBDIR)/%
 $(_LINT_c_TU_cppcheck): %.lint-c.cppcheck.touch: | %.d
 $(_LINT_c_LIB_cppcheck): $(TU_c) $(TU_h)
 $(_LINT_c_EX_cppcheck): %.lint-c.cppcheck.touch: %

@@ -19,14 +19,14 @@ include $(MAKEFILEDIR)/src/tu.mk
 
 
 _LINT_c_TU_h_clang_tidy := $(patsubst $(INCLUDEDIR)/%, $(builddir)/%.lint-c.clang-tidy.touch, $(TU_h))
-_LINT_c_TU_c_clang_tidy := $(patsubst $(LIBSRCDIR)/%,  $(builddir)/%.lint-c.clang-tidy.touch, $(TU_c))
+_LINT_c_TU_c_clang_tidy := $(patsubst $(SRCLIBDIR)/%,  $(builddir)/%.lint-c.clang-tidy.touch, $(TU_c))
 _LINT_c_TU_clang_tidy   := $(_LINT_c_TU_h_clang_tidy) $(_LINT_c_TU_c_clang_tidy)
 _LINT_c_EX_clang_tidy   := $(patsubst %, %.lint-c.clang-tidy.touch, $(_EX_TU_src))
 _LINT_c_clang_tidy      := $(_LINT_c_TU_clang_tidy) $(_LINT_c_EX_clang_tidy)
 
 
 $(_LINT_c_TU_h_clang_tidy): $(builddir)/%.lint-c.clang-tidy.touch: $(INCLUDEDIR)/%
-$(_LINT_c_TU_c_clang_tidy): $(builddir)/%.lint-c.clang-tidy.touch: $(LIBSRCDIR)/%
+$(_LINT_c_TU_c_clang_tidy): $(builddir)/%.lint-c.clang-tidy.touch: $(SRCLIBDIR)/%
 $(_LINT_c_TU_clang_tidy): %.lint-c.clang-tidy.touch: | %.d
 $(_LINT_c_EX_clang_tidy): %.lint-c.clang-tidy.touch: %
 $(_LINT_c_clang_tidy): $(CLANG_TIDY_CONF) $(MK) | $$(@D)/

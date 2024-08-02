@@ -14,11 +14,11 @@ include $(MAKEFILEDIR)/src/lib.mk
 include $(MAKEFILEDIR)/src/tu.mk
 
 
-_TU_o := $(patsubst $(LIBSRCDIR)/%, $(builddir)/%.o, $(TU_c))
+_TU_o := $(patsubst $(SRCLIBDIR)/%, $(builddir)/%.o, $(TU_c))
 
 
 $(_TU_o): %.o: $(MK) $(LIB_pc) | %.d $$(@D)/
-$(_TU_o): $(builddir)/%.o: $(LIBSRCDIR)/%
+$(_TU_o): $(builddir)/%.o: $(SRCLIBDIR)/%
 	$(info	AS		$@)
 	for opt in g 0 1 2 s z 3 fast; do \
 	$(AS) -O$$opt -c -o $(builddir)/$*.O$$opt.o $<; \

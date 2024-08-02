@@ -11,8 +11,9 @@ SYSCONFDIR  := $(srcdir)/etc
 MANDIR      := $(srcdir)/man
 LIBDIR      := $(srcdir)/lib
 DATAROOTDIR := $(srcdir)/share
+SRCDIR      := $(srcdir)/src
 PCDIR       := $(LIBDIR)/pkgconfig
-LIBSRCDIR   := $(LIBDIR)/src
+SRCLIBDIR   := $(SRCDIR)/lib
 TESTSDIR    := $(DATAROOTDIR)/tests
 
 
