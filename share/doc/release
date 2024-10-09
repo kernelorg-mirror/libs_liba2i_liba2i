@@ -77,9 +77,9 @@ Description
 
             -  Upload the tarball:
 
-                   $ kup mkdir /pub/software/libs/liba2i/1/1.0/$new
+                   $ kup mkdir /pub/software/libs/liba2i/1/$new
                    $ kup put liba2i-$new.tar.{xz,asc} \
-                             /pub/software/libs/liba2i/1/1.0/$new/
+                             /pub/software/libs/liba2i/1/$new/
                    $ cd ..
 
        (4)  Push
