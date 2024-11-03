@@ -16,8 +16,8 @@ include $(MAKEFILEDIR)/install/_.mk
 _htmldir := $(DESTDIR)$(htmldir)
 
 
-_htmlpages    := $(patsubst $(_MANDIR)/%,$(_htmldir)/%,$(_HTMLMAN))
-_htmlpages_rm := $(addsuffix -rm,$(wildcard $(_htmlpages)))
+_htmlpages    := $(patsubst $(_MANDIR)/%, $(_htmldir)/%, $(_HTMLMAN))
+_htmlpages_rm := $(addsuffix -rm, $(wildcard $(_htmlpages)))
 
 
 $(_htmlpages): $(_htmldir)/%: $(_MANDIR)/% $(MK) | $$(@D)/

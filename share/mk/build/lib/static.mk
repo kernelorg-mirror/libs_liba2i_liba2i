@@ -26,14 +26,14 @@ $(_LIB_a): %.a: $(_TU_o) $(MK) | $$(@D)/
 	cd $(dir $@) && \
 	for opt in g 0 1 2 s z 3 fast; do \
 		$(RM) -f $(notdir $*.O$$opt.a); \
-		$(ECHO) $(patsubst $(builddir)/%,%,$(_TU_o)) \
+		$(ECHO) $(patsubst $(builddir)/%, %, $(_TU_o)) \
 		| $(SED) "s,.o\>,.O$$opt.o," \
 		| $(XARGS) $(AR) $(ARFLAGS_) $(notdir $*).O$$opt.a; \
 		$(RANLIB) $(RANLIBFLAGS_) $(notdir $*).O$$opt.a; \
 	done
 	$(RM) -f $@
 	cd $(dir $@)/ && \
-	$(ECHO) $(patsubst $(builddir)/%,%,$(_TU_o)) \
+	$(ECHO) $(patsubst $(builddir)/%, %, $(_TU_o)) \
 	| $(XARGS) $(AR) $(ARFLAGS_) $(notdir $@); \
 	$(RANLIB) $(RANLIBFLAGS_) $(notdir $@)
 

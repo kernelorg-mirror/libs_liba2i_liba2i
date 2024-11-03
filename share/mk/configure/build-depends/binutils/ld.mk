@@ -46,7 +46,7 @@ LDFLAGS_        := $(DEFAULT_LDFLAGS) $(LDFLAGS)
 
 
 DEFAULT_LDLIBS := \
-	$(filter-out -la2i,$(shell $(PKGCONF_CMD) --libs-only-l $(pc_reqs) $(HIDE_ERR))) \
+	$(filter-out -la2i, $(shell $(PKGCONF_CMD) --libs-only-l $(pc_reqs) $(HIDE_ERR))) \
 	$(shell $(SED) -n '/^Libs.private: /s///p' $(LIB_pc))
 LDLIBS         ?=
 LDLIBS_        := $(DEFAULT_LDLIBS) $(LDLIBS)

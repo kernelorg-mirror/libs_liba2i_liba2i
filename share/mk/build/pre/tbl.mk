@@ -10,7 +10,7 @@ include $(MAKEFILEDIR)/build/pre/preconv.mk
 include $(MAKEFILEDIR)/configure/build-depends/groff-base/tbl.mk
 
 
-_MAN_eqn := $(patsubst %.tbl,%.eqn,$(_MAN_tbl))
+_MAN_eqn := $(patsubst %.tbl, %.eqn, $(_MAN_tbl))
 
 
 $(_MAN_eqn): %.eqn: %.tbl $(MK) | $$(@D)/

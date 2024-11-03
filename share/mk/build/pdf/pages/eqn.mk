@@ -11,7 +11,7 @@ include $(MAKEFILEDIR)/configure/build-depends/grep/grep.mk
 include $(MAKEFILEDIR)/configure/build-depends/groff-base/eqn.mk
 
 
-_PDFMAN_troff := $(patsubst %.eqn,%.pdf.troff,$(_MAN_eqn))
+_PDFMAN_troff := $(patsubst %.eqn, %.pdf.troff, $(_MAN_eqn))
 
 
 $(_PDFMAN_troff): %.pdf.troff: %.eqn $(MK) | $$(@D)/

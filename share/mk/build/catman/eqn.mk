@@ -12,7 +12,7 @@ include $(MAKEFILEDIR)/configure/build-depends/groff-base/eqn.mk
 include $(MAKEFILEDIR)/configure/build-depends/groff-base/nroff.mk
 
 
-_CATMAN_troff := $(patsubst %.eqn,%.cat.troff,$(_MAN_eqn))
+_CATMAN_troff := $(patsubst %.eqn, %.cat.troff, $(_MAN_eqn))
 
 
 $(_CATMAN_troff): %.cat.troff: %.eqn $(MK) | $$(@D)/
