@@ -12,7 +12,7 @@ include $(MAKEFILEDIR)/configure/version.mk
 
 DESTDIR     :=
 prefix      := /usr/local
-exec_prefix := $(prefix)/
+exec_prefix := $(prefix)
 includedir  := $(prefix)/include
 datarootdir := $(prefix)/share
 mandir      := $(datarootdir)/man
