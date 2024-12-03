@@ -36,55 +36,11 @@
 )
 
 
-#define a2uhh(n, s, ...)                                                      \
-(                                                                             \
-	_Generic(s,                                                           \
-		const char *:  a2uhh_c,                                       \
-		const void *:  a2uhh_c,                                       \
-		char *:        a2uhh_nc,                                      \
-		void *:        a2uhh_nc                                       \
-	)(n, s, __VA_ARGS__)                                                  \
-)
-
-#define a2uh(n, s, ...)                                                       \
-(                                                                             \
-	_Generic(s,                                                           \
-		const char *:  a2uh_c,                                        \
-		const void *:  a2uh_c,                                        \
-		char *:        a2uh_nc,                                       \
-		void *:        a2uh_nc                                        \
-	)(n, s, __VA_ARGS__)                                                  \
-)
-
-#define a2ui(n, s, ...)                                                       \
-(                                                                             \
-	_Generic(s,                                                           \
-		const char *:  a2ui_c,                                        \
-		const void *:  a2ui_c,                                        \
-		char *:        a2ui_nc,                                       \
-		void *:        a2ui_nc                                        \
-	)(n, s, __VA_ARGS__)                                                  \
-)
-
-#define a2ul(n, s, ...)                                                       \
-(                                                                             \
-	_Generic(s,                                                           \
-		const char *:  a2ul_c,                                        \
-		const void *:  a2ul_c,                                        \
-		char *:        a2ul_nc,                                       \
-		void *:        a2ul_nc                                        \
-	)(n, s, __VA_ARGS__)                                                  \
-)
-
-#define a2ull(n, s, ...)                                                      \
-(                                                                             \
-	_Generic(s,                                                           \
-		const char *:  a2ull_c,                                       \
-		const void *:  a2ull_c,                                       \
-		char *:        a2ull_nc,                                      \
-		void *:        a2ull_nc                                       \
-	)(n, s, __VA_ARGS__)                                                  \
-)
+#define a2uhh(...)  a2u(unsigned char, __VA_ARGS__)
+#define a2uh(...)   a2u(unsigned short, __VA_ARGS__)
+#define a2ui(...)   a2u(unsigned int, __VA_ARGS__)
+#define a2ul(...)   a2u(unsigned long, __VA_ARGS__)
+#define a2ull(...)  a2u(unsigned long long, __VA_ARGS__)
 
 
 #endif  // include guard

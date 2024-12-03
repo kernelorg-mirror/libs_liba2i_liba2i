@@ -36,55 +36,11 @@
 )
 
 
-#define a2shh(n, s, ...)                                                      \
-(                                                                             \
-	_Generic(s,                                                           \
-		const char *:  a2shh_c,                                       \
-		const void *:  a2shh_c,                                       \
-		char *:        a2shh_nc,                                      \
-		void *:        a2shh_nc                                       \
-	)(n, s, __VA_ARGS__)                                                  \
-)
-
-#define a2sh(n, s, ...)                                                       \
-(                                                                             \
-	_Generic(s,                                                           \
-		const char *:  a2sh_c,                                        \
-		const void *:  a2sh_c,                                        \
-		char *:        a2sh_nc,                                       \
-		void *:        a2sh_nc                                        \
-	)(n, s, __VA_ARGS__)                                                  \
-)
-
-#define a2si(n, s, ...)                                                       \
-(                                                                             \
-	_Generic(s,                                                           \
-		const char *:  a2si_c,                                        \
-		const void *:  a2si_c,                                        \
-		char *:        a2si_nc,                                       \
-		void *:        a2si_nc                                        \
-	)(n, s, __VA_ARGS__)                                                  \
-)
-
-#define a2sl(n, s, ...)                                                       \
-(                                                                             \
-	_Generic(s,                                                           \
-		const char *:  a2sl_c,                                        \
-		const void *:  a2sl_c,                                        \
-		char *:        a2sl_nc,                                       \
-		void *:        a2sl_nc                                        \
-	)(n, s, __VA_ARGS__)                                                  \
-)
-
-#define a2sll(n, s, ...)                                                      \
-(                                                                             \
-	_Generic(s,                                                           \
-		const char *:  a2sll_c,                                       \
-		const void *:  a2sll_c,                                       \
-		char *:        a2sll_nc,                                      \
-		void *:        a2sll_nc                                       \
-	)(n, s, __VA_ARGS__)                                                  \
-)
+#define a2shh(...)  a2s(signed char, __VA_ARGS__)
+#define a2sh(...)   a2s(short, __VA_ARGS__)
+#define a2si(...)   a2s(int, __VA_ARGS__)
+#define a2sl(...)   a2s(long, __VA_ARGS__)
+#define a2sll(...)  a2s(long long, __VA_ARGS__)
 
 
 #endif  // include guard
