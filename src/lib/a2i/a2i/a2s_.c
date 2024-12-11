@@ -3,9 +3,9 @@
 
 
 #define A2I_INTERNAL
-#include "src/lib/a2i/a2i/a2s_.h"
+#include "include/a2i/a2i/a2s_.h"
 
-#include "src/lib/a2i/attr.h"
+#include "include/a2i/attr.h"
 
 
 extern inline int a2shh_nc(signed char *restrict n, char *restrict s,

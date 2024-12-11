@@ -3,7 +3,7 @@
 
 
 #define A2I_INTERNAL
-#include "src/lib/a2i/str2i/str2u.h"
+#include "include/a2i/str2i/str2u.h"
 
 
 extern inline int str2uhh(unsigned char *restrict n, const char *restrict s);

@@ -3,4 +3,4 @@
 
 
 #define A2I_INTERNAL
-#include "src/lib/a2i/attr.h"
+#include "include/a2i/attr.h"

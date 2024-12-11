@@ -3,7 +3,7 @@
 
 
 #define A2I_INTERNAL
-#include "src/lib/a2i/strtoi/strtou_noneg/strtou_noneg.h"
+#include "include/a2i/strtoi/strtou_noneg/strtou_noneg.h"
 
 #include <stdint.h>
 

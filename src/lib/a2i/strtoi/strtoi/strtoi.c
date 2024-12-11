@@ -3,7 +3,7 @@
 
 
 #define A2I_INTERNAL
-#include "src/lib/a2i/strtoi/strtoi/strtoi.h"
+#include "include/a2i/strtoi/strtoi/strtoi.h"
 
 #include <stdint.h>
 

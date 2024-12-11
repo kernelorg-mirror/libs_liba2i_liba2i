@@ -3,7 +3,7 @@
 
 
 #define A2I_INTERNAL
-#include "src/lib/a2i/str2i/str2s.h"
+#include "include/a2i/str2i/str2s.h"
 
 
 extern inline int str2shh(signed char *restrict n, const char *restrict s);

@@ -15,16 +15,22 @@
 
 #if defined(__clang__)
 # define A2I_ATTR_ACCESS(...)
+# define A2I_ATTR_NOIPA        __attribute__((__noinline__))
 #else
 # define A2I_ATTR_ACCESS(...)  __attribute__((access(__VA_ARGS__)))
+# define A2I_ATTR_NOIPA        __attribute__((__noipa__))
 #endif
 
 
-#define A2I_ATTR_LEAF          __attribute__((__leaf__))
+#define A2I_ATTR_LEAF             __attribute__((__leaf__))
 
-#define A2I_ATTR_NONNULL(...)  __attribute__((__nonnull__(__VA_ARGS__)))
+#define A2I_ATTR_NONNULL(...)     __attribute__((__nonnull__(__VA_ARGS__)))
 
-#define A2I_ATTR_NOTHROW       __attribute__((__nothrow__))
+#define A2I_ATTR_NOTHROW          __attribute__((__nothrow__))
+
+#define A2I_ATTR_ALIAS(original)  __attribute__((alias(original)))
+
+#define A2I_ATTR_VISIBILITY(v)    __attribute__((visibility(v)))
 
 
 #endif  // include guard

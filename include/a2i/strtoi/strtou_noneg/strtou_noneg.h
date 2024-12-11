@@ -2,17 +2,17 @@
 // SPDX-License-Identifier: LGPL-3.0-only WITH LGPL-3.0-linking-exception
 
 
-#ifndef SRC_LIB_A2I_STRTOI_STRTOU_NONEG_STRTOU_NONEG_H_
-#define SRC_LIB_A2I_STRTOI_STRTOU_NONEG_STRTOU_NONEG_H_
+#ifndef INCLUDE_A2I_STRTOI_STRTOU_NONEG_STRTOU_NONEG_H_
+#define INCLUDE_A2I_STRTOI_STRTOU_NONEG_STRTOU_NONEG_H_
 
 
 #include <errno.h>
 #include <stddef.h>
 #include <stdint.h>
 
-#include "src/lib/a2i/attr.h"
-#include "src/lib/a2i/strtoi/strtoi/strtoi.h"
-#include "src/lib/a2i/strtoi/strtou/strtou.h"
+#include <a2i/attr.h>
+#include <a2i/strtoi/strtoi/strtoi.h>
+#include <a2i/strtoi/strtou/strtou.h>
 
 
 A2I_ATTR_ACCESS(read_only, 1)

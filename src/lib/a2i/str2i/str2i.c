@@ -3,4 +3,4 @@
 
 
 #define A2I_INTERNAL
-#include "src/lib/a2i/str2i/str2i.h"
+#include "include/a2i/str2i/str2i.h"
