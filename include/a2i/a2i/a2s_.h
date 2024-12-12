@@ -10,7 +10,7 @@
 
 #include <a2i/attr.h>
 #include <a2i/inline.h>
-#include <a2i/strtoi/strtoi/strtoi.h>
+#include <a2i/strtoi/strtoi.h>
 
 
 #define A2I_A2S_ATTR                                                          \

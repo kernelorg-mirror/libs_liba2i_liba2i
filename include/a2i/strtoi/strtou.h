@@ -2,8 +2,8 @@
 // SPDX-License-Identifier: LGPL-3.0-only WITH LGPL-3.0-linking-exception
 
 
-#ifndef INCLUDE_A2I_STRTOI_STRTOI_STRTOI_H_
-#define INCLUDE_A2I_STRTOI_STRTOI_STRTOI_H_
+#ifndef INCLUDE_A2I_STRTOI_STRTOU_H_
+#define INCLUDE_A2I_STRTOI_STRTOU_H_
 
 
 #include <errno.h>
@@ -24,19 +24,19 @@ A2I_ATTR_STRING(1)
 A2I_ATTR_LEAF
 A2I_ATTR_NOTHROW
 A2I_ATTR_VISIBILITY("internal")
-inline intmax_t a2i_strtoi(char *restrict s,
+inline uintmax_t a2i_strtou(char *restrict s,
     char **restrict endp, int base,
-    intmax_t min, intmax_t max, int *restrict status);
+    uintmax_t min, uintmax_t max, int *restrict status);
 
 
-inline intmax_t
-a2i_strtoi(char *restrict s,
+inline uintmax_t
+a2i_strtou(char *restrict s,
     char **restrict endp, int base,
-    intmax_t min, intmax_t max, int *restrict status)
+    uintmax_t min, uintmax_t max, int *restrict status)
 {
 	int        errno_saved, st;
 	char       *e;
-	intmax_t   n;
+	uintmax_t  n;
 
 	if (status == NULL)
 		status = &st;
@@ -54,7 +54,7 @@ a2i_strtoi(char *restrict s,
 	errno_saved = errno;
 	errno = 0;
 
-	n = strtoimax(s, endp, base);
+	n = strtoumax(s, endp, base);
 
 	if (errno != 0 && errno != EINVAL)
 		*status = errno;
