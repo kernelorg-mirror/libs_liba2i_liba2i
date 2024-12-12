@@ -16,6 +16,7 @@
 #include <a2i/attr.h>
 
 
+#if defined(A2I_INTERNAL)
 A2I_ATTR_ACCESS(read_only, 1)
 A2I_ATTR_ACCESS(write_only, 2)
 A2I_ATTR_ACCESS(write_only, 6)
@@ -71,6 +72,7 @@ a2i_strtoi(char *restrict s,
 clamp:
 	return MAX(min, MIN(max, n));
 }
+#endif  // defined(A2I_INTERNAL)
 
 
 #endif  // include guard

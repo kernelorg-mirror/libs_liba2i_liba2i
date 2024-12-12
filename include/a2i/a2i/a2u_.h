@@ -85,6 +85,7 @@ int a2ull_c(unsigned long long *restrict n, const char *restrict s,
 # pragma clang diagnostic ignored "-Wimplicit-int-conversion"
 # pragma clang diagnostic ignored "-Wshorten-64-to-32"
 #endif
+#if defined(A2I_INTERNAL)
 inline int
 a2uhh_nc(unsigned char *restrict n, char *restrict s,
     char **restrict endp, int base,
@@ -154,6 +155,7 @@ a2ull_nc(unsigned long long *restrict n, char *restrict s,
 
 	return -!!status;
 }
+#endif  // defined(A2I_INTERNAL)
 #if defined(__clang__)
 # pragma clang diagnostic pop  // -Wimplicit-int-conversion, -Wshorten-64-to-32
 #endif

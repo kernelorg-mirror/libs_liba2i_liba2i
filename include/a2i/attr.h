@@ -15,10 +15,8 @@
 
 #if defined(__clang__)
 # define A2I_ATTR_ACCESS(...)
-# define A2I_ATTR_NOIPA        __attribute__((__noinline__))
 #else
 # define A2I_ATTR_ACCESS(...)  __attribute__((access(__VA_ARGS__)))
-# define A2I_ATTR_NOIPA        __attribute__((__noipa__))
 #endif
 
 

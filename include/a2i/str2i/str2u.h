@@ -51,6 +51,7 @@ A2I_STR2U_ATTR
 a2i_inline int str2ull(unsigned long long *restrict n, const char *restrict s);
 
 
+#if defined(A2I_INTERNAL)
 inline int
 str2uhh(unsigned char *restrict n, const char *restrict s)
 {
@@ -80,6 +81,7 @@ str2ull(unsigned long long *restrict n, const char *restrict s)
 {
 	return a2ull(n, s, NULL, 0, 0, ULLONG_MAX);
 }
+#endif  // defined(A2I_INTERNAL)
 
 
 #endif  // include guard

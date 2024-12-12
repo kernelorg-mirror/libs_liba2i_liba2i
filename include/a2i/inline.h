@@ -6,13 +6,10 @@
 #define INCLUDE_A2I_INLINE_H_
 
 
-#include <a2i/attr.h>
-
-
 #if defined(A2I_INTERNAL)
 # define a2i_inline  inline
 #else
-# define a2i_inline  inline A2I_ATTR_NOIPA
+# define a2i_inline
 #endif
 
 

@@ -51,6 +51,7 @@ A2I_STR2S_ATTR
 a2i_inline int str2sll(long long *restrict n, const char *restrict s);
 
 
+#if defined(A2I_INTERNAL)
 inline int
 str2shh(signed char *restrict n, const char *restrict s)
 {
@@ -80,6 +81,7 @@ str2sll(long long *restrict n, const char *restrict s)
 {
 	return a2sll(n, s, NULL, 0, LLONG_MIN, LLONG_MAX);
 }
+#endif  // defined(A2I_INTERNAL)
 
 
 #endif  // include guard

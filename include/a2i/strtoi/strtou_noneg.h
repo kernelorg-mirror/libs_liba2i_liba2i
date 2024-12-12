@@ -15,6 +15,7 @@
 #include <a2i/strtoi/strtou.h>
 
 
+#if defined(A2I_INTERNAL)
 A2I_ATTR_ACCESS(read_only, 1)
 A2I_ATTR_ACCESS(write_only, 2)
 A2I_ATTR_ACCESS(write_only, 6)
@@ -42,6 +43,7 @@ a2i_strtou_noneg(char *restrict s,
 
 	return a2i_strtou(s, endp, base, min, max, status);
 }
+#endif  // defined(A2I_INTERNAL)
 
 
 #endif  // include guard
