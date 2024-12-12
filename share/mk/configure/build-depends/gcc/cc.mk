@@ -44,6 +44,7 @@ COMMON_CFLAGS := \
 	-Wstrict-prototypes \
 	-Wdeclaration-after-statement \
 	-Wno-unknown-pragmas \
+	-Wno-attributes \
 	-Wwrite-strings
 
 
