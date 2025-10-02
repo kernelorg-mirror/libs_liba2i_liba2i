@@ -29,15 +29,16 @@ String-to-integer library
 .SS Type-generic macro
 .B int
 .SY a2s(
-.B TYPE,
-.BI TYPE\~*restrict\~ n ,
+.BI typename\~ T ,
+.br
+.BI T\~*restrict\~ n ,
 .BI QChar\~* s ,
 .br
 .BI QChar\~**_Nullable\~restrict\~ endp ,
 .BI int\~ base ,
 .br
-.BI TYPE\~ min ,
-.BI TYPE\~ max );
+.BI T\~ min ,
+.BI T\~ max );
 .YS
 .
 .SS const-generic functions
@@ -152,7 +153,7 @@ is not in the range.
 .P
 The type-generic macro
 expands to the appropriate function depending on
-.IR TYPE .
+.IR T .
 It's useful for parsing a number into a typedef.
 .
 .SS QChar
