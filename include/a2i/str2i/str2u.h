@@ -14,18 +14,6 @@
 #include <a2i/inline.h>
 
 
-#define str2u(TYPE, ...)                                                      \
-(                                                                             \
-	_Generic((TYPE) 0,                                                    \
-		unsigned char:       str2uhh,                                 \
-		unsigned short:      str2uh,                                  \
-		unsigned int:        str2ui,                                  \
-		unsigned long:       str2ul,                                  \
-		unsigned long long:  str2ull                                  \
-	)(__VA_ARGS__)                                                        \
-)
-
-
 #define A2I_STR2U_ATTR                                                        \
 	A2I_ATTR_ACCESS(write_only, 1)                                        \
 	A2I_ATTR_ACCESS(read_only, 2)                                         \

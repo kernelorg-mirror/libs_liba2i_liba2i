@@ -6,7 +6,6 @@
 .
 .
 .SH Name
-a2s,
 a2shh,
 a2sh,
 a2si,
@@ -25,23 +24,7 @@ String-to-integer library
 .nf
 .B #include <a2i/a2i/a2s.h>
 .fi
-.
-.SS Type-generic macro
-.B int
-.SY a2s(
-.BI typename\~ T ,
-.br
-.BI T\~*restrict\~ n ,
-.BI QChar\~* s ,
-.br
-.BI QChar\~**_Nullable\~restrict\~ endp ,
-.BI int\~ base ,
-.br
-.BI T\~ min ,
-.BI T\~ max );
-.YS
-.
-.SS const-generic functions
+.P
 .B int
 .SY a2shh(
 .BI signed\~char\~*restrict\~ n ,
@@ -150,11 +133,6 @@ if no value was parsed,
 or the closest value in the range if
 .B 0
 is not in the range.
-.P
-The type-generic macro
-expands to the appropriate function depending on
-.IR T .
-It's useful for parsing a number into a typedef.
 .
 .SS QChar
 These functions are implemented with const-generic wrapper macros.
@@ -222,7 +200,7 @@ The string contained non-numeric characters after a valid number.
 .
 .SH Examples
 .EX
-if (a2s(pid_t, &pid, s, NULL, 10, 1, type_max(pid_t)) == \-1)
+if (a2i(pid_t, &pid, s, NULL, 10, 1, type_max(pid_t)) == \-1)
 	goto err;
 .EE
 .

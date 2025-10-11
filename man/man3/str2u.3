@@ -6,7 +6,6 @@
 .
 .
 .SH Name
-str2u,
 str2uhh,
 str2uh,
 str2ui,
@@ -25,15 +24,6 @@ String-to-integer library
 .nf
 .B #include <a2i/str2i/str2u.h>
 .fi
-.
-.P
-.B int
-.SY str2u(
-.BI typename\~ T ,
-.BI T\~*restrict\~ n ,
-.BI const\~char\~* s );
-.YS
-.
 .P
 .B int
 .SY str2uhh(
@@ -62,7 +52,7 @@ String-to-integer library
 .YS
 .
 .SH Description
-These functions and macros
+These functions
 are convenience wrappers around
 .BR a2u (3),
 providing common defaults for the remaining arguments.
@@ -77,10 +67,8 @@ The following calls are all equivalent:
 .in +4n
 .EX
 str2ul(&n, s);
-str2u(unsigned long, &n, s);
 str2i(unsigned long, &n, s);
 a2ul(&n, s, NULL, 0, 0, ULONG_MAX);
-a2u(unsigned long, &n, s, NULL, 0, 0, ULONG_MAX);
 a2i(unsigned long, &n, s, NULL, 0, 0, ULONG_MAX);
 .EE
 .in

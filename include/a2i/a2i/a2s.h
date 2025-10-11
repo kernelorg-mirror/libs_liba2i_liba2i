@@ -9,19 +9,6 @@
 #include <a2i/a2i/a2i.h>
 
 
-#define a2s(TYPE, ...)                                                \
-(                                                                     \
-	_Generic((TYPE) 0,                                            \
-		signed char:  0,                                      \
-		short:        0,                                      \
-		int:          0,                                      \
-		long:         0,                                      \
-		long long:    0                                       \
-	) +                                                           \
-	a2i(TYPE, __VA_ARGS__)                                        \
-)
-
-
 #define a2shh(...)  a2i(signed char, __VA_ARGS__)
 #define a2sh(...)   a2i(short, __VA_ARGS__)
 #define a2si(...)   a2i(int, __VA_ARGS__)

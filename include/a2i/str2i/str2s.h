@@ -14,18 +14,6 @@
 #include <a2i/inline.h>
 
 
-#define str2s(TYPE, ...)                                                      \
-(                                                                             \
-	_Generic((TYPE) 0,                                                    \
-		signed char:         str2shh,                                 \
-		short:               str2sh,                                  \
-		int:                 str2si,                                  \
-		long:                str2sl,                                  \
-		long long:           str2sll                                  \
-	)(__VA_ARGS__)                                                        \
-)
-
-
 #define A2I_STR2S_ATTR                                                        \
 	A2I_ATTR_ACCESS(write_only, 1)                                        \
 	A2I_ATTR_ACCESS(read_only, 2)                                         \

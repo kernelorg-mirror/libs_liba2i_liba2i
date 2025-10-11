@@ -6,7 +6,6 @@
 .
 .
 .SH Name
-a2u,
 a2uhh,
 a2uh,
 a2ui,
@@ -25,22 +24,7 @@ String-to-integer library
 .nf
 .B #include <a2i/a2i/a2u.h>
 .fi
-.
-.SS Type-generic macro
-.B int
-.SY a2u(
-.BI typename\~ T ,
-.BI T\~*restrict\~ n ,
-.BI QChar\~* s ,
-.br
-.BI QChar\~**_Nullable\~restrict\~ endp ,
-.BI int\~ base ,
-.br
-.BI T\~ min ,
-.BI T\~ max );
-.YS
-.
-.SS const-generic functions
+.P
 .B int
 .SY a2uhh(
 .BI unsigned\~char\~*restrict\~ n ,
@@ -98,7 +82,7 @@ String-to-integer library
 .YS
 .
 .SH Description
-These functions and macros
+These functions
 are the unsigned counterparts of
 .BR a2s (3).
 .P
@@ -113,7 +97,7 @@ wrap around negative values before checking for overflow).
 .
 .SH Examples
 .EX
-if (a2u(useconds_t, &us, s, NULL, 10, 0, 1000000) == \-1)
+if (a2i(useconds_t, &us, s, NULL, 10, 0, 1000000) == \-1)
 	goto err;
 .EE
 .
