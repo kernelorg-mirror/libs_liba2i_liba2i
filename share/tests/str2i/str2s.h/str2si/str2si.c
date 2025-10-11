@@ -118,13 +118,16 @@ test_range(void)
 	assert(str2si(&n, "-1") == 0);
 	assert(n == -1);
 	assert(errno == 0);
-	assert(str2si(&n, "0xFFF") == 0);
-	assert(n == 0xFFF);
+	assert(str2si(&n, "0x7FFFffff") == 0);
+	assert(n == 0x7FFFffff);
 	assert(errno == 0);
-	assert(str2si(&n, "0xFFFFffffFFFFffff") == -1);
+	assert(str2si(&n, "-0x80000000") == 0);
+	assert(n == INT_MIN);
+	assert(errno == 0);
+	assert(str2si(&n, "0xFFFFffff") == -1);
 	assert(n == INT_MAX);
 	assert(errno == ERANGE);
-	assert(str2si(&n, "-0xFFFFffffFFFFffff") == -1);
+	assert(str2si(&n, "-0xFFFFffff") == -1);
 	assert(n == INT_MIN);
 	assert(errno == ERANGE);
 }

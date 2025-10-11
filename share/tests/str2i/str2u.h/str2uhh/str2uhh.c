@@ -127,10 +127,10 @@ test_range(void)
 	assert(str2uhh(&n, "-0xFF") == -1);
 	assert(n == 0);
 	assert(errno == ERANGE);
-	assert(str2uhh(&n, "0xFF9") == -1);
+	assert(str2uhh(&n, "0x1FF") == -1);
 	assert(n == UCHAR_MAX);
 	assert(errno == ERANGE);
-	assert(str2uhh(&n, "-0xFF9") == -1);
+	assert(str2uhh(&n, "-0x1FF") == -1);
 	assert(n == 0);
 	assert(errno == ERANGE);
 }

@@ -127,10 +127,10 @@ test_range(void)
 	assert(str2ull(&n, "-0xFFFFffffFFFFffff") == -1);
 	assert(n == 0);
 	assert(errno == ERANGE);
-	assert(str2ull(&n, "0xFFFFffffFFFFffff9") == -1);
+	assert(str2ull(&n, "0x1FFFFffffFFFFffff") == -1);
 	assert(n == ULLONG_MAX);
 	assert(errno == ERANGE);
-	assert(str2ull(&n, "-0xFFFFffffFFFFffff9") == -1);
+	assert(str2ull(&n, "-0x1FFFFffffFFFFffff") == -1);
 	assert(n == 0);
 	assert(errno == ERANGE);
 }

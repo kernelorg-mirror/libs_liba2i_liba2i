@@ -118,8 +118,11 @@ test_range(void)
 	assert(str2sh(&n, "-1") == 0);
 	assert(n == -1);
 	assert(errno == 0);
-	assert(str2sh(&n, "0xFFF") == 0);
-	assert(n == 0xFFF);
+	assert(str2sh(&n, "0x7FFF") == 0);
+	assert(n == 0x7FFF);
+	assert(errno == 0);
+	assert(str2sh(&n, "-0x8000") == 0);
+	assert(n == -0x8000);
 	assert(errno == 0);
 	assert(str2sh(&n, "0xFFFF") == -1);
 	assert(n == SHRT_MAX);

@@ -446,11 +446,11 @@ test_range(void)
 	assert(n == 0);
 	assert(errno == ERANGE);
 	assert(strcmp(e, "") == 0);
-	assert(a2uh(&n, "0xFFFF9", &e, 0, 0, USHRT_MAX) == -1);
+	assert(a2uh(&n, "0x1FFFF", &e, 0, 0, USHRT_MAX) == -1);
 	assert(n == USHRT_MAX);
 	assert(errno == ERANGE);
 	assert(strcmp(e, "") == 0);
-	assert(a2uh(&n, "-0xFFFF9", &e, 0, 0, USHRT_MAX) == -1);
+	assert(a2uh(&n, "-0x1FFFF", &e, 0, 0, USHRT_MAX) == -1);
 	assert(n == 0);
 	assert(errno == ERANGE);
 	assert(strcmp(e, "") == 0);

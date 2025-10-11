@@ -431,8 +431,12 @@ test_range(void)
 	assert(n == -1);
 	assert(errno == 0);
 	assert(strcmp(e, "") == 0);
-	assert(a2sll(&n, "0xFFFffffFFFFffff", &e, 0, LLONG_MIN, LLONG_MAX) == 0);
-	assert(n == 0xFFFffffFFFFffff);
+	assert(a2sll(&n, "0x7FFFffffFFFFffff", &e, 0, LLONG_MIN, LLONG_MAX) == 0);
+	assert(n == 0x7FFFffffFFFFffff);
+	assert(errno == 0);
+	assert(strcmp(e, "") == 0);
+	assert(a2sll(&n, "-0x8000000000000000", &e, 0, LLONG_MIN, LLONG_MAX) == 0);
+	assert(n == LLONG_MIN);
 	assert(errno == 0);
 	assert(strcmp(e, "") == 0);
 	assert(a2sll(&n, "0xFFFFffffFFFFffff", &e, 0, LLONG_MIN, LLONG_MAX) == -1);

@@ -442,15 +442,15 @@ test_range(void)
 	assert(n == 0xFF);
 	assert(errno == 0);
 	assert(strcmp(e, "") == 0);
-	assert(a2uhh(&n, "-0xFF", &e, 0, 0, UCHAR_MAX) == -1);
+	assert(a2uhh(&n, "-0x1FF", &e, 0, 0, UCHAR_MAX) == -1);
 	assert(n == 0);
 	assert(errno == ERANGE);
 	assert(strcmp(e, "") == 0);
-	assert(a2uhh(&n, "0xFF9", &e, 0, 0, UCHAR_MAX) == -1);
+	assert(a2uhh(&n, "0x1FF", &e, 0, 0, UCHAR_MAX) == -1);
 	assert(n == UCHAR_MAX);
 	assert(errno == ERANGE);
 	assert(strcmp(e, "") == 0);
-	assert(a2uhh(&n, "-0xFF9", &e, 0, 0, UCHAR_MAX) == -1);
+	assert(a2uhh(&n, "-0x1FF", &e, 0, 0, UCHAR_MAX) == -1);
 	assert(n == 0);
 	assert(errno == ERANGE);
 	assert(strcmp(e, "") == 0);

@@ -118,8 +118,11 @@ test_range(void)
 	assert(str2sl(&n, "-1") == 0);
 	assert(n == -1);
 	assert(errno == 0);
-	assert(str2sl(&n, "0xFFFffff") == 0);
-	assert(n == 0xFFFffff);
+	assert(str2sl(&n, "0x7FFFffffFFFFffff") == 0);
+	assert(n == 0x7FFFffffFFFFffff);
+	assert(errno == 0);
+	assert(str2sl(&n, "-0x8000000000000000") == 0);
+	assert(n == LONG_MIN);
 	assert(errno == 0);
 	assert(str2sl(&n, "0xFFFFffffFFFFffff") == -1);
 	assert(n == LONG_MAX);

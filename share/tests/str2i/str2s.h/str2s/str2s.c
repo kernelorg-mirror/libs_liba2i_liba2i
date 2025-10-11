@@ -121,6 +121,9 @@ test_range(void)
 	assert(str2s(signed char, &n, "0x7F") == 0);
 	assert(n == 0x7F);
 	assert(errno == 0);
+	assert(str2s(signed char, &n, "-0x80") == 0);
+	assert(n == -0x80);
+	assert(errno == 0);
 	assert(str2s(signed char, &n, "0xFF") == -1);
 	assert(n == SCHAR_MAX);
 	assert(errno == ERANGE);

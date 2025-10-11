@@ -121,16 +121,16 @@ test_range(void)
 	assert(n == 0);
 	assert(errno == ERANGE);
 	errno = 0;
-	assert(str2ui(&n, "0xFFFF") == 0);
-	assert(n == 0xFFFF);
+	assert(str2ui(&n, "0xFFFFffff") == 0);
+	assert(n == 0xFFFFffff);
 	assert(errno == 0);
-	assert(str2ui(&n, "-0xFFFFffffFFFFffff") == -1);
+	assert(str2ui(&n, "-0xFFFFffff") == -1);
 	assert(n == 0);
 	assert(errno == ERANGE);
-	assert(str2ui(&n, "0xFFFFffffFFFFffff9") == -1);
+	assert(str2ui(&n, "0x1FFFFffffFFFFffff") == -1);
 	assert(n == UINT_MAX);
 	assert(errno == ERANGE);
-	assert(str2ui(&n, "-0xFFFFffffFFFFffff9") == -1);
+	assert(str2ui(&n, "-0x1FFFFffffFFFFffff") == -1);
 	assert(n == 0);
 	assert(errno == ERANGE);
 }
