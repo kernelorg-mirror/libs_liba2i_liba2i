@@ -41,19 +41,18 @@ test_base(void)
 	assert(n == 11);
 	assert(errno == 0);
 
-	// Binary with "0b" depends on libc support.
-	//assert(str2sl(&n, "0b11") == 0);
-	//assertn == 3);
-	//assert(errno == 0);
-	//assert(str2sl(&n, "0B11") == 0);
-	//assertn == 3);
-	//assert(errno == 0);
-	//assert(str2sl(&n, "-0b11") == 0);
-	//assertn == -3);
-	//assert(errno == 0);
-	//assert(str2sl(&n, "-0B11") == 0);
-	//assertn == -3);
-	//assert(errno == 0);
+	assert(str2sl(&n, "0b11") == 0);
+	assert(n == 3);
+	assert(errno == 0);
+	assert(str2sl(&n, "0B11") == 0);
+	assert(n == 3);
+	assert(errno == 0);
+	assert(str2sl(&n, "-0b11") == 0);
+	assert(n == -3);
+	assert(errno == 0);
+	assert(str2sl(&n, "-0B11") == 0);
+	assert(n == -3);
+	assert(errno == 0);
 	assert(str2sl(&n, "011") == 0);
 	assert(n == 9);
 	assert(errno == 0);
