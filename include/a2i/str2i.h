@@ -6,6 +6,8 @@
 #define INCLUDE_A2I_STR2I_H_
 
 
+#include <stddef.h>
+
 #include <a2i/a2i/a2i.h>  // IWYU pragma: keep
 
 
