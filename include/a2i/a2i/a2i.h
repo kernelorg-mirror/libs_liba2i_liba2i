@@ -6,55 +6,62 @@
 #define INCLUDE_A2I_A2I_A2I_H_
 
 
-#include <a2i/a2i/a2s_.h>  // IWYU pragma: keep
-#include <a2i/a2i/a2u_.h>  // IWYU pragma: keep
+#include <errno.h>
+
+#include <a2i/strtoi/strtoi.h>  // IWYU pragma: keep
+#include <a2i/strtoi/strtou_noneg.h>  // IWYU pragma: keep
 
 
-#define a2i(TYPE, n, s, ...)                                                  \
-(                                                                             \
-	_Generic((void (*)(TYPE, typeof(s))) 0,                               \
-		void (*)(signed char,        const char *):  a2shh_c,         \
-		void (*)(signed char,        const void *):  a2shh_c,         \
-		void (*)(signed char,        char *):        a2shh_nc,        \
-		void (*)(signed char,        void *):        a2shh_nc,        \
-		void (*)(short,              const char *):  a2sh_c,          \
-		void (*)(short,              const void *):  a2sh_c,          \
-		void (*)(short,              char *):        a2sh_nc,         \
-		void (*)(short,              void *):        a2sh_nc,         \
-		void (*)(int,                const char *):  a2si_c,          \
-		void (*)(int,                const void *):  a2si_c,          \
-		void (*)(int,                char *):        a2si_nc,         \
-		void (*)(int,                void *):        a2si_nc,         \
-		void (*)(long,               const char *):  a2sl_c,          \
-		void (*)(long,               const void *):  a2sl_c,          \
-		void (*)(long,               char *):        a2sl_nc,         \
-		void (*)(long,               void *):        a2sl_nc,         \
-		void (*)(long long,          const char *):  a2sll_c,         \
-		void (*)(long long,          const void *):  a2sll_c,         \
-		void (*)(long long,          char *):        a2sll_nc,        \
-		void (*)(long long,          void *):        a2sll_nc,        \
-		void (*)(unsigned char,      const char *):  a2uhh_c,         \
-		void (*)(unsigned char,      const void *):  a2uhh_c,         \
-		void (*)(unsigned char,      char *):        a2uhh_nc,        \
-		void (*)(unsigned char,      void *):        a2uhh_nc,        \
-		void (*)(unsigned short,     const char *):  a2uh_c,          \
-		void (*)(unsigned short,     const void *):  a2uh_c,          \
-		void (*)(unsigned short,     char *):        a2uh_nc,         \
-		void (*)(unsigned short,     void *):        a2uh_nc,         \
-		void (*)(unsigned int,       const char *):  a2ui_c,          \
-		void (*)(unsigned int,       const void *):  a2ui_c,          \
-		void (*)(unsigned int,       char *):        a2ui_nc,         \
-		void (*)(unsigned int,       void *):        a2ui_nc,         \
-		void (*)(unsigned long,      const char *):  a2ul_c,          \
-		void (*)(unsigned long,      const void *):  a2ul_c,          \
-		void (*)(unsigned long,      char *):        a2ul_nc,         \
-		void (*)(unsigned long,      void *):        a2ul_nc,         \
-		void (*)(unsigned long long, const char *):  a2ull_c,         \
-		void (*)(unsigned long long, const void *):  a2ull_c,         \
-		void (*)(unsigned long long, char *):        a2ull_nc,        \
-		void (*)(unsigned long long, void *):        a2ull_nc         \
-	)(n, s, __VA_ARGS__)                                                  \
+// QChar_of - possibly-qualified char of-a-string
+#define a2i_QChar_of(s)  typeof                                       \
+(                                                                     \
+	_Generic(s,                                                   \
+		const char *:  *(const char *) "",                    \
+		const void *:  *(const char *) "",                    \
+		char *:        *(char *) "",                          \
+		void *:        *(char *) ""                           \
+	)                                                             \
 )
+
+
+#define a2i_(T, QChar, n, s, endp, base, min, max)                    \
+({                                                                    \
+	T      *a2i_n_ = n;                                           \
+	QChar  *a2i_s_ = s;                                           \
+	QChar  **a2i_ep_ = endp;                                      \
+	int    a2i_b_ = base;                                         \
+	T      a2i_min_ = min;                                        \
+	T      a2i_max_ = max;                                        \
+                                                                      \
+	int  a2i_st_;                                                 \
+                                                                      \
+	_Pragma("clang diagnostic push");                             \
+	_Pragma("clang diagnostic ignored \"-Wimplicit-int-conversion\"");\
+	_Pragma("clang diagnostic ignored \"-Wshorted-64-to-32\"");   \
+                                                                      \
+	*a2i_n_ = _Generic((T) 0,                                     \
+		signed char:        a2i_strtoi,                       \
+		short:              a2i_strtoi,                       \
+		int:                a2i_strtoi,                       \
+		long:               a2i_strtoi,                       \
+		long long:          a2i_strtoi,                       \
+		unsigned char:      a2i_strtou_noneg,                 \
+		unsigned short:     a2i_strtou_noneg,                 \
+		unsigned int:       a2i_strtou_noneg,                 \
+		unsigned long:      a2i_strtou_noneg,                 \
+		unsigned long long: a2i_strtou_noneg                  \
+	)(a2i_s_, (char **) a2i_ep_, a2i_b_, a2i_min_, a2i_max_, &a2i_st_);\
+                                                                      \
+	_Pragma("clang diagnostic pop");                              \
+                                                                      \
+	if (a2i_st_ != 0)                                             \
+		errno = a2i_st_;                                      \
+	-!!a2i_st_;                                                   \
+})
+
+
+// a2i - alpha to integer
+#define a2i(T, n, s, ...)  a2i_(T, a2i_QChar_of(s), n, s, __VA_ARGS__)
 
 
 #endif  // include guard
