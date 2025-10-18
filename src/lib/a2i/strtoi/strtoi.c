@@ -8,6 +8,6 @@
 #include <stdint.h>
 
 
-extern inline intmax_t a2i_strtoi(char *restrict s,
+extern inline intmax_t a2i_strtoi(const char *restrict s,
     char **restrict endp, int base,
     intmax_t min, intmax_t max, int *restrict status);

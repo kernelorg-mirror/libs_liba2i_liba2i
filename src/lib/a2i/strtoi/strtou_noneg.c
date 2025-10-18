@@ -8,6 +8,6 @@
 #include <stdint.h>
 
 
-extern inline uintmax_t a2i_strtou_noneg(char *restrict s,
+extern inline uintmax_t a2i_strtou_noneg(const char *restrict s,
     char **restrict endp, int base,
     uintmax_t min, uintmax_t max, int *restrict status);
