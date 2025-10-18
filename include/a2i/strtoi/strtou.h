@@ -14,9 +14,9 @@
 #include <sys/param.h>
 
 #include <a2i/attr.h>
+#include <a2i/inline.h>
 
 
-#if defined(A2I_INTERNAL)
 A2I_ATTR_ACCESS(read_only, 1)
 A2I_ATTR_ACCESS(write_only, 2)
 A2I_ATTR_ACCESS(write_only, 6)
@@ -24,12 +24,12 @@ A2I_ATTR_NONNULL(1)
 A2I_ATTR_STRING(1)
 A2I_ATTR_LEAF
 A2I_ATTR_NOTHROW
-A2I_ATTR_VISIBILITY("internal")
-inline uintmax_t a2i_strtou(char *restrict s,
+a2i_inline uintmax_t a2i_strtou(char *restrict s,
     char **restrict endp, int base,
     uintmax_t min, uintmax_t max, int *restrict status);
 
 
+#if defined(A2I_INTERNAL)
 inline uintmax_t
 a2i_strtou(char *restrict s,
     char **restrict endp, int base,
