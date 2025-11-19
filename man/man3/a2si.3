@@ -1,1 +1,215 @@
-.so man3/a2s.3
+.\" Copyright 2024 Alejandro Colomar <alx@kernel.org>
+.\" SPDX-License-Identifier: Linux-man-pages-copyleft
+.
+.
+.TH a2si 3 (date) liba2i-(unreleased)
+.
+.
+.SH Name
+a2shh,
+a2sh,
+a2si,
+a2sl,
+a2sll,
+\-
+convert a string to a signed integer
+.
+.
+.SH Library
+String-to-integer library
+.RI ( liba2i ,\~ \-la2i )
+.
+.
+.SH Synopsis
+.nf
+.B #include <a2i/a2i.h>
+.fi
+.P
+.B int
+.SY a2shh(
+.BI signed\~char\~*restrict\~ n ,
+.BI QChar\~* s ,
+.br
+.BI QChar\~**_Nullable\~restrict\~ endp ,
+.BI int\~ base ,
+.br
+.BI signed\~char\~ min \~=\~_Minof(signed\~char),
+.BI signed\~char\~ max \~=\~_Maxof(signed\~char));
+.YS .
+.B int
+.SY a2sh(
+.BI short\~*restrict\~ n ,
+.BI QChar\~* s ,
+.br
+.BI QChar\~**_Nullable\~restrict\~ endp ,
+.BI int\~ base ,
+.br
+.BI short\~ min \~=\~_Minof(short),
+.BI short\~ max \~=\~_Maxof(short));
+.YS .
+.B int
+.SY a2si(
+.BI int\~*restrict\~ n ,
+.BI QChar\~* s ,
+.br
+.BI QChar\~**_Nullable\~restrict\~ endp ,
+.BI int\~ base ,
+.br
+.BI int\~ min \~=\~_Minof(int),
+.BI int\~ max \~=\~_Maxof(int));
+.YS .
+.B int
+.SY a2sl(
+.BI long\~*restrict\~ n ,
+.BI QChar\~* s ,
+.br
+.BI QChar\~**_Nullable\~restrict\~ endp ,
+.BI int\~ base ,
+.br
+.BI long\~ min \~=\~_Minof(long),
+.BI long\~ max \~=\~_Maxof(long));
+.YS .
+.B int
+.SY a2sll(
+.BI long\~long\~*restrict\~ n ,
+.BI QChar\~* s ,
+.br
+.BI QChar\~**_Nullable\~restrict\~ endp ,
+.BI int\~ base ,
+.br
+.BI long\~long\~ min \~=\~_Minof(long\~long),
+.BI long\~long\~ max \~=\~_Maxof(long\~long));
+.YS .
+.
+.
+.SH Description
+These functions
+convert the initial portion of the string pointed to by
+.I s
+to a signed integer of base
+.IR base ,
+ensure that the number is in the range
+.RI [ min ,\~ max ]
+and store it in
+.IR *n .
+.P
+They are similar to
+.BR strtoi (3bsd),
+which itself is similar to
+.BR strtol (3).
+.P
+The
+.I base
+must a value in the range
+.RB [ 2 ,\~ 36 ],
+or the special value
+.BR 0 ,
+which means either
+.BR 8 ,
+.BR 10 ,
+or
+.BR 16 ,
+depending on the prefix
+.RI ( \[dq]0\[dq] ,
+none, or
+.IR \[dq]0x\[dq] ,
+respectively).
+.P
+If
+.I endp
+is not a null pointer,
+these functions
+store the address of the first invalid character in
+.IR *endp .
+.P
+These functions always write to
+.IR *n .
+.IP \[bu] 3
+The value parsed if it's in the range,
+or the closest value in the range otherwise.
+.IP \[bu] 3
+.B 0
+if no value was parsed,
+or the closest value in the range if
+.B 0
+is not in the range.
+.
+.SS QChar
+These functions are implemented with const-generic wrapper macros.
+These decide the const-ness of
+.I endp
+depending on the const-ness of the input
+.IR s .
+So, if
+.I s
+is of type
+.IR const\~char\~* ,
+.I endp
+will be of type
+.IR const\~char\~** ;
+and if
+.I s
+is of type
+.IR char\~* ,
+.I endp
+will be of type
+.IR char\~** .
+.
+.SS Default parameters
+.I min
+and/or
+.I max
+can be empty parameters,
+in which case,
+their default values are used.
+.
+.
+.SH Return value
+On success,
+0 is returned.
+On error,
+-1 is returned,
+and
+.I errno
+is set to indicate the error.
+.
+.
+.SH Errors
+.TP
+.B EINVAL
+The
+.I base
+is not in the range
+.RB [ 2 ,\~ 36 ]
+nor
+.BR 0 .
+.TP
+.B ECANCELED
+The string did not contain any characters that were converted.
+.TP
+.B ERANGE
+The parsed number was out of range.
+.TP
+.B ENOTSUP
+The string contained non-numeric characters after a valid number.
+.
+.
+.SH Examples
+.EX
+if (a2i(pid_t, &pid, s, NULL, 10, 1,) == \-1)
+	goto err;
+.EE
+.
+.
+.SH See also
+.BR a2i (3),
+.BR a2ui (3),
+.BR str2i (3),
+.BR str2si (3),
+.BR str2ui (3),
+.BR atof (3),
+.BR atoi (3),
+.BR strtod (3),
+.BR strtoimax (3),
+.BR strtol (3),
+.BR strtoi (3)

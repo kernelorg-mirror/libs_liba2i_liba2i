@@ -1,1 +1,116 @@
-.so man3/a2u.3
+.\" Copyright 2024 Alejandro Colomar <alx@kernel.org>
+.\" SPDX-License-Identifier: Linux-man-pages-copyleft
+.
+.
+.TH a2ui 3 (date) liba2i-(unreleased)
+.
+.
+.SH Name
+a2uhh,
+a2uh,
+a2ui,
+a2ul,
+a2ull
+\-
+convert a string to an unsigned integer
+.
+.
+.SH Library
+String-to-integer library
+.RI ( liba2i ,\~ \-la2i )
+.
+.
+.SH Synopsis
+.nf
+.B #include <a2i/a2i.h>
+.fi
+.P
+.B int
+.SY a2uhh(
+.BI unsigned\~char\~*restrict\~ n ,
+.BI QChar\~* s ,
+.br
+.BI QChar\~**_Nullable\~restrict\~ endp ,
+.BI int\~ base ,
+.br
+.BI unsigned\~char\~ min \~=\~_Minof(unsigned\~char),
+.BI unsigned\~char\~ max \~=\~_Maxof(unsigned\~char));
+.YS .
+.B int
+.SY a2uh(
+.BI unsigned\~short\~*restrict\~ n ,
+.BI QChar\~* s ,
+.br
+.BI QChar\~**_Nullable\~restrict\~ endp ,
+.BI int\~ base ,
+.br
+.BI unsigned\~short\~ min \~=\~_Minof(unsigned\~short),
+.BI unsigned\~short\~ max \~=\~_Maxof(unsigned\~short));
+.YS .
+.B int
+.SY a2ui(
+.BI unsigned\~int\~*restrict\~ n ,
+.BI QChar\~* s ,
+.br
+.BI QChar\~**_Nullable\~restrict\~ endp ,
+.BI int\~ base ,
+.br
+.BI unsigned\~int\~ min \~=\~_Minof(unsigned\~int),
+.BI unsigned\~int\~ max \~=\~_Maxof(unsigned\~int));
+.YS .
+.B int
+.SY a2ul(
+.BI unsigned\~long\~*restrict\~ n ,
+.BI QChar\~* s ,
+.br
+.BI QChar\~**_Nullable\~restrict\~ endp ,
+.BI int\~ base ,
+.br
+.BI unsigned\~long\~ min \~=\~_Minof(unsigned\~long),
+.BI unsigned\~long\~ max \~=\~_Maxof(unsigned\~long));
+.YS .
+.B int
+.SY a2ull(
+.BI unsigned\~long\~long\~*restrict\~ n ,
+.BI QChar\~* s ,
+.br
+.BI QChar\~**_Nullable\~restrict\~ endp ,
+.BI int\~ base ,
+.br
+.BI unsigned\~long\~long\~ min \~=\~_Minof(unsigned\~long\~long),
+.BI unsigned\~long\~long\~ max \~=\~_Maxof(unsigned\~long\~long));
+.YS
+.
+.SH Description
+These functions
+are the unsigned counterparts of
+.BR a2si (3).
+.P
+These reject negative values,
+instead of silently wrapping them around
+(both
+.BR strtoul (3)
+and
+.BR strtou (3bsd)
+wrap around negative values before checking for overflow).
+.
+.
+.SH Examples
+.EX
+if (a2i(useconds_t, &us, s, NULL, 10, 0, 1000000) == \-1)
+	goto err;
+.EE
+.
+.
+.SH See also
+.BR a2i (3),
+.BR a2si (3),
+.BR str2i (3),
+.BR str2si (3),
+.BR str2ui (3),
+.BR atof (3),
+.BR atoi (3),
+.BR strtod (3),
+.BR strtoumax (3),
+.BR strtoul (3),
+.BR strtou (3)
