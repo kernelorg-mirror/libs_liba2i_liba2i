@@ -16,7 +16,7 @@ $CC $CFLAGS_ -o "$out" -x c - $LDLIBS_ 2>&1 <<__EOF__ \
 else \
 	true; \
 fi;
-	#include <a2i/a2i/a2s.h>
+	#include <a2i/a2i.h>
 
 	int
 	main(void)
@@ -37,7 +37,7 @@ else \
 	true; \
 fi;
 	#include <stddef.h>
-	#include <a2i/a2i/a2s.h>
+	#include <a2i/a2i.h>
 
 	int
 	main(void)
@@ -57,7 +57,7 @@ else \
 	true; \
 fi;
 	#include <stddef.h>
-	#include <a2i/a2i/a2s.h>
+	#include <a2i/a2i.h>
 
 	int
 	main(void)

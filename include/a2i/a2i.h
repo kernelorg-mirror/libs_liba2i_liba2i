@@ -64,4 +64,32 @@
 #define a2i(T, n, s, ...)  a2i_(T, a2i_QChar_of(s), n, s, __VA_ARGS__)
 
 
+#define a2shh(...)  a2i(signed char, __VA_ARGS__)
+#define a2sh(...)   a2i(short, __VA_ARGS__)
+#define a2si(...)   a2i(int, __VA_ARGS__)
+#define a2sl(...)   a2i(long, __VA_ARGS__)
+#define a2sll(...)  a2i(long long, __VA_ARGS__)
+
+#define a2uhh(...)  a2i(unsigned char, __VA_ARGS__)
+#define a2uh(...)   a2i(unsigned short, __VA_ARGS__)
+#define a2ui(...)   a2i(unsigned int, __VA_ARGS__)
+#define a2ul(...)   a2i(unsigned long, __VA_ARGS__)
+#define a2ull(...)  a2i(unsigned long long, __VA_ARGS__)
+
+
+#define str2i(TYPE, n, s)  a2i(TYPE, n, s, NULL, 0, _Minof(TYPE), _Maxof(TYPE))
+
+#define str2shh(...)    str2i(signed char, __VA_ARGS__)
+#define str2sh(...)     str2i(short, __VA_ARGS__)
+#define str2si(...)     str2i(int, __VA_ARGS__)
+#define str2sl(...)     str2i(long, __VA_ARGS__)
+#define str2sll(...)    str2i(long long, __VA_ARGS__)
+
+#define str2uhh(...)    str2i(unsigned char, __VA_ARGS__)
+#define str2uh(...)     str2i(unsigned short, __VA_ARGS__)
+#define str2ui(...)     str2i(unsigned int, __VA_ARGS__)
+#define str2ul(...)     str2i(unsigned long, __VA_ARGS__)
+#define str2ull(...)    str2i(unsigned long long, __VA_ARGS__)
+
+
 #endif  // include guard
