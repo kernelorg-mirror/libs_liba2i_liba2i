@@ -16,6 +16,7 @@
 
 static void test_base(void);
 static void test_leading_text(void);
+static void test_leading_space(void);
 static void test_range(void);
 static void test_trailing_text(void);
 
@@ -25,6 +26,7 @@ main(void)
 {
 	test_base();
 	test_leading_text();
+	test_leading_space();
 	test_range();
 	test_trailing_text();
 }
@@ -98,18 +100,23 @@ test_leading_text(void)
 	assert(str2ul(&n, "foo 7") == -1);
 	assert(n == 0);
 	assert(errno == ECANCELED);
+}
 
-	errno = 0;
 
-	assert(str2ul(&n, " 9") == 0);
-	assert(n == 9);
-	assert(errno == 0);
-	assert(str2ul(&n, " \t\n0xa") == 0);
-	assert(n == 10);
-	assert(errno == 0);
-	assert(str2ul(&n, " \t\n-0xa") == -1);
+static void
+test_leading_space(void)
+{
+	unsigned long  n;
+
+	assert(str2ul(&n, " 9") == -1);
 	assert(n == 0);
-	assert(errno == ERANGE);
+	assert(errno == ECANCELED);
+	assert(str2ul(&n, "\t0xa") == -1);
+	assert(n == 0);
+	assert(errno == ECANCELED);
+	assert(str2ul(&n, "\n-0xa") == -1);
+	assert(n == 0);
+	assert(errno == ECANCELED);
 }
 
 
@@ -117,6 +124,8 @@ static void
 test_range(void)
 {
 	unsigned long  n;
+
+	errno = 0;
 
 	assert(str2ul(&n, "-1") == -1);
 	assert(n == 0);
@@ -142,10 +151,10 @@ test_trailing_text(void)
 {
 	unsigned long  n;
 
-	assert(str2ul(&n, "\n9 fff 7") == -1);
+	assert(str2ul(&n, "9 fff 7") == -1);
 	assert(n == 9);
 	assert(errno == ENOTSUP);
-	assert(str2ul(&n, "\n9\t") == -1);
+	assert(str2ul(&n, "9\t") == -1);
 	assert(n == 9);
 	assert(errno == ENOTSUP);
 	assert(str2ul(&n, "9 ") == -1);

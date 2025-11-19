@@ -17,6 +17,7 @@
 static void test_null(void);
 static void test_base(void);
 static void test_leading_text(void);
+static void test_leading_space(void);
 static void test_range(void);
 static void test_trailing_text(void);
 
@@ -27,6 +28,7 @@ main(void)
 	test_null();
 	test_base();
 	test_leading_text();
+	test_leading_space();
 	test_range();
 	test_trailing_text();
 }
@@ -357,21 +359,27 @@ test_leading_text(void)
 	assert(n == 42);
 	assert(errno == ECANCELED);
 	assert(strcmp(e, "") == 0);
+}
 
-	errno = 0;
 
-	assert(a2uh(&n, " 9", &e, 0, 2, 42) == 0);
-	assert(n == 9);
-	assert(errno == 0);
-	assert(strcmp(e, "") == 0);
-	assert(a2uh(&n, " \t\na", &e, 16, 2, 42) == 0);
-	assert(n == 10);
-	assert(errno == 0);
-	assert(strcmp(e, "") == 0);
-	assert(a2uh(&n, " \t\n-a", &e, 16, 2, 42) == -1);
+static void
+test_leading_space(void)
+{
+	const char      *e;
+	unsigned short  n;
+
+	assert(a2uh(&n, " 9", &e, 0, 2, 42) == -1);
 	assert(n == 2);
-	assert(errno == ERANGE);
-	assert(strcmp(e, "") == 0);
+	assert(errno == ECANCELED);
+	assert(strcmp(e, " 9") == 0);
+	assert(a2uh(&n, "\ta", &e, 16, 2, 42) == -1);
+	assert(n == 2);
+	assert(errno == ECANCELED);
+	assert(strcmp(e, "\ta") == 0);
+	assert(a2uh(&n, "\n-a", &e, 16, 2, 42) == -1);
+	assert(n == 2);
+	assert(errno == ECANCELED);
+	assert(strcmp(e, "\n-a") == 0);
 }
 
 
@@ -464,11 +472,11 @@ test_trailing_text(void)
 	const char      *e;
 	unsigned short  n;
 
-	assert(a2uh(&n, "\n9 fff 7", &e, 0, 7, 42) == -1);
+	assert(a2uh(&n, "9 fff 7", &e, 0, 7, 42) == -1);
 	assert(n == 9);
 	assert(errno == ENOTSUP);
 	assert(strcmp(e, " fff 7") == 0);
-	assert(a2uh(&n, "\n9\t", &e, 0, 7, 42) == -1);
+	assert(a2uh(&n, "9\t", &e, 0, 7, 42) == -1);
 	assert(n == 9);
 	assert(errno == ENOTSUP);
 	assert(strcmp(e, "\t") == 0);

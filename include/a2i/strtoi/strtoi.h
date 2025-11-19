@@ -6,6 +6,7 @@
 #define INCLUDE_A2I_STRTOI_STRTOI_H_
 
 
+#include <ctype.h>
 #include <errno.h>
 #include <inttypes.h>
 #include <stddef.h>
@@ -46,9 +47,13 @@ a2i_strtoi(const char *restrict s,
 
 	*endp = (char *) s;
 
+	n = 0;
 	if (base < 0 || base == 1 || base > 36) {
-		n = 0;
 		*status = EINVAL;
+		goto clamp;
+	}
+	if (isspace((unsigned char){*s})) {
+		*status = ECANCELED;
 		goto clamp;
 	}
 
