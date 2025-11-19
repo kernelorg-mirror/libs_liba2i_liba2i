@@ -33,8 +33,8 @@ String-to-integer library
 .BI QChar\~**_Nullable\~restrict\~ endp ,
 .BI int\~ base ,
 .br
-.BI signed\~char\~ min ,
-.BI signed\~char\~ max );
+.BI signed\~char\~ min \~=\~_Minof(signed\~char),
+.BI signed\~char\~ max \~=\~_Maxof(signed\~char));
 .YS .
 .B int
 .SY a2sh(
@@ -44,8 +44,8 @@ String-to-integer library
 .BI QChar\~**_Nullable\~restrict\~ endp ,
 .BI int\~ base ,
 .br
-.BI short\~ min ,
-.BI short\~ max );
+.BI short\~ min \~=\~_Minof(short),
+.BI short\~ max \~=\~_Maxof(short));
 .YS .
 .B int
 .SY a2si(
@@ -55,8 +55,8 @@ String-to-integer library
 .BI QChar\~**_Nullable\~restrict\~ endp ,
 .BI int\~ base ,
 .br
-.BI int\~ min ,
-.BI int\~ max );
+.BI int\~ min \~=\~_Minof(int),
+.BI int\~ max \~=\~_Maxof(int));
 .YS .
 .B int
 .SY a2sl(
@@ -66,8 +66,8 @@ String-to-integer library
 .BI QChar\~**_Nullable\~restrict\~ endp ,
 .BI int\~ base ,
 .br
-.BI long\~ min ,
-.BI long\~ max );
+.BI long\~ min \~=\~_Minof(long),
+.BI long\~ max \~=\~_Maxof(long));
 .YS .
 .B int
 .SY a2sll(
@@ -77,8 +77,8 @@ String-to-integer library
 .BI QChar\~**_Nullable\~restrict\~ endp ,
 .BI int\~ base ,
 .br
-.BI long\~long\~ min ,
-.BI long\~long\~ max );
+.BI long\~long\~ min \~=\~_Minof(long\~long),
+.BI long\~long\~ max \~=\~_Maxof(long\~long));
 .YS .
 .
 .
@@ -155,6 +155,14 @@ is of type
 will be of type
 .IR char\~** .
 .
+.SS Default parameters
+.I min
+and/or
+.I max
+can be empty parameters,
+in which case,
+their default values are used.
+.
 .
 .SH Return value
 On success,
@@ -188,7 +196,7 @@ The string contained non-numeric characters after a valid number.
 .
 .SH Examples
 .EX
-if (a2i(pid_t, &pid, s, NULL, 10, 1, type_max(pid_t)) == \-1)
+if (a2i(pid_t, &pid, s, NULL, 10, 1,) == \-1)
 	goto err;
 .EE
 .
