@@ -426,23 +426,23 @@ test_range(void)
 	assert(errno == 0);
 	assert(strcmp(e, "") == 0);
 
-	assert(a2sll(&n, "-1", &e, 0, LLONG_MIN, LLONG_MAX) == 0);
+	assert(a2sll(&n, "-1", &e, 0,,) == 0);
 	assert(n == -1);
 	assert(errno == 0);
 	assert(strcmp(e, "") == 0);
-	assert(a2sll(&n, "0x7FFFffffFFFFffff", &e, 0, LLONG_MIN, LLONG_MAX) == 0);
+	assert(a2sll(&n, "0x7FFFffffFFFFffff", &e, 0,,) == 0);
 	assert(n == 0x7FFFffffFFFFffff);
 	assert(errno == 0);
 	assert(strcmp(e, "") == 0);
-	assert(a2sll(&n, "-0x8000000000000000", &e, 0, LLONG_MIN, LLONG_MAX) == 0);
+	assert(a2sll(&n, "-0x8000000000000000", &e, 0,,) == 0);
 	assert(n == LLONG_MIN);
 	assert(errno == 0);
 	assert(strcmp(e, "") == 0);
-	assert(a2sll(&n, "0xFFFFffffFFFFffff", &e, 0, LLONG_MIN, LLONG_MAX) == -1);
+	assert(a2sll(&n, "0xFFFFffffFFFFffff", &e, 0,,) == -1);
 	assert(n == LLONG_MAX);
 	assert(errno == ERANGE);
 	assert(strcmp(e, "") == 0);
-	assert(a2sll(&n, "-0xFFFFffffFFFFffff", &e, 0, LLONG_MIN, LLONG_MAX) == -1);
+	assert(a2sll(&n, "-0xFFFFffffFFFFffff", &e, 0,,) == -1);
 	assert(n == LLONG_MIN);
 	assert(errno == ERANGE);
 	assert(strcmp(e, "") == 0);

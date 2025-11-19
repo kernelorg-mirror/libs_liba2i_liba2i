@@ -426,23 +426,23 @@ test_range(void)
 	assert(errno == 0);
 	assert(strcmp(e, "") == 0);
 
-	assert(a2si(&n, "-1", &e, 0, INT_MIN, INT_MAX) == 0);
+	assert(a2si(&n, "-1", &e, 0,,) == 0);
 	assert(n == -1);
 	assert(errno == 0);
 	assert(strcmp(e, "") == 0);
-	assert(a2si(&n, "0x7FFFffff", &e, 0, INT_MIN, INT_MAX) == 0);
+	assert(a2si(&n, "0x7FFFffff", &e, 0,,) == 0);
 	assert(n == 0x7FFFffff);
 	assert(errno == 0);
 	assert(strcmp(e, "") == 0);
-	assert(a2si(&n, "-0x80000000", &e, 0, INT_MIN, INT_MAX) == 0);
+	assert(a2si(&n, "-0x80000000", &e, 0,,) == 0);
 	assert(n == INT_MIN);
 	assert(errno == 0);
 	assert(strcmp(e, "") == 0);
-	assert(a2si(&n, "0xFFFFffffFFFFffff", &e, 0, INT_MIN, INT_MAX) == -1);
+	assert(a2si(&n, "0xFFFFffffFFFFffff", &e, 0,,) == -1);
 	assert(n == INT_MAX);
 	assert(errno == ERANGE);
 	assert(strcmp(e, "") == 0);
-	assert(a2si(&n, "-0xFFFFffffFFFFffff", &e, 0, INT_MIN, INT_MAX) == -1);
+	assert(a2si(&n, "-0xFFFFffffFFFFffff", &e, 0,,) == -1);
 	assert(n == INT_MIN);
 	assert(errno == ERANGE);
 	assert(strcmp(e, "") == 0);

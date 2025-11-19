@@ -426,23 +426,23 @@ test_range(void)
 	assert(errno == 0);
 	assert(strcmp(e, "") == 0);
 
-	assert(a2shh(&n, "-1", &e, 0, SCHAR_MIN, SCHAR_MAX) == 0);
+	assert(a2shh(&n, "-1", &e, 0,,) == 0);
 	assert(n == -1);
 	assert(errno == 0);
 	assert(strcmp(e, "") == 0);
-	assert(a2shh(&n, "0x7F", &e, 0, SCHAR_MIN, SCHAR_MAX) == 0);
+	assert(a2shh(&n, "0x7F", &e, 0,,) == 0);
 	assert(n == 0x7F);
 	assert(errno == 0);
 	assert(strcmp(e, "") == 0);
-	assert(a2shh(&n, "-0x80", &e, 0, SCHAR_MIN, SCHAR_MAX) == 0);
+	assert(a2shh(&n, "-0x80", &e, 0,,) == 0);
 	assert(n == -0x80);
 	assert(errno == 0);
 	assert(strcmp(e, "") == 0);
-	assert(a2shh(&n, "0xFF", &e, 0, SCHAR_MIN, SCHAR_MAX) == -1);
+	assert(a2shh(&n, "0xFF", &e, 0,,) == -1);
 	assert(n == SCHAR_MAX);
 	assert(errno == ERANGE);
 	assert(strcmp(e, "") == 0);
-	assert(a2shh(&n, "-0xFF", &e, 0, SCHAR_MIN, SCHAR_MAX) == -1);
+	assert(a2shh(&n, "-0xFF", &e, 0,,) == -1);
 	assert(n == SCHAR_MIN);
 	assert(errno == ERANGE);
 	assert(strcmp(e, "") == 0);
