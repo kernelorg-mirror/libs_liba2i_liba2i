@@ -16,10 +16,10 @@
 #define a2i_QChar_of(s)  typeof                                       \
 (                                                                     \
 	_Generic(s,                                                   \
-		const char *:  *(const char *) "",                    \
-		const void *:  *(const char *) "",                    \
-		char *:        *(char *) "",                          \
-		void *:        *(char *) ""                           \
+		const char *:  (const char){},                        \
+		const void *:  (const char){},                        \
+		char *:        (char){},                              \
+		void *:        (char){}                               \
 	)                                                             \
 )
 
