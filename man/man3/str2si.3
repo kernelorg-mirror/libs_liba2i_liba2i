@@ -68,7 +68,9 @@ The following calls are all equivalent:
 .EX
 str2sl(&n, s);
 str2i(long, &n, s);
+a2sl(&n, s, NULL, 0,,);
 a2sl(&n, s, NULL, 0, LONG_MIN, LONG_MAX);
+a2i(long, &n, s, NULL, 0,,);
 a2i(long, &n, s, NULL, 0, LONG_MIN, LONG_MAX);
 .EE
 .in
