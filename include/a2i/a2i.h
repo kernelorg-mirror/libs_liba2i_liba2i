@@ -24,14 +24,25 @@
 )
 
 
+#define A2I_VA_IFNOT_(...)       __VA_ARGS__
+#define A2I_VA_IFNOT_1(...)
+#define A2I_VA_IFNOT(cond, ...)  A2I_VA_IFNOT_ ## cond (__VA_ARGS__)
+#define A2I_DEFAULT_(def, ...)                                        \
+(                                                                     \
+	/* default:  */ A2I_VA_IFNOT(__VA_OPT__(1), def)              \
+	/* override: */ __VA_OPT__(__VA_ARGS__)                       \
+)
+#define A2I_DEFAULT(def, ovr)  A2I_DEFAULT_(def, ovr)
+
+
 #define a2i_(T, QChar, n, s, endp, base, min, max)                    \
 ({                                                                    \
 	T      *a2i_n_ = n;                                           \
 	QChar  *a2i_s_ = s;                                           \
 	QChar  **a2i_ep_ = endp;                                      \
 	int    a2i_b_ = base;                                         \
-	T      a2i_min_ = min;                                        \
-	T      a2i_max_ = max;                                        \
+	T      a2i_min_ = A2I_DEFAULT(_Minof(T), min);                \
+	T      a2i_max_ = A2I_DEFAULT(_Maxof(T), max);                \
                                                                       \
 	int  a2i_st_;                                                 \
                                                                       \
@@ -77,7 +88,7 @@
 #define a2ull(...)  a2i(unsigned long long, __VA_ARGS__)
 
 
-#define str2i(TYPE, n, s)  a2i(TYPE, n, s, NULL, 0, _Minof(TYPE), _Maxof(TYPE))
+#define str2i(T, n, s)  a2i(T, n, s, NULL, 0,,)
 
 #define str2shh(...)    str2i(signed char, __VA_ARGS__)
 #define str2sh(...)     str2i(short, __VA_ARGS__)
