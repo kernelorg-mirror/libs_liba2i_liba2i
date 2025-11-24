@@ -37,11 +37,10 @@ a2i_strtoi2(const char *restrict s,
     intmax_t min, intmax_t max, int *restrict status)
 {
 	int        errno_saved;
-	char       *e;
 	intmax_t   n;
 
 	if (endp == NULL)
-		endp = &e;
+		endp = &(char *){};
 
 	*endp = (char *) s;
 
