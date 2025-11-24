@@ -9,6 +9,6 @@
 
 
 extern inline uintmax_t
-a2i_strtou(const char *restrict s,
+a2i_strtou2(const char *restrict s,
     char **restrict endp, int base,
     uintmax_t min, uintmax_t max, int *restrict status);

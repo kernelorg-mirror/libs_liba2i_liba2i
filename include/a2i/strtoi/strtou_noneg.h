@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2023-2024, Alejandro Colomar <alx@kernel.org>
+// SPDX-FileCopyrightText: 2023-2025, Alejandro Colomar <alx@kernel.org>
 // SPDX-License-Identifier: LGPL-3.0-only WITH LGPL-3.0-linking-exception
 
 
@@ -38,10 +38,10 @@ a2i_strtou_noneg(const char *restrict s,
 
 	if (status == NULL)
 		status = &st;
-	if (a2i_strtoi(s, endp, base, 0, 1, status) == 0 && *status == ERANGE)
+	if (a2i_strtoi2(s, endp, base, 0, 1, status) == 0 && *status == ERANGE)
 		return min;
 
-	return a2i_strtou(s, endp, base, min, max, status);
+	return a2i_strtou2(s, endp, base, min, max, status);
 }
 #endif  // defined(A2I_INTERNAL)
 

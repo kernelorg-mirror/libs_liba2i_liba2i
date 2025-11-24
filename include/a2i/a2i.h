@@ -51,11 +51,11 @@
 	_Pragma("clang diagnostic ignored \"-Wshorted-64-to-32\"");   \
                                                                       \
 	*a2i_n_ = _Generic((T) 0,                                     \
-		signed char:        a2i_strtoi,                       \
-		short:              a2i_strtoi,                       \
-		int:                a2i_strtoi,                       \
-		long:               a2i_strtoi,                       \
-		long long:          a2i_strtoi,                       \
+		signed char:        a2i_strtoi2,                      \
+		short:              a2i_strtoi2,                      \
+		int:                a2i_strtoi2,                      \
+		long:               a2i_strtoi2,                      \
+		long long:          a2i_strtoi2,                      \
 		unsigned char:      a2i_strtou_noneg,                 \
 		unsigned short:     a2i_strtou_noneg,                 \
 		unsigned int:       a2i_strtou_noneg,                 \

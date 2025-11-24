@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2023-2024, Alejandro Colomar <alx@kernel.org>
+// SPDX-FileCopyrightText: 2023-2025, Alejandro Colomar <alx@kernel.org>
 // SPDX-License-Identifier: LGPL-3.0-only WITH LGPL-3.0-linking-exception
 
 
@@ -25,14 +25,14 @@ A2I_ATTR_NONNULL(1)
 A2I_ATTR_STRING(1)
 A2I_ATTR_LEAF
 A2I_ATTR_NOTHROW
-a2i_inline uintmax_t a2i_strtou(const char *restrict s,
+a2i_inline uintmax_t a2i_strtou2(const char *restrict s,
     char **restrict endp, int base,
     uintmax_t min, uintmax_t max, int *restrict status);
 
 
 #if defined(A2I_INTERNAL)
 inline uintmax_t
-a2i_strtou(const char *restrict s,
+a2i_strtou2(const char *restrict s,
     char **restrict endp, int base,
     uintmax_t min, uintmax_t max, int *restrict status)
 {
