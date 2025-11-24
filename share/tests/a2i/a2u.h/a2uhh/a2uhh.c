@@ -18,6 +18,7 @@ static void test_null(void);
 static void test_base(void);
 static void test_leading_text(void);
 static void test_leading_space(void);
+static void test_leading_sign(void);
 static void test_range(void);
 static void test_trailing_text(void);
 
@@ -29,6 +30,7 @@ main(void)
 	test_base();
 	test_leading_text();
 	test_leading_space();
+	test_leading_sign();
 	test_range();
 	test_trailing_text();
 }
@@ -171,34 +173,14 @@ test_base(void)
 	assert(n == 3);
 	assert(errno == 0);
 	assert(strcmp(e, "") == 0);
-	assert(a2uhh(&n, "-0b11", &e, 0, 2, 42) == -1);
-	assert(n == 2);
-	assert(errno == ERANGE);
-	assert(strcmp(e, "") == 0);
-	errno = 0;
-	assert(a2uhh(&n, "-0B11", &e, 0, 2, 42) == -1);
-	assert(n == 2);
-	assert(errno == ERANGE);
-	assert(strcmp(e, "") == 0);
-	errno = 0;
 	assert(a2uhh(&n, "011", &e, 0, 2, 42) == 0);
 	assert(n == 9);
 	assert(errno == 0);
 	assert(strcmp(e, "") == 0);
-	assert(a2uhh(&n, "-011", &e, 0, 2, 42) == -1);
-	assert(n == 2);
-	assert(errno == ERANGE);
-	assert(strcmp(e, "") == 0);
-	errno = 0;
 	assert(a2uhh(&n, "11", &e, 0, 2, 42) == 0);
 	assert(n == 11);
 	assert(errno == 0);
 	assert(strcmp(e, "") == 0);
-	assert(a2uhh(&n, "-11", &e, 0, 2, 42) == -1);
-	assert(n == 2);
-	assert(errno == ERANGE);
-	assert(strcmp(e, "") == 0);
-	errno = 0;
 	assert(a2uhh(&n, "0x11", &e, 0, 2, 42) == 0);
 	assert(n == 17);
 	assert(errno == 0);
@@ -207,16 +189,7 @@ test_base(void)
 	assert(n == 17);
 	assert(errno == 0);
 	assert(strcmp(e, "") == 0);
-	assert(a2uhh(&n, "-0x11", &e, 0, 2, 42) == -1);
-	assert(n == 2);
-	assert(errno == ERANGE);
-	assert(strcmp(e, "") == 0);
-	assert(a2uhh(&n, "-0X11", &e, 0, 2, 42) == -1);
-	assert(n == 2);
-	assert(errno == ERANGE);
-	assert(strcmp(e, "") == 0);
 
-	errno = 0;
 	assert(a2uhh(&n, "011", &e, 2, 2, 42) == 0);
 	assert(n == 3);
 	assert(errno == 0);
@@ -233,23 +206,6 @@ test_base(void)
 	assert(n == 3);
 	assert(errno == 0);
 	assert(strcmp(e, "") == 0);
-	assert(a2uhh(&n, "-011", &e, 2, 2, 42) == -1);
-	assert(n == 2);
-	assert(errno == ERANGE);
-	assert(strcmp(e, "") == 0);
-	assert(a2uhh(&n, "-11", &e, 2, 2, 42) == -1);
-	assert(n == 2);
-	assert(errno == ERANGE);
-	assert(strcmp(e, "") == 0);
-	assert(a2uhh(&n, "-0b11", NULL, 2, 2, 42) == -1);
-	assert(n == 2);
-	assert(errno == ERANGE);
-	assert(strcmp(e, "") == 0);
-	assert(a2uhh(&n, "-0B11", NULL, 2, 2, 42) == -1);
-	assert(n == 2);
-	assert(errno == ERANGE);
-	assert(strcmp(e, "") == 0);
-	errno = 0;
 	assert(a2uhh(&n, "011", &e, 16, 2, 42) == 0);
 	assert(n == 17);
 	assert(errno == 0);
@@ -266,24 +222,7 @@ test_base(void)
 	assert(n == 17);
 	assert(errno == 0);
 	assert(strcmp(e, "") == 0);
-	assert(a2uhh(&n, "-011", &e, 16, 2, 42) == -1);
-	assert(n == 2);
-	assert(errno == ERANGE);
-	assert(strcmp(e, "") == 0);
-	assert(a2uhh(&n, "-11", &e, 16, 2, 42) == -1);
-	assert(n == 2);
-	assert(errno == ERANGE);
-	assert(strcmp(e, "") == 0);
-	assert(a2uhh(&n, "-0x11", &e, 16, 2, 42) == -1);
-	assert(n == 2);
-	assert(errno == ERANGE);
-	assert(strcmp(e, "") == 0);
-	assert(a2uhh(&n, "-0X11", &e, 16, 2, 42) == -1);
-	assert(n == 2);
-	assert(errno == ERANGE);
-	assert(strcmp(e, "") == 0);
 
-	errno = 0;
 	assert(a2uhh(&n, "011", &e, 7, 2, 42) == 0);
 	assert(n == 8);
 	assert(errno == 0);
@@ -292,15 +231,6 @@ test_base(void)
 	assert(n == 8);
 	assert(errno == 0);
 	assert(strcmp(e, "") == 0);
-	assert(a2uhh(&n, "-011", &e, 7, 2, 42) == -1);
-	assert(n == 2);
-	assert(errno == ERANGE);
-	assert(strcmp(e, "") == 0);
-	assert(a2uhh(&n, "-11", &e, 7, 2, 42) == -1);
-	assert(n == 2);
-	assert(errno == ERANGE);
-	assert(strcmp(e, "") == 0);
-	errno = 0;
 	assert(a2uhh(&n, "011", &e, 8, 2, 42) == 0);
 	assert(n == 9);
 	assert(errno == 0);
@@ -309,15 +239,6 @@ test_base(void)
 	assert(n == 9);
 	assert(errno == 0);
 	assert(strcmp(e, "") == 0);
-	assert(a2uhh(&n, "-011", &e, 8, 2, 42) == -1);
-	assert(n == 2);
-	assert(errno == ERANGE);
-	assert(strcmp(e, "") == 0);
-	assert(a2uhh(&n, "-11", &e, 8, 2, 42) == -1);
-	assert(n == 2);
-	assert(errno == ERANGE);
-	assert(strcmp(e, "") == 0);
-	errno = 0;
 	assert(a2uhh(&n, "z", &e, 36, 2, 42) == 0);
 	assert(n == 35);
 	assert(errno == 0);
@@ -325,14 +246,6 @@ test_base(void)
 	assert(a2uhh(&n, "Z", &e, 36, 2, 42) == 0);
 	assert(n == 35);
 	assert(errno == 0);
-	assert(strcmp(e, "") == 0);
-	assert(a2uhh(&n, "-z", &e, 36, 2, 42) == -1);
-	assert(n == 2);
-	assert(errno == ERANGE);
-	assert(strcmp(e, "") == 0);
-	assert(a2uhh(&n, "-Z", &e, 36, 2, 42) == -1);
-	assert(n == 2);
-	assert(errno == ERANGE);
 	assert(strcmp(e, "") == 0);
 }
 
@@ -380,6 +293,28 @@ test_leading_space(void)
 	assert(n == 2);
 	assert(errno == ECANCELED);
 	assert(strcmp(e, "\n-a") == 0);
+}
+
+
+static void
+test_leading_sign(void)
+{
+	const char     *e;
+	unsigned char  n;
+
+	assert(a2uhh(&n, "-1", &e, 0,,) == -1);
+	assert(n == 0);
+	assert(errno == ECANCELED);
+	assert(strcmp(e, "-1") == 0);
+	assert(a2uhh(&n, "+1", &e, 0,,) == -1);
+	assert(n == 0);
+	assert(errno == ECANCELED);
+	assert(strcmp(e, "+1") == 0);
+	errno = 0;
+	assert(a2uhh(&n, "1", &e, 0,,) == 0);
+	assert(n == 1);
+	assert(errno == 0);
+	assert(strcmp(e, "") == 0);
 }
 
 
@@ -442,25 +377,12 @@ test_range(void)
 	assert(errno == 0);
 	assert(strcmp(e, "") == 0);
 
-	assert(a2uhh(&n, "-1", &e, 0,,) == -1);
-	assert(n == 0);
-	assert(errno == ERANGE);
-	assert(strcmp(e, "") == 0);
-	errno = 0;
 	assert(a2uhh(&n, "0xFF", &e, 0,,) == 0);
 	assert(n == 0xFF);
 	assert(errno == 0);
 	assert(strcmp(e, "") == 0);
-	assert(a2uhh(&n, "-0x1FF", &e, 0,,) == -1);
-	assert(n == 0);
-	assert(errno == ERANGE);
-	assert(strcmp(e, "") == 0);
 	assert(a2uhh(&n, "0x1FF", &e, 0,,) == -1);
 	assert(n == UCHAR_MAX);
-	assert(errno == ERANGE);
-	assert(strcmp(e, "") == 0);
-	assert(a2uhh(&n, "-0x1FF", &e, 0,,) == -1);
-	assert(n == 0);
 	assert(errno == ERANGE);
 	assert(strcmp(e, "") == 0);
 }

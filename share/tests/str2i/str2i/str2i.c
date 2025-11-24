@@ -17,6 +17,7 @@
 static void test_base(void);
 static void test_leading_text(void);
 static void test_leading_space(void);
+static void test_leading_sign(void);
 static void test_range(void);
 static void test_trailing_text(void);
 
@@ -27,6 +28,7 @@ main(void)
 	test_base();
 	test_leading_text();
 	test_leading_space();
+	test_leading_sign();
 	test_range();
 	test_trailing_text();
 }
@@ -49,40 +51,18 @@ test_base(void)
 	assert(str2i(unsigned int, &n, "0B11") == 0);
 	assert(n == 3);
 	assert(errno == 0);
-	assert(str2i(unsigned int, &n, "-0b11") == -1);
-	assert(n == 0);
-	assert(errno == ERANGE);
-	errno = 0;
-	assert(str2i(unsigned int, &n, "-0B11") == -1);
-	assert(n == 0);
-	assert(errno == ERANGE);
-	errno = 0;
 	assert(str2i(unsigned int, &n, "011") == 0);
 	assert(n == 9);
 	assert(errno == 0);
-	assert(str2i(unsigned int, &n, "-011") == -1);
-	assert(n == 0);
-	assert(errno == ERANGE);
-	errno = 0;
 	assert(str2i(unsigned int, &n, "11") == 0);
 	assert(n == 11);
 	assert(errno == 0);
-	assert(str2i(unsigned int, &n, "-11") == -1);
-	assert(n == 0);
-	assert(errno == ERANGE);
-	errno = 0;
 	assert(str2i(unsigned int, &n, "0x11") == 0);
 	assert(n == 17);
 	assert(errno == 0);
 	assert(str2i(unsigned int, &n, "0X11") == 0);
 	assert(n == 17);
 	assert(errno == 0);
-	assert(str2i(unsigned int, &n, "-0x11") == -1);
-	assert(n == 0);
-	assert(errno == ERANGE);
-	assert(str2i(unsigned int, &n, "-0X11") == -1);
-	assert(n == 0);
-	assert(errno == ERANGE);
 }
 
 
@@ -121,25 +101,35 @@ test_leading_space(void)
 
 
 static void
-test_range(void)
+test_leading_sign(void)
 {
 	unsigned char  n;
 
 	assert(str2i(unsigned char, &n, "-1") == -1);
 	assert(n == 0);
-	assert(errno == ERANGE);
+	assert(errno == ECANCELED);
+	assert(str2i(unsigned char, &n, "+1") == -1);
+	assert(n == 0);
+	assert(errno == ECANCELED);
 	errno = 0;
+	assert(str2i(unsigned char, &n, "1") == 0);
+	assert(n == 1);
+	assert(errno == 0);
+}
+
+
+static void
+test_range(void)
+{
+	unsigned char  n;
+
+	errno = 0;
+
 	assert(str2i(unsigned char, &n, "0xFF") == 0);
 	assert(n == 0xFF);
 	assert(errno == 0);
-	assert(str2i(unsigned char, &n, "-0xFF") == -1);
-	assert(n == 0);
-	assert(errno == ERANGE);
 	assert(str2i(unsigned char, &n, "0x1FF") == -1);
 	assert(n == UCHAR_MAX);
-	assert(errno == ERANGE);
-	assert(str2i(unsigned char, &n, "-0x1FF") == -1);
-	assert(n == 0);
 	assert(errno == ERANGE);
 }
 

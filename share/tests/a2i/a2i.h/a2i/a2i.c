@@ -18,6 +18,7 @@ static void test_null(void);
 static void test_base(void);
 static void test_leading_text(void);
 static void test_leading_space(void);
+static void test_leading_sign(void);
 static void test_range(void);
 static void test_trailing_text(void);
 
@@ -29,6 +30,7 @@ main(void)
 	test_base();
 	test_leading_text();
 	test_leading_space();
+	test_leading_sign();
 	test_range();
 	test_trailing_text();
 }
@@ -371,6 +373,42 @@ test_leading_space(void)
 	assert(n == 2);
 	assert(errno == ECANCELED);
 	assert(strcmp(e, "\n-a") == 0);
+}
+
+
+static void
+test_leading_sign(void)
+{
+	const char          *e;
+	unsigned long long  u;
+	long long           s;
+
+	assert(a2i(unsigned long long, &u, "-1", &e, 0,,) == -1);
+	assert(u == 0);
+	assert(errno == ECANCELED);
+	assert(strcmp(e, "-1") == 0);
+	assert(a2i(unsigned long long, &u, "+1", &e, 0,,) == -1);
+	assert(u == 0);
+	assert(errno == ECANCELED);
+	assert(strcmp(e, "+1") == 0);
+	errno = 0;
+	assert(a2i(unsigned long long, &u, "1", &e, 0,,) == 0);
+	assert(u == 1);
+	assert(errno == 0);
+	assert(strcmp(e, "") == 0);
+
+	assert(a2i(long long, &s, "-1", &e, 0,,) == 0);
+	assert(s == -1);
+	assert(errno == 0);
+	assert(strcmp(e, "") == 0);
+	assert(a2i(long long, &s, "+1", &e, 0,,) == 0);
+	assert(s == 1);
+	assert(errno == 0);
+	assert(strcmp(e, "") == 0);
+	assert(a2i(long long, &s, "1", &e, 0,,) == 0);
+	assert(s == 1);
+	assert(errno == 0);
+	assert(strcmp(e, "") == 0);
 }
 
 

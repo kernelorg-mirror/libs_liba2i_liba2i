@@ -56,6 +56,10 @@ a2i_strtou2(const char *restrict s,
 		*status = ECANCELED;
 		goto clamp;
 	}
+	if (!isalnum((unsigned char){*s})) {
+		*status = ECANCELED;
+		goto clamp;
+	}
 
 	errno_saved = errno;
 	errno = 0;

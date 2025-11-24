@@ -17,6 +17,7 @@
 static void test_base(void);
 static void test_leading_text(void);
 static void test_leading_space(void);
+static void test_leading_sign(void);
 static void test_range(void);
 static void test_trailing_text(void);
 
@@ -27,6 +28,7 @@ main(void)
 	test_base();
 	test_leading_text();
 	test_leading_space();
+	test_leading_sign();
 	test_range();
 	test_trailing_text();
 }
@@ -49,40 +51,18 @@ test_base(void)
 	assert(str2ul(&n, "0B11") == 0);
 	assert(n == 3);
 	assert(errno == 0);
-	assert(str2ul(&n, "-0b11") == -1);
-	assert(n == 0);
-	assert(errno == ERANGE);
-	errno = 0;
-	assert(str2ul(&n, "-0B11") == -1);
-	assert(n == 0);
-	assert(errno == ERANGE);
-	errno = 0;
 	assert(str2ul(&n, "011") == 0);
 	assert(n == 9);
 	assert(errno == 0);
-	assert(str2ul(&n, "-011") == -1);
-	assert(n == 0);
-	assert(errno == ERANGE);
-	errno = 0;
 	assert(str2ul(&n, "11") == 0);
 	assert(n == 11);
 	assert(errno == 0);
-	assert(str2ul(&n, "-11") == -1);
-	assert(n == 0);
-	assert(errno == ERANGE);
-	errno = 0;
 	assert(str2ul(&n, "0x11") == 0);
 	assert(n == 17);
 	assert(errno == 0);
 	assert(str2ul(&n, "0X11") == 0);
 	assert(n == 17);
 	assert(errno == 0);
-	assert(str2ul(&n, "-0x11") == -1);
-	assert(n == 0);
-	assert(errno == ERANGE);
-	assert(str2ul(&n, "-0X11") == -1);
-	assert(n == 0);
-	assert(errno == ERANGE);
 }
 
 
@@ -121,27 +101,35 @@ test_leading_space(void)
 
 
 static void
+test_leading_sign(void)
+{
+	unsigned long  n;
+
+	assert(str2ul(&n, "-1") == -1);
+	assert(n == 0);
+	assert(errno == ECANCELED);
+	assert(str2ul(&n, "+1") == -1);
+	assert(n == 0);
+	assert(errno == ECANCELED);
+	errno = 0;
+	assert(str2ul(&n, "1") == 0);
+	assert(n == 1);
+	assert(errno == 0);
+}
+
+
+static void
 test_range(void)
 {
 	unsigned long  n;
 
 	errno = 0;
 
-	assert(str2ul(&n, "-1") == -1);
-	assert(n == 0);
-	assert(errno == ERANGE);
-	errno = 0;
 	assert(str2ul(&n, "0xFFFFffffFFFFffff") == 0);
 	assert(n == 0xFFFFffffFFFFffff);
 	assert(errno == 0);
-	assert(str2ul(&n, "-0xFFFFffffFFFFffff") == -1);
-	assert(n == 0);
-	assert(errno == ERANGE);
 	assert(str2ul(&n, "0x1FFFFffffFFFFffff") == -1);
 	assert(n == ULONG_MAX);
-	assert(errno == ERANGE);
-	assert(str2ul(&n, "-0x1FFFFffffFFFFffff") == -1);
-	assert(n == 0);
 	assert(errno == ERANGE);
 }
 

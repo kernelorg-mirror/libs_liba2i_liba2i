@@ -9,7 +9,7 @@
 #include <errno.h>
 
 #include <a2i/strtoi/strtoi.h>  // IWYU pragma: keep
-#include <a2i/strtoi/strtou_noneg.h>  // IWYU pragma: keep
+#include <a2i/strtoi/strtou.h>  // IWYU pragma: keep
 
 
 // QChar_of - possibly-qualified char of-a-string
@@ -56,11 +56,11 @@
 		int:                a2i_strtoi2,                      \
 		long:               a2i_strtoi2,                      \
 		long long:          a2i_strtoi2,                      \
-		unsigned char:      a2i_strtou_noneg,                 \
-		unsigned short:     a2i_strtou_noneg,                 \
-		unsigned int:       a2i_strtou_noneg,                 \
-		unsigned long:      a2i_strtou_noneg,                 \
-		unsigned long long: a2i_strtou_noneg                  \
+		unsigned char:      a2i_strtou2,                      \
+		unsigned short:     a2i_strtou2,                      \
+		unsigned int:       a2i_strtou2,                      \
+		unsigned long:      a2i_strtou2,                      \
+		unsigned long long: a2i_strtou2                       \
 	)(a2i_s_, (char **) a2i_ep_, a2i_b_, a2i_min_, a2i_max_, &a2i_st_);\
                                                                       \
 	_Pragma("clang diagnostic pop");                              \
