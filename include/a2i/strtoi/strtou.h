@@ -36,12 +36,10 @@ a2i_strtou2(const char *restrict s,
     char **restrict endp, int base,
     uintmax_t min, uintmax_t max, int *restrict status)
 {
-	int        errno_saved, st;
+	int        errno_saved;
 	char       *e;
 	uintmax_t  n;
 
-	if (status == NULL)
-		status = &st;
 	if (endp == NULL)
 		endp = &e;
 
