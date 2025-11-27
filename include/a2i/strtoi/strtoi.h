@@ -18,6 +18,11 @@
 #include <a2i/inline.h>
 
 
+#ifndef A2I_ISSPACE
+#define A2I_ISSPACE(c)  isspace(({(unsigned char){c};}))
+#endif
+
+
 A2I_ATTR_ACCESS(read_only, 1)
 A2I_ATTR_ACCESS(write_only, 2)
 A2I_ATTR_ACCESS(write_only, 6)
@@ -49,7 +54,7 @@ a2i_strtoi2(const char *restrict s,
 		*status = EINVAL;
 		goto clamp;
 	}
-	if (isspace((unsigned char){*s})) {
+	if (A2I_ISSPACE(*s)) {
 		*status = ECANCELED;
 		goto clamp;
 	}
