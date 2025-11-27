@@ -7,6 +7,7 @@
 
 
 #include <errno.h>
+#include <limits.h>
 
 #include <a2i/strtoi/strtoi.h>  // IWYU pragma: keep
 #include <a2i/strtoi/strtou.h>  // IWYU pragma: keep
@@ -35,14 +36,29 @@
 #define A2I_DEFAULT(def, ovr)  A2I_DEFAULT_(def, ovr)
 
 
+#if (__GNUC__ >= 16)
+# define a2i_maxof(T)        _Maxof(T)
+# define a2i_minof(T)        _Minof(T)
+#else
+# define a2i_widthof(x)      (sizeof(x) * CHAR_BIT)
+# define a2i_is_unsigned(x)  ((typeof(x)) -1 > 1)
+# define a2i_stype_max(T)    \
+	((T) (((((T) 1 << (a2i_widthof(T) - 2)) - 1) << 1) + 1))
+# define a2i_utype_max(T)    ((T) -1)
+# define a2i_maxof(T)        \
+	((T) (a2i_is_unsigned(T) ? a2i_utype_max(T) : a2i_stype_max(T)))
+# define a2i_minof(T)        ((T) ~a2i_maxof(T))
+#endif
+
+
 #define a2i_(T, QChar, n, s, endp, base, min, max)                    \
 ({                                                                    \
 	T      *a2i_n_ = n;                                           \
 	QChar  *a2i_s_ = s;                                           \
 	QChar  **a2i_ep_ = endp;                                      \
 	int    a2i_b_ = base;                                         \
-	T      a2i_min_ = A2I_DEFAULT(_Minof(T), min);                \
-	T      a2i_max_ = A2I_DEFAULT(_Maxof(T), max);                \
+	T      a2i_min_ = A2I_DEFAULT(a2i_minof(T), min);             \
+	T      a2i_max_ = A2I_DEFAULT(a2i_maxof(T), max);             \
                                                                       \
 	int  a2i_st_;                                                 \
                                                                       \
