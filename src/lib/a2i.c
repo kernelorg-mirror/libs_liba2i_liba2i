@@ -24,8 +24,7 @@ atosimax(const char *restrict s, char **restrict endp, int base,
 	int        errno_saved;
 	intmax_t   n;
 
-	if (endp == NULL)
-		endp = &(char *){NULL};
+	endp = endp ?: &(char *){NULL};
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wcast-qual"
@@ -72,8 +71,7 @@ atouimax(const char *restrict s,
 	int        errno_saved;
 	uintmax_t  n;
 
-	if (endp == NULL)
-		endp = &(char *){NULL};
+	endp = endp ?: &(char *){NULL};
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wcast-qual"
