@@ -23,7 +23,7 @@
 # define A2I_ATTR_ACCESS(...)
 #endif
 
-#if __has_attribute(__access__)
+#if __has_attribute(__leaf__)
 # define A2I_ATTR_LEAF             __attribute__((__leaf__))
 #else
 # define A2I_ATTR_LEAF
