@@ -9,7 +9,7 @@
 #include <errno.h>
 #include <limits.h>
 
-#include <a2i/strtoi2.h>  // IWYU pragma: keep
+#include <a2i/atoximax.h>  // IWYU pragma: keep
 
 
 // QChar_of - possibly-qualified char of-a-string
@@ -66,16 +66,16 @@
 	_Pragma("clang diagnostic ignored \"-Wshorted-64-to-32\"");   \
                                                                       \
 	*a2i_n_ = _Generic((T) 0,                                     \
-		signed char:        a2i_strtoi2,                      \
-		short:              a2i_strtoi2,                      \
-		int:                a2i_strtoi2,                      \
-		long:               a2i_strtoi2,                      \
-		long long:          a2i_strtoi2,                      \
-		unsigned char:      a2i_strtou2,                      \
-		unsigned short:     a2i_strtou2,                      \
-		unsigned int:       a2i_strtou2,                      \
-		unsigned long:      a2i_strtou2,                      \
-		unsigned long long: a2i_strtou2                       \
+		signed char:        atosimax,                         \
+		short:              atosimax,                         \
+		int:                atosimax,                         \
+		long:               atosimax,                         \
+		long long:          atosimax,                         \
+		unsigned char:      atouimax,                         \
+		unsigned short:     atouimax,                         \
+		unsigned int:       atouimax,                         \
+		unsigned long:      atouimax,                         \
+		unsigned long long: atouimax                          \
 	)(a2i_s_, (char **) a2i_ep_, a2i_b_, a2i_min_, a2i_max_, &a2i_st_);\
                                                                       \
 	_Pragma("clang diagnostic pop");                              \

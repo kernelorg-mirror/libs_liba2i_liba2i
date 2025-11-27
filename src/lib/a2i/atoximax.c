@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: LGPL-3.0-only WITH LGPL-3.0-linking-exception
 
 
-#include "include/a2i/strtoi2.h"
+#include "include/a2i/atoximax.h"
 
 #include <ctype.h>
 #include <errno.h>
@@ -18,8 +18,7 @@
 
 
 intmax_t
-a2i_strtoi2(const char *restrict s,
-    char **restrict endp, int base,
+atosimax(const char *restrict s, char **restrict endp, int base,
     intmax_t min, intmax_t max, int *restrict status)
 {
 	int        errno_saved;
@@ -66,7 +65,7 @@ clamp:
 
 
 uintmax_t
-a2i_strtou2(const char *restrict s,
+atouimax(const char *restrict s,
     char **restrict endp, int base,
     uintmax_t min, uintmax_t max, int *restrict status)
 {
