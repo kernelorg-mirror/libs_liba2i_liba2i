@@ -55,6 +55,7 @@ CLANG_CFLAGS := \
 	-Wno-c++98-compat \
 	-Wno-empty-translation-unit \
 	-Wno-gnu-auto-type \
+	-Wno-gnu-conditional-omitted-operand \
 	-Wno-gnu-statement-expression \
 	-Wno-language-extension-token \
 	-Wno-pre-c11-compat \
