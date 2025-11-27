@@ -28,7 +28,10 @@ a2i_strtou2(const char *restrict s,
 	if (endp == NULL)
 		endp = &(char *){};
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wcast-qual"
 	*endp = (char *) s;
+#pragma GCC diagnostic pop
 
 	n = 0;
 	if (base < 0 || base == 1 || base > 36) {
