@@ -2,5 +2,4 @@
 // SPDX-License-Identifier: LGPL-3.0-only WITH LGPL-3.0-linking-exception
 
 
-#define A2I_INTERNAL
 #include "include/a2i/a2i.h"
