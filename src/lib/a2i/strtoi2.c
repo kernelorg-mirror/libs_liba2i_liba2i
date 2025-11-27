@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: LGPL-3.0-only WITH LGPL-3.0-linking-exception
 
 
-#include "include/a2i/strtoi/strtoi.h"
+#include "include/a2i/strtoi2.h"
 
 #include <ctype.h>
 #include <errno.h>
@@ -13,7 +13,8 @@
 #include <sys/param.h>
 
 
-#define ISSPACE(c)  isspace((unsigned char ) ({(char){c};}))
+#define ISSPACE(c)  isspace((unsigned char) ({(char){c};}))
+#define ISALNUM(c)  isalnum((unsigned char) ({(char){c};}))
 
 
 intmax_t
@@ -46,6 +47,58 @@ a2i_strtoi2(const char *restrict s,
 	errno = 0;
 
 	n = strtoimax(s, endp, base);
+
+	if (errno != 0 && errno != EINVAL)
+		*status = errno;
+	else if (*endp == s)
+		*status = ECANCELED;
+	else if (n < min || n > max)
+		*status = ERANGE;
+	else if (strcmp(*endp, "") != 0)
+		*status = ENOTSUP;
+	else
+		*status = 0;
+
+	errno = errno_saved;
+clamp:
+	return MAX(min, MIN(max, n));
+}
+
+
+uintmax_t
+a2i_strtou2(const char *restrict s,
+    char **restrict endp, int base,
+    uintmax_t min, uintmax_t max, int *restrict status)
+{
+	int        errno_saved;
+	uintmax_t  n;
+
+	if (endp == NULL)
+		endp = &(char *){NULL};
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wcast-qual"
+	*endp = (char *) s;
+#pragma GCC diagnostic pop
+
+	n = 0;
+	if (base < 0 || base == 1 || base > 36) {
+		*status = EINVAL;
+		goto clamp;
+	}
+	if (ISSPACE(*s)) {
+		*status = ECANCELED;
+		goto clamp;
+	}
+	if (!ISALNUM(*s)) {
+		*status = ECANCELED;
+		goto clamp;
+	}
+
+	errno_saved = errno;
+	errno = 0;
+
+	n = strtoumax(s, endp, base);
 
 	if (errno != 0 && errno != EINVAL)
 		*status = errno;

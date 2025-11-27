@@ -9,8 +9,7 @@
 #include <errno.h>
 #include <limits.h>
 
-#include <a2i/strtoi/strtoi.h>  // IWYU pragma: keep
-#include <a2i/strtoi/strtou.h>  // IWYU pragma: keep
+#include <a2i/strtoi2.h>  // IWYU pragma: keep
 
 
 // QChar_of - possibly-qualified char of-a-string
