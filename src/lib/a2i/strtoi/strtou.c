@@ -13,8 +13,8 @@
 #include <sys/param.h>
 
 
-#define ISSPACE(c)  isspace(({(unsigned char){c};}))
-#define ISALNUM(c)  isalnum(({(unsigned char){c};}))
+#define ISSPACE(c)  isspace((unsigned char) ({(char){c};}))
+#define ISALNUM(c)  isalnum((unsigned char) ({(char){c};}))
 
 
 uintmax_t

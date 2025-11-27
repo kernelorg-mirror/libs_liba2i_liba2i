@@ -13,7 +13,7 @@
 #include <sys/param.h>
 
 
-#define ISSPACE(c)  isspace(({(unsigned char){c};}))
+#define ISSPACE(c)  isspace((unsigned char ) ({(char){c};}))
 
 
 intmax_t
