@@ -2,8 +2,8 @@
 // SPDX-License-Identifier: LGPL-3.0-only WITH LGPL-3.0-linking-exception
 
 
-#ifndef INCLUDE_A2I_A2I_H_
-#define INCLUDE_A2I_A2I_H_
+#ifndef INCLUDE_A2I_H_
+#define INCLUDE_A2I_H_
 
 
 #include <errno.h>

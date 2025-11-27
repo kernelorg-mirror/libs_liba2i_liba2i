@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: LGPL-3.0-only WITH LGPL-3.0-linking-exception
 
 
-#include <a2i/a2i.h>
+#include <a2i.h>
 
 #include <errno.h>
 #include <limits.h>
