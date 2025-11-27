@@ -26,7 +26,7 @@ a2i_strtou2(const char *restrict s,
 	uintmax_t  n;
 
 	if (endp == NULL)
-		endp = &(char *){};
+		endp = &(char *){NULL};
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wcast-qual"
