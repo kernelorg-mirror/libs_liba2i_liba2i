@@ -66,8 +66,7 @@ clamp:
 
 
 uintmax_t
-atouimax(const char *restrict s,
-    char **restrict endp, int base,
+atouimax(const char *restrict s, char **restrict endp, int base,
     uintmax_t min, uintmax_t max, int *restrict status)
 {
 	int        errno_saved;
