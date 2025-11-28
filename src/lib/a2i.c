@@ -15,6 +15,7 @@
 
 #define ISSPACE(c)  isspace((unsigned char) ({(char){c};}))
 #define ISALNUM(c)  isalnum((unsigned char) ({(char){c};}))
+#define streq(a,b)  (strcmp(a,b) == 0)
 
 
 intmax_t
@@ -53,7 +54,7 @@ atosimax(const char *restrict s, char **restrict endp, int base,
 		*status = ECANCELED;
 	else if (n < min || n > max)
 		*status = ERANGE;
-	else if (strcmp(*endp, "") != 0)
+	else if (!streq(*endp, ""))
 		*status = ENOTSUP;
 	else
 		*status = 0;
@@ -105,7 +106,7 @@ atouimax(const char *restrict s,
 		*status = ECANCELED;
 	else if (n < min || n > max)
 		*status = ERANGE;
-	else if (strcmp(*endp, "") != 0)
+	else if (!streq(*endp, ""))
 		*status = ENOTSUP;
 	else
 		*status = 0;
