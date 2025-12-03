@@ -22,6 +22,7 @@ intmax_t
 atosimax(const char *restrict s, char **restrict endp, int base,
     intmax_t min, intmax_t max, int *restrict status)
 {
+	__label__  clamp;
 	int        errno_saved;
 	intmax_t   n;
 
@@ -69,6 +70,7 @@ uintmax_t
 atouimax(const char *restrict s, char **restrict endp, int base,
     uintmax_t min, uintmax_t max, int *restrict status)
 {
+	__label__  clamp;
 	int        errno_saved;
 	uintmax_t  n;
 
