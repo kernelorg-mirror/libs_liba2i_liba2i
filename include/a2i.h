@@ -64,7 +64,7 @@
 	_Pragma("clang diagnostic ignored \"-Wimplicit-int-conversion\"");\
 	_Pragma("clang diagnostic ignored \"-Wshorted-64-to-32\"");   \
                                                                       \
-	*a2i_n_ = _Generic((T) 0,                                     \
+	*a2i_n_ = _Generic((T){},                                     \
 		signed char:        atosimax,                         \
 		short:              atosimax,                         \
 		int:                atosimax,                         \
