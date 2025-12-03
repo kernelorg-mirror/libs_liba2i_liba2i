@@ -28,10 +28,10 @@ atosimax(const char *restrict s, char **restrict endp, int base,
 	endp = endp ?: &(char *){NULL};
 	status = status ?: &(int){0};
 
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wcast-qual"
+	_Pragma("GCC diagnostic push");
+	_Pragma("GCC diagnostic ignored \"-Wcast-qual\"");
 	*endp = (char *) s;
-#pragma GCC diagnostic pop
+	_Pragma("GCC diagnostic pop");
 
 	n = 0;
 	if (base < 0 || base == 1 || base > 36) {
@@ -75,10 +75,10 @@ atouimax(const char *restrict s, char **restrict endp, int base,
 	endp = endp ?: &(char *){NULL};
 	status = status ?: &(int){0};
 
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wcast-qual"
+	_Pragma("GCC diagnostic push");
+	_Pragma("GCC diagnostic ignored \"-Wcast-qual\"");
 	*endp = (char *) s;
-#pragma GCC diagnostic pop
+	_Pragma("GCC diagnostic pop");
 
 	n = 0;
 	if (base < 0 || base == 1 || base > 36) {
