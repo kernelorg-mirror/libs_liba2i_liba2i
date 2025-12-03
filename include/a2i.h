@@ -15,10 +15,10 @@
 #define a2i_QChar_of(s)  typeof                                       \
 (                                                                     \
 	_Generic(s,                                                   \
-		const char *:  (const char){},                        \
-		const void *:  (const char){},                        \
-		char *:        (char){},                              \
-		void *:        (char){}                               \
+		const char *:  (const char){0},                       \
+		const void *:  (const char){0},                       \
+		char *:        (char){0},                             \
+		void *:        (char){0}                              \
 	)                                                             \
 )
 
@@ -64,7 +64,7 @@
 	_Pragma("clang diagnostic ignored \"-Wimplicit-int-conversion\"");\
 	_Pragma("clang diagnostic ignored \"-Wshorted-64-to-32\"");   \
                                                                       \
-	*a2i_n_ = _Generic((T){},                                     \
+	*a2i_n_ = _Generic((T){0},                                    \
 		signed char:        atosimax,                         \
 		short:              atosimax,                         \
 		int:                atosimax,                         \

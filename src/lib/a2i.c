@@ -50,7 +50,7 @@
 	errno_saved = errno;                                          \
 	errno = 0;                                                    \
                                                                       \
-	n = _Generic((T){},                                           \
+	n = _Generic((T){0},                                          \
 		intmax_t:  strtoimax,                                 \
 		uintmax_t: strtoumax                                  \
 	)(s, endp, base);                                             \
