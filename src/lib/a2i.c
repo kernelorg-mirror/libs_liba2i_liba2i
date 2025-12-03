@@ -14,8 +14,8 @@
 
 
 #define is_unsigned(T)  (a2i_minof(T) == 0)
-#define ISSPACE(c)  isspace((unsigned char) ({(char){c};}))
-#define ISALNUM(c)  isalnum((unsigned char) ({(char){c};}))
+#define ISSPACE(c)  isspace((unsigned char) (char){c})
+#define ISALNUM(c)  isalnum((unsigned char) (char){c})
 #define streq(a,b)  (strcmp(a,b) == 0)
 
 
