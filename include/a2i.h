@@ -23,15 +23,9 @@
 )
 
 
-#define A2I_VA_IFNOT_(...)       __VA_ARGS__
-#define A2I_VA_IFNOT_1(...)
-#define A2I_VA_IFNOT(cond, ...)  A2I_VA_IFNOT_ ## cond (__VA_ARGS__)
-#define A2I_DEFAULT_(def, ...)                                        \
-(                                                                     \
-	/* default:  */ A2I_VA_IFNOT(__VA_OPT__(1), def)              \
-	/* override: */ __VA_OPT__(__VA_ARGS__)                       \
-)
-#define A2I_DEFAULT(def, ovr)  A2I_DEFAULT_(def, ovr)
+#define A2I_DEFARG__(x, ...)    (x)
+#define A2I_DEFARG_(def, ...)   A2I_DEFARG__(__VA_ARGS__ __VA_OPT__(,) def)
+#define A2I_DEFARG(def, arg)    A2I_DEFARG_(def, arg)
 
 
 #if (__GNUC__ >= 16)
@@ -55,8 +49,8 @@
 	QChar  *a2i_s_ = s;                                           \
 	QChar  **a2i_ep_ = endp;                                      \
 	int    a2i_b_ = base;                                         \
-	T      a2i_min_ = A2I_DEFAULT(a2i_minof(T), min);             \
-	T      a2i_max_ = A2I_DEFAULT(a2i_maxof(T), max);             \
+	T      a2i_min_ = A2I_DEFARG(a2i_minof(T), min);              \
+	T      a2i_max_ = A2I_DEFARG(a2i_maxof(T), max);              \
                                                                       \
 	int  a2i_st_;                                                 \
                                                                       \
