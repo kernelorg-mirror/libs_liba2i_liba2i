@@ -102,21 +102,6 @@
 #define a2ull(...)  a2i(unsigned long long, __VA_ARGS__)
 
 
-#define str2i(T, n, s)  a2i(T, n, s, NULL, 0,,)
-
-#define str2shh(...)    str2i(signed char, __VA_ARGS__)
-#define str2sh(...)     str2i(short, __VA_ARGS__)
-#define str2si(...)     str2i(int, __VA_ARGS__)
-#define str2sl(...)     str2i(long, __VA_ARGS__)
-#define str2sll(...)    str2i(long long, __VA_ARGS__)
-
-#define str2uhh(...)    str2i(unsigned char, __VA_ARGS__)
-#define str2uh(...)     str2i(unsigned short, __VA_ARGS__)
-#define str2ui(...)     str2i(unsigned int, __VA_ARGS__)
-#define str2ul(...)     str2i(unsigned long, __VA_ARGS__)
-#define str2ull(...)    str2i(unsigned long long, __VA_ARGS__)
-
-
 #if !defined(__has_attribute)
 # define __has_attribute(x)  0
 #endif

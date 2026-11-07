@@ -3,7 +3,7 @@ Title:          liba2i
 Version:        1.0-rc6
 Entered-date:   2024-08-18
 Description:    string-to-numeric library
-Keywords:       liba2i a2i str2i
+Keywords:       liba2i a2i
 Author:         Alejandro Colomar <alx@kernel.org>
 Maintained-by:  Alejandro Colomar <alx@kernel.org>
 Primary-site:   https://kernel.org /pub/software/libs/liba2i/
